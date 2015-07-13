@@ -3,22 +3,24 @@ html
     title Hello
     style 
       include ../public/stylesheets/css.css
+      include ../public/stylesheets/bootstrap.min.css
   body
-    h1 Greetings!
-    a(href='http://localhost:3000/dreier/1') Dreier1111
-    p
-    a(href='http://localhost:3000/dreier/2') Dreier2222
-    p
-    a(href='http://localhost:3000/users') Users
-    p
-    #input
-      input#firstname(name='firstname', placeholder='First Name')
-      input#middleinitial(name='middleinitial', placeholder='Initial')
-      input#lastname(name='lastname', placeholder='Last Name')
-    #submit
-      button(type='button', name='button') Submit
-    h2 Output
-    #content
-      script
-        include ../public/javascripts/greeter.js
-        
+    .container
+      h1 Greetings!
+      a(href='http://localhost:3000/dreier/1') Dreier1111
+      p
+      a(href='http://localhost:3000/dreier/2') Dreier2222
+      p
+      a(href='http://localhost:3000/users') Users
+      p
+      #input
+        input#firstname(name='firstname', placeholder='First Name')
+        input#middleinitial(name='middleinitial', placeholder='Initial')
+        input#lastname(name='lastname', placeholder='Last Name')
+      #submit
+        button(type='button', name='button') Submit
+      h2 Output
+      #content
+        script
+          include ../public/javascripts/greeter.js
+          
