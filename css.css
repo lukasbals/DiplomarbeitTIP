@@ -8,10 +8,13 @@ h1{
 }
 
 body{
-  background-color: orange;
+  background-color: lightgrey;
+  text-align: center;
 }
 h1{
   font-family: Arial;
+  border-color: green;
   border-style: solid;
-  border-color: lightgrey;
+  border-radius: 20px;
+  padding: 20px;
 }
