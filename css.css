@@ -1,17 +1,21 @@
-#content{
+#input {
+  margin-bottom: 20px;
+}
+#submit {
+  margin-bottom: 20px;
+}
+#content {
   font-size: 25px;
   color: red;
 }
-
-h1{
+h1 {
   color: green;
 }
-
-body{
+body {
   background-color: lightgrey;
   text-align: center;
 }
-h1{
+h1 {
   font-family: Arial;
   border-color: green;
   border-style: solid;
