@@ -17,6 +17,4 @@ function greeter(person : Person) {
 
 var user = new Student(document.getElementById('content').firstname.value, document.getElementById('content').middleinitial.value, document.getElementById('content').lastname.value);
 
-
-
 document.getElementById('content').innerHTML = greeter(user);
