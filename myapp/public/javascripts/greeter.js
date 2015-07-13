@@ -3,7 +3,7 @@ var Student = (function () {
         this.firstname = firstname;
         this.middleinitial = middleinitial;
         this.lastname = lastname;
-        this.fullname = firstname + " " + middleinitial + " " + lastname;
+        this.fullname = firstname + " " + middleinitial + ". " + lastname;
     }
     return Student;
 })();
