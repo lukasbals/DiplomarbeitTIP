@@ -1,0 +1,22 @@
+html
+  head
+    title Hello
+    |   
+    link(href='stylesheets/css.css', rel='stylesheet')
+  body
+    h1 Greetings!
+    |   
+    #input
+      input#firstname(name='firstname', placeholder='First Name')
+      |     
+      input#middleinitial(name='middleinitial', placeholder='Initial')
+      |     
+      input#lastname(name='lastname', placeholder='Last Name')
+    |   
+    #submit
+      button(type='button', name='button') Submit
+    |   
+    h2 Output
+    |   
+    #content
+      script(src='javascripts/greeter.js')
