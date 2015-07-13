@@ -9,4 +9,4 @@ function greeter(person : Person) {
 
 var user = {firstname: "Luca", lastname: "Dreier"};
 
-document.content.innerHTML = greeter(user);
+document.getElementById('content').innerHTML = greeter(user);
