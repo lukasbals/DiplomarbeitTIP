@@ -11,4 +11,11 @@ router.get('/2', function(req, res, next) {
   res.send('dreier2222!');
 });
 
+router.get('/', function(req, res, next) {
+  res.render('dreier', {
+    title: 'Express'
+  });
+});
+
+
 module.exports = router;
