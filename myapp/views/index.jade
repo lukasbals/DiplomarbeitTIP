@@ -1,36 +1,36 @@
 html
   head
-    title Hello
+    title Home
     style 
       include ../public/stylesheets/css.css
       include ../public/stylesheets/bootstrap.min.css
   body
     .container
       .row
-        .col-md-12
+        .col-xs-12
           h1 Greetings!
       .row
-        .col-md-4
+        .col-xs-4
             a.btn.btn-default.btn-block(href='http://localhost:3000/users') Users
-        .col-md-4
+        .col-xs-4
             a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/1') Dreier1111
-        .col-md-4
+        .col-xs-4
             a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/2') Dreier2222
       .row
         #input
-          .col-md-3
+          .col-xs-3
               input#firstname.form-control(name='firstname', placeholder='First Name')
-          .col-md-3
+          .col-xs-3
               input#middleinitial.form-control(name='middleinitial', placeholder='Initial')
-          .col-md-3
+          .col-xs-3
               input#lastname.form-control(name='lastname', placeholder='Last Name')
-          .col-md-3
+          .col-xs-3
               button#submit.btn.btn-default.btn-block(type='button', name='button') Submit
       .row
-        .col-md-12
+        .col-xs-12
           h2 Output
       .row
-        .col-md-12
+        .col-xs-12
           .jumbotron
             p Hier kommt der Content
             p#content
