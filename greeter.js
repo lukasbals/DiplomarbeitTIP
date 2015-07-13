@@ -10,5 +10,9 @@ var Student = (function () {
 function greeter(person) {
     return "Hello, " + person.firstname + " " + person.middleinitial + " " + person.lastname;
 }
-var user = new Student(document.getElementById('content').firstname.value, document.getElementById('content').middleinitial.value, document.getElementById('content').lastname.value);
-document.getElementById('content').innerHTML = greeter(user);
+var button = document.getElementById("submit");
+button.onclick = function () {
+    //alert("hallo");
+    var user = new Student(document.getElementById('firstname').value, document.getElementById('middleinitial').value, document.getElementById('lastname').value);
+    document.getElementById('content').innerHTML = greeter(user);
+};
