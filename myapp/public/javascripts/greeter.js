@@ -3,12 +3,12 @@ var Student = (function () {
         this.firstname = firstname;
         this.middleinitial = middleinitial;
         this.lastname = lastname;
-        this.fullname = firstname + " " + middleinitial + ". " + lastname;
+        this.fullname = firstname + " " + middleinitial + " " + lastname;
     }
     return Student;
 })();
 function greeter(person) {
-    return "Hello, " + person.firstname + " " + person.middleinitial + " " + person.lastname;
+    return "Hello, " + person.firstname + " " + person.middleinitial + ". " + person.lastname;
 }
 var button = document.getElementById("submit");
 button.onclick = function () {
