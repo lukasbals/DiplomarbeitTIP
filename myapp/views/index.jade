@@ -6,21 +6,35 @@ html
       include ../public/stylesheets/bootstrap.min.css
   body
     .container
-      h1 Greetings!
-      a(href='http://localhost:3000/dreier/1') Dreier1111
-      p
-      a(href='http://localhost:3000/dreier/2') Dreier2222
-      p
-      a(href='http://localhost:3000/users') Users
-      p
-      #input
-        input#firstname(name='firstname', placeholder='First Name')
-        input#middleinitial(name='middleinitial', placeholder='Initial')
-        input#lastname(name='lastname', placeholder='Last Name')
-      #submit
-        button(type='button', name='button') Submit
-      h2 Output
-      #content
+      .row
+        .col-md-12
+          h1 Greetings!
+      .row
+        .col-md-4
+            a.btn.btn-default.btn-block(href='http://localhost:3000/users') Users
+        .col-md-4
+            a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/1') Dreier1111
+        .col-md-4
+            a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/2') Dreier2222
+      .row
+        #input
+          .col-md-3
+              input#firstname.form-control(name='firstname', placeholder='First Name')
+          .col-md-3
+              input#middleinitial.form-control(name='middleinitial', placeholder='Initial')
+          .col-md-3
+              input#lastname.form-control(name='lastname', placeholder='Last Name')
+          .col-md-3
+              button#submit.btn.btn-default.btn-block(type='button', name='button') Submit
+      .row
+        .col-md-12
+          h2 Output
+      .row
+        .col-md-12
+          .jumbotron
+            p Hier kommt der Content
+            p#content
+      .row
         script
           include ../public/javascripts/greeter.js
-          
+              

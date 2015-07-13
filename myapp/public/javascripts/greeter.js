@@ -17,5 +17,5 @@ button.onclick = function () {
     var middleinitial = document.getElementById('middleinitial').value;
     var lastname = document.getElementById('lastname').value;
     var user = new Student(firstname, middleinitial, lastname);
-    document.getElementById('content').innerHTML = greeter(user);
+    document.getElementById('content').innerHTML = 'p ' + greeter(user);
 };
