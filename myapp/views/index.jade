@@ -1,24 +1,17 @@
-doctype html
-
 html
   head
     title Hello
-    |   
-    link(href='stylesheets/css.css', rel='stylesheet')
+    style 
+      include ../public/stylesheets/css.css
   body
     h1 Greetings!
-    |   
     #input
       input#firstname(name='firstname', placeholder='First Name')
-      |     
       input#middleinitial(name='middleinitial', placeholder='Initial')
-      |     
       input#lastname(name='lastname', placeholder='Last Name')
-    |   
     #submit
       button(type='button', name='button') Submit
-    |   
     h2 Output
-    |   
     #content
-      script(src='javascripts/greeter.js')
+      script
+        include ../public/javascripts/greeter.js
