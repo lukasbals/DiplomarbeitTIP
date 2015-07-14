@@ -10,6 +10,33 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "sqlite3/sqlite3.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "node/node.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "serve-favicon/serve-favicon.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "express/express.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "mime/mime.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
+    },
+    "morgan/morgan.d.ts": {
+      "commit": "f999dcd9543265848a33fa3bb8379bf0393d33c8"
     }
   }
 }
