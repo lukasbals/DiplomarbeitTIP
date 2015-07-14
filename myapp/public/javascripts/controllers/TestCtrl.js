@@ -5,8 +5,8 @@ var TIP;
             var _this = this;
             this.test = test;
             this.$scope = $scope;
-            $scope.getProduct = function () {
-                _this.test.getProduct($scope.vorname);
+            $scope.getID = function () {
+                _this.test.getID($scope.idInput);
             };
         }
         return TestCtrl;

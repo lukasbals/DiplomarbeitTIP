@@ -4,8 +4,8 @@ var TIP;
         function TestService($http) {
             this.$http = $http;
         }
-        TestService.prototype.getProduct = function (id) {
-            return this.$http.get("www.url.com");
+        TestService.prototype.getID = function (id) {
+            return this.$http.get("localhost:3000/dreier/" + id);
         };
         return TestService;
     })();

@@ -1,23 +1,25 @@
 extends layout
 
 block content
-  div(ng-controller="TestCtrl")
-    div.row
-      div.col-xs-12
+  (ng-controller="TestCtrl")
+    .row
+      .col-xs-12
         h2 Users Page!
-    div.row
-      div.col-xs-6
+    .row
+      .col-xs-6
         input.form-control(placeholder="Vorname" ng-model="vorname")
-      div.col-xs-6
+      .col-xs-6
         input.form-control(placeholder="Nachname" ng-model="nachname")
-    div.row
-      div.col-xs-12
-        div.jumbotron
+    .row
+      .col-xs-12
+        .jumbotron
           p Hier wird geschrieben:
           h3 Hello {{vorname}} {{nachname}}!
-    div.row
-      div.col-xs-12
+    .row
+      .col-xs-6
+        input.form-control(placeholder="Zahl eintippen!" ng-model"idInput")
+      .col-xs-6
         button.btn.btn-default(ng-click="getProduct();") hou ie
-    div.row
-      div.col-xs-12
+    .row
+      .col-xs-12
         a.btn.btn-default(href='http://localhost:3000') Home
