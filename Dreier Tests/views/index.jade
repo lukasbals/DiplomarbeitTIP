@@ -1,9 +1,10 @@
-html
+html(ng-app)
   head
     title Home
     style 
       include ../public/stylesheets/css.css
       include ../public/stylesheets/bootstrap.min.css
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js')
   body
     .container
       .row
@@ -19,16 +20,18 @@ html
       .row
         #input
           .col-xs-3
-              input#firstname.form-control(name='firstname', placeholder='First Name')
+              input#firstname.form-control(ng-model='firstname', placeholder='First Name')
           .col-xs-3
-              input#middleinitial.form-control(name='middleinitial', placeholder='Initial')
+              input#middleinitial.form-control(ng-model='middleinitial', placeholder='Initial')
           .col-xs-3
-              input#lastname.form-control(name='lastname', placeholder='Last Name')
+              input#lastname.form-control(ng-model='lastname', placeholder='Last Name')
           .col-xs-3
               button#submit.btn.btn-default.btn-block(type='button', name='button') Submit
       .row
-        .col-xs-12
+        .col-xs-6
           h2 Output
+        .col-xs-6
+          h2 {{firstname}}
       .row
         .col-xs-12
           .jumbotron
