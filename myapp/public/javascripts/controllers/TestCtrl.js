@@ -12,5 +12,7 @@ var TIP;
         return TestCtrl;
     })();
     TIP.TestCtrl = TestCtrl;
-    angular.module("tip").controller("TestCtrl", ["Test", "$scope", TestCtrl]);
+    angular
+        .module("tip")
+        .controller("TestCtrl", ["Test", "$scope", TestCtrl]);
 })(TIP || (TIP = {}));
