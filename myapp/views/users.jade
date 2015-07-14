@@ -1,25 +1,18 @@
-doctype html
-html(ng-app)
-  head
-    title Users
-    style 
-      include ../public/stylesheets/css.css
-      include ../public/stylesheets/bootstrap.min.css
-    script
-      include ../public/javascripts/angular.min.js
-  body
-    .container
-      .row
-        .col-xs-12
-          h1 Users Page!
-      .row
-        .col-xs-12
-          input.form-control(type='text', placeholder='Tippe deinen Namen hier ein!', ng-model='name')
-      .row
-        .col-xs-12
-          .jumbotron
-            p Hier wird geschrieben:
-            h1 Hello {{name}}!
-      .row
-        .col-xs-12
-          a.btn.btn-default(href='http://localhost:3000') Home
+extends layout
+
+block content
+  .container
+    .row
+      .col-xs-12
+        h1 Users Page!
+    .row
+      .col-xs-12
+        input.form-control(type='text', placeholder='Tippe deinen Namen hier ein!', ng-model='name')
+    .row
+      .col-xs-12
+        .jumbotron
+          p Hier wird geschrieben:
+          h1 Hello {{name}}!
+    .row
+      .col-xs-12
+        a.btn.btn-default(href='http://localhost:3000') Home
