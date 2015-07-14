@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  div(ng-controller="TestCtrl")
+    div
+      input(ng-model="vorname")
+    div
+      input(ng-model="nachname")
+    div
+      {{vorname}} {{nachname}}
+    div
+      button(ng-click="getProduct();") tu was
