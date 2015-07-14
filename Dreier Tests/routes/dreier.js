@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET dreier1111 listing. */
 router.get('/1', function(req, res, next) {
-  res.send('dreier1111!');
+  res.render('dreier',{
+    title: 'Express'
+  });
 });
 
 /* GET Dreier2222 listing. */
