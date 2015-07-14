@@ -1,0 +1,17 @@
+doctype html
+
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/css.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    script(src="/javascripts/angular.min.js")
+    script(src="/javascripts/Initialize.js")
+    script(src="/javascripts/services/TestService.js")
+    script(src="/javascripts/controllers/TestCtrl.js")
+  body(ng-app="tip")
+    .container
+      .row
+        .col-xs-12
+          h1 Greetings
+      block content
