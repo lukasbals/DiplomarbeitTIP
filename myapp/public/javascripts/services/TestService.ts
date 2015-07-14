@@ -4,7 +4,7 @@ module TIP {
 
     }
     getID(id: number): ng.IHttpPromise<any> {
-      return this.$http.get("localhost:3000/dreier/" + id);
+      return this.$http.get("localhost:3000/dreier/");
     }
   }
   angular

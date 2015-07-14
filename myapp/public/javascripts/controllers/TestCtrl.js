@@ -6,7 +6,7 @@ var TIP;
             this.test = test;
             this.$scope = $scope;
             $scope.getID = function () {
-                _this.test.getID($scope.idInput);
+                _this.test.getID($scope.id);
             };
         }
         return TestCtrl;

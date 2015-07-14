@@ -2,6 +2,7 @@ module TIP {
   export interface TestScope extends ng.IScope {
     vorname: string;
     nachname: string;
+    id: number;
 
     getID(id: number): void;
   }
@@ -9,7 +10,7 @@ module TIP {
   export class TestCtrl {
     constructor(private test: TestService, public $scope: TestScope) {
       $scope.getID = (): void => {
-        this.test.getID($scope.idInput);
+        this.test.getID($scope.id);
       };
     }
   }
