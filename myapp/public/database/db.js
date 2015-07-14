@@ -17,6 +17,7 @@ db.serialize(function() {
 
     db.each("SELECT runtime FROM demo", function(err, row) {
         console.log("Dieses Ding wurde " + row.runtime+" mal ausgeführt!");
+    });
 });
 
 db.close();
