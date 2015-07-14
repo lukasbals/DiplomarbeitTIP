@@ -20,9 +20,9 @@
         "!./node_modules/**/*"
     ],
     "files": [
-        "./app.ts",
         "./public/javascripts/Initialize.ts",
         "./public/javascripts/controllers/TestCtrl.ts",
+        "./public/javascripts/greeter.ts",
         "./public/javascripts/services/TestService.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/body-parser/body-parser.d.ts",
