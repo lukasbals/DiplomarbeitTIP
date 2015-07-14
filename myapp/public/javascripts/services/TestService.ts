@@ -1,7 +1,6 @@
 module TIP {
   export class TestService {
     constructor(private $http: ng.IHttpService){
-
     }
 
     getProduct(id: number): ng.IHttpPromise<any> {
