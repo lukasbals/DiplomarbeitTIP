@@ -16,6 +16,13 @@
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.0"
+    "gulp-load-plugins": "^0.10.0",
+    "gulp": "^3.8.11",
+    "gulp-debug": "^2.0.1",
+    "gulp-inject": "^1.2.0",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-tslint": "^1.4.4",
+    "gulp-typescript": "^2.5.0",
+    "gulp-rimraf": "^0.1.1"
   }
 }
