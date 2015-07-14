@@ -1,11 +1,13 @@
 doctype html
+
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="angular/angular.js")
-    script(src="javascripts/Initialize.js")
-    script(src="javascripts/services/TestService.js")
-    script(src="javascripts/controllers/TestCtrl.js")
+    link(rel='stylesheet', href='/stylesheets/css.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    script(src="../public/javascripts/angular.min.js")
+    script(src="../public/javascripts/Initialize.js")
+    script(src="../public/javascripts/services/TestService.js")
+    script(src="../public/javascripts/controllers/TestCtrl.js")
   body(ng-app="tip")
     block content
