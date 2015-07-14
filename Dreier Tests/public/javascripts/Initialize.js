@@ -1,4 +1,4 @@
-var TIP;
-(function (TIP) {
-    angular.module("tip", []);
-})(TIP || (TIP = {}));
+var DREIER;
+(function (DREIER) {
+    angular.module("dreier", []);
+})(DREIER || (DREIER = {}));
