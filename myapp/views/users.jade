@@ -1,11 +1,12 @@
-html //(ng-app)
+html 
+//(ng-app)
   head
     title Users
     style 
       include ../public/stylesheets/css.css
       include ../public/stylesheets/bootstrap.min.css
-    script
-      include ../public/javascripts/angular.min.js
+    //script
+      //include ../public/javascripts/angular.min.js
   body
     .container
       .row
@@ -13,12 +14,14 @@ html //(ng-app)
           h1 Users!
       .row
         .col-xs-12
-          input //(type='text' ng-model='name')
+          input 
+          //(type='text' ng-model='name')
       .row
         .col-xs-12
           .jumbotron
             p Hier stehen die User
-            h1 Hello //{{name}}!
+            h1 Hello 
+            //{{name}}!
       .row
         .col-xs-12
           a.btn.btn-default(href='http://localhost:3000') Home
