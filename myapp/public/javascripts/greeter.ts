@@ -1,29 +1,29 @@
 class Student {
   fullname: string;
-  constructor(public firstname, public middleinitial, public lastname) {
-    this.fullname = firstname + " " + middleinitial + " " + lastname;
+  constructor(public firstname, public lastname) {
+    this.fullname = firstname + " " + lastname;
   }
 }
 
 interface Person {
   firstname: string;
   lastname: string;
-  middleinitial: string;
+
 }
 
 function greeter(person: Person) {
-  return "Hello, " + person.firstname + " " + person.middleinitial + ". " + person.lastname;
+  return "Hallo " + person.firstname + " " + person.lastname + "!";
 }
 
 var button = document.getElementById("submit");
-button.onclick = function(){
+
+button.onclick = function() {
   //alert("hallo");
 
-  var firstname = document.getElementById('firstname').value;
-  var middleinitial = document.getElementById('middleinitial').value;
-  var lastname = document.getElementById('lastname').value;
+  var firstname = (<HTMLInputElement>document.getElementById('firstname')).value;
+  var lastname = (<HTMLInputElement>document.getElementById('lastname')).value;
 
-  var user = new Student(firstname, middleinitial, lastname);
+  var user = new Student(firstname, lastname);
 
   document.getElementById('content').innerHTML = greeter(user);
 }
