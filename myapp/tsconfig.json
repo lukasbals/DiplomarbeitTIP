@@ -24,7 +24,6 @@
         "./public/javascripts/controllers/TestCtrl.ts",
         "./public/javascripts/greeter.ts",
         "./public/javascripts/services/TestService.ts",
-        "./test.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/body-parser/body-parser.d.ts",
         "./typings/cookie-parser/cookie-parser.d.ts",
