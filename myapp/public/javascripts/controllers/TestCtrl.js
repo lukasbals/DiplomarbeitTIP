@@ -6,7 +6,14 @@ var TIP;
             this.test = test;
             this.$scope = $scope;
             $scope.getID = function () {
-                _this.test.getID($scope.id);
+                _this.test.getID($scope.id)
+                    .success(function (data) {
+                    var d = JSON.stringify(data);
+                    alert(d);
+                    $scope.contents = data[0];
+                }).
+                    error(function (data) {
+                });
             };
         }
         return TestCtrl;

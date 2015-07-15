@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET dreier1111 listing. */
 router.get('/1', function(req, res, next) {
-  var text = '{ "employees" : [' +
+  var text = '{ "data" : [' +
     '{ "firstName":"Luca" , "lastName":"1111" } ]}';
   var Msg = JSON.parse(text);
   res.send(Msg);
@@ -11,7 +11,7 @@ router.get('/1', function(req, res, next) {
 
 /* GET Dreier2222 listing. */
 router.get('/2', function(req, res, next) {
-  var text = '{ "employees" : [' +
+  var text = '{ "data" : [' +
     '{ "firstName":"Luca" , "lastName":"2222" } ]}';
   var Msg = JSON.parse(text);
   res.send(Msg);
