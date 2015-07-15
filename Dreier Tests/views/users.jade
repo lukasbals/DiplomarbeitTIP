@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  form(name='myForm', ng-controller='TestCtrl')
+  form(name='myForm',ng-app="users", ng-controller='TestCtrl')
       label
           | Single word:
           input(type='text', name='input', ng-model='text.text', ng-pattern='text.word', required='', ng-trim='false')
@@ -12,13 +12,13 @@ block content
           |     
           span.error(ng-show='myForm.input.$error.pattern')
             | Single word only!
-        |   
+        | 
         tt text = {{text.text}}
         br
-        |   
+        |  
         tt myForm.input.$valid = {{myForm.input.$valid}}
         br
-        |   
+        |  
         tt myForm.input.$error = {{myForm.input.$error}}
         br
         |   

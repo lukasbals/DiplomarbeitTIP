@@ -1,4 +1,4 @@
-angular.module('index', [])
+angular.module('dreier', [])
     .controller('TestCtrl', ['$scope', function($scope) {
       $scope.text = {
         text: 'guest',
