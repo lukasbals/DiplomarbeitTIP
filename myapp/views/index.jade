@@ -2,15 +2,14 @@ extends layout
 
 block content
   .row
-    .col-xs-12
-      h2 MainPage
-  .row
-    .col-xs-4
+    .col-xs-6
         a.btn.btn-default.btn-block(href='http://localhost:3000/users/') Users
-    .col-xs-4
-        a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/1') Dreier1111
-    .col-xs-4
-        a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/2') Dreier2222
+    .col-xs-6
+        a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/1') Error Message
+  .row
+    .col-xs-12
+      h2 Input
+        small  Mit greeter.ts gemacht
   .row
     #input
       .col-xs-5
@@ -28,5 +27,4 @@ block content
         p Hier kommt der Content
         p#content
   .row
-    script
-      include ../public/javascripts/greeter.js
+  script(src="/javascripts/greeter.js")

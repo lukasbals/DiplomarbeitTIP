@@ -4,7 +4,11 @@ block content
   div(ng-controller="TestCtrl")
     .row
       .col-xs-12
+        a.btn.btn-default.btn-block(href='http://localhost:3000') Home
+    .row
+      .col-xs-12
         h2 Users Page!
+          small  Mit angular.js gemacht
     .row
       .col-xs-6
         input.form-control(placeholder="Vorname" ng-model="vorname")
@@ -34,6 +38,3 @@ block content
             tr(ng-repeat="content in contents")
               td {{content.tour}}
               td {{content.length}} km
-    .row
-      .col-xs-12
-        a.btn.btn-default(href='http://localhost:3000') Home
