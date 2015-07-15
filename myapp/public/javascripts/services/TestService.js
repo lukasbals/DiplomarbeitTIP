@@ -5,12 +5,7 @@ var TIP;
             this.$http = $http;
         }
         TestService.prototype.getID = function (id) {
-            if ((id == 1) || (id == 2)) {
-                return this.$http.get("http://localhost:3000/dreier/" + id);
-            }
-            else {
-                alert("Den Dreier gibt es nicht.");
-            }
+            return this.$http.get("http://localhost:3000/users/" + id);
         };
         return TestService;
     })();

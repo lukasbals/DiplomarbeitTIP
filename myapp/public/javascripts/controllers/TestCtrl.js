@@ -13,6 +13,7 @@ var TIP;
                     $scope.contents = data;
                 })
                     .error(function (data) {
+                    alert("User nicht gefunden");
                 });
             };
         }

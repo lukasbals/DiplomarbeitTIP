@@ -2,10 +2,10 @@ module TIP {
   export interface TestScope extends ng.IScope {
     vorname: string;
     nachname: string;
-    id: number;
+    id: string;
     contents: JSON;
 
-    getID(id: number): void;
+    getID(id: string): void;
   }
 
   export class TestCtrl {
@@ -19,6 +19,7 @@ module TIP {
           $scope.contents = data;
         })
           .error(function(data) {
+          alert("User nicht gefunden");
         });
       };
     }

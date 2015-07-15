@@ -16,13 +16,24 @@ block content
           p Hier wird geschrieben:
           h3 --> {{vorname}} {{nachname}}!
     .row
+      .col-xs-12
+        h1 Radfahrstatistik:
+    .row
       .col-xs-6
-        input.form-control(placeholder="Zahl eintippen!" ng-model="id")
+        input.form-control(placeholder="Tippe einen User ein!" ng-model="id")
       .col-xs-6
         button.btn.btn-default(ng-click="getID();") Click
-    .row(ng-repeat="content in contents")
+    .row
       .col-xs-12
-        h3 --> {{content.firstName}} {{content.lastName}}
+        table.table
+          thead
+            tr
+              th Tour
+              th Länge
+          tbody
+            tr(ng-repeat="content in contents")
+              td {{content.tour}}
+              td {{content.length}} km
     .row
       .col-xs-12
         a.btn.btn-default(href='http://localhost:3000') Home
