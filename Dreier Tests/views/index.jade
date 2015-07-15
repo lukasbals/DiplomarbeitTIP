@@ -1,5 +1,5 @@
 doctype html
-html(ng-app)
+html(ng-controller="TestCtrl")
   head
     title Home
     style 
@@ -7,6 +7,9 @@ html(ng-app)
       include ../public/stylesheets/bootstrap.min.css
     script
       include ../public/javascripts/angular.min.js
+      include ../public/javascripts/Controllers/TestCtrl.js
+      include ../public/javascripts/Services/TestService.js
+      
   body
     .container
       .row
@@ -20,7 +23,7 @@ html(ng-app)
         .col-xs-4
             a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/2') Dreier2222
       .row
-           .col-xs-3
+          .col-xs-3
               input#firstname.form-control(ng-model='firstname', placeholder='First Name')
           .col-xs-3
               input#middleinitial.form-control(ng-model='middleinitial', placeholder='Initial')

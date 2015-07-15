@@ -1,23 +1,29 @@
 extends layout
 
 block content
-  div(ng-controller="TestCtrl")
-    div.row
-      div.col-xs-12
-        h2 Users Page!
-    div.row
-      div.col-xs-6
-        input.form-control(placeholder="Vorname" ng-model="vorname")
-      div.col-xs-6
-        input.form-control(placeholder="Nachname" ng-model="nachname")
-    div.row
-      div.col-xs-12
-        div.jumbotron
-          p Hier wird geschrieben:
-          h3 Hello {{vorname}} {{nachname}}!
-    div.row
-      div.col-xs-12
-        button.btn.btn-default(ng-click="getProduct();") hou ie
-    div.row
-      div.col-xs-12
-        a.btn.btn-default(href='http://localhost:3000') Home
+  form(name='myForm', ng-controller='TestCtrl')
+      label
+          | Single word:
+          input(type='text', name='input', ng-model='text.text', ng-pattern='text.word', required='', ng-trim='false')
+        |   
+        div(role='alert')
+          span.error(ng-show='myForm.input.$error.required')
+            | Required!
+          |     
+          span.error(ng-show='myForm.input.$error.pattern')
+            | Single word only!
+        |   
+        tt text = {{text.text}}
+        br
+        |   
+        tt myForm.input.$valid = {{myForm.input.$valid}}
+        br
+        |   
+        tt myForm.input.$error = {{myForm.input.$error}}
+        br
+        |   
+        tt myForm.$valid = {{myForm.$valid}}
+        br
+        |   
+        tt myForm.$error.required = {{!!myForm.$error.required}}
+        br
