@@ -14,12 +14,12 @@ block content
       .col-xs-12
         .jumbotron
           p Hier wird geschrieben:
-          h3 Hello {{vorname}} {{nachname}}!
+          h3 --> {{vorname}} {{nachname}}!
     .row
       .col-xs-6
-        input.form-control(placeholder="Zahl eintippen!" ng-model"id")
+        input.form-control(placeholder="Zahl eintippen!" ng-model="id")
       .col-xs-6
-        button.btn.btn-default((ng-app="tip")) Click
+        button.btn.btn-default(ng-click="getID()") Click
     .row
       .col-xs-12
         a.btn.btn-default(href='http://localhost:3000') Home

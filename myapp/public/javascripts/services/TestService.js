@@ -5,10 +5,12 @@ var TIP;
             this.$http = $http;
         }
         TestService.prototype.getID = function (id) {
-            return this.$http.get("localhost:3000/dreier/" + id);
+            return this.$http.get("http://localhost:3000/dreier/" + id);
         };
         return TestService;
     })();
     TIP.TestService = TestService;
-    angular.module("tip").service("Test", ["$http", TestService]);
+    angular
+        .module("tip")
+        .service("Test", ["$http", TestService]);
 })(TIP || (TIP = {}));
