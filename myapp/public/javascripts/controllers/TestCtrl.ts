@@ -12,13 +12,14 @@ module TIP {
     constructor(private test: TestService, public $scope: TestScope) {
       $scope.getID = (): void => {
         this.test.getID($scope.id)
-          .success(function(data){
-            var d: string = JSON.stringify(data);
-            alert(d);
-            $scope.contents = data[0];
-          }).
-          error(function(data){
-          });
+          .success(function(data) {
+          /*var dataString: string = JSON.stringify(data);
+          alert(dataString);*/
+
+          $scope.contents = data;
+        })
+          .error(function(data) {
+        });
       };
     }
   }
