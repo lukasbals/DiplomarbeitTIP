@@ -46,14 +46,14 @@ router.get('/data', function(req, res, next) {
   //
   // var newJsonC = ']';
   // db.close();
-  // var newJson = newJsonA + newJsonC;
+  // var newJson = newJsonA + newJsonB + newJsonC;
 
-  var newJson = '[{"id":"Dornbirn","info":"22"}, {"id":"Hard","info":"12"}, {"id":"Bregenz","info":"54"}]';
+   var newJson = '[{"id":"Dornbirn","info":"22"}, {"id":"Hard","info":"12"}, {"id":"Bregenz","info":"54"}]';
 
 
 
   var json = JSON.parse(newJson);
-console.log(json);
+  console.log(json);
   res.send(json);
 });
 
