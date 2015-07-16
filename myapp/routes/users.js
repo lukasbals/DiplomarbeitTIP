@@ -23,7 +23,7 @@ router.get('/Tobias', function(req, res, next) {
 });
 
 /* GET Luca listing. */
-router.get('/Luca', function(req, res, next) {
+router.get('/Sebastian', function(req, res, next) {
   var text = '[{"tour":"Dornbirn","length":"22"}, {"tour":"Hard","length":"12"}, {"tour":"Bregenz","length":"54"}]';
   var Msg = JSON.parse(text);
   res.send(Msg);

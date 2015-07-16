@@ -3,9 +3,13 @@ module TIP {
     vorname: string;
     nachname: string;
     id: string;
+
     contents: JSON;
 
+    data: JSON;
+
     getID(id: string): void;
+    getData(): void;
   }
 
   export class TestCtrl {
@@ -21,6 +25,10 @@ module TIP {
           .error(function(data) {
           alert("User nicht gefunden");
         });
+      };
+
+      $scope.getData = (): void => {
+        this.test.getData();
       };
     }
   }

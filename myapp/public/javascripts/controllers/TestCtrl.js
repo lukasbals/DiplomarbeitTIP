@@ -16,6 +16,9 @@ var TIP;
                     alert("User nicht gefunden");
                 });
             };
+            $scope.getData = function () {
+                _this.test.getData();
+            };
         }
         return TestCtrl;
     })();

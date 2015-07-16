@@ -7,8 +7,16 @@ block content
         a.btn.btn-default.btn-block(href='http://localhost:3000') Home
     .row
       .col-xs-12
-        h2 Users Page!
+        h2 Holt Daten aus der Datenbank
           small  Mit angular.js gemacht
+    .row
+      .col-xs-2
+        button.btn.btn-danger(ng-click="getData();") Datenbankknopf
+      .col-xs-2
+      
+    .row
+      .col-xs-12
+        h2 Users Page!
     .row
       .col-xs-6
         input.form-control(placeholder="Vorname" ng-model="vorname")
@@ -38,3 +46,4 @@ block content
             tr(ng-repeat="content in contents")
               td {{content.tour}}
               td {{content.length}} km
+    
