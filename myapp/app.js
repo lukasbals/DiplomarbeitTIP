@@ -64,7 +64,7 @@ module.exports = app;
 // var db = new sqlite3.Database("balsDB.db");
 //
 // db.serialize(function() {
-// 
+//
 //   // db.run("CREATE TABLE if not exists user_info (info TEXT)");
 //   // var stmt = db.prepare("INSERT INTO user_info VALUES (?)");
 //   // for (var i = 0; i < 10; i++) {

@@ -29,4 +29,32 @@ router.get('/Sebastian', function(req, res, next) {
   res.send(Msg);
 });
 
+var dataMsg;
+/* GET Luca listing. */
+router.get('/data', function(req, res, next) {
+  // var sqlite3 = require("sqlite3").verbose();
+  // var db = new sqlite3.Database("balsDB.db");
+  //
+  // var newJsonA = '['
+  // db.serialize(function() {
+  //   db.each("SELECT rowid AS id, info FROM user_info", function(err, row) {
+  //     //console.log(row.id + ": " + row.info);
+  //     newJsonB = '{"id":"' + row.id + '","info":"' + row.info + '"},';
+  //
+  //   });
+  // });
+  //
+  // var newJsonC = ']';
+  // db.close();
+  // var newJson = newJsonA + newJsonC;
+
+  var newJson = '[{"id":"Dornbirn","info":"22"}, {"id":"Hard","info":"12"}, {"id":"Bregenz","info":"54"}]';
+
+
+
+  var json = JSON.parse(newJson);
+console.log(json);
+  res.send(json);
+});
+
 module.exports = router;

@@ -8,8 +8,6 @@ var TIP;
             $scope.getID = function () {
                 _this.test.getID($scope.id)
                     .success(function (data) {
-                    /*var dataString: string = JSON.stringify(data);
-                    alert(dataString);*/
                     $scope.contents = data;
                 })
                     .error(function (data) {
@@ -17,7 +15,13 @@ var TIP;
                 });
             };
             $scope.getData = function () {
-                _this.test.getData();
+                _this.test.getData()
+                    .success(function (data) {
+                    $scope.databases = data;
+                })
+                    .error(function (data) {
+                    alert("Keine Daten gefunden auf der Datenbank");
+                });
             };
         }
         return TestCtrl;

@@ -12,8 +12,16 @@ block content
     .row
       .col-xs-2
         button.btn.btn-danger(ng-click="getData();") Datenbankknopf
-      .col-xs-2
-      
+      .col-xs-4
+        table.table(ng-show="databases")
+          thead
+            tr
+              th ID
+              th Info
+          tbody
+            tr(ng-repeat="database in databases")
+              td {{database.id}}
+              td {{database.info}}
     .row
       .col-xs-12
         h2 Users Page!

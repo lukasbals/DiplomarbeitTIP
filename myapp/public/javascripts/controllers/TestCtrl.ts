@@ -6,7 +6,7 @@ module TIP {
 
     contents: JSON;
 
-    data: JSON;
+    databases: JSON;
 
     getID(id: string): void;
     getData(): void;
@@ -17,9 +17,6 @@ module TIP {
       $scope.getID = (): void => {
         this.test.getID($scope.id)
           .success(function(data) {
-          /*var dataString: string = JSON.stringify(data);
-          alert(dataString);*/
-
           $scope.contents = data;
         })
           .error(function(data) {
@@ -28,7 +25,13 @@ module TIP {
       };
 
       $scope.getData = (): void => {
-        this.test.getData();
+        this.test.getData()
+          .success(function(data) {
+          $scope.databases = data;
+        })
+          .error(function(data) {
+          alert("Keine Daten gefunden auf der Datenbank");
+        });
       };
     }
   }
