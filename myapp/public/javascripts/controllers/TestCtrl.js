@@ -23,6 +23,15 @@ var TIP;
                     alert("Keine Daten gefunden auf der Datenbank");
                 });
             };
+            $scope.init = function () {
+                _this.test.init()
+                    .success(function (data) {
+                    $scope.teams = data;
+                })
+                    .error(function () {
+                    alert("Es ist ein Fehler passiert!");
+                });
+            };
             $scope.insertTeam = function () {
                 _this.test.insertTeam($scope.team, $scope.country)
                     .success(function () {

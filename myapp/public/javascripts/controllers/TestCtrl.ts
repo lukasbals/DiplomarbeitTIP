@@ -9,12 +9,11 @@ module TIP {
     getData(): void;
     databases: JSON;
 
+    init(): void;
+    teams: JSON;
     insertTeam(team: string, country: string): void;
     team: string;
     country: string;
-
-
-
   }
 
   export class TestCtrl {
@@ -36,6 +35,16 @@ module TIP {
         })
           .error(function(data) {
           alert("Keine Daten gefunden auf der Datenbank");
+        });
+      };
+
+      $scope.init = (): void => {
+        this.test.init()
+          .success(function(data) {
+          $scope.teams = data;
+        })
+          .error(function() {
+          alert("Es ist ein Fehler passiert!");
         });
       };
 

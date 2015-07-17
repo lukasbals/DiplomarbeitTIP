@@ -17,7 +17,18 @@ block content
       .col-xs-5
           input.form-control(ng-model='country', placeholder='Land')
       .col-xs-2
-          button.btn.btn-default.btn-block(ng-click="insertTeam();") Einfügen
+          button.btn.btn-default.btn-block(ng-click="insertTeam();") Einfügen      
+    .row(ng-init="init();")
+      .col-xs-12
+        table.table
+          thead
+            tr
+              th Team
+              th Land
+          tbody
+            tr(ng-repeat="team in teams")
+              td {{team.team}}
+              td {{team.country}}
     .row
       .col-xs-12
         h2 Input

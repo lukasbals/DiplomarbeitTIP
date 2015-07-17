@@ -8,8 +8,10 @@ var TIP;
             return this.$http.get("http://localhost:3000/users/" + id);
         };
         TestService.prototype.getData = function () {
-            console.log("Hallo Chrome Console!");
             return this.$http.get("http://localhost:3000/users/data");
+        };
+        TestService.prototype.init = function () {
+            return this.$http.get("http://localhost:3000/teams");
         };
         TestService.prototype.insertTeam = function (team, country) {
             var data = '{"team":"' + team + '","country":"' + country + '"}';
