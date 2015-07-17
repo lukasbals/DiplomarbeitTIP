@@ -12,11 +12,11 @@ block content
     .row
       .col-xs-2
         button.btn.btn-danger(ng-click="getData();") Datenbankknopf
-      .col-xs-4
+      .col-xs-10
         table.table(ng-show="databases")
           thead
             tr
-              th ID
+              th #
               th Info
           tbody
             tr(ng-repeat="database in databases")
