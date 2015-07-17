@@ -18,6 +18,12 @@ var TIP;
             var json = JSON.parse(data);
             return this.$http.post("http://localhost:3000/teams", json);
         };
+        TestService.prototype.deleteTeam = function (id) {
+            var idJson = '{"idDelete":' + id + '}';
+            var json = JSON.parse(idJson);
+            console.log(json);
+            return this.$http.post("http://localhost:3000/delete", json);
+        };
         return TestService;
     })();
     TIP.TestService = TestService;

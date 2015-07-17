@@ -25,10 +25,13 @@ block content
             tr
               th Team
               th Land
+              th Eintrag löschen
           tbody
             tr(ng-repeat="team in teams")
               td {{team.team}}
               td {{team.country}}
+              td
+                button.btn-sm.btn.btn-danger(ng-click="deleteTeam(team.id);") Löschen
     .row
       .col-xs-12
         h2 Input

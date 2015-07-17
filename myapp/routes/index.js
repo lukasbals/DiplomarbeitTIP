@@ -14,9 +14,10 @@ router.get('/teams', function(req, res, next) {
   var db = new sqlite3.Database("balsDB.db");
 
   db.serialize(function() {
-    db.all("SELECT * FROM Teams;", function(err, rows) {
+    db.all("SELECT rowid as id,  country, team FROM Teams;", function(err, rows) {
       //console.log(rows);
       var Msg = rows;
+      console.log(Msg);
       res.send(Msg);
     });
   });
@@ -33,10 +34,6 @@ router.post('/teams', function(req, res, next) {
   var sqlite3 = require("sqlite3").verbose();
   var db = new sqlite3.Database("balsDB.db");
 
-  var fs = require("fs");
-  var file = process.env.CLOUD_DIR + "/" + "balsDB.db";
-  var exists = fs.existsSync(file);
-
   db.serialize(function() {
     db.run("create table if not exists Teams (team varchar(50), country varchar(50));");
 
@@ -45,6 +42,22 @@ router.post('/teams', function(req, res, next) {
 
   db.close();
 
+  res.send("OK");
+});
+
+/* POST delete from database, table Teams */
+router.post("/delete", function(req, res, next) {
+  // console.log(req.body.idDelete);
+  var idDelete = req.body.idDelete;
+  console.log(idDelete);
+
+  var sqlite3 = require("sqlite3").verbose();
+  var db = new sqlite3.Database("balsDB.db");
+
+  db.serialize(function() {
+    db.run("delete from Teams where rowid = " + idDelete + "");
+  });
+  db.close();
   res.send("OK");
 });
 

@@ -14,6 +14,8 @@ module TIP {
     insertTeam(team: string, country: string): void;
     team: string;
     country: string;
+    deleteTeam(id: number): void;
+    //delete: number;
   }
 
   export class TestCtrl {
@@ -57,6 +59,13 @@ module TIP {
           alert("error");
         });
       };
+
+      $scope.deleteTeam = (id): void => {
+        /*alert(id);*/
+        this.test.deleteTeam(id);
+      }
+
+
     }
   }
 

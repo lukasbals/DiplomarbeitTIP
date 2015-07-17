@@ -41,6 +41,9 @@ var TIP;
                     alert("error");
                 });
             };
+            $scope.deleteTeam = function (id) {
+                _this.test.deleteTeam(id);
+            };
         }
         return TestCtrl;
     })();

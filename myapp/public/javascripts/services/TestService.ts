@@ -25,6 +25,13 @@ module TIP {
       //alert(data);
       return this.$http.post("http://localhost:3000/teams", json);
     }
+
+    deleteTeam(id: number): ng.IHttpPromise<any> {
+      var idJson = '{"idDelete":' + id + '}';
+      var json = JSON.parse(idJson);
+      console.log(json);
+      return this.$http.post("http://localhost:3000/delete", json);
+    }
   }
   angular
     .module("tip")
