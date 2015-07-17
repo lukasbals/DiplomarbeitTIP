@@ -64,8 +64,6 @@ module TIP {
         /*alert(id);*/
         this.test.deleteTeam(id);
       }
-
-
     }
   }
 
