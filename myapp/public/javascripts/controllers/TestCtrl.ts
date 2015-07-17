@@ -1,15 +1,20 @@
 module TIP {
   export interface TestScope extends ng.IScope {
+    getID(id: string): void;
     vorname: string;
     nachname: string;
     id: string;
-
     contents: JSON;
 
+    getData(): void;
     databases: JSON;
 
-    getID(id: string): void;
-    getData(): void;
+    insertTeam(team: string, country: string): void;
+    team: string;
+    country: string;
+
+
+
   }
 
   export class TestCtrl {
@@ -31,6 +36,16 @@ module TIP {
         })
           .error(function(data) {
           alert("Keine Daten gefunden auf der Datenbank");
+        });
+      };
+
+      $scope.insertTeam = (): void => {
+        this.test.insertTeam($scope.team, $scope.country)
+          .success(function() {
+          alert("success");
+        })
+          .error(function() {
+          alert("error");
         });
       };
     }

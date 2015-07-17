@@ -1,30 +1,41 @@
 extends layout
 
 block content
-  .row
-    .col-xs-6
-        a.btn.btn-default.btn-block(href='http://localhost:3000/users/') Users
-    .col-xs-6
-        a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/1') Error Message
-  .row
-    .col-xs-12
-      h2 Input
-        small  Mit greeter.ts gemacht
-  .row
-    #input
+  div(ng-controller="TestCtrl")
+    .row
+      .col-xs-6
+          a.btn.btn-default.btn-block(href='http://localhost:3000/users/') Users
+      .col-xs-6
+          a.btn.btn-default.btn-block(href='http://localhost:3000/dreier/1') Error Message
+    .row
+      .col-xs-12
+        h2 Insert Datenbank
+          small  Angular
+    .row
       .col-xs-5
-          input#firstname.form-control(name='firstname', placeholder='First Name')
+          input.form-control(ng-model='team', placeholder='Team')
       .col-xs-5
-          input#lastname.form-control(name='lastname', placeholder='Last Name')
+          input.form-control(ng-model='country', placeholder='Land')
       .col-xs-2
-          button#submit.btn.btn-default.btn-block(type='button', name='button') Submit
-  .row
-    .col-xs-12
-      h2 Output
-  .row
-    .col-xs-12
-      .jumbotron
-        p Hier kommt der Content
-        p#content
-  .row
-  script(src="/javascripts/greeter.js")
+          button.btn.btn-default.btn-block(ng-click="insertTeam();") Einfügen
+    .row
+      .col-xs-12
+        h2 Input
+          small  greeter.ts
+    .row
+      #input
+        .col-xs-5
+            input#firstname.form-control(name='firstname', placeholder='First Name')
+        .col-xs-5
+            input#lastname.form-control(name='lastname', placeholder='Last Name')
+        .col-xs-2
+            button#submit.btn.btn-default.btn-block(type='button', name='button') Submit
+    .row
+      .col-xs-12
+        h2 Output
+    .row
+      .col-xs-12
+        .jumbotron
+          p Hier kommt der Content
+          p#content
+    script(src="/javascripts/greeter.js")

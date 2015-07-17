@@ -13,6 +13,14 @@ module TIP {
       console.log("Hallo Chrome Console!");
       return this.$http.get("http://localhost:3000/users/data");
     }
+
+    insertTeam(team: string, country: string): ng.IHttpPromise<any> {
+      //alert("IN");
+      var data = '{"team":"' + team + '","country":"' + country + '"}';
+      var json = JSON.parse(data);
+      //alert(data);
+      return this.$http.post("http://localhost:3000/teams", json);
+    }
   }
   angular
     .module("tip")
