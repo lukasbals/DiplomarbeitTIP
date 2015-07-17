@@ -8,7 +8,7 @@ var TIP;
             return this.$http.get("http://localhost:3000/users/" + id);
         };
         TestService.prototype.getData = function () {
-            console.log("Hallo Chrome Console console!");
+            console.log("Hallo Chrome Console!");
             return this.$http.get("http://localhost:3000/users/data");
         };
         return TestService;

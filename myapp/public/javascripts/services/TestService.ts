@@ -10,7 +10,7 @@ module TIP {
 
     getData(): ng.IHttpPromise<any> {
       //alert("In");
-      console.log("Hallo Chrome Console console!");
+      console.log("Hallo Chrome Console!");
       return this.$http.get("http://localhost:3000/users/data");
     }
   }
