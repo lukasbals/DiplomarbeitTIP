@@ -1,3 +1,4 @@
+
 module TIP {
   export interface TestScope extends ng.IScope {
     getID(id: string): void;
