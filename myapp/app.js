@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var devextreme = require('./routes/devextreme');
+//var newPage = require('./routes/newPage');
 
 var app = express();
 
@@ -32,7 +32,7 @@ app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/devextreme', devextreme);
+//app.use('/newPage', newPage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -66,22 +66,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-// var sqlite3 = require("sqlite3").verbose();
-// var db = new sqlite3.Database("balsDB.db");
-//
-// db.serialize(function() {
-//
-//   // db.run("CREATE TABLE if not exists user_info (info TEXT)");
-//   // var stmt = db.prepare("INSERT INTO user_info VALUES (?)");
-//   // for (var i = 0; i < 10; i++) {
-//   //     stmt.run("Ipsum " + i);
-//   // }
-//   // stmt.finalize();
-//
-//   db.each("SELECT rowid AS id, info FROM user_info", function(err, row) {
-//       console.log(row.id + ": " + row.info);
-//   });
-// });
-//
-// db.close();
