@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'publ ic')));
 app.use("/devextreme", express.static(path.join(__dirname, 'devextreme')));
 app.use("/angular", express.static(path.join(__dirname, 'node_modules/angular')));
 app.use("/angular-sanitize", express.static(path.join(__dirname, 'node_modules/angular-sanitize')));
