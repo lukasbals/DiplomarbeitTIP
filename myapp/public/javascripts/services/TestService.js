@@ -22,7 +22,7 @@ var TIP;
             var idJson = '{"idDelete":' + id + '}';
             var json = JSON.parse(idJson);
             console.log(json);
-            return this.$http.post("http://localhost:3000/delete", json);
+            return this.$http.post("http://localhost:3000/deleteTeam", json);
         };
         return TestService;
     })();

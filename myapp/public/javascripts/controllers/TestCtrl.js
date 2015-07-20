@@ -35,14 +35,22 @@ var TIP;
             $scope.insertTeam = function () {
                 _this.test.insertTeam($scope.team, $scope.country)
                     .success(function () {
-                    alert("success");
+                    $scope.init();
+                    $scope.team = null;
+                    $scope.country = null;
                 })
                     .error(function () {
-                    alert("error");
+                    alert("error with insert Team");
                 });
             };
             $scope.deleteTeam = function (id) {
-                _this.test.deleteTeam(id);
+                _this.test.deleteTeam(id)
+                    .success(function () {
+                    $scope.init();
+                })
+                    .error(function () {
+                    alert("error with deleteTeam");
+                });
             };
         }
         return TestCtrl;

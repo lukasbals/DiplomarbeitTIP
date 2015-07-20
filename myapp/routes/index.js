@@ -46,7 +46,7 @@ router.post('/teams', function(req, res, next) {
 });
 
 /* POST delete from database, table Teams */
-router.post("/delete", function(req, res, next) {
+router.post("/deleteTeam", function(req, res, next) {
   // console.log(req.body.idDelete);
   var idDelete = req.body.idDelete;
   console.log(idDelete);

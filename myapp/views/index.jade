@@ -17,7 +17,7 @@ block content
       .col-xs-5
           input.form-control(ng-model='country', placeholder='Land')
       .col-xs-2
-          button.btn.btn-default.btn-block(ng-click="insertTeam();") Einfügen      
+          button.btn.btn-default.btn-block(ng-click="insertTeam();", type="submit") Einfügen      
     .row(ng-init="init();")
       .col-xs-12
         table.table
@@ -31,7 +31,7 @@ block content
               td {{team.team}}
               td {{team.country}}
               td
-                button.btn-sm.btn.btn-danger(ng-click="deleteTeam(team.id);") Löschen
+                button.btn-sm.btn.btn-danger(ng-click="deleteTeam(team.id);", type="submit") Löschen
     .row
       .col-xs-12
         h2 Input
