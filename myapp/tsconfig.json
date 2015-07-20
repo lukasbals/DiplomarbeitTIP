@@ -21,7 +21,6 @@
     ],
     "files": [
         "./public/javascripts/Initialize.ts",
-        "./public/javascripts/controllers/NewCtrl.ts",
         "./public/javascripts/controllers/TestCtrl.ts",
         "./public/javascripts/greeter.ts",
         "./public/javascripts/services/TestService.ts",

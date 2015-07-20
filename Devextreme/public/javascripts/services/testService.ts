@@ -7,6 +7,10 @@ module TIP {
     getProduct(id: number): ng.IHttpPromise<any> {
       return this.$http.get("asfasdf");
     }
+
+    insertPeople(firstName: string, lastName: string): ng.IHttpPromise<any> {
+      return this.$http.get("asfasdf");
+    }
   }
 
   angular
