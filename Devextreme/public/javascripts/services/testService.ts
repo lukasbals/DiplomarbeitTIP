@@ -4,12 +4,8 @@ module TIP {
 
     }
 
-    getProduct(id: number): ng.IHttpPromise<any> {
-      return this.$http.get("asfasdf");
-    }
-
-    insertPeople(firstName: string, lastName: string): ng.IHttpPromise<any> {
-      return this.$http.get("asfasdf");
+    insertPeople(): ng.IHttpPromise<any> {
+      return this.$http.get("http://localhost:3000/data");
     }
   }
 

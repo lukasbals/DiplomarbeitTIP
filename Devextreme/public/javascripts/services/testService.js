@@ -4,14 +4,13 @@ var TIP;
         function TestService($http) {
             this.$http = $http;
         }
-        TestService.prototype.getProduct = function (id) {
-            return this.$http.get("asfasdf");
-        };
-        TestService.prototype.insertPeople = function (firstName, lastName) {
-            return this.$http.get("asfasdf");
+        TestService.prototype.insertPeople = function () {
+            return this.$http.get("http://localhost:3000/data");
         };
         return TestService;
     })();
     TIP.TestService = TestService;
-    angular.module("tip").service("Test", ["$http", TestService]);
+    angular
+        .module("tip")
+        .service("Test", ["$http", TestService]);
 })(TIP || (TIP = {}));
