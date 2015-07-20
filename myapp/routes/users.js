@@ -10,23 +10,50 @@ router.get('/', function(req, res, next) {
 
 /* GET Lukas listing. */
 router.get('/Lukas', function(req, res, next) {
-  var text = '[{"tour":"Hittisau","length":"22"}, {"tour":"Riefensberg","length":"12"}, {"tour":"Lingenau","length":"54"}]';
-  var Msg = JSON.parse(text);
-  res.send(Msg);
+  var sqlite3 = require("sqlite3").verbose();
+  var db = new sqlite3.Database("balsDB.db");
+
+  db.serialize(function() {
+
+    db.all("SELECT * FROM Bike where name='Lukas'", function(err, rows) {
+      //console.log(rows);
+      var Msg = rows;
+      res.send(Msg);
+    });
+  });
+  db.close();
 });
 
 /* GET Tobias listing. */
 router.get('/Tobias', function(req, res, next) {
-  var text = '[{"tour":"Schwarzenberg","length":"32"}, {"tour":"Egg","length":"23"}, {"tour":"Dornbirn","length":"54"}]';
-  var Msg = JSON.parse(text);
-  res.send(Msg);
+  var sqlite3 = require("sqlite3").verbose();
+  var db = new sqlite3.Database("balsDB.db");
+
+  db.serialize(function() {
+
+    db.all("SELECT * FROM Bike where name='Tobias'", function(err, rows) {
+      //console.log(rows);
+      var Msg = rows;
+      res.send(Msg);
+    });
+  });
+  db.close();
 });
 
 /* GET Luca listing. */
 router.get('/Sebastian', function(req, res, next) {
-  var text = '[{"tour":"Dornbirn","length":"22"}, {"tour":"Hard","length":"12"}, {"tour":"Bregenz","length":"54"}]';
-  var Msg = JSON.parse(text);
-  res.send(Msg);
+  var sqlite3 = require("sqlite3").verbose();
+  var db = new sqlite3.Database("balsDB.db");
+
+  db.serialize(function() {
+
+    db.all("SELECT * FROM Bike where name='Sebastian'", function(err, rows) {
+      //console.log(rows);
+      var Msg = rows;
+      res.send(Msg);
+    });
+  });
+  db.close();
 });
 
 /* GET Luca listing. */
