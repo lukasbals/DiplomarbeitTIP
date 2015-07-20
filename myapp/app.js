@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var devextreme = require('./routes/devextreme');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/devextreme', devextreme);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
