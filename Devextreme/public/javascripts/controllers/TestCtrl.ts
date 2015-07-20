@@ -22,13 +22,6 @@ module TIP {
     doSomethingConfig: DevExpress.ui.dxButtonOptions = {
       text: "Do Something",
       onClick: (): void => {
-        vm.test.insertPeople(vm.vorname, vm.nachname)
-          .success(function(data) {
-          alert("success");
-        })
-          .error(function(data) {
-          alert("FAIL");
-        });
         DevExpress.ui.notify("Hallo " + this.vorname + " " + this.nachname, "info", 2000);
       }
     }

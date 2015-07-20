@@ -19,11 +19,6 @@ var TIP;
             this.doSomethingConfig = {
                 text: "Do Something",
                 onClick: function () {
-                    vm.test.insertPeople(vm.vorname, vm.nachname).success(function (data) {
-                        alert("success");
-                    }).error(function (data) {
-                        alert("FAIL");
-                    });
                     DevExpress.ui.notify("Hallo " + _this.vorname + " " + _this.nachname, "info", 2000);
                 }
             };
@@ -40,5 +35,7 @@ var TIP;
         return TestCtrl;
     })();
     TIP.TestCtrl = TestCtrl;
-    angular.module("tip").controller("TestCtrl", ["Test", "$scope", TestCtrl]);
+    angular
+        .module("tip")
+        .controller("TestCtrl", ["Test", "$scope", TestCtrl]);
 })(TIP || (TIP = {}));
