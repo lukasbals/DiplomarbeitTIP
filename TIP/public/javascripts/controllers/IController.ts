@@ -6,11 +6,11 @@ module TIP {
 
 
   }
-  export interface TestScope extends ng.IScope {
+  export interface IScope extends ng.IScope {
     vm: IViewModel;
   }
 
-  export class TestCtrl {
+  export class IController {
     constructor(private IController: IService, public $scope: IScope) {
       $scope.vm = new IViewModel(IController);
     }

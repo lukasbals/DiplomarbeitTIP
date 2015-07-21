@@ -7,15 +7,15 @@ var TIP;
         return IViewModel;
     })();
     TIP.IViewModel = IViewModel;
-    var TestCtrl = (function () {
-        function TestCtrl(IController, $scope) {
+    var IController = (function () {
+        function IController(IController, $scope) {
             this.IController = IController;
             this.$scope = $scope;
             $scope.vm = new IViewModel(IController);
         }
-        return TestCtrl;
+        return IController;
     })();
-    TIP.TestCtrl = TestCtrl;
+    TIP.IController = IController;
     angular
         .module("tip")
         .controller("IController", ["IController", "$scope", IController]);
