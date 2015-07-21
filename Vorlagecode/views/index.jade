@@ -4,10 +4,10 @@ block content
   h1= title
   div(ng-controller="TestCtrl")
     div
-      input(ng-model="vorname")
+      div(dx-text-box="vm.vornameConfig")
     div
-      input(ng-model="nachname")
+      div(dx-text-box="vm.nachnameConfig")
     div
-      {{vorname}} {{nachname}}
+      {{vm.vorname}} {{vm.nachname}}
     div
-      button(ng-click="getProduct();") tu was
+      div(dx-button="vm.doSomethingConfig")
