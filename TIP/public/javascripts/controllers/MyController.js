@@ -1,8 +1,8 @@
 var TIP;
 (function (TIP) {
-    var IViewModel = (function () {
-        function IViewModel(IController) {
-            this.IController = IController;
+    var MyViewModel = (function () {
+        function MyViewModel(my) {
+            this.my = my;
             this.vornameConfig = {
                 placeholder: "Vorname",
                 bindingOptions: {
@@ -16,19 +16,19 @@ var TIP;
                 }
             };
         }
-        return IViewModel;
+        return MyViewModel;
     })();
-    TIP.IViewModel = IViewModel;
-    var IController = (function () {
-        function IController(IController, $scope) {
-            this.IController = IController;
+    TIP.MyViewModel = MyViewModel;
+    var MyController = (function () {
+        function MyController(my, $scope) {
+            this.my = my;
             this.$scope = $scope;
-            $scope.vm = new IViewModel(IController);
+            $scope.vm = new MyViewModel(my);
         }
-        return IController;
+        return MyController;
     })();
-    TIP.IController = IController;
+    TIP.MyController = MyController;
     angular
         .module("tip")
-        .controller("IController", ["IController", "$scope", IController]);
+        .controller("MyController", ["MyService", "$scope", MyController]);
 })(TIP || (TIP = {}));

@@ -1,5 +1,5 @@
 module TIP {
-  export class IService {
+  export class MyService {
     constructor(private $http: ng.IHttpService) {
 
     }
@@ -9,5 +9,5 @@ module TIP {
 
   angular
     .module("tip")
-    .service("IService", ["$http", IService]);
+    .service("MyService", ["$http", MyService]);
 }

@@ -1,6 +1,6 @@
 module TIP {
-  export class IViewModel {
-    constructor(private IController: IService) {
+  export class MyViewModel {
+    constructor(private my: MyService) {
 
     }
     vorname: string;
@@ -19,17 +19,17 @@ module TIP {
       }
     }
   }
-  export interface IScope extends ng.IScope {
-    vm: IViewModel;
+  export interface MyScope extends ng.IScope {
+    vm: MyViewModel;
   }
 
-  export class IController {
-    constructor(private IController: IService, public $scope: IScope) {
-      $scope.vm = new IViewModel(IController);
+  export class MyController {
+    constructor(private my: MyService, public $scope: MyScope) {
+      $scope.vm = new MyViewModel(my);
     }
   }
 
   angular
     .module("tip")
-    .controller("IController", ["IController", "$scope", IController]);
+    .controller("MyController", ["MyService", "$scope", MyController]);
 }

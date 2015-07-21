@@ -22,8 +22,8 @@
     "files": [
         "./app.ts",
         "./public/javascripts/Initialize.ts",
-        "./public/javascripts/controllers/IController.ts",
-        "./public/javascripts/services/IService.ts",
+        "./public/javascripts/controllers/MyController.ts",
+        "./public/javascripts/services/MyService.ts",
         "./routes/api.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/body-parser/body-parser.d.ts",
