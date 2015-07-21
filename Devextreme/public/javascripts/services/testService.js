@@ -4,7 +4,7 @@ var TIP;
         function TestService($http) {
             this.$http = $http;
         }
-        TestService.prototype.insertPeople = function () {
+        TestService.prototype.getData = function () {
             return this.$http.get("http://localhost:3000/data");
         };
         return TestService;

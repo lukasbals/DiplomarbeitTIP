@@ -19,13 +19,13 @@ var TIP;
             this.doSomethingConfig = {
                 text: "Do Something",
                 onClick: function () {
-                    _this.test.insertPeople()
+                    _this.test.getData()
                         .success(function (data) {
                         alert("success");
                         console.log(data);
                     })
                         .error(function () {
-                        alert("error");
+                        console.log("error");
                     });
                     DevExpress.ui.notify("Hallo " + _this.vorname + " " + _this.nachname, "info", 2000);
                 }

@@ -4,7 +4,7 @@ module TIP {
 
     }
 
-    insertPeople(): ng.IHttpPromise<any> {
+    getData(): ng.IHttpPromise<any> {
       return this.$http.get("http://localhost:3000/data");
     }
   }

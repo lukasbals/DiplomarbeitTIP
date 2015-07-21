@@ -4,7 +4,7 @@ module TIP {
     }
     vorname: string;
     nachname: string;
-    peoples: JSON;
+    //peoples: JSON;
 
     vornameConfig: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Vorname",
@@ -18,17 +18,18 @@ module TIP {
         value: "vm.nachname"
       }
     }
+
     doSomethingConfig: DevExpress.ui.dxButtonOptions = {
       text: "Do Something",
       onClick: (): void => {
-        this.test.insertPeople()
+        this.test.getData()
           .success(function(data) {
           alert("success");
-          //this.peoples = data;
           console.log(data);
         })
           .error(function() {
-          alert("error");
+          //alert("error");
+          console.log("error");
         });
         DevExpress.ui.notify("Hallo " + this.vorname + " " + this.nachname, "info", 2000);
       }
