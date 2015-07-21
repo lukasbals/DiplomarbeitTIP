@@ -21,7 +21,7 @@ var TIP;
                 onClick: function () {
                     _this.test.getData()
                         .success(function (data) {
-                        alert("success");
+                        console.log("success");
                         console.log(data);
                     })
                         .error(function () {

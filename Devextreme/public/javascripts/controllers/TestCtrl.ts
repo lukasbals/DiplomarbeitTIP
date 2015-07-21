@@ -4,7 +4,7 @@ module TIP {
     }
     vorname: string;
     nachname: string;
-    //peoples: JSON;
+    tipData: JSON;
 
     vornameConfig: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Vorname",
@@ -12,6 +12,7 @@ module TIP {
         value: "vm.vorname"
       }
     }
+
     nachnameConfig: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Nachname",
       bindingOptions: {
@@ -24,24 +25,38 @@ module TIP {
       onClick: (): void => {
         this.test.getData()
           .success(function(data) {
-          alert("success");
+          console.log("success");
+          /*this.tipData = data;*/
           console.log(data);
         })
           .error(function() {
-          //alert("error");
           console.log("error");
         });
+        //return tipData;
         DevExpress.ui.notify("Hallo " + this.vorname + " " + this.nachname, "info", 2000);
       }
     }
 
-    /*listConfig: DevExpress.ui.dxListOptions = {
-      dataSource: this.peoples,
-      grouped: true,
-      showDeleteControls: true,
-      showReorderControls: true,
-      showSelectionControls: true
+    /*gridConfig: DevExpress.ui.dxDataGridOptions = {
+      dataSource: this.tipData,
+      columns: [
+        'Id',
+        'GpNummer',
+        'CodeGpKz',
+        'Firmenbez1',
+        'Firmenbez2',
+        'Firmenbez3',
+        'Strasse',
+        'Codeland',
+        'Plz',
+        'Ort',
+        'Telefon',
+        'Fax',
+        'Email',
+        'Homepage'
+      ]
     }*/
+
   }
   export interface TestScope extends ng.IScope {
     vm: TestViewModel;
