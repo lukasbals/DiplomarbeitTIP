@@ -3,5 +3,20 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    script(src="jquery/jquery.js")
+    script(src="angular/angular.js")
+    script(src="angular-sanitize/angular-sanitize.js")
+    
+    link(rel='stylesheet', href='devextreme/stylesheets/dx.common.css')
+    link(rel='stylesheet', href='devextreme/stylesheets/dx.light.css')
+    script(src="devextreme/javascript/jquery.globalize/globalize.js")
+    script(src="devextreme/javascript/devextreme-modules/dx.module-core.js")
+    script(src="devextreme/javascript/devextreme-modules/dx.module-widgets-base.js")
+    script(src="devextreme/javascript/devextreme-modules/dx.module-widgets-web.js")
+    
+    script(src="javascripts/Initialize.js")
+    script(src="javascripts/services/TestService.js")
+    script(src="javascripts/controllers/TestCtrl.js")
+  body(ng-app="tip")
     block content
