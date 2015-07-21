@@ -3,6 +3,18 @@ var TIP;
     var IViewModel = (function () {
         function IViewModel(IController) {
             this.IController = IController;
+            this.vornameConfig = {
+                placeholder: "Vorname",
+                bindingOptions: {
+                    value: "vm.vorname"
+                }
+            };
+            this.nachnameConfig = {
+                placeholder: "Nachname",
+                bindingOptions: {
+                    value: "vm.nachname"
+                }
+            };
         }
         return IViewModel;
     })();

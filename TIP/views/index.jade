@@ -4,3 +4,9 @@ block content
   div(ng-controller="IController")
     h1= title
     p Welcome to #{title}
+      div.row
+        div(dx-text-box="vornameConfig")
+      div.row
+        div(dx-text-box="nachnameConfig")
+      div.row
+        div {{vm.vorname}} {{vm.nachname}}
