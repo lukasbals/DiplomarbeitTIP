@@ -20,9 +20,11 @@
         "!./node_modules/**/*"
     ],
     "files": [
+        "./app.ts",
         "./public/javascripts/Initialize.ts",
         "./public/javascripts/controllers/IController.ts",
         "./public/javascripts/services/IService.ts",
+        "./routes/api.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/body-parser/body-parser.d.ts",
         "./typings/cookie-parser/cookie-parser.d.ts",
