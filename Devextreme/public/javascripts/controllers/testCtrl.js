@@ -19,16 +19,27 @@ var TIP;
             this.doSomethingConfig = {
                 text: "Do Something",
                 onClick: function () {
-                    _this.test.getData()
-                        .success(function (data) {
-                        console.log("success");
-                        console.log(data);
-                    })
-                        .error(function () {
-                        console.log("error");
-                    });
                     DevExpress.ui.notify("Hallo " + _this.vorname + " " + _this.nachname, "info", 2000);
                 }
+            };
+            this.gridConfig = {
+                dataSource: new DevExpress.data.DataSource({}),
+                columns: [
+                    'Id',
+                    'GpNummer',
+                    'CodeGpKz',
+                    'Firmenbez1',
+                    'Firmenbez2',
+                    'Firmenbez3',
+                    'Strasse',
+                    'Codeland',
+                    'Plz',
+                    'Ort',
+                    'Telefon',
+                    'Fax',
+                    'Email',
+                    'Homepage'
+                ]
             };
         }
         return TestViewModel;

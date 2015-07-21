@@ -23,22 +23,32 @@ module TIP {
     doSomethingConfig: DevExpress.ui.dxButtonOptions = {
       text: "Do Something",
       onClick: (): void => {
-        this.test.getData()
+        /*this.test.getData()
           .success(function(data) {
           console.log("success");
-          /*this.tipData = data;*/
+          this.tipData = data;
           console.log(data);
         })
           .error(function() {
           console.log("error");
-        });
+        });*/
         //return tipData;
         DevExpress.ui.notify("Hallo " + this.vorname + " " + this.nachname, "info", 2000);
       }
     }
 
-    /*gridConfig: DevExpress.ui.dxDataGridOptions = {
-      dataSource: this.tipData,
+    gridConfig: DevExpress.ui.dxDataGridOptions = {
+      dataSource: new DevExpress.data.DataSource({
+        /*this.test.getData()
+          .success(function(data) {
+          console.log("success");
+
+          console.log(data);
+        })
+          .error(function() {
+          console.log("error");
+        });*/
+        }),
       columns: [
         'Id',
         'GpNummer',
@@ -55,7 +65,7 @@ module TIP {
         'Email',
         'Homepage'
       ]
-    }*/
+    }
 
   }
   export interface TestScope extends ng.IScope {
