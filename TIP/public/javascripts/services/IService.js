@@ -9,5 +9,5 @@ var TIP;
     TIP.IService = IService;
     angular
         .module("tip")
-        .service("I", ["$http", IService]);
+        .service("IService", ["$http", IService]);
 })(TIP || (TIP = {}));

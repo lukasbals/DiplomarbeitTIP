@@ -9,5 +9,5 @@ module TIP {
 
   angular
     .module("tip")
-    .service("I", ["$http", IService]);
+    .service("IService", ["$http", IService]);
 }

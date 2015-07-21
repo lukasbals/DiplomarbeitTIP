@@ -1,6 +1,6 @@
 module TIP {
   export class IViewModel {
-    constructor(private i: IService) {
+    constructor(private IController: IService) {
 
     }
 
@@ -11,12 +11,12 @@ module TIP {
   }
 
   export class TestCtrl {
-    constructor(private i: IService, public $scope: IScope) {
-      $scope.vm = new IViewModel(i);
+    constructor(private IController: IService, public $scope: IScope) {
+      $scope.vm = new IViewModel(IController);
     }
   }
 
   angular
     .module("tip")
-    .controller("IController", ["I", "$scope", IController]);
+    .controller("IController", ["IController", "$scope", IController]);
 }
