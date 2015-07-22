@@ -1,6 +1,5 @@
 import express = require("express");
 import sqlite3 = require("sqlite3");
-var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 var db = new sqlite3.Database("db.sql");
@@ -9,7 +8,7 @@ var router = express.Router();
 
 router.get("/initDB", (req, res): void => {
   console.log("IN");
-  TIPDatabase.initDB();
+  console.log(TIPDatabase.initDB(10));
 });
 
 
