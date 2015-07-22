@@ -40,6 +40,8 @@ var initDB = (): void => {
       "homepage text)");
   });
 }
+
+
 var loadAnrede = (): void => {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Anrede",
