@@ -10,5 +10,4 @@ TIPDataStammdatenGpKz.loadGpKz();
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 TIPDataStammdatenLand.loadLand();
 TIPDataStammdatenAnrede.loadAnrede();
-setInterval(function () { return TIPDataStammdatenAnrede.loadAnrede(); }, 5000);
 module.exports = router;
