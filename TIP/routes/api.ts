@@ -23,6 +23,6 @@ TIPDataStammdatenLand.loadLand();
 //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
 
 TIPDataStammdatenAnrede.loadAnrede();
-//setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
+setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 5000);
 
 module.exports = router;
