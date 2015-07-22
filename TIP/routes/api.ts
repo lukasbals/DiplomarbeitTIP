@@ -4,11 +4,11 @@ var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
 var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
 var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
+var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 
 var router = express.Router();
 
-
-router.get("/initDB", (req, res): void => {
+router.get("/", (req, res): void => {
   /*TIPDatabase.initDB();
   res.send("done");*/
 });
@@ -23,6 +23,9 @@ TIPDataStammdatenLand.loadLand();
 //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
 
 TIPDataStammdatenAnrede.loadAnrede();
-//setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 5000);
+//setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
+
+TIPDataStammdatenPersonengruppe.loadPersonengruppe();
+setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 5000);
 
 module.exports = router;

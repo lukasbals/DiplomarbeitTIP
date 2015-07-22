@@ -25,6 +25,7 @@
         "./my_modules/TIPDataStammdatenGeschaeftspartner.ts",
         "./my_modules/TIPDataStammdatenGpKz.ts",
         "./my_modules/TIPDataStammdatenLand.ts",
+        "./my_modules/TIPDataStammdatenPersonengruppe.ts",
         "./my_modules/TIPDatabase.ts",
         "./public/javascripts/Initialize.ts",
         "./public/javascripts/controllers/MyController.ts",
