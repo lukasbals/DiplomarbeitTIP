@@ -5,6 +5,7 @@ var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdate
 var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
+var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 
 var router = express.Router();
 
@@ -26,6 +27,9 @@ TIPDataStammdatenAnrede.loadAnrede();
 //setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
 
 TIPDataStammdatenPersonengruppe.loadPersonengruppe();
-setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 5000);
+//setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
+
+TIPDataStammdatenPerson.loadPerson();
+setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
 
 module.exports = router;

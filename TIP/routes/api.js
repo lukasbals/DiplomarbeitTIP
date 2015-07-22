@@ -4,6 +4,7 @@ var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdate
 var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
+var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var router = express.Router();
 router.get("/", function (req, res) {
 });
@@ -12,5 +13,6 @@ TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 TIPDataStammdatenLand.loadLand();
 TIPDataStammdatenAnrede.loadAnrede();
 TIPDataStammdatenPersonengruppe.loadPersonengruppe();
-setInterval(function () { return TIPDataStammdatenPersonengruppe.loadPersonengruppe(); }, 5000);
+TIPDataStammdatenPerson.loadPerson();
+setInterval(function () { return TIPDataStammdatenPerson.loadPerson(); }, 5000);
 module.exports = router;
