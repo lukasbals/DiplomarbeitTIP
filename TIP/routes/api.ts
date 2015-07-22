@@ -1,10 +1,9 @@
 import express = require("express");
-import sqlite3 = require("sqlite3");
-var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
 var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
+var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
+var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 
-var db = new sqlite3.Database("db.sql");
 var router = express.Router();
 
 
@@ -13,13 +12,15 @@ router.get("/initDB", (req, res): void => {
   res.send("done");*/
 });
 
-TIPDatabase.initDB();
-//setInterval(() => TIPDatabase.initDB(), 30000);
-
 TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 //setInterval(() => TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner(), 30000);
+
+TIPDataStammdatenLand.loadLand();
+//setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
+
+TIPDataStammdatenAnrede.loadAnrede();
 
 module.exports = router;

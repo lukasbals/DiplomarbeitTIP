@@ -1,10 +1,23 @@
-var express = require("express");
-var sqlite3 = require("sqlite3");
 var request = require("request");
-var db = new sqlite3.Database("db.sql");
-var router = express.Router();
+var TIPDatabase = require("../my_modules/TIPDatabase");
+var db = TIPDatabase.initDB;
 var loadGeschaeftspartner = function () {
     console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
+    db.run("create table if not exists geschaeftspartner_st ( " +
+        "id integer primary key asc, " +
+        "gp_nummer integer, " +
+        "code_gpkz text, " +
+        "firmenbez1 text, " +
+        "firmenbez2 text, " +
+        "firmenbez3 text, " +
+        "strasse text, " +
+        "code_land text, " +
+        "plz text, " +
+        "ort text, " +
+        "telefon text, " +
+        "fax text, " +
+        "email text, " +
+        "homepage text)");
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Geschaeftspartner", function (error, response, body) {
         var data = JSON.parse(body);
         db.serialize(function () {

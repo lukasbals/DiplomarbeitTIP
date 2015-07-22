@@ -1,10 +1,11 @@
-var express = require("express");
-var sqlite3 = require("sqlite3");
 var request = require("request");
-var db = new sqlite3.Database("db.sql");
-var router = express.Router();
+var TIPDatabase = require("../my_modules/TIPDatabase");
+var db = TIPDatabase.initDB();
 var loadGpKz = function () {
     console.log("In TIPDataStammdatenGpKz -- loadGpKz");
+    db.run("create table if not exists gpkz_st (" +
+        "code string(2) primary key, " +
+        "bezeichnung string(30))");
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/GpKz", function (error, response, body) {
         var data = JSON.parse(body);
         db.serialize(function () {

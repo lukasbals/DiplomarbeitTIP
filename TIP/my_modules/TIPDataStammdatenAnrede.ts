@@ -5,16 +5,16 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var db = TIPDatabase.initDB();
 
-var loadGpKz = function() {
-  console.log("In TIPDataStammdatenGpKz -- loadGpKz");
+var loadAnrede = function() {
+  console.log("In TIPDataStammdatenAnrede -- Anrede");
 
-  // makes gpkz_st TABLE
-  db.run("create table if not exists gpkz_st (" +
-    "code string(2) primary key, " +
-    "bezeichnung string(30))");
+  // makes anreden_st TABLE
+  db.run("create table if not exists anreden_st (" +
+    "code string(10) primary key, " +
+    "bezeichnung string(80))");
 
   // GET request to the TIP server -- GpKz
-  request.get(
+  /*request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/GpKz",
     (error, response, body: string): void => {
       var data: any[] = JSON.parse(body);
@@ -46,7 +46,7 @@ var loadGpKz = function() {
           updateStmt.finalize();
         }
       });
-    });
+    });*/
 }
 
-module.exports.loadGpKz = loadGpKz;
+module.exports.loadAnrede = loadAnrede;
