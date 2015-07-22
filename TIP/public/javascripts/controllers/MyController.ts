@@ -6,13 +6,13 @@ module TIP {
     vorname: string;
     nachname: string;
 
-    vornameConfig: DevExpress.ui.dxTextBoxOptions = {
+    firstNameConfig: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Vorname",
       bindingOptions: {
         value: "vm.vorname"
       }
     }
-    nachnameConfig: DevExpress.ui.dxTextBoxOptions = {
+    lastNameConfig: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Nachname",
       bindingOptions: {
         value: "vm.nachname"

@@ -3,13 +3,13 @@ var TIP;
     var MyViewModel = (function () {
         function MyViewModel(my) {
             this.my = my;
-            this.vornameConfig = {
+            this.firstNameConfig = {
                 placeholder: "Vorname",
                 bindingOptions: {
                     value: "vm.vorname"
                 }
             };
-            this.nachnameConfig = {
+            this.lastNameConfig = {
                 placeholder: "Nachname",
                 bindingOptions: {
                     value: "vm.nachname"
