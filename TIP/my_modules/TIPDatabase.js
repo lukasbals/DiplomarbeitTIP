@@ -1,6 +1,6 @@
 var sqlite3 = require("sqlite3");
-var initDB = function () {
-    var db = new sqlite3.Database("db.sql");
+var db = new sqlite3.Database("db.sql");
+var getDB = function () {
     return db;
 };
-module.exports.initDB = initDB;
+module.exports.getDB = getDB;

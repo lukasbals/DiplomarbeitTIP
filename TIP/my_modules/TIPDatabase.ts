@@ -1,9 +1,9 @@
 import sqlite3 = require("sqlite3");
+var db = new sqlite3.Database("db.sql");
 
-var initDB = function() {
+var getDB = function() {
   //set connection to node.js Database
-  var db = new sqlite3.Database("db.sql");
   return db;
 }
 
-module.exports.initDB = initDB;
+module.exports.getDB = getDB;

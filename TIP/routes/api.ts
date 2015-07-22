@@ -1,4 +1,5 @@
 import express = require("express");
+
 var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
 var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
 var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
@@ -22,5 +23,6 @@ TIPDataStammdatenLand.loadLand();
 //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
 
 TIPDataStammdatenAnrede.loadAnrede();
+//setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
 
 module.exports = router;
