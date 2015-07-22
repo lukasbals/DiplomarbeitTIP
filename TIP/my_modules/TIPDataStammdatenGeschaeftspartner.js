@@ -44,5 +44,7 @@ var loadGeschaeftspartner = function () {
             }
         });
     });
+    var tblName = "geschaeftspartner_st";
+    TIPDatabase.setSYNCH(tblName);
 };
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;

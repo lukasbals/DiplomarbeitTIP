@@ -32,5 +32,7 @@ var loadAnrede = function () {
             }
         });
     });
+    var tblName = "anreden_st";
+    TIPDatabase.setSYNCH(tblName);
 };
 module.exports.loadAnrede = loadAnrede;

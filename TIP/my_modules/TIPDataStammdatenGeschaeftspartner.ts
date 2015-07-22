@@ -56,6 +56,11 @@ var loadGeschaeftspartner = function() {
         }
       });
     });
+
+
+    // sets CURRENT_TIMESTAMP into synch_st TABLE
+    var tblName: string = "geschaeftspartner_st";
+    TIPDatabase.setSYNCH(tblName);
 }
 
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;

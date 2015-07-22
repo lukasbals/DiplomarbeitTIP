@@ -32,5 +32,7 @@ var loadPersonengruppe = function () {
             }
         });
     });
+    var tblName = "personengruppen_st";
+    TIPDatabase.setSYNCH(tblName);
 };
 module.exports.loadPersonengruppe = loadPersonengruppe;

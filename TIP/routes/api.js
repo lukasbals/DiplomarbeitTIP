@@ -14,5 +14,4 @@ TIPDataStammdatenLand.loadLand();
 TIPDataStammdatenAnrede.loadAnrede();
 TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 TIPDataStammdatenPerson.loadPerson();
-setInterval(function () { return TIPDataStammdatenPerson.loadPerson(); }, 5000);
 module.exports = router;

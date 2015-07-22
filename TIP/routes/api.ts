@@ -30,6 +30,6 @@ TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 //setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
 
 TIPDataStammdatenPerson.loadPerson();
-setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
+//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
 
 module.exports = router;

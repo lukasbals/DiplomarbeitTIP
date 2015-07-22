@@ -42,6 +42,10 @@ var loadPersonengruppe = function() {
         }
       });
     });
+
+    // sets CURRENT_TIMESTAMP into synch_st TABLE
+    var tblName: string = "personengruppen_st";
+    TIPDatabase.setSYNCH(tblName);
 }
 
 module.exports.loadPersonengruppe = loadPersonengruppe;

@@ -32,5 +32,7 @@ var loadGpKz = function () {
             }
         });
     });
+    var tblName = "gpkz_st";
+    TIPDatabase.setSYNCH(tblName);
 };
 module.exports.loadGpKz = loadGpKz;

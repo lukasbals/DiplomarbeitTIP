@@ -45,6 +45,10 @@ var loadLand = function() {
         }
       });
     });
+
+    // sets CURRENT_TIMESTAMP into synch_st TABLE
+    var tblName: string = "laender_st";
+    TIPDatabase.setSYNCH(tblName);
 }
 
 module.exports.loadLand = loadLand;

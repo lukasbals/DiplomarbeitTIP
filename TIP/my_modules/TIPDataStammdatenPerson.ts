@@ -54,6 +54,10 @@ var loadPerson = function() {
         }
       });
     });
+
+    // sets CURRENT_TIMESTAMP into synch_st TABLE
+    var tblName: string = "personen_st";
+    TIPDatabase.setSYNCH(tblName);
 }
 
 module.exports.loadPerson = loadPerson;

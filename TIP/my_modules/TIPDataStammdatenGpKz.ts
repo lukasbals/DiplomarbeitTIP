@@ -43,6 +43,10 @@ var loadGpKz = function() {
         }
       });
     });
+
+    // sets CURRENT_TIMESTAMP into synch_st TABLE
+    var tblName: string = "gpkz_st";
+    TIPDatabase.setSYNCH(tblName);
 }
 
 module.exports.loadGpKz = loadGpKz;

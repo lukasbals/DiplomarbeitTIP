@@ -43,5 +43,7 @@ var loadPerson = function () {
             }
         });
     });
+    var tblName = "personen_st";
+    TIPDatabase.setSYNCH(tblName);
 };
 module.exports.loadPerson = loadPerson;

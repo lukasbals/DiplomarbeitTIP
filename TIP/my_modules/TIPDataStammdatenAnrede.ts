@@ -43,6 +43,10 @@ var loadAnrede = function() {
         }
       });
     });
+
+    // sets CURRENT_TIMESTAMP into synch_st TABLE
+    var tblName: string = "anreden_st";
+    TIPDatabase.setSYNCH(tblName);
 }
 
 module.exports.loadAnrede = loadAnrede;

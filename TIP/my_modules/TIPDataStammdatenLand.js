@@ -33,5 +33,7 @@ var loadLand = function () {
             }
         });
     });
+    var tblName = "laender_st";
+    TIPDatabase.setSYNCH(tblName);
 };
 module.exports.loadLand = loadLand;
