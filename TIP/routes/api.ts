@@ -34,7 +34,7 @@ router.get("/getJsonPerson", (req, res): void => {
   TIPDataStammdatenPerson.getJsonPerson(res);
 });
 
-TIPDataStammdatenGpKz.initTableGpKz();
+/*TIPDataStammdatenGpKz.initTableGpKz();
 TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
@@ -56,6 +56,6 @@ TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 
 TIPDataStammdatenPerson.initTablePerson();
 TIPDataStammdatenPerson.loadPerson();
-//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
+//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);*/
 
 module.exports = router;

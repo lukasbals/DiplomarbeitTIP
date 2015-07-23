@@ -24,16 +24,4 @@ router.get("/getJsonPersonengruppe", function (req, res) {
 router.get("/getJsonPerson", function (req, res) {
     TIPDataStammdatenPerson.getJsonPerson(res);
 });
-TIPDataStammdatenGpKz.initTableGpKz();
-TIPDataStammdatenGpKz.loadGpKz();
-TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
-TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
-TIPDataStammdatenLand.initTableLand();
-TIPDataStammdatenLand.loadLand();
-TIPDataStammdatenAnrede.initTableAnrede();
-TIPDataStammdatenAnrede.loadAnrede();
-TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
-TIPDataStammdatenPersonengruppe.loadPersonengruppe();
-TIPDataStammdatenPerson.initTablePerson();
-TIPDataStammdatenPerson.loadPerson();
 module.exports = router;

@@ -2,11 +2,6 @@ extends layout
 
 block content
   div(ng-controller="MyController")
-    h1= title
-    p Welcome to #{title}
-      div.row
-        div(dx-text-box="vm.firstNameConfig")
-      div.row
-        div(dx-text-box="vm.lastNameConfig")
-      div.row
-        div {{vm.vorname}} {{vm.nachname}}
+    div#pathBarRow
+        p Hallo
+    div
