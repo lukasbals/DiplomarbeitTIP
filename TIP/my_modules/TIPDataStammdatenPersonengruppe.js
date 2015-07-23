@@ -1,11 +1,13 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
-var loadPersonengruppe = function () {
-    console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
-    var date = new Date();
+var initTablePersonengruppe = function () {
     TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
         "code string(2) primary key, " +
         "bezeichnung string(50))");
+};
+var loadPersonengruppe = function () {
+    console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
+    var date = new Date();
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Personengruppe", function (error, response, body) {
         var data = JSON.parse(body);
         TIPDatabase.getDB().serialize(function () {
@@ -50,5 +52,6 @@ var getJsonPersonengruppe = function (res) {
         });
     });
 };
+module.exports.initTablePersonengruppe = initTablePersonengruppe;
 module.exports.loadPersonengruppe = loadPersonengruppe;
 module.exports.getJsonPersonengruppe = getJsonPersonengruppe;

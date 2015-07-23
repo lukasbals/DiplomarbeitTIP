@@ -1,16 +1,18 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-// loads the TABLE laender_st from the TIP Server
-var loadLand = function() {
-  console.log("In TIPDataStammdatenLand -- loadLand");
-  var date = new Date();
-
-  // makes laender_st TABLE
+// makes laender_st TABLE
+var initTableLand = (): void => {
   TIPDatabase.getDB().run("create table if not exists laender_st (" +
     "code string(3) primary key, " +
     "bezeichnung string(30), " +
     "is_eu boolean)");
+}
+
+// loads the TABLE laender_st from the TIP Server
+var loadLand = (): void => {
+  console.log("In TIPDataStammdatenLand -- loadLand");
+  var date = new Date();
 
   // GET request to the TIP server -- Land
   request.get(
@@ -51,7 +53,7 @@ var loadLand = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonLand = function(res) {
+var getJsonLand = (res): void => {
   var result = new Array();
 
   TIPDatabase.getDB().serialize((): void => {
@@ -68,5 +70,6 @@ var getJsonLand = function(res) {
   });
 }
 
+module.exports.initTableLand = initTableLand;
 module.exports.loadLand = loadLand;
 module.exports.getJsonLand = getJsonLand;

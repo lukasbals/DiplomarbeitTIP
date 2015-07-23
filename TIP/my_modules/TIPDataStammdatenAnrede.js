@@ -1,11 +1,13 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
-var loadAnrede = function () {
-    console.log("In TIPDataStammdatenAnrede -- loadAnrede");
-    var date = new Date();
+var initTableAnrede = function () {
     TIPDatabase.getDB().run("create table if not exists anreden_st (" +
         "code string(10) primary key, " +
         "bezeichnung string(80))");
+};
+var loadAnrede = function () {
+    console.log("In TIPDataStammdatenAnrede -- loadAnrede");
+    var date = new Date();
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Anrede", function (error, response, body) {
         var data = JSON.parse(body);
         TIPDatabase.getDB().serialize(function () {
@@ -50,5 +52,6 @@ var getJsonAnrede = function (res) {
         });
     });
 };
+module.exports.initTableAnrede = initTableAnrede;
 module.exports.loadAnrede = loadAnrede;
 module.exports.getJsonAnrede = getJsonAnrede;

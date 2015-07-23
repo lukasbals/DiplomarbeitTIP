@@ -1,12 +1,8 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-// loads the TABLE geschaeftspartner_st from the TIP Server
-var loadGeschaeftspartner = function() {
-  console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
-  var date = new Date();
-
-  // makes geschaeftspartner_st TABLE
+// makes geschaeftspartner_st TABLE
+var initTableGeschaeftspartner = (): void => {
   TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
     "id integer primary key asc, " +
     "gp_nummer integer, " +
@@ -22,6 +18,14 @@ var loadGeschaeftspartner = function() {
     "fax text, " +
     "email text, " +
     "homepage text)");
+}
+
+// loads the TABLE geschaeftspartner_st from the TIP Server
+var loadGeschaeftspartner = (): void => {
+  console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
+  var date = new Date();
+
+
 
   // GET request to the TIP server -- Geschaeftspartner
   request.get(
@@ -63,7 +67,7 @@ var loadGeschaeftspartner = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonGeschaeftspartner = function(res) {
+var getJsonGeschaeftspartner = (res): void => {
   var result = new Array();
 
   TIPDatabase.getDB().serialize((): void => {
@@ -91,5 +95,6 @@ var getJsonGeschaeftspartner = function(res) {
   });
 }
 
+module.exports.initTableGeschaeftspartner = initTableGeschaeftspartner;
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
 module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;

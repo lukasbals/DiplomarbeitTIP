@@ -1,8 +1,6 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
-var loadPerson = function () {
-    console.log("In TIPDataStammdatenPerson -- loadPerson");
-    var date = new Date();
+var initTablePerson = function () {
     TIPDatabase.getDB().run("create table if not exists personen_st ( " +
         "id int primary key, " +
         "id_geschaeftspartner int, " +
@@ -17,6 +15,10 @@ var loadPerson = function () {
         "fax string(50), " +
         "email string(50), " +
         "geburtsdatum date)");
+};
+var loadPerson = function () {
+    console.log("In TIPDataStammdatenPerson -- loadPerson");
+    var date = new Date();
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Person", function (error, response, body) {
         var data = JSON.parse(body);
         TIPDatabase.getDB().serialize(function () {
@@ -72,5 +74,6 @@ var getJsonPerson = function (res) {
         });
     });
 };
+module.exports.initTablePerson = initTablePerson;
 module.exports.loadPerson = loadPerson;
 module.exports.getJsonPerson = getJsonPerson;

@@ -1,26 +1,28 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
+  // makes personen_st TABLE
+var initTablePerson = (): void => {
+    TIPDatabase.getDB().run("create table if not exists personen_st ( " +
+      "id int primary key, " +
+      "id_geschaeftspartner int, " +
+      "code_gruppe string(2), " +
+      "code_anrede string(10), " +
+      "titel stirng(50), " +
+      "vorname string(50), " +
+      "nachname string(50), " +
+      "abteilung string(50), " +
+      "telefon string(50), " +
+      "mobil string(50), " +
+      "fax string(50), " +
+      "email string(50), " +
+      "geburtsdatum date)");
+}
+
 // loads the TABLE personen_st from the TIP Server
-var loadPerson = function() {
+var loadPerson = (): void => {
   console.log("In TIPDataStammdatenPerson -- loadPerson");
   var date = new Date();
-
-  // makes personen_st TABLE
-  TIPDatabase.getDB().run("create table if not exists personen_st ( " +
-    "id int primary key, " +
-    "id_geschaeftspartner int, " +
-    "code_gruppe string(2), " +
-    "code_anrede string(10), " +
-    "titel stirng(50), " +
-    "vorname string(50), " +
-    "nachname string(50), " +
-    "abteilung string(50), " +
-    "telefon string(50), " +
-    "mobil string(50), " +
-    "fax string(50), " +
-    "email string(50), " +
-    "geburtsdatum date)");
 
   // GET request to the TIP server -- Person
   request.get(
@@ -61,7 +63,7 @@ var loadPerson = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonPerson = function(res) {
+var getJsonPerson = (res): void => {
   var result = new Array();
 
   TIPDatabase.getDB().serialize((): void => {
@@ -88,5 +90,6 @@ var getJsonPerson = function(res) {
   });
 }
 
+module.exports.initTablePerson = initTablePerson;
 module.exports.loadPerson = loadPerson;
 module.exports.getJsonPerson = getJsonPerson;

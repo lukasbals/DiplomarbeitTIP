@@ -1,8 +1,6 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
-var loadGeschaeftspartner = function () {
-    console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
-    var date = new Date();
+var initTableGeschaeftspartner = function () {
     TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
         "id integer primary key asc, " +
         "gp_nummer integer, " +
@@ -18,6 +16,10 @@ var loadGeschaeftspartner = function () {
         "fax text, " +
         "email text, " +
         "homepage text)");
+};
+var loadGeschaeftspartner = function () {
+    console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
+    var date = new Date();
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Geschaeftspartner", function (error, response, body) {
         var data = JSON.parse(body);
         TIPDatabase.getDB().serialize(function () {
@@ -74,5 +76,6 @@ var getJsonGeschaeftspartner = function (res) {
         });
     });
 };
+module.exports.initTableGeschaeftspartner = initTableGeschaeftspartner;
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
 module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;

@@ -1,15 +1,19 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-// loads the TABLE personengruppen_st from the TIP Server
-var loadPersonengruppe = function() {
-  console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
-  var date = new Date();
-
-  // makes personengruppe_st TABLE
+// makes personengruppe_st TABLE
+var initTablePersonengruppe = (): void => {
   TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
     "code string(2) primary key, " +
     "bezeichnung string(50))");
+}
+
+// loads the TABLE personengruppen_st from the TIP Server
+var loadPersonengruppe = (): void => {
+  console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
+  var date = new Date();
+
+
 
   // GET request to the TIP server -- Persoenengruppe
   request.get(
@@ -50,7 +54,7 @@ var loadPersonengruppe = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonPersonengruppe = function(res) {
+var getJsonPersonengruppe = (res): void => {
   var result = new Array();
 
   TIPDatabase.getDB().serialize((): void => {
@@ -66,5 +70,6 @@ var getJsonPersonengruppe = function(res) {
   });
 }
 
+module.exports.initTablePersonengruppe = initTablePersonengruppe;
 module.exports.loadPersonengruppe = loadPersonengruppe;
 module.exports.getJsonPersonengruppe = getJsonPersonengruppe;

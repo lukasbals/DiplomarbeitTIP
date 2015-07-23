@@ -1,12 +1,14 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
-var loadLand = function () {
-    console.log("In TIPDataStammdatenLand -- loadLand");
-    var date = new Date();
+var initTableLand = function () {
     TIPDatabase.getDB().run("create table if not exists laender_st (" +
         "code string(3) primary key, " +
         "bezeichnung string(30), " +
         "is_eu boolean)");
+};
+var loadLand = function () {
+    console.log("In TIPDataStammdatenLand -- loadLand");
+    var date = new Date();
     request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Land", function (error, response, body) {
         var data = JSON.parse(body);
         TIPDatabase.getDB().serialize(function () {
@@ -52,5 +54,6 @@ var getJsonLand = function (res) {
         });
     });
 };
+module.exports.initTableLand = initTableLand;
 module.exports.loadLand = loadLand;
 module.exports.getJsonLand = getJsonLand;

@@ -1,15 +1,17 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-// loads the TABLE gpkz_st from the TIP Server
-var loadGpKz = function() {
-  console.log("In TIPDataStammdatenGpKz -- loadGpKz");
-  var date = new Date();
-
-  // makes gpkz_st TABLE
+// makes gpkz_st TABLE
+var initTableGpKz = (): void => {
   TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
     "code string(2) primary key, " +
     "bezeichnung string(30))");
+}
+
+// loads the TABLE gpkz_st from the TIP Server
+var loadGpKz = (): void => {
+  console.log("In TIPDataStammdatenGpKz -- loadGpKz");
+  var date = new Date();
 
   // GET request to the TIP server -- GpKz
   request.get(
@@ -51,7 +53,7 @@ var loadGpKz = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonGpKz = function(res) {
+var getJsonGpKz = (res): void => {
   var result = new Array();
 
   TIPDatabase.getDB().serialize((): void => {
@@ -67,5 +69,6 @@ var getJsonGpKz = function(res) {
   });
 }
 
+module.exports.initTableGpKz = initTableGpKz;
 module.exports.loadGpKz = loadGpKz;
 module.exports.getJsonGpKz = getJsonGpKz;

@@ -13,12 +13,12 @@ var setSYNCH = (tblName: string, date: Date): void => {
     var d = date.toLocaleString();
 
     //console.log(tblName);
-    db.get("select count(*) as result from synch_st where tabelle = '?';", [tblName], (error, row): void => {
+    db.get("select count(*) as result from synch_st where tabelle = ?;", [tblName], (error, row): void => {
       //console.log(row.result);
       if (row.result > 0) {
-        db.run("update synch_st set ltzt_synch_start = '?' where tabelle = '?'", [d, tblName])
+        db.run("update synch_st set ltzt_synch_start = ? where tabelle = ?", [d, tblName])
       } else {
-        db.run("insert into synch_st (tabelle, ltzt_synch_start) values ('?', '?')", [tblName, d]);
+        db.run("insert into synch_st (tabelle, ltzt_synch_start) values (?, ?)", [tblName, d]);
       }
 
     });

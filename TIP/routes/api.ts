@@ -34,23 +34,28 @@ router.get("/getJsonPerson", (req, res): void => {
   TIPDataStammdatenPerson.getJsonPerson(res);
 });
 
-
-/*TIPDataStammdatenGpKz.loadGpKz();
+TIPDataStammdatenGpKz.initTableGpKz();
+TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
+TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 //setInterval(() => TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner(), 30000);
 
+TIPDataStammdatenLand.initTableLand();
 TIPDataStammdatenLand.loadLand();
 //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
 
+TIPDataStammdatenAnrede.initTableAnrede();
 TIPDataStammdatenAnrede.loadAnrede();
 //setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
 
+TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
 TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 //setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
 
+TIPDataStammdatenPerson.initTablePerson();
 TIPDataStammdatenPerson.loadPerson();
-//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);*/
+//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
 
 module.exports = router;

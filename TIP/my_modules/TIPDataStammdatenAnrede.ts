@@ -1,15 +1,17 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-// loads the TABLE anreden_st from the TIP Server
-var loadAnrede = function() {
-  console.log("In TIPDataStammdatenAnrede -- loadAnrede");
-  var date = new Date();
-
-  // makes anreden_st TABLE
+// makes anreden_st TABLE
+var initTableAnrede = (): void => {
   TIPDatabase.getDB().run("create table if not exists anreden_st (" +
     "code string(10) primary key, " +
     "bezeichnung string(80))");
+}
+
+// loads the TABLE anreden_st from the TIP Server
+var loadAnrede = (): void => {
+  console.log("In TIPDataStammdatenAnrede -- loadAnrede");
+  var date = new Date();
 
   // GET request to the TIP server -- Anrede
   request.get(
@@ -50,7 +52,7 @@ var loadAnrede = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonAnrede = function(res) {
+var getJsonAnrede = (res): void => {
   var result = new Array();
 
   TIPDatabase.getDB().serialize((): void => {
@@ -66,5 +68,6 @@ var getJsonAnrede = function(res) {
   });
 }
 
+module.exports.initTableAnrede = initTableAnrede;
 module.exports.loadAnrede = loadAnrede;
 module.exports.getJsonAnrede = getJsonAnrede;
