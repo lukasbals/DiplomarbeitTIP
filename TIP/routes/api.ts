@@ -15,6 +15,7 @@ router.get("/", (req, res): void => {
 });
 
 TIPDataStammdatenGpKz.loadGpKz();
+console.log(TIPDataStammdatenGpKz.getJsonGpKz());
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();

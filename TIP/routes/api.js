@@ -9,6 +9,7 @@ var router = express.Router();
 router.get("/", function (req, res) {
 });
 TIPDataStammdatenGpKz.loadGpKz();
+console.log(TIPDataStammdatenGpKz.getJsonGpKz());
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 TIPDataStammdatenLand.loadLand();
 TIPDataStammdatenAnrede.loadAnrede();

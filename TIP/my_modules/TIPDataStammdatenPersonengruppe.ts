@@ -1,6 +1,7 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
+// loads the TABLE personengruppen_st from the TIP Server
 var loadPersonengruppe = function() {
   console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
   var date = new Date();

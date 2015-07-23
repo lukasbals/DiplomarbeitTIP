@@ -1,7 +1,7 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-
+// loads the TABLE anreden_st from the TIP Server
 var loadAnrede = function() {
   console.log("In TIPDataStammdatenAnrede -- loadAnrede");
   var date = new Date();

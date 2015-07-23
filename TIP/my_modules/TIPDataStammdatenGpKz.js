@@ -36,4 +36,21 @@ var loadGpKz = function () {
     var tblName = "gpkz_st";
     TIPDatabase.setSYNCH(tblName, date);
 };
+var getJsonGpKz = function () {
+    var result = new Array();
+    TIPDatabase.getDB().serialize(function () {
+        TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", function (error, row) {
+            result.push({
+                Code: row.code,
+                Bezeichnung: row.bezeichnung
+            });
+        }, function () {
+            console.log(result);
+            var string = JSON.stringify(result);
+            var json = JSON.parse(string);
+            console.log(json);
+        });
+    });
+};
 module.exports.loadGpKz = loadGpKz;
+module.exports.getJsonGpKz = getJsonGpKz;
