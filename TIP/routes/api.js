@@ -15,10 +15,10 @@ router.get("/getJsonGeschaeftspartner", function (req, res) {
 router.get("/getJsonLand", function (req, res) {
     TIPDataStammdatenLand.getJsonLand(res);
 });
-TIPDataStammdatenGpKz.loadGpKz();
-TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
-TIPDataStammdatenLand.loadLand();
-TIPDataStammdatenAnrede.loadAnrede();
-TIPDataStammdatenPersonengruppe.loadPersonengruppe();
-TIPDataStammdatenPerson.loadPerson();
+router.get("/getJsonAnrede", function (req, res) {
+    TIPDataStammdatenAnrede.getJsonAnrede(res);
+});
+router.get("/getJsonPersonengruppe", function (req, res) {
+    TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
+});
 module.exports = router;

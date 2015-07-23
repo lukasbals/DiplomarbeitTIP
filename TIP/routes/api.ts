@@ -22,7 +22,16 @@ router.get("/getJsonLand", (req, res): void => {
   TIPDataStammdatenLand.getJsonLand(res);
 });
 
-TIPDataStammdatenGpKz.loadGpKz();
+router.get("/getJsonAnrede", (req, res): void => {
+  TIPDataStammdatenAnrede.getJsonAnrede(res);
+});
+
+router.get("/getJsonPersonengruppe", (req, res): void => {
+  TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
+});
+
+
+/*TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
@@ -38,6 +47,6 @@ TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 //setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
 
 TIPDataStammdatenPerson.loadPerson();
-//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
+//setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);*/
 
 module.exports = router;

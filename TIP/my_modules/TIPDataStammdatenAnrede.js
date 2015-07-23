@@ -36,4 +36,19 @@ var loadAnrede = function () {
     var tblName = "anreden_st";
     TIPDatabase.setSYNCH(tblName, date);
 };
+var getJsonAnrede = function (res) {
+    var result = new Array();
+    TIPDatabase.getDB().serialize(function () {
+        TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", function (error, row) {
+            result.push({
+                Code: row.code,
+                Bezeichnung: row.bezeichnung,
+            });
+        }, function () {
+            console.log(result);
+            res.json(result);
+        });
+    });
+};
 module.exports.loadAnrede = loadAnrede;
+module.exports.getJsonAnrede = getJsonAnrede;

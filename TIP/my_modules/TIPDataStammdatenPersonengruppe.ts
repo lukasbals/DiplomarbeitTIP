@@ -50,4 +50,21 @@ var loadPersonengruppe = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
+var getJsonPersonengruppe = function(res) {
+  var result = new Array();
+
+  TIPDatabase.getDB().serialize((): void => {
+    TIPDatabase.getDB().each("select code, bezeichnung from personengruppen_st;", (error, row): void => {
+      result.push({
+        Code: row.code,
+        Bezeichnung: row.bezeichnung,
+      });
+    }, (): void => {
+        console.log(result);
+        res.json(result);
+      });
+  });
+}
+
 module.exports.loadPersonengruppe = loadPersonengruppe;
+module.exports.getJsonPersonengruppe = getJsonPersonengruppe;
