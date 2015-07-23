@@ -6,14 +6,13 @@ var getDB = function () {
 var setSYNCH = function (tblName, date) {
     db.serialize(function () {
         db.run("create table if not exists synch_st (tabelle string(50), ltzt_synch_start TIMESTAMP)");
-        var d = "" + date.getFullYear() + "-";
-        console.log(d);
+        var d = date.toLocaleString();
         db.get("select count(*) as result from synch_st where tabelle = '" + tblName + "';", function (error, row) {
             if (row.result > 0) {
-                db.run("update synch_st set ltzt_synch_start = " + d + " where tabelle = '" + tblName + "'");
+                db.run("update synch_st set ltzt_synch_start = '" + d + "' where tabelle = '" + tblName + "'");
             }
             else {
-                db.run("insert into synch_st (tabelle, ltzt_synch_start) values ('" + tblName + "', " + d + ")");
+                db.run("insert into synch_st (tabelle, ltzt_synch_start) values ('" + tblName + "', '" + d + "')");
             }
         });
     });
