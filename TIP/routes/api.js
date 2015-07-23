@@ -7,12 +7,13 @@ var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPe
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var router = express.Router();
 router.get("/getJsonGpKz", function (req, res) {
-    console.log("IN");
     TIPDataStammdatenGpKz.getJsonGpKz(res);
 });
 router.get("/getJsonGeschaeftspartner", function (req, res) {
-    console.log("IN");
     TIPDataStammdatenGeschaeftspartner.getJsonGeschaeftspartner(res);
+});
+router.get("/getJsonLand", function (req, res) {
+    TIPDataStammdatenLand.getJsonLand(res);
 });
 TIPDataStammdatenGpKz.loadGpKz();
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();

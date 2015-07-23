@@ -90,5 +90,6 @@ var getJsonGeschaeftspartner = function(res) {
       });
   });
 }
+
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
 module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;

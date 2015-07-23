@@ -37,4 +37,20 @@ var loadLand = function () {
     var tblName = "laender_st";
     TIPDatabase.setSYNCH(tblName, date);
 };
+var getJsonLand = function (res) {
+    var result = new Array();
+    TIPDatabase.getDB().serialize(function () {
+        TIPDatabase.getDB().each("select code, bezeichnung, is_eu from laender_st;", function (error, row) {
+            result.push({
+                Code: row.code,
+                Bezeichnung: row.bezeichnung,
+                IsEU: row.is_eu
+            });
+        }, function () {
+            console.log(result);
+            res.json(result);
+        });
+    });
+};
 module.exports.loadLand = loadLand;
+module.exports.getJsonLand = getJsonLand;

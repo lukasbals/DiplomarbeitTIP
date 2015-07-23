@@ -51,4 +51,22 @@ var loadLand = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
+var getJsonLand = function(res) {
+  var result = new Array();
+
+  TIPDatabase.getDB().serialize((): void => {
+    TIPDatabase.getDB().each("select code, bezeichnung, is_eu from laender_st;", (error, row): void => {
+      result.push({
+        Code: row.code,
+        Bezeichnung: row.bezeichnung,
+        IsEU: row.is_eu
+      });
+    }, (): void => {
+        console.log(result);
+        res.json(result);
+      });
+  });
+}
+
 module.exports.loadLand = loadLand;
+module.exports.getJsonLand = getJsonLand;

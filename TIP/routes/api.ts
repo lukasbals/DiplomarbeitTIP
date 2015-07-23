@@ -10,15 +10,17 @@ var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var router = express.Router();
 
 router.get("/getJsonGpKz", (req, res): void => {
-  console.log("IN");
+  // console.log("IN");
   TIPDataStammdatenGpKz.getJsonGpKz(res);
 });
 
 router.get("/getJsonGeschaeftspartner", (req, res): void => {
-  console.log("IN");
   TIPDataStammdatenGeschaeftspartner.getJsonGeschaeftspartner(res);
 });
 
+router.get("/getJsonLand", (req, res): void => {
+  TIPDataStammdatenLand.getJsonLand(res);
+});
 
 TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
