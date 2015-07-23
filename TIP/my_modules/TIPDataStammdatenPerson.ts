@@ -61,4 +61,32 @@ var loadPerson = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
+var getJsonPerson = function(res) {
+  var result = new Array();
+
+  TIPDatabase.getDB().serialize((): void => {
+    TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st;", (error, row): void => {
+      result.push({
+        Id: row.id,
+        IdGeschaeftspartner: row.id_geschaeftspartner,
+        CodePersonengruppe: row.code_gruppe,
+        CodeAnrede: row.code_anrede,
+        Titel: row.titel,
+        Vorname: row.vorname,
+        Nachname: row.nachname,
+        Abteilung:row.abteilung,
+        Telefon: row.telefon,
+        Mobil: row.mobil,
+        Fax: row.fax,
+        Email: row.email,
+        Geburtsdatum: row.Geburtsdatum
+      });
+    }, (): void => {
+        console.log(result);
+        res.json(result);
+      });
+  });
+}
+
 module.exports.loadPerson = loadPerson;
+module.exports.getJsonPerson = getJsonPerson;

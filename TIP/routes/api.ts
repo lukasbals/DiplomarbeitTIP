@@ -30,6 +30,10 @@ router.get("/getJsonPersonengruppe", (req, res): void => {
   TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
 
+router.get("/getJsonPerson", (req, res): void => {
+  TIPDataStammdatenPerson.getJsonPerson(res);
+});
+
 
 /*TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);

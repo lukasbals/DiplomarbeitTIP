@@ -21,4 +21,7 @@ router.get("/getJsonAnrede", function (req, res) {
 router.get("/getJsonPersonengruppe", function (req, res) {
     TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
+router.get("/getJsonPerson", function (req, res) {
+    TIPDataStammdatenPerson.getJsonPerson(res);
+});
 module.exports = router;
