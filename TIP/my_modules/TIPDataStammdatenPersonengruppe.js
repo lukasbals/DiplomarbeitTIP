@@ -2,6 +2,7 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var loadPersonengruppe = function () {
     console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
+    var date = new Date();
     TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
         "code string(2) primary key, " +
         "bezeichnung string(50))");
@@ -33,6 +34,6 @@ var loadPersonengruppe = function () {
         });
     });
     var tblName = "personengruppen_st";
-    TIPDatabase.setSYNCH(tblName);
+    TIPDatabase.setSYNCH(tblName, date);
 };
 module.exports.loadPersonengruppe = loadPersonengruppe;

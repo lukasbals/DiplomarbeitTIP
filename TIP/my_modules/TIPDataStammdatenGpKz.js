@@ -2,6 +2,7 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var loadGpKz = function () {
     console.log("In TIPDataStammdatenGpKz -- loadGpKz");
+    var date = new Date();
     TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
         "code string(2) primary key, " +
         "bezeichnung string(30))");
@@ -33,6 +34,6 @@ var loadGpKz = function () {
         });
     });
     var tblName = "gpkz_st";
-    TIPDatabase.setSYNCH(tblName);
+    TIPDatabase.setSYNCH(tblName, date);
 };
 module.exports.loadGpKz = loadGpKz;

@@ -2,6 +2,7 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var loadGeschaeftspartner = function () {
     console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
+    var date = new Date();
     TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
         "id integer primary key asc, " +
         "gp_nummer integer, " +
@@ -45,6 +46,6 @@ var loadGeschaeftspartner = function () {
         });
     });
     var tblName = "geschaeftspartner_st";
-    TIPDatabase.setSYNCH(tblName);
+    TIPDatabase.setSYNCH(tblName, date);
 };
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;

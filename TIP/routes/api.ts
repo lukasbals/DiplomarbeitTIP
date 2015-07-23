@@ -14,22 +14,22 @@ router.get("/", (req, res): void => {
   res.send("done");*/
 });
 
-//TIPDataStammdatenGpKz.loadGpKz();
+TIPDataStammdatenGpKz.loadGpKz();
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
-//TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
+TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 //setInterval(() => TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner(), 30000);
 
-//TIPDataStammdatenLand.loadLand();
+TIPDataStammdatenLand.loadLand();
 //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
 
 TIPDataStammdatenAnrede.loadAnrede();
 //setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
 
-//TIPDataStammdatenPersonengruppe.loadPersonengruppe();
+TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 //setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
 
-//TIPDataStammdatenPerson.loadPerson();
+TIPDataStammdatenPerson.loadPerson();
 //setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
 
 module.exports = router;

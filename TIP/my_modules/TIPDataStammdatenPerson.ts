@@ -4,6 +4,7 @@ var TIPDatabase = require("../my_modules/TIPDatabase");
 // loads the TABLE personen_st from the TIP Server
 var loadPerson = function() {
   console.log("In TIPDataStammdatenPerson -- loadPerson");
+  var date = new Date();
 
   // makes personen_st TABLE
   TIPDatabase.getDB().run("create table if not exists personen_st ( " +
@@ -55,9 +56,9 @@ var loadPerson = function() {
       });
     });
 
-    // sets CURRENT_TIMESTAMP into synch_st TABLE
-    var tblName: string = "personen_st";
-    TIPDatabase.setSYNCH(tblName);
+  // sets CURRENT_TIMESTAMP into synch_st TABLE
+  var tblName: string = "personen_st";
+  TIPDatabase.setSYNCH(tblName, date);
 }
 
 module.exports.loadPerson = loadPerson;

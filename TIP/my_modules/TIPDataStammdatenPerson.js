@@ -2,6 +2,7 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var loadPerson = function () {
     console.log("In TIPDataStammdatenPerson -- loadPerson");
+    var date = new Date();
     TIPDatabase.getDB().run("create table if not exists personen_st ( " +
         "id int primary key, " +
         "id_geschaeftspartner int, " +
@@ -44,6 +45,6 @@ var loadPerson = function () {
         });
     });
     var tblName = "personen_st";
-    TIPDatabase.setSYNCH(tblName);
+    TIPDatabase.setSYNCH(tblName, date);
 };
 module.exports.loadPerson = loadPerson;

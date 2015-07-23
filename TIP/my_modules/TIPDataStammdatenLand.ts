@@ -4,6 +4,7 @@ var TIPDatabase = require("../my_modules/TIPDatabase");
 // loads the TABLE laender_st from the TIP Server
 var loadLand = function() {
   console.log("In TIPDataStammdatenLand -- loadLand");
+  var date = new Date();
 
   // makes laender_st TABLE
   TIPDatabase.getDB().run("create table if not exists laender_st (" +
@@ -46,9 +47,9 @@ var loadLand = function() {
       });
     });
 
-    // sets CURRENT_TIMESTAMP into synch_st TABLE
-    var tblName: string = "laender_st";
-    TIPDatabase.setSYNCH(tblName);
+  // sets CURRENT_TIMESTAMP into synch_st TABLE
+  var tblName: string = "laender_st";
+  TIPDatabase.setSYNCH(tblName, date);
 }
 
 module.exports.loadLand = loadLand;

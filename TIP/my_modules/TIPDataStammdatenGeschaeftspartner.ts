@@ -4,6 +4,7 @@ var TIPDatabase = require("../my_modules/TIPDatabase");
 // loads the TABLE geschaeftspartner_st from the TIP Server
 var loadGeschaeftspartner = function() {
   console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
+  var date = new Date();
 
   // makes geschaeftspartner_st TABLE
   TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
@@ -58,9 +59,9 @@ var loadGeschaeftspartner = function() {
     });
 
 
-    // sets CURRENT_TIMESTAMP into synch_st TABLE
-    var tblName: string = "geschaeftspartner_st";
-    TIPDatabase.setSYNCH(tblName);
+  // sets CURRENT_TIMESTAMP into synch_st TABLE
+  var tblName: string = "geschaeftspartner_st";
+  TIPDatabase.setSYNCH(tblName, date);
 }
 
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;

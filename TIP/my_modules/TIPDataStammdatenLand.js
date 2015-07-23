@@ -2,6 +2,7 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var loadLand = function () {
     console.log("In TIPDataStammdatenLand -- loadLand");
+    var date = new Date();
     TIPDatabase.getDB().run("create table if not exists laender_st (" +
         "code string(3) primary key, " +
         "bezeichnung string(30), " +
@@ -34,6 +35,6 @@ var loadLand = function () {
         });
     });
     var tblName = "laender_st";
-    TIPDatabase.setSYNCH(tblName);
+    TIPDatabase.setSYNCH(tblName, date);
 };
 module.exports.loadLand = loadLand;

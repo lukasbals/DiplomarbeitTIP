@@ -8,5 +8,10 @@ var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var router = express.Router();
 router.get("/", function (req, res) {
 });
+TIPDataStammdatenGpKz.loadGpKz();
+TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
+TIPDataStammdatenLand.loadLand();
 TIPDataStammdatenAnrede.loadAnrede();
+TIPDataStammdatenPersonengruppe.loadPersonengruppe();
+TIPDataStammdatenPerson.loadPerson();
 module.exports = router;
