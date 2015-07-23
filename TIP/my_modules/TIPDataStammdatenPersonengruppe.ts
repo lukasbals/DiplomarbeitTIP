@@ -15,7 +15,7 @@ var loadPersonengruppe = function() {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Personengruppe",
     (error, response, body: string): void => {
-      var data: any[] = JSON.parse(body);
+      var data: TIP.IPersonengruppeModel[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
         var insertStmt = TIPDatabase.getDB().prepare("insert into personengruppen_st (code, bezeichnung) values (?, ?)");

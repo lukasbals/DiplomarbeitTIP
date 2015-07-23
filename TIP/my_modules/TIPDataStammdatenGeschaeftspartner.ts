@@ -27,7 +27,7 @@ var loadGeschaeftspartner = function() {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Geschaeftspartner",
     (error, response, body: string): void => {
-      var data: any[] = JSON.parse(body);
+      var data: TIP.IGpStammModel[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
         var insertStmt = TIPDatabase.getDB().prepare("insert into geschaeftspartner_st (id, gp_nummer, code_gpkz, firmenbez_1, firmenbez_2, firmenbez_3, strasse, code_land, plz, ort, telefon, fax, email, homepage) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -76,7 +76,7 @@ var getJsonGeschaeftspartner = function(res) {
         Firmenbez2: row.firmenbez_2,
         Firmenbez3: row.firmenbez_3,
         Strasse: row.strasse,
-        CodeLand:row.code_land,
+        CodeLand: row.code_land,
         Plz: row.plz,
         Ort: row.ort,
         Telefon: row.telefon,

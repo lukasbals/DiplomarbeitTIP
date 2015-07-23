@@ -15,7 +15,7 @@ var loadAnrede = function() {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Anrede",
     (error, response, body: string): void => {
-      var data: any[] = JSON.parse(body);
+      var data: TIP.IAnredeModel[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
         var insertStmt = TIPDatabase.getDB().prepare("insert into anreden_st (code, bezeichnung) values (?, ?)");
@@ -45,9 +45,9 @@ var loadAnrede = function() {
       });
     });
 
-    // sets CURRENT_TIMESTAMP into synch_st TABLE
-    var tblName: string = "anreden_st";
-    TIPDatabase.setSYNCH(tblName, date);
+  // sets CURRENT_TIMESTAMP into synch_st TABLE
+  var tblName: string = "anreden_st";
+  TIPDatabase.setSYNCH(tblName, date);
 }
 
 var getJsonAnrede = function(res) {

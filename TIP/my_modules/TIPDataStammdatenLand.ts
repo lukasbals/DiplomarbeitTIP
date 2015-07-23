@@ -16,7 +16,7 @@ var loadLand = function() {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Land",
     (error, response, body: string): void => {
-      var data: any[] = JSON.parse(body);
+      var data: TIP.ILandModel[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
         var insertStmt = TIPDatabase.getDB().prepare("insert into laender_st (code, bezeichnung, is_eu) values (?, ?, ?)");

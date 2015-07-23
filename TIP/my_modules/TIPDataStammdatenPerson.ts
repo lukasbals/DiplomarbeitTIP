@@ -26,7 +26,7 @@ var loadPerson = function() {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Person",
     (error, response, body: string): void => {
-      var data: any[] = JSON.parse(body);
+      var data: TIP.IPersonModel[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
         var insertStmt = TIPDatabase.getDB().prepare("insert into personen_st (id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -74,7 +74,7 @@ var getJsonPerson = function(res) {
         Titel: row.titel,
         Vorname: row.vorname,
         Nachname: row.nachname,
-        Abteilung:row.abteilung,
+        Abteilung: row.abteilung,
         Telefon: row.telefon,
         Mobil: row.mobil,
         Fax: row.fax,

@@ -15,7 +15,7 @@ var loadGpKz = function() {
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/GpKz",
     (error, response, body: string): void => {
-      var data: any[] = JSON.parse(body);
+      var data: TIP.IGpKzModel[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
         var insertStmt = TIPDatabase.getDB().prepare("insert into gpkz_st (code, bezeichnung) values (?, ?)");
