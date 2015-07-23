@@ -11,9 +11,9 @@ var loadGeschaeftspartner = function() {
     "id integer primary key asc, " +
     "gp_nummer integer, " +
     "code_gpkz text, " +
-    "firmenbez1 text, " +
-    "firmenbez2 text, " +
-    "firmenbez3 text, " +
+    "firmenbez_1 text, " +
+    "firmenbez_2 text, " +
+    "firmenbez_3 text, " +
     "strasse text, " +
     "code_land text, " +
     "plz text, " +
@@ -30,8 +30,8 @@ var loadGeschaeftspartner = function() {
       var data: any[] = JSON.parse(body);
 
       TIPDatabase.getDB().serialize((): void => {
-        var insertStmt = TIPDatabase.getDB().prepare("insert into geschaeftspartner_st (id, gp_nummer, code_gpkz, firmenbez1, firmenbez2, firmenbez3, strasse, code_land, plz, ort, telefon, fax, email, homepage) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        var updateStmt = TIPDatabase.getDB().prepare("update geschaeftspartner_st set gp_nummer = ?, code_gpkz = ?, firmenbez1 = ?, firmenbez2 = ?, firmenbez3 = ?, strasse = ?, code_land = ?, plz = ?, ort = ?, telefon = ?, fax = ?, email = ?, homepage = ? where id = ?");
+        var insertStmt = TIPDatabase.getDB().prepare("insert into geschaeftspartner_st (id, gp_nummer, code_gpkz, firmenbez_1, firmenbez_2, firmenbez_3, strasse, code_land, plz, ort, telefon, fax, email, homepage) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        var updateStmt = TIPDatabase.getDB().prepare("update geschaeftspartner_st set gp_nummer = ?, code_gpkz = ?, firmenbez_1 = ?, firmenbez_2 = ?, firmenbez_3 = ?, strasse = ?, code_land = ?, plz = ?, ort = ?, telefon = ?, fax = ?, email = ?, homepage = ? where id = ?");
 
         var insertCount = 0;
         var updateCount = 0;
@@ -63,4 +63,32 @@ var loadGeschaeftspartner = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
+var getJsonGeschaeftspartner = function(res) {
+  var result = new Array();
+
+  TIPDatabase.getDB().serialize((): void => {
+    TIPDatabase.getDB().each("select id, gp_nummer, code_gpkz, firmenbez_1, firmenbez_2, firmenbez_3, strasse, code_land, plz, ort, telefon, fax, email, homepage from geschaeftspartner_st;", (error, row): void => {
+      result.push({
+        Id: row.id,
+        GpNummer: row.gp_nummer,
+        CodeGpKz: row.code_gpkz,
+        Firmenbez1: row.firmenbez_1,
+        Firmenbez2: row.firmenbez_2,
+        Firmenbez3: row.firmenbez_3,
+        Strasse: row.strasse,
+        CodeLand:row.code_land,
+        Plz: row.plz,
+        Ort: row.ort,
+        Telefon: row.telefon,
+        Fax: row.fax,
+        Email: row.email,
+        Homepage: row.homepage
+      });
+    }, (): void => {
+        console.log(result);
+        res.json(result);
+      });
+  });
+}
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
+module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;
