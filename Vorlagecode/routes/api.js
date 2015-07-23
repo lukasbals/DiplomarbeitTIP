@@ -13,7 +13,6 @@ router.get("/anrede", function (req, res) {
             });
         }, function () {
             res.json(result);
-            res.send(result);
         });
     });
 });

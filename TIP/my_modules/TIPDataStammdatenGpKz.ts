@@ -51,9 +51,9 @@ var loadGpKz = function() {
   TIPDatabase.setSYNCH(tblName, date);
 }
 
-var getJsonGpKz = function() {
+var getJsonGpKz = function(res) {
   var result = new Array();
-  
+
   TIPDatabase.getDB().serialize((): void => {
     TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", (error, row): void => {
       result.push({
@@ -62,9 +62,7 @@ var getJsonGpKz = function() {
       });
     }, (): void => {
         console.log(result);
-        var string = JSON.stringify(result);
-        var json = JSON.parse(string);
-        console.log(json);
+        res.json(result);
       });
   });
 }

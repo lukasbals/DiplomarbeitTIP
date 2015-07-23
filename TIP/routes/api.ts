@@ -9,13 +9,11 @@ var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 
 var router = express.Router();
 
-router.get("/", (req, res): void => {
-  /*TIPDatabase.initDB();
-  res.send("done");*/
+router.get("/getJson", (req, res): void => {
+  TIPDataStammdatenGpKz(res);
 });
 
 TIPDataStammdatenGpKz.loadGpKz();
-console.log(TIPDataStammdatenGpKz.getJsonGpKz());
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();

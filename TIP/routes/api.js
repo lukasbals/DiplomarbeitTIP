@@ -6,10 +6,10 @@ var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var router = express.Router();
-router.get("/", function (req, res) {
+router.get("/getJson", function (req, res) {
+    TIPDataStammdatenGpKz(res);
 });
 TIPDataStammdatenGpKz.loadGpKz();
-console.log(TIPDataStammdatenGpKz.getJsonGpKz());
 TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 TIPDataStammdatenLand.loadLand();
 TIPDataStammdatenAnrede.loadAnrede();

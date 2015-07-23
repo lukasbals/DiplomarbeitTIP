@@ -16,7 +16,6 @@ router.get("/anrede", (req, res): void => {
       });
     }, (): void => {
         res.json(result);
-        res.send(result);
       });
   });
 });
