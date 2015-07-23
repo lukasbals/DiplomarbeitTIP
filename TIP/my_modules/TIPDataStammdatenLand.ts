@@ -25,7 +25,6 @@ var loadLand = function() {
         var insertCount = 0;
         var updateCount = 0;
 
-
         data.forEach((val: any): void => {
           TIPDatabase.getDB().get("select count(*) as result from laender_st where code = ?", [val.Code], (error, row): void => {
             if (row.result > 0) {
