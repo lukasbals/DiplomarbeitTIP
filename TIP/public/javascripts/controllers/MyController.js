@@ -3,16 +3,10 @@ var TIP;
     var MyViewModel = (function () {
         function MyViewModel(my) {
             this.my = my;
-            this.firstNameConfig = {
-                placeholder: "Vorname",
-                bindingOptions: {
-                    value: "vm.vorname"
-                }
-            };
-            this.lastNameConfig = {
-                placeholder: "Nachname",
-                bindingOptions: {
-                    value: "vm.nachname"
+            this.getGeschaeftspartner = {
+                text: "getGeschaeftspartner",
+                onClick: function () {
+                    DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
                 }
             };
         }

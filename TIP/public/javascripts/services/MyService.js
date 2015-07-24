@@ -4,6 +4,10 @@ var TIP;
         function MyService($http) {
             this.$http = $http;
         }
+        MyService.prototype.getGeschaeftspartner = function () {
+            console.log("IN");
+            return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
+        };
         return MyService;
     })();
     TIP.MyService = MyService;

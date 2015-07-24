@@ -3,19 +3,11 @@ module TIP {
     constructor(private my: MyService) {
 
     }
-    vorname: string;
-    nachname: string;
 
-    firstNameConfig: DevExpress.ui.dxTextBoxOptions = {
-      placeholder: "Vorname",
-      bindingOptions: {
-        value: "vm.vorname"
-      }
-    }
-    lastNameConfig: DevExpress.ui.dxTextBoxOptions = {
-      placeholder: "Nachname",
-      bindingOptions: {
-        value: "vm.nachname"
+    getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
+      text: "getGeschaeftspartner",
+      onClick: (): void => {
+        DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
       }
     }
   }
