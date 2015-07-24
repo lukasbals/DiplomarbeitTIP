@@ -20,22 +20,28 @@ var TIP;
                 }
             };
             this.gridGeschaeftspartner = {
-                columns: [
-                    'Id',
-                    'GpNummer',
-                    'CodeGpKz',
-                    'Firmenbez1',
-                    'Firmenbez2',
-                    'Firmenbez3',
-                    'Strasse',
-                    'Codeland',
-                    'Plz',
-                    'Ort',
-                    'Telefon',
-                    'Fax',
-                    'Email',
-                    'Homepage'
-                ],
+                columns: [{
+                        dataField: 'GpNummer',
+                        width: 50
+                    }, {
+                        dataField: 'Firmenbez1',
+                        width: 200
+                    }, {
+                        dataField: 'Firmenbez2',
+                        width: 150
+                    }, {
+                        dataField: 'Strasse',
+                        width: 200
+                    }, {
+                        dataField: 'Plz'
+                    }, {
+                        dataField: 'Ort'
+                    }, {
+                        dataField: 'Telefon'
+                    }, {
+                        dataField: 'Email'
+                    }],
+                columnAutoWidth: true,
                 bindingOptions: {
                     dataSource: "vm.dataSource"
                 }
