@@ -10,6 +10,9 @@ var TIP;
                     _this.my.getGeschaeftspartner()
                         .success(function (data) {
                         console.log(data);
+                    })
+                        .error(function (data) {
+                        console.log("Keine Geschaeeftspartner bekommen.");
                     });
                     DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
                 }
