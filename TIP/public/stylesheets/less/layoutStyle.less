@@ -2,14 +2,25 @@
 @100: 100%;
 @grey: grey;
 @lightgrey: lightgrey;
+
+//mixin to set values for width and height
 .width-and-height(@width: 100%, @height: 100%) {
   width: @width;
   height: @height;
 }
+
+//mixin to set values for padding
+.padding-left-right(@left, @right){
+  padding-left: @left;
+  padding-right: @right;
+}
+
+//defines the font of the buttons
 .whiteBoldFont {
   color: white;
   font-weight: bold;
 }
+
 body {
   font-size: 14px;
   font-family: Helvetica;
@@ -30,8 +41,7 @@ a {
   z-index: 1;
   opacity: 0.9;
   background-color: @lightgrey;
-  padding-left: 10px;
-  padding-right: 10px;
+  .padding-left-right(10px,10px);
   margin-top: -70px;
   position: fixed;
   .width-and-height(100%,50px);
@@ -58,7 +68,6 @@ a {
   height: 70px;
 }
 .btn {
-  border-radius: 2px;
   background-color: @TIPRot;
   .width-and-height;
   border-style: hidden;
@@ -79,13 +88,12 @@ a {
     outline: none !important;
   }
   p {
-    .whiteBoldFont
+    .whiteBoldFont;
   }
 }
 #pathBarRow {
   background-color: @lightgrey;
-  padding-left: 25px;
-  padding-right: 25px;
+  .padding-left-right(25px,25px);
   width: @100;
   height: 30px;
 }
