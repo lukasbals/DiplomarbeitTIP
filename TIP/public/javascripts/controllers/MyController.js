@@ -4,6 +4,7 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.dataSource = null;
             this.getGeschaeftspartner = {
                 text: "getGeschaeftspartner",
                 onClick: function () {
@@ -11,7 +12,7 @@ var TIP;
                     _this.my.getGeschaeftspartner()
                         .success(function (data) {
                         console.log(data);
-                        data = this.tipData;
+                        _this.dataSource = data;
                     })
                         .error(function (data) {
                         console.log("Keine Geschaeeftspartner bekommen.");
@@ -19,7 +20,6 @@ var TIP;
                 }
             };
             this.gridGeschaeftspartner = {
-                dataSource: this.tipData,
                 columns: [
                     'Id',
                     'GpNummer',
@@ -35,7 +35,10 @@ var TIP;
                     'Fax',
                     'Email',
                     'Homepage'
-                ]
+                ],
+                bindingOptions: {
+                    dataSource: "vm.dataSource"
+                }
             };
         }
         return MyViewModel;

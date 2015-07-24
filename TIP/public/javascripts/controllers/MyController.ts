@@ -3,16 +3,17 @@ module TIP {
     constructor(private my: MyService) {
 
     }
-    tipData: JSON;
+    dataSource: any = null;
+
 
     getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
       text: "getGeschaeftspartner",
       onClick: (): void => {
         DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
         this.my.getGeschaeftspartner()
-          .success(function(data) {
+          .success((data): void => {
           console.log(data);
-          data = this.tipData;
+          this.dataSource = data;
         })
           .error(function(data) {
           console.log("Keine Geschaeeftspartner bekommen.");
@@ -22,8 +23,7 @@ module TIP {
     }
 
 
-    gridGeschaeftspartner: DevExpress.ui.dxDataGridOptions = {
-      dataSource: this.tipData,
+    gridGeschaeftspartner: any = {
       columns: [
         'Id',
         'GpNummer',
@@ -39,7 +39,10 @@ module TIP {
         'Fax',
         'Email',
         'Homepage'
-      ]
+      ],
+      bindingOptions: {
+        dataSource: "vm.dataSource"
+      }
     }
   }
 
