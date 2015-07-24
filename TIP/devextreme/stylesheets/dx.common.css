@@ -1,4 +1,4 @@
-/*! 
+/*!
 * DevExtreme
 * Version: 15.1.4
 * Build date: Jun 22, 2015
@@ -442,7 +442,7 @@
 {
   font-family: "#";
 }
-.dx-widget
+/*.dx-widget
 {
   -ms-content-zooming: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -450,7 +450,7 @@
   -webkit-touch-callout: none;
   padding: 0;
   outline: 0;
-}
+}*/
 .dx-widget, .dx-widget:before, .dx-widget:after, .dx-widget *, .dx-widget *:before, .dx-widget *:after
 {
   -webkit-box-sizing: border-box;
@@ -636,7 +636,7 @@
 {
   cursor: default;
 }
-.dx-button
+/*.dx-button
 {
   display: inline-block;
   cursor: pointer;
@@ -655,7 +655,7 @@
   -ms-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
-}
+}*/
 .dx-button .dx-icon
 {
   -webkit-user-drag: none;

@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/css/style.css')
+
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     script(src="jquery/jquery.js")
     script(src="angular/angular.js")
@@ -18,27 +18,31 @@ html
     script(src="javascripts/Initialize.js")
     script(src="javascripts/services/MyService.js")
     script(src="javascripts/controllers/MyController.js")
+    
+    link(rel='stylesheet', href='/stylesheets/css/style.css')
   body(ng-app="tip")
-    div#statusRow.TIPRot
-      div.col-xs-8#logo
-        img(src="/images/logo.png")
-        span.bolt Sebastian Dreier
-      div.col-xs-4.right.loadIcon
-        span.span loading 
-        img(src="/images/loadIcon.gif")
-    div.row#navBarRow
-      div.col-xs-2.redButtonDiv
-        button.btn
-          p GESCHÄFTSPARTNER
-      div.col-xs-2.redButtonDiv
-        button.btn
-          p TOUREN
-      div.col-xs-2.redButtonDiv
-        button.btn
-      div.col-xs-2.redButtonDiv
-        button.btn
-      div.col-xs-2.redButtonDiv
-        button.btn
-      div.col-xs-2.redButtonDiv
-        button.btn
-    block content
+    div(ng-controller="MyController")
+      div#statusRow.TIPRot
+        div.col-xs-8#logo
+          a(href="http://localhost:3000")
+            img(src="/images/logo.png")
+          span.bolt Sebastian Dreier
+        div.col-xs-4.right.loadIcon
+          span.span loading 
+          img(src="/images/loadIcon.gif")
+      div.row#navBarRow
+        div.col-xs-2.redButtonDiv
+          a(href="http://localhost:3000/geschaeftspartner")
+            button.btn(dx-button="vm.getGeschaeftspartner")
+        div.col-xs-2.redButtonDiv
+          button.btn
+            p Touren
+        div.col-xs-2.redButtonDiv
+          button.btn
+        div.col-xs-2.redButtonDiv
+          button.btn
+        div.col-xs-2.redButtonDiv
+          button.btn
+        div.col-xs-2.redButtonDiv
+          button.btn
+      block content

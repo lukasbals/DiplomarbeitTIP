@@ -10,17 +10,16 @@
 }
 
 //mixin to set values for padding
-.padding-left-right(@left, @right){
+.padding-left-right(@left, @right) {
   padding-left: @left;
   padding-right: @right;
 }
 
 //defines the font of the buttons
 .whiteBoldFont {
-  color: white;
+  color: #fff;
   font-weight: bold;
 }
-
 body {
   font-size: 14px;
   font-family: Helvetica;
@@ -88,8 +87,11 @@ a {
     outline: none !important;
   }
   p {
-    .whiteBoldFont;
+    .whiteBoldFont !important;
   }
+}
+.dx-button-text {
+  .whiteBoldFont !important;
 }
 #pathBarRow {
   background-color: @lightgrey;

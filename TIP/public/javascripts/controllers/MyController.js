@@ -6,7 +6,7 @@ var TIP;
             this.my = my;
             this.dataSource = null;
             this.getGeschaeftspartner = {
-                text: "getGeschaeftspartner",
+                text: "Geschäftspartner",
                 onClick: function () {
                     DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
                     _this.my.getGeschaeftspartner()

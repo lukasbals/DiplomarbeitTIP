@@ -7,7 +7,7 @@ module TIP {
 
 
     getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
-      text: "getGeschaeftspartner",
+      text: "Geschäftspartner",
       onClick: (): void => {
         DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
         this.my.getGeschaeftspartner()
