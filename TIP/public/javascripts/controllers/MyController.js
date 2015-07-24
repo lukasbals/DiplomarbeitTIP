@@ -7,15 +7,35 @@ var TIP;
             this.getGeschaeftspartner = {
                 text: "getGeschaeftspartner",
                 onClick: function () {
+                    DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
                     _this.my.getGeschaeftspartner()
                         .success(function (data) {
                         console.log(data);
+                        data = this.tipData;
                     })
                         .error(function (data) {
                         console.log("Keine Geschaeeftspartner bekommen.");
                     });
-                    DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
                 }
+            };
+            this.gridGeschaeftspartner = {
+                dataSource: this.tipData,
+                columns: [
+                    'Id',
+                    'GpNummer',
+                    'CodeGpKz',
+                    'Firmenbez1',
+                    'Firmenbez2',
+                    'Firmenbez3',
+                    'Strasse',
+                    'Codeland',
+                    'Plz',
+                    'Ort',
+                    'Telefon',
+                    'Fax',
+                    'Email',
+                    'Homepage'
+                ]
             };
         }
         return MyViewModel;
