@@ -15,7 +15,7 @@ module TIP {
           console.log(data);
           this.dataSource = data;
         })
-          .error(function(data) {
+          .error((data): void => {
           console.log("Keine Geschaeeftspartner bekommen.");
         });
 
