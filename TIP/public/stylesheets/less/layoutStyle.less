@@ -2,16 +2,6 @@
 @100: 100%;
 @grey: grey;
 @lightgrey: lightgrey;
-
-.whiteFont {
-  color: white;
-  font-weight: bold;
-}
-.width-and-height(@width: 100%, @height: 100%) {
-  width: @width;
-  height: @height;
-}
-
 body {
   font-size: 14px;
   font-family: Helvetica;
@@ -34,9 +24,10 @@ a {
   background-color: @lightgrey;
   padding-left: 10px;
   padding-right: 10px;
+  width: @100;
   margin-top: -70px;
   position: fixed;
-  .width-and-height(100%,50px);
+  height: 50px;
 }
 #userNameCSS {
   margin-left: 10px;
@@ -53,7 +44,8 @@ a {
   font-size: 12px;
 }
 .loadIcon img {
-  .width-and-height(30px,30px);
+  width: 30px;
+  height: 30px;
 }
 #navBarRow {
   margin: 70px 10px 20px;
