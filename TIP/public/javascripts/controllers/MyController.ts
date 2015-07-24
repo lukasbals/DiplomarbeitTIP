@@ -26,29 +26,41 @@ module TIP {
     gridGeschaeftspartner: any = {
       columns: [{
         dataField: 'GpNummer',
-        width:50
+        caption: "Nummer",
+        width: 70,
+        allowFiltering: false
       }, {
-          dataField: 'Firmenbez1',
-          width: 200
+          dataField: 'Firmenbez1'
         }, {
           dataField: 'Firmenbez2',
-          width: 150
-        }, {
-          dataField: 'Strasse',
           width: 200
         }, {
-          dataField: 'Plz'
+          dataField: 'Strasse',
+          width: 200,
+          allowFiltering: false
         }, {
-          dataField: 'Ort'
+          dataField: 'Plz',
+          width: 60,
+          allowFiltering: false
         }, {
-          dataField: 'Telefon'
+          dataField: "Ort",
+          width: 150,
+          allowFiltering: false
         }, {
-          dataField: 'Email'
+          dataField: "CodeLand",
+          width: 50,
+          caption: "Land",
+          allowFiltering: false
         }],
       columnAutoWidth: true,
       bindingOptions: {
         dataSource: "vm.dataSource"
-      }
+      },
+      searchPanel:{
+       visible:true,
+       width:250,
+       highlightSearchText:false
+     }
     }
   }
 

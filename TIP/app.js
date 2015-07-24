@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
+var geschaeftspartner = require('./routes/geschaeftspartner');
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -21,6 +22,7 @@ app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
+app.use('/geschaeftspartner', geschaeftspartner);
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
