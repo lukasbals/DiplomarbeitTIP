@@ -7,10 +7,16 @@ module TIP {
     getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
       text: "getGeschaeftspartner",
       onClick: (): void => {
+        this.my.getGeschaeftspartner()
+          .success(function(data){
+            console.log(data);
+            });
+
         DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
       }
     }
   }
+
   export interface MyScope extends ng.IScope {
     vm: MyViewModel;
   }

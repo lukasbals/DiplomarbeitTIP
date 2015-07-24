@@ -2,10 +2,15 @@ var TIP;
 (function (TIP) {
     var MyViewModel = (function () {
         function MyViewModel(my) {
+            var _this = this;
             this.my = my;
             this.getGeschaeftspartner = {
                 text: "getGeschaeftspartner",
                 onClick: function () {
+                    _this.my.getGeschaeftspartner()
+                        .success(function (data) {
+                        console.log(data);
+                    });
                     DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
                 }
             };
