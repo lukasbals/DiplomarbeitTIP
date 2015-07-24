@@ -6,6 +6,10 @@
   width: @width;
   height: @height;
 }
+.whiteBoldFont {
+  color: white;
+  font-weight: bold;
+}
 body {
   font-size: 14px;
   font-family: Helvetica;
@@ -75,6 +79,9 @@ a {
     border-style: hidden;
     box-shadow: 0 0 15px @grey, -0px -0px 15px @grey;
     outline: none !important;
+  }
+  p {
+    .whiteBoldFont
   }
 }
 #pathBarRow {
