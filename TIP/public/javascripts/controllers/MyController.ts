@@ -5,11 +5,16 @@ module TIP {
     }
     dataSource: any = null;
 
+    i = function() {
+      window.location.replace("http://localhost:3000/geschaeftspartner");
+    }
 
     getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
       text: "Geschäftspartner",
       onClick: (): void => {
-        DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
+        /*this.i();*/
+        //window.location.href = "http://localhost:3000/geschaeftspartner";
+        DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
         this.my.getGeschaeftspartner()
           .success((data): void => {
           console.log(data);
@@ -18,7 +23,6 @@ module TIP {
           .error((data): void => {
           console.log("Keine Geschaeeftspartner bekommen.");
         });
-
       }
     }
 
@@ -56,11 +60,11 @@ module TIP {
       bindingOptions: {
         dataSource: "vm.dataSource"
       },
-      searchPanel:{
-       visible:true,
-       width:250,
-       highlightSearchText:false
-     }
+      searchPanel: {
+        visible: true,
+        width: 250,
+        highlightSearchText: false
+      }
     }
   }
 

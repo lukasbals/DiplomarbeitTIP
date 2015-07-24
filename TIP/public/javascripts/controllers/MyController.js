@@ -5,10 +5,13 @@ var TIP;
             var _this = this;
             this.my = my;
             this.dataSource = null;
+            this.i = function () {
+                window.location.replace("http://localhost:3000/geschaeftspartner");
+            };
             this.getGeschaeftspartner = {
                 text: "Geschäftspartner",
                 onClick: function () {
-                    DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!");
+                    DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
                     _this.my.getGeschaeftspartner()
                         .success(function (data) {
                         console.log(data);
