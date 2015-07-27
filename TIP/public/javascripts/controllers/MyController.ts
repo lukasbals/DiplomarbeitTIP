@@ -11,6 +11,9 @@ module TIP {
 
     getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
       text: "Geschäftspartner",
+      activeStateEnabled:false,
+      focusStateEnabled:false,
+      hoverStateEnabled:false,
       onClick: (): void => {
         /*this.i();*/
         //window.location.href = "http://localhost:3000/geschaeftspartner";

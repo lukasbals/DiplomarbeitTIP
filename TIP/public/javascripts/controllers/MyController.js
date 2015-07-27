@@ -10,6 +10,9 @@ var TIP;
             };
             this.getGeschaeftspartner = {
                 text: "Geschäftspartner",
+                activeStateEnabled: false,
+                focusStateEnabled: false,
+                hoverStateEnabled: false,
                 onClick: function () {
                     DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
                     _this.my.getGeschaeftspartner()
