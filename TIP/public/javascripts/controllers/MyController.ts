@@ -31,6 +31,9 @@ module TIP {
 
 
     gridGeschaeftspartner: any = {
+      /*selection: {
+        mode: 'single'
+      },*/
       columns: [{
         dataField: 'GpNummer',
         caption: "Nummer",
@@ -67,6 +70,9 @@ module TIP {
         visible: true,
         width: 250,
         highlightSearchText: false
+      },
+      rowClick: (): void => {
+        alert(this.dataSource.GpNummer);
       }
     }
   }

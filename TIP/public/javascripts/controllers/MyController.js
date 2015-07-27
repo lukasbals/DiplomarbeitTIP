@@ -62,6 +62,9 @@ var TIP;
                     visible: true,
                     width: 250,
                     highlightSearchText: false
+                },
+                rowClick: function () {
+                    alert(_this.dataSource.GpNummer);
                 }
             };
         }
