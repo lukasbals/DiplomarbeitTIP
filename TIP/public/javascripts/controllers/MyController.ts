@@ -3,6 +3,7 @@ module TIP {
     constructor(private my: MyService) {
 
     }
+    showPopup: boolean = false;
 
     // Displays the homePage if it is true
     homePage: boolean = true;
@@ -102,8 +103,14 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (options): void => {
-        alert(JSON.stringify(options.data));
+        this.showPopup = true;
+        console.log(options.data);
+
       }
+    }
+
+    dxPopupOptions:any = {
+      fullScreen:true
     }
 
     gridPerson: any = {

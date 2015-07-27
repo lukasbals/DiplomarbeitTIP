@@ -4,6 +4,7 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.showPopup = false;
             this.homePage = true;
             this.loadIndicator = false;
             this.dataSourceGeschaeftspartner = null;
@@ -87,8 +88,12 @@ var TIP;
                     highlightSearchText: false
                 },
                 rowClick: function (options) {
-                    alert(JSON.stringify(options.data));
+                    _this.showPopup = true;
+                    console.log(options.data);
                 }
+            };
+            this.dxPopupOptions = {
+                fullScreen: true
             };
             this.gridPerson = {
                 columns: [{
