@@ -89,18 +89,17 @@ var TIP;
                         width: 70,
                         allowFiltering: false
                     }, {
-                        dataField: 'Titel'
+                        dataField: 'Titel',
+                        allowFiltering: false
                     }, {
                         dataField: 'Vorname',
                         width: 200
                     }, {
                         dataField: 'Nachname',
-                        width: 200,
-                        allowFiltering: false
+                        width: 200
                     }, {
                         dataField: 'Abteilung',
-                        width: 60,
-                        allowFiltering: false
+                        width: 60
                     }, {
                         dataField: "Telefon",
                         width: 150,

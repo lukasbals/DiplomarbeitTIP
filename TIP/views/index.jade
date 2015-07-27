@@ -1,11 +1,11 @@
 extends layout
 
 block content
-  div(ng-controller="MyController")
-    div#pathBarRow
-      p#path.TIPRot
-        span.pathObject Index
-        //- span.grey  /
-        //- span.TIPRot.pathObject  Irgendeinefirma
-    div.container
-      
+  div#pathBarRow
+    p#path.TIPRot
+      span.pathObject Geschäftspartner
+      //span.grey  /
+      //span.TIPRot.pathObject  Irgendeinefirma
+  div.container
+    div(ng-show="vm.dataSourceGeschaeftspartner", dx-data-grid="vm.gridGeschaeftspartner")
+    div(ng-show="vm.dataSourcePerson", dx-data-grid="vm.gridPerson")
