@@ -4,10 +4,8 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
-            this.dataSource = null;
-            this.i = function () {
-                window.location.replace("http://localhost:3000/geschaeftspartner");
-            };
+            this.dataSourceGeschaeftspartner = null;
+            this.dataSourcePerson = null;
             this.getGeschaeftspartner = {
                 text: "Geschäftspartner",
                 activeStateEnabled: false,
@@ -17,11 +15,28 @@ var TIP;
                     DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
                     _this.my.getGeschaeftspartner()
                         .success(function (data) {
-                        console.log(data);
-                        _this.dataSource = data;
+                        _this.dataSourcePerson = null;
+                        _this.dataSourceGeschaeftspartner = data;
                     })
                         .error(function (data) {
                         console.log("Keine Geschaeeftspartner bekommen.");
+                    });
+                }
+            };
+            this.getPerson = {
+                text: "Personen",
+                activeStateEnabled: false,
+                focusStateEnabled: false,
+                hoverStateEnabled: false,
+                onClick: function () {
+                    DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
+                    _this.my.getPerson()
+                        .success(function (data) {
+                        _this.dataSourceGeschaeftspartner = null;
+                        _this.dataSourcePerson = data;
+                    })
+                        .error(function (data) {
+                        console.log("Keine Personen bekommen.");
                     });
                 }
             };
@@ -56,7 +71,7 @@ var TIP;
                     }],
                 columnAutoWidth: true,
                 bindingOptions: {
-                    dataSource: "vm.dataSource"
+                    dataSource: "vm.dataSourceGeschaeftspartner"
                 },
                 searchPanel: {
                     visible: true,
@@ -64,7 +79,56 @@ var TIP;
                     highlightSearchText: false
                 },
                 rowClick: function () {
-                    alert(_this.dataSource.GpNummer);
+                    alert("IN");
+                }
+            };
+            this.gridPerson = {
+                columns: [{
+                        dataField: 'CodeAnrede',
+                        caption: "Anrede",
+                        width: 70,
+                        allowFiltering: false
+                    }, {
+                        dataField: 'Titel'
+                    }, {
+                        dataField: 'Vorname',
+                        width: 200
+                    }, {
+                        dataField: 'Nachname',
+                        width: 200,
+                        allowFiltering: false
+                    }, {
+                        dataField: 'Abteilung',
+                        width: 60,
+                        allowFiltering: false
+                    }, {
+                        dataField: "Telefon",
+                        width: 150,
+                        allowFiltering: false
+                    }, {
+                        dataField: "Mobil",
+                        width: 50,
+                        allowFiltering: false
+                    }, {
+                        dataField: "Fax",
+                        width: 50,
+                        allowFiltering: false
+                    }, {
+                        dataField: "Email",
+                        width: 50,
+                        allowFiltering: false
+                    }],
+                columnAutoWidth: true,
+                bindingOptions: {
+                    dataSource: "vm.dataSourcePerson"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 250,
+                    highlightSearchText: false
+                },
+                rowClick: function () {
+                    alert("IN");
                 }
             };
         }

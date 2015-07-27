@@ -7,6 +7,11 @@ module TIP {
       console.log("IN");
       return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
     }
+
+    getPerson(): ng.IHttpPromise<any> {
+      console.log("IN");
+      return this.$http.get("http://localhost:3000/api/getJsonPerson");
+    }
   }
 
   angular

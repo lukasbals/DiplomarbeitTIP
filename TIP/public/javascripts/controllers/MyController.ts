@@ -3,25 +3,24 @@ module TIP {
     constructor(private my: MyService) {
 
     }
-    dataSource: any = null;
+    dataSourceGeschaeftspartner: any = null;
+    dataSourcePerson: any = null;
 
-    i = function() {
-      window.location.replace("http://localhost:3000/geschaeftspartner");
-    }
 
     getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
       text: "Geschäftspartner",
-      activeStateEnabled:false,
-      focusStateEnabled:false,
-      hoverStateEnabled:false,
+      activeStateEnabled: false,
+      focusStateEnabled: false,
+      hoverStateEnabled: false,
       onClick: (): void => {
         /*this.i();*/
         //window.location.href = "http://localhost:3000/geschaeftspartner";
         DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
         this.my.getGeschaeftspartner()
           .success((data): void => {
-          console.log(data);
-          this.dataSource = data;
+          //console.log(data);
+          this.dataSourcePerson = null;
+          this.dataSourceGeschaeftspartner = data;
         })
           .error((data): void => {
           console.log("Keine Geschaeeftspartner bekommen.");
@@ -29,6 +28,24 @@ module TIP {
       }
     }
 
+    getPerson: DevExpress.ui.dxButtonOptions = {
+      text: "Personen",
+      activeStateEnabled: false,
+      focusStateEnabled: false,
+      hoverStateEnabled: false,
+      onClick: (): void => {
+        DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
+        this.my.getPerson()
+          .success((data): void => {
+          //console.log(data);
+          this.dataSourceGeschaeftspartner = null;
+          this.dataSourcePerson = data;
+        })
+          .error((data): void => {
+          console.log("Keine Personen bekommen.");
+        });
+      }
+    }
 
     gridGeschaeftspartner: any = {
       /*selection: {
@@ -64,7 +81,7 @@ module TIP {
         }],
       columnAutoWidth: true,
       bindingOptions: {
-        dataSource: "vm.dataSource"
+        dataSource: "vm.dataSourceGeschaeftspartner"
       },
       searchPanel: {
         visible: true,
@@ -72,7 +89,60 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (): void => {
-        alert(this.dataSource.GpNummer);
+        alert("IN");
+      }
+    }
+
+    gridPerson: any = {
+      /*selection: {
+        mode: 'single'
+      },*/
+      columns: [{
+        dataField: 'CodeAnrede',
+        caption: "Anrede",
+        width: 70,
+        allowFiltering: false
+      }, {
+          dataField: 'Titel'
+        }, {
+          dataField: 'Vorname',
+          width: 200
+        }, {
+          dataField: 'Nachname',
+          width: 200,
+          allowFiltering: false
+        }, {
+          dataField: 'Abteilung',
+          width: 60,
+          allowFiltering: false
+        }, {
+          dataField: "Telefon",
+          width: 150,
+          allowFiltering: false
+        }, {
+          dataField: "Mobil",
+          width: 50,
+          allowFiltering: false
+        }, {
+          dataField: "Fax",
+          width: 50,
+          allowFiltering: false
+        }, {
+          dataField: "Email",
+          width: 50,
+          allowFiltering: false
+        }],
+      columnAutoWidth: true,
+      bindingOptions: {
+        dataSource: "vm.dataSourcePerson"
+      },
+      searchPanel: {
+        visible: true,
+        width: 250,
+        highlightSearchText: false
+      },
+      rowClick: (): void => {
+        alert("IN");
       }
     }
   }

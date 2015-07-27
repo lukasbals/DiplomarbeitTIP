@@ -8,6 +8,10 @@ var TIP;
             console.log("IN");
             return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
         };
+        MyService.prototype.getPerson = function () {
+            console.log("IN");
+            return this.$http.get("http://localhost:3000/api/getJsonPerson");
+        };
         return MyService;
     })();
     TIP.MyService = MyService;
