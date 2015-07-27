@@ -86,8 +86,8 @@ var TIP;
                     width: 250,
                     highlightSearchText: false
                 },
-                rowClick: function () {
-                    alert("IN");
+                rowClick: function (options) {
+                    alert(JSON.stringify(options.data));
                 }
             };
             this.gridPerson = {
