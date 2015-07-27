@@ -117,31 +117,21 @@ module TIP {
         allowFiltering: false
       }, {
           dataField: 'Titel',
-          allowFiltering: false
+          allowFiltering: false,
+          width: 90
         }, {
-          dataField: 'Vorname',
-          width: 200
+          dataField: 'Vorname'
         }, {
-          dataField: 'Nachname',
-          width: 200
+          dataField: 'Nachname'
         }, {
-          dataField: 'Abteilung',
-          width: 60
+          dataField: 'Abteilung'
         }, {
           dataField: "Telefon",
           width: 150,
           allowFiltering: false
         }, {
-          dataField: "Mobil",
-          width: 50,
-          allowFiltering: false
-        }, {
-          dataField: "Fax",
-          width: 50,
-          allowFiltering: false
-        }, {
           dataField: "Email",
-          width: 50,
+          width: 230,
           allowFiltering: false
         }],
       columnAutoWidth: true,
