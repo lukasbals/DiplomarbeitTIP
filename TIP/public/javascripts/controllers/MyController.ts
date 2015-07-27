@@ -4,6 +4,8 @@ module TIP {
 
     }
 
+
+    loadIndicator: boolean = false;
     dataSourceGeschaeftspartner: any = null;
     dataSourcePerson: any = null;
 
@@ -14,17 +16,17 @@ module TIP {
       focusStateEnabled: false,
       hoverStateEnabled: false,
       onClick: (): void => {
-        /*this.i();*/
-        //window.location.href = "http://localhost:3000/geschaeftspartner";
-        DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
+        this.loadIndicator = true;
         this.my.getGeschaeftspartner()
           .success((data): void => {
           //console.log(data);
           this.dataSourcePerson = null;
           this.dataSourceGeschaeftspartner = data;
+          this.loadIndicator = false;
         })
           .error((data): void => {
           console.log("Keine Geschaeeftspartner bekommen.");
+          this.loadIndicator = false;
         });
       }
     }
@@ -35,15 +37,18 @@ module TIP {
       focusStateEnabled: false,
       hoverStateEnabled: false,
       onClick: (): void => {
-        DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
+        this.loadIndicator = true;
+        //DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
         this.my.getPerson()
           .success((data): void => {
           //console.log(data);
           this.dataSourceGeschaeftspartner = null;
           this.dataSourcePerson = data;
+          this.loadIndicator = false;
         })
           .error((data): void => {
           console.log("Keine Personen bekommen.");
+          this.loadIndicator = false;
         });
       }
     }

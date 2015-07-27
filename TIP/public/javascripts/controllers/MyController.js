@@ -4,6 +4,7 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.loadIndicator = false;
             this.dataSourceGeschaeftspartner = null;
             this.dataSourcePerson = null;
             this.getGeschaeftspartner = {
@@ -12,14 +13,16 @@ var TIP;
                 focusStateEnabled: false,
                 hoverStateEnabled: false,
                 onClick: function () {
-                    DevExpress.ui.notify("Du hast den getGeschaeftspartner-Button geklickt!", "success", 2000);
+                    _this.loadIndicator = true;
                     _this.my.getGeschaeftspartner()
                         .success(function (data) {
                         _this.dataSourcePerson = null;
                         _this.dataSourceGeschaeftspartner = data;
+                        _this.loadIndicator = false;
                     })
                         .error(function (data) {
                         console.log("Keine Geschaeeftspartner bekommen.");
+                        _this.loadIndicator = false;
                     });
                 }
             };
@@ -29,14 +32,16 @@ var TIP;
                 focusStateEnabled: false,
                 hoverStateEnabled: false,
                 onClick: function () {
-                    DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
+                    _this.loadIndicator = true;
                     _this.my.getPerson()
                         .success(function (data) {
                         _this.dataSourceGeschaeftspartner = null;
                         _this.dataSourcePerson = data;
+                        _this.loadIndicator = false;
                     })
                         .error(function (data) {
                         console.log("Keine Personen bekommen.");
+                        _this.loadIndicator = false;
                     });
                 }
             };
