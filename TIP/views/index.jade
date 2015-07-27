@@ -3,7 +3,8 @@ extends layout
 block content
   div#pathBarRow
     p#path.TIPRot
-      span.pathObject Geschäftspartner
+      span(ng-show="vm.dataSourceGeschaeftspartner").pathObject Geschäftspartner
+      span(ng-show="vm.dataSourcePerson").pathObject Personen
       //span.grey  /
       //span.TIPRot.pathObject  Irgendeinefirma
   div.container

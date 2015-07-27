@@ -1,4 +1,4 @@
-/*! 
+/*!
 * DevExtreme
 * Version: 15.1.4
 * Build date: Jun 22, 2015
@@ -439,7 +439,7 @@
 }
 .dx-pivotgridfieldchooser .dx-area-field.dx-area-box.dx-drag
 {
-  z-index: 9999;
+  /*z-index: 9999;*/
   position: absolute;
   -webkit-box-shadow: 0 0 1px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.2);
   -moz-box-shadow: 0 0 1px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.2);
@@ -531,7 +531,7 @@
 .dx-scheduler-header
 {
   position: relative;
-  z-index: 1;
+  /*z-index: 1;*/
   width: 100%;
   min-width: 715px;
 }
@@ -970,7 +970,7 @@
 }
 .dx-scheduler-appointment.dx-state-active, .dx-scheduler-appointment.dx-resizable-resizing, .dx-scheduler-appointment.dx-draggable-dragging
 {
-  z-index: 1000;
+  /*z-index: 1000;*/
   filter: alpha(opacity=70);
   -khtml-opacity: .7;
   -moz-opacity: .7;
@@ -3261,7 +3261,7 @@
   right: -1px;
   left: -1px;
   border: 1px solid #606060;
-  z-index: 1;
+  /*z-index: 1;*/
 }
 .dx-tab .dx-icon
 {
@@ -3306,7 +3306,7 @@
   left: -1px;
   border-right: 1px solid #d3d3d3;
   border-left: 1px solid #d3d3d3;
-  z-index: 1;
+  /*z-index: 1;*/
 }
 .dx-tab-selected:not(.dx-state-focused)+.dx-tab-selected:not(.dx-state-focused):after
 {
@@ -5402,7 +5402,7 @@
 .dx-gallery .dx-gallery-nav-button-prev.dx-state-hover:before, .dx-gallery .dx-gallery-nav-button-next.dx-state-hover:before, .dx-gallery .dx-gallery-nav-button-prev.dx-state-active:before, .dx-gallery .dx-gallery-nav-button-next.dx-state-active:before
 {
   position: absolute;
-  z-index: 10;
+  /*z-index: 10;*/
   clear: both;
   width: 16%;
   height: 100%;
@@ -7587,11 +7587,11 @@
 }
 .dx-calendar-navigator .dx-button.dx-state-active:not(.dx-calendar-disabled-navigator-link)
 {
-  z-index: 1;
+  /*z-index: 1;*/
 }
 .dx-calendar-navigator .dx-button.dx-state-hover:not(.dx-calendar-disabled-navigator-link)
 {
-  z-index: 1;
+  /*z-index: 1;*/
   border-color: #b7b7b7;
 }
 .dx-calendar-navigator .dx-calendar-caption-button
@@ -7624,7 +7624,7 @@
 }
 .dx-calendar-navigator-previous-month.dx-state-hover
 {
-  z-index: 1;
+  /*z-index: 1;*/
 }
 .dx-calendar-navigator-previous-month, .dx-calendar-navigator-next-view
 {
@@ -8063,7 +8063,7 @@
   bottom: -1px;
   left: 0;
   right: 0;
-  z-index: 2;
+  /*z-index: 2;*/
   border-bottom: 1.5px solid #fff;
   bottom: -1.4px;
 }
