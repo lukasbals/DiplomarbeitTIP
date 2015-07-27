@@ -87,7 +87,7 @@ var TIP;
                     highlightSearchText: false
                 },
                 rowClick: function (options) {
-                    console.log(options.data);
+                    _this.my.postDetail(options.data);
                 }
             };
             this.gridPerson = {
