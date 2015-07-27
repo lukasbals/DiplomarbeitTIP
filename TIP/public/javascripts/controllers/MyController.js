@@ -4,6 +4,7 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.homePage = true;
             this.loadIndicator = false;
             this.dataSourceGeschaeftspartner = null;
             this.dataSourcePerson = null;
@@ -19,6 +20,7 @@ var TIP;
                         _this.dataSourcePerson = null;
                         _this.dataSourceGeschaeftspartner = data;
                         _this.loadIndicator = false;
+                        _this.homePage = false;
                     })
                         .error(function (data) {
                         console.log("Keine Geschaeeftspartner bekommen.");
@@ -38,6 +40,7 @@ var TIP;
                         _this.dataSourceGeschaeftspartner = null;
                         _this.dataSourcePerson = data;
                         _this.loadIndicator = false;
+                        _this.homePage = false;
                     })
                         .error(function (data) {
                         console.log("Keine Personen bekommen.");

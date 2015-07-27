@@ -4,8 +4,13 @@ module TIP {
 
     }
 
+    // Displays the homePage if it is true
+    homePage: boolean = true;
 
+    // Displays the loadIndicator if it is true
     loadIndicator: boolean = false;
+
+    // the one who is not null is visible
     dataSourceGeschaeftspartner: any = null;
     dataSourcePerson: any = null;
 
@@ -23,6 +28,7 @@ module TIP {
           this.dataSourcePerson = null;
           this.dataSourceGeschaeftspartner = data;
           this.loadIndicator = false;
+          this.homePage = false;
         })
           .error((data): void => {
           console.log("Keine Geschaeeftspartner bekommen.");
@@ -45,6 +51,7 @@ module TIP {
           this.dataSourceGeschaeftspartner = null;
           this.dataSourcePerson = data;
           this.loadIndicator = false;
+          this.homePage = false;
         })
           .error((data): void => {
           console.log("Keine Personen bekommen.");
