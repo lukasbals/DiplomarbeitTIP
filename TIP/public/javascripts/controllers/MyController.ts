@@ -14,7 +14,6 @@ module TIP {
 
     getParameter = (theParameter): any => {
       var params = window.location.search.substr(1).split('&');
-
       for (var i = 0; i < params.length; i++) {
         var p = params[i].split('=');
         if (p[0] == theParameter) {
@@ -24,33 +23,27 @@ module TIP {
       return false;
     }
 
-    getDetail: DevExpress.ui.dxButtonOptions = {
-      text: "getDetail",
-      activeStateEnabled: false,
-      focusStateEnabled: false,
-      hoverStateEnabled: false,
-      onClick: (): void => {
-        //$location.search.id;
-        alert(this.getParameter("id"));
-        var id = this.getParameter("id");
-        var table = this.getParameter("table");
-        this.my.getDetails(id, table)
-          .success((data): void => {
-          this.detailDataSource = data;
-          this.loadIndicator = false;
-          console.log(this.detailDataSource);
-        })
-          .error((data): void => {
-          console.log("Keine DetailDaten bekommen.")
-          this.loadIndicator = false;
-        });
-      }
+    initDetail() {
+      var id = this.getParameter("id");
+      var table = this.getParameter("table");
+      /*alert(id + table)*/
+      this.my.getDetails(id, table)
+        .success((data): void => {
+        this.detailDataSource = data;
+        this.loadIndicator = false;
+        console.log(this.detailDataSource);
+      })
+        .error((data): void => {
+        console.log("Keine DetailDaten bekommen.")
+        this.loadIndicator = false;
+      });
     }
 
-    gridDetails: any = {
+    gridDetails: any = {
       bindingOptions: {
         dataSource: "vm.detailDataSource"
-      }
+      },
+      grouped: true
     }
 
     //

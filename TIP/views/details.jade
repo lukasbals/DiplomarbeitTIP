@@ -3,5 +3,4 @@ extends layout
 block content
   div.container
     h1 DetailsPage
-    button.btn(dx-button="vm.getDetail")
-    div(dx-data-grid="vm.gridDetails")
+    div(ng-init="vm.initDetail()", dx-data-grid="vm.gridDetails")

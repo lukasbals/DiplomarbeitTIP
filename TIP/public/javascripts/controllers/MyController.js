@@ -15,31 +15,11 @@ var TIP;
                 }
                 return false;
             };
-            this.getDetail = {
-                text: "getDetail",
-                activeStateEnabled: false,
-                focusStateEnabled: false,
-                hoverStateEnabled: false,
-                onClick: function () {
-                    alert(_this.getParameter("id"));
-                    var id = _this.getParameter("id");
-                    var table = _this.getParameter("table");
-                    _this.my.getDetails(id, table)
-                        .success(function (data) {
-                        _this.detailDataSource = data;
-                        _this.loadIndicator = false;
-                        console.log(_this.detailDataSource);
-                    })
-                        .error(function (data) {
-                        console.log("Keine DetailDaten bekommen.");
-                        _this.loadIndicator = false;
-                    });
-                }
-            };
             this.gridDetails = {
                 bindingOptions: {
                     dataSource: "vm.detailDataSource"
-                }
+                },
+                grouped: true
             };
             this.homePage = true;
             this.loadIndicator = false;
@@ -167,6 +147,21 @@ var TIP;
                 }
             };
         }
+        MyViewModel.prototype.initDetail = function () {
+            var _this = this;
+            var id = this.getParameter("id");
+            var table = this.getParameter("table");
+            this.my.getDetails(id, table)
+                .success(function (data) {
+                _this.detailDataSource = data;
+                _this.loadIndicator = false;
+                console.log(_this.detailDataSource);
+            })
+                .error(function (data) {
+                console.log("Keine DetailDaten bekommen.");
+                _this.loadIndicator = false;
+            });
+        };
         return MyViewModel;
     })();
     TIP.MyViewModel = MyViewModel;
