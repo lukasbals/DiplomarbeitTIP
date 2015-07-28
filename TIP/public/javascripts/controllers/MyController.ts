@@ -10,7 +10,6 @@ module TIP {
     //
     // Detail Page
     //
-
     firstAttribute: string = null;
     secondAttribute: string = null;
     linkMainPage: string = null;
@@ -27,6 +26,9 @@ module TIP {
           this.firstAttribute = "Geschäftspartner";
           this.secondAttribute = data[0].firmenbez_1;
           this.linkMainPage = "geschaeftspartner";
+          /*var id = data[0].id;
+          var gp_nummer = data[0].gp_nummer
+          this.detailDataSource = ["ID: " + id, "GP Nummer: " + gp_nummer];*/
         } else if (table == "personen_st") {
           this.firstAttribute = "Personen"
           this.secondAttribute = data[0].nachname;
@@ -55,7 +57,9 @@ module TIP {
     gridDetails: any = {
       bindingOptions: {
         dataSource: "vm.detailDataSource"
-      }
+      },
+      columnAutoWidth: true,
+      loadPanel: false
     }
 
     //

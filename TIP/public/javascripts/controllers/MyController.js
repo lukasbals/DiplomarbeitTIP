@@ -22,7 +22,9 @@ var TIP;
             this.gridDetails = {
                 bindingOptions: {
                     dataSource: "vm.detailDataSource"
-                }
+                },
+                columnAutoWidth: true,
+                loadPanel: false
             };
             this.dataSourceGeschaeftspartner = null;
             this.gridGeschaeftspartner = {
