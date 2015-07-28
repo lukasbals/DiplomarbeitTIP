@@ -3,7 +3,7 @@ extends layout
 block content
   div#pathBarRow
     p#path.TIPRot
-      a(href="http://localhost:3000/{{vm.linkMainPage}}").TIPRot
+      a(href="/{{vm.linkMainPage}}").TIPRot
         span.pathObject {{vm.firstAttribute}}
       span.grey  /
       span.TIPRot.pathObject  {{vm.secondAttribute}}

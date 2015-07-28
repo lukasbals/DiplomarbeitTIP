@@ -22,8 +22,7 @@ var TIP;
             this.gridDetails = {
                 bindingOptions: {
                     dataSource: "vm.detailDataSource"
-                },
-                grouped: true
+                }
             };
             this.dataSourceGeschaeftspartner = null;
             this.gridGeschaeftspartner = {

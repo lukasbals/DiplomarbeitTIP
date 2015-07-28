@@ -47,7 +47,6 @@ var getJsonGpKz = function (res) {
                 Bezeichnung: row.bezeichnung
             });
         }, function () {
-            console.log(result);
             res.json(result);
         });
     });

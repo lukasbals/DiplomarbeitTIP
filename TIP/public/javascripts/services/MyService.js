@@ -13,7 +13,7 @@ var TIP;
         MyService.prototype.getDetails = function (id, table) {
             var string = '{"id": "' + id + '", "table": "' + table + '"}';
             var json = JSON.parse(string);
-            return this.$http.post("http://localhost:3000/details/getDetails", json);
+            return this.$http.post("http://localhost:3000/api/getDetails", json);
         };
         return MyService;
     })();

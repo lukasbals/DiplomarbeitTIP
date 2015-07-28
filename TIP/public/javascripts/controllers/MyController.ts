@@ -55,14 +55,13 @@ module TIP {
     gridDetails: any = {
       bindingOptions: {
         dataSource: "vm.detailDataSource"
-      },
-      grouped: true
+      }
     }
 
     //
     // Geschäftspartner Page
     //
-    dataSourceGeschaeftspartner: any = null;
+    dataSourceGeschaeftspartner: JSON = null;
     initGeschaeftspartner() {
       this.loadIndicator = true;
       this.my.getGeschaeftspartner()
@@ -125,7 +124,7 @@ module TIP {
     //
     // Personen Page
     //
-    dataSourcePerson: any = null;
+    dataSourcePerson: JSON = null;
     initPerson() {
       this.loadIndicator = true;
       this.my.getPerson()

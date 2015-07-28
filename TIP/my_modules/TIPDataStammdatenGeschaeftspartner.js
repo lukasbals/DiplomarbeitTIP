@@ -71,7 +71,6 @@ var getJsonGeschaeftspartner = function (res) {
                 Homepage: row.homepage
             });
         }, function () {
-            console.log(result);
             res.json(result);
         });
     });

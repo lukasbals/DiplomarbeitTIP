@@ -64,7 +64,7 @@ var getJsonLand = (res): void => {
         IsEU: row.is_eu
       });
     }, (): void => {
-        console.log(result);
+        //console.log(result);
         res.json(result);
       });
   });

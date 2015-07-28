@@ -49,7 +49,6 @@ var getJsonLand = function (res) {
                 IsEU: row.is_eu
             });
         }, function () {
-            console.log(result);
             res.json(result);
         });
     });

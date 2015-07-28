@@ -69,7 +69,6 @@ var getJsonPerson = function (res) {
                 Geburtsdatum: row.Geburtsdatum
             });
         }, function () {
-            console.log(result);
             res.json(result);
         });
     });

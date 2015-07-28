@@ -64,7 +64,7 @@ var getJsonPersonengruppe = (res): void => {
         Bezeichnung: row.bezeichnung,
       });
     }, (): void => {
-        console.log(result);
+        //console.log(result);
         res.json(result);
       });
   });

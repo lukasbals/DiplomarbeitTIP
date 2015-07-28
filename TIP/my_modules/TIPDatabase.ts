@@ -25,5 +25,23 @@ var setSYNCH = (tblName: string, date: Date): void => {
   });
 }
 
+var getDetails = (id: number, table: string, res): void =>{
+  var db = new sqlite3.Database("db.sql");
+  db.serialize((): void => {
+
+    //console.log(tblName);
+    db.all("select * from '" + table + "' where id = " + id + ";", (err, req): void => {
+      //console.log(req);
+      if (req != null) {
+        res.send(req);
+      } else {
+        console.log("Es ist ein Fehler aufgetreten.")
+      }
+
+    });
+  });
+}
+
 module.exports.getDB = getDB;
 module.exports.setSYNCH = setSYNCH;
+module.exports.getDetails = getDetails;

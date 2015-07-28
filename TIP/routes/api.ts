@@ -1,5 +1,6 @@
 import express = require("express");
 
+var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
 var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
 var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
@@ -8,6 +9,12 @@ var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPe
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 
 var router = express.Router();
+
+router.post('/getDetails', function(req, res) {
+  var id: number = req.body.id;
+  var table: string = req.body.table;
+  TIPDatabase.getDetails(id, table, res);
+});
 
 router.get("/getJsonGpKz", (req, res): void => {
   // console.log("IN");
