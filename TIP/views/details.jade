@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1 DetailsPage
-  button(dx-button="vm.getDetail")
+  div.container
+    h1 DetailsPage
+    button.btn(dx-button="vm.getDetail")
+    div(dx-data-grid="vm.gridDetails")

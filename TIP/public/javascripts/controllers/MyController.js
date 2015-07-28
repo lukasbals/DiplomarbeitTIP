@@ -36,6 +36,11 @@ var TIP;
                     });
                 }
             };
+            this.gridDetails = {
+                bindingOptions: {
+                    dataSource: "vm.detailDataSource"
+                }
+            };
             this.homePage = true;
             this.loadIndicator = false;
             this.dataSourceGeschaeftspartner = null;

@@ -8,6 +8,8 @@ module TIP {
     // Detail Page
     //
 
+    //init();
+
     detailDataSource: JSON = null;
 
     getParameter = (theParameter): any => {
@@ -42,8 +44,12 @@ module TIP {
           console.log("Keine DetailDaten bekommen.")
           this.loadIndicator = false;
         });
+      }
+    }
 
-
+    gridDetails: any = {
+      bindingOptions: {
+        dataSource: "vm.detailDataSource"
       }
     }
 
@@ -152,7 +158,7 @@ module TIP {
         //this.my.postDetail(options.data);
         /*console.log(options.data);*/
         this.loadIndicator = true;
-        window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st")
+        window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st");
       }
     }
 
