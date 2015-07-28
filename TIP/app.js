@@ -7,6 +7,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 var details = require('./routes/details');
+var geschaeftspartner = require('./routes/geschaeftspartner');
+var person = require('./routes/person');
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -23,6 +25,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
 app.use('/details', details);
+app.use('/geschaeftspartner', geschaeftspartner);
+app.use('/person', person);
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

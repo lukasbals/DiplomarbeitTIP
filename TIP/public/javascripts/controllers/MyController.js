@@ -4,6 +4,7 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.loadIndicator = false;
             this.detailDataSource = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
@@ -21,51 +22,9 @@ var TIP;
                 },
                 grouped: true
             };
-            this.homePage = true;
-            this.loadIndicator = false;
             this.dataSourceGeschaeftspartner = null;
-            this.dataSourcePerson = null;
-            this.getGeschaeftspartner = {
-                text: "Geschäftspartner",
-                activeStateEnabled: false,
-                focusStateEnabled: false,
-                hoverStateEnabled: false,
-                onClick: function () {
-                    _this.loadIndicator = true;
-                    _this.my.getGeschaeftspartner()
-                        .success(function (data) {
-                        _this.dataSourcePerson = null;
-                        _this.dataSourceGeschaeftspartner = data;
-                        _this.loadIndicator = false;
-                        _this.homePage = false;
-                    })
-                        .error(function (data) {
-                        console.log("Keine Geschaeeftspartner bekommen.");
-                        _this.loadIndicator = false;
-                    });
-                }
-            };
-            this.getPerson = {
-                text: "Personen",
-                activeStateEnabled: false,
-                focusStateEnabled: false,
-                hoverStateEnabled: false,
-                onClick: function () {
-                    _this.loadIndicator = true;
-                    _this.my.getPerson()
-                        .success(function (data) {
-                        _this.dataSourceGeschaeftspartner = null;
-                        _this.dataSourcePerson = data;
-                        _this.loadIndicator = false;
-                        _this.homePage = false;
-                    })
-                        .error(function (data) {
-                        console.log("Keine Personen bekommen.");
-                        _this.loadIndicator = false;
-                    });
-                }
-            };
             this.gridGeschaeftspartner = {
+                loadPanel: false,
                 columns: [{
                         dataField: 'GpNummer',
                         caption: "Nummer",
@@ -108,7 +67,9 @@ var TIP;
                     window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st");
                 }
             };
+            this.dataSourcePerson = null;
             this.gridPerson = {
+                loadPanel: false,
                 columns: [{
                         dataField: 'CodeAnrede',
                         caption: "Anrede",
@@ -149,6 +110,7 @@ var TIP;
         }
         MyViewModel.prototype.initDetail = function () {
             var _this = this;
+            this.loadIndicator = true;
             var id = this.getParameter("id");
             var table = this.getParameter("table");
             this.my.getDetails(id, table)
@@ -159,6 +121,32 @@ var TIP;
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");
+                _this.loadIndicator = false;
+            });
+        };
+        MyViewModel.prototype.initGeschaeftspartner = function () {
+            var _this = this;
+            this.loadIndicator = true;
+            this.my.getGeschaeftspartner()
+                .success(function (data) {
+                _this.dataSourceGeschaeftspartner = data;
+                _this.loadIndicator = false;
+            })
+                .error(function (data) {
+                console.log("Keine Geschaeeftspartner bekommen.");
+                _this.loadIndicator = false;
+            });
+        };
+        MyViewModel.prototype.initPerson = function () {
+            var _this = this;
+            this.loadIndicator = true;
+            this.my.getPerson()
+                .success(function (data) {
+                _this.dataSourcePerson = data;
+                _this.loadIndicator = false;
+            })
+                .error(function (data) {
+                console.log("Keine Personen bekommen.");
                 _this.loadIndicator = false;
             });
         };

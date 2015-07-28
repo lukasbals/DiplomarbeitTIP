@@ -34,6 +34,8 @@
         "./public/javascripts/services/MyService.ts",
         "./routes/api.ts",
         "./routes/details.ts",
+        "./routes/geschaeftspartner.ts",
+        "./routes/person.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/body-parser/body-parser.d.ts",
         "./typings/cookie-parser/cookie-parser.d.ts",

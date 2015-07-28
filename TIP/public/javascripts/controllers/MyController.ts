@@ -4,26 +4,17 @@ module TIP {
 
     }
 
+    // Displays the loadIndicator if it is true
+    loadIndicator: boolean = false;
+
     //
     // Detail Page
     //
 
-    //init();
-
     detailDataSource: JSON = null;
 
-    getParameter = (theParameter): any => {
-      var params = window.location.search.substr(1).split('&');
-      for (var i = 0; i < params.length; i++) {
-        var p = params[i].split('=');
-        if (p[0] == theParameter) {
-          return decodeURIComponent(p[1]);
-        }
-      }
-      return false;
-    }
-
     initDetail() {
+      this.loadIndicator = true;
       var id = this.getParameter("id");
       var table = this.getParameter("table");
       /*alert(id + table)*/
@@ -39,6 +30,17 @@ module TIP {
       });
     }
 
+    getParameter = (theParameter): any => {
+      var params = window.location.search.substr(1).split('&');
+      for (var i = 0; i < params.length; i++) {
+        var p = params[i].split('=');
+        if (p[0] == theParameter) {
+          return decodeURIComponent(p[1]);
+        }
+      }
+      return false;
+    }
+
     gridDetails: any = {
       bindingOptions: {
         dataSource: "vm.detailDataSource"
@@ -47,69 +49,25 @@ module TIP {
     }
 
     //
-    // Main Page (index)
+    // Geschäftspartner Page
     //
-
-    // Displays the homePage if it is true
-    homePage: boolean = true;
-
-    // Displays the loadIndicator if it is true
-    loadIndicator: boolean = false;
-
-    // the one who is not null is visible
     dataSourceGeschaeftspartner: any = null;
-    dataSourcePerson: any = null;
-
-
-    getGeschaeftspartner: DevExpress.ui.dxButtonOptions = {
-      text: "Geschäftspartner",
-      activeStateEnabled: false,
-      focusStateEnabled: false,
-      hoverStateEnabled: false,
-      onClick: (): void => {
-        this.loadIndicator = true;
-        this.my.getGeschaeftspartner()
-          .success((data): void => {
-          //console.log(data);
-          this.dataSourcePerson = null;
-          this.dataSourceGeschaeftspartner = data;
-          this.loadIndicator = false;
-          this.homePage = false;
-        })
-          .error((data): void => {
-          console.log("Keine Geschaeeftspartner bekommen.");
-          this.loadIndicator = false;
-        });
-      }
+    initGeschaeftspartner() {
+      this.loadIndicator = true;
+      this.my.getGeschaeftspartner()
+        .success((data): void => {
+        this.dataSourceGeschaeftspartner = data;
+        this.loadIndicator = false;
+      })
+        .error((data): void => {
+        console.log("Keine Geschaeeftspartner bekommen.");
+        this.loadIndicator = false;
+      });
     }
 
-    getPerson: DevExpress.ui.dxButtonOptions = {
-      text: "Personen",
-      activeStateEnabled: false,
-      focusStateEnabled: false,
-      hoverStateEnabled: false,
-      onClick: (): void => {
-        this.loadIndicator = true;
-        //DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
-        this.my.getPerson()
-          .success((data): void => {
-          //console.log(data);
-          this.dataSourceGeschaeftspartner = null;
-          this.dataSourcePerson = data;
-          this.loadIndicator = false;
-          this.homePage = false;
-        })
-          .error((data): void => {
-          console.log("Keine Personen bekommen.");
-          this.loadIndicator = false;
-        });
-      }
-    }
 
     gridGeschaeftspartner: any = {
-      /*selection: {
-        mode: 'single'
-      },*/
+      loadPanel: false,
       columns: [{
         dataField: 'GpNummer',
         caption: "Nummer",
@@ -155,10 +113,27 @@ module TIP {
       }
     }
 
+    //
+    // Personen Page
+    //
+    dataSourcePerson: any = null;
+    initPerson() {
+      this.loadIndicator = true;
+      //DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
+      this.my.getPerson()
+        .success((data): void => {
+        this.dataSourcePerson = data;
+        this.loadIndicator = false;
+      })
+        .error((data): void => {
+        console.log("Keine Personen bekommen.");
+        this.loadIndicator = false;
+      });
+    }
+
+
     gridPerson: any = {
-      /*selection: {
-        mode: 'single'
-      },*/
+      loadPanel: false,
       columns: [{
         dataField: 'CodeAnrede',
         caption: "Anrede",
