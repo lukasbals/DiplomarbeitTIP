@@ -145,8 +145,8 @@ module TIP {
         width: 250,
         highlightSearchText: false
       },
-      rowClick: (): void => {
-        alert("IN");
+      rowClick: (options): void => {
+        this.my.postDetail(options.data);
       }
     }
   }

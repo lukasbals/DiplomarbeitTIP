@@ -124,8 +124,8 @@ var TIP;
                     width: 250,
                     highlightSearchText: false
                 },
-                rowClick: function () {
-                    alert("IN");
+                rowClick: function (options) {
+                    _this.my.postDetail(options.data);
                 }
             };
         }
