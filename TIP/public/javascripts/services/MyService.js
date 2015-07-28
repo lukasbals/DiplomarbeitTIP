@@ -13,8 +13,7 @@ var TIP;
             return this.$http.get("http://localhost:3000/api/getJsonPerson");
         };
         MyService.prototype.postDetail = function (data) {
-            console.log(data);
-            return this.$http.post("http://localhost:3000/geschaeftspartner", data);
+            return this.$http.post("http://localhost:3000/details/postDetails", data);
         };
         return MyService;
     })();

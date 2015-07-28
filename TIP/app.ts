@@ -8,7 +8,7 @@ import bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
-var geschaeftspartner = require('./routes/geschaeftspartner');
+var details = require('./routes/details');
 
 var app = express();
 
@@ -32,7 +32,7 @@ app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
-app.use('/geschaeftspartner', geschaeftspartner);
+app.use('/details', details);
 
 // catch 404 and forward to error handler
 app.use((req: any, res: any, next: any): void => {
