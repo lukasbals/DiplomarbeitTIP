@@ -5,15 +5,13 @@ var TIP;
             this.$http = $http;
         }
         MyService.prototype.getGeschaeftspartner = function () {
-            console.log("IN");
             return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
         };
         MyService.prototype.getPerson = function () {
-            console.log("IN");
             return this.$http.get("http://localhost:3000/api/getJsonPerson");
         };
-        MyService.prototype.postDetail = function (data) {
-            return this.$http.post("http://localhost:3000/details/postDetails", data);
+        MyService.prototype.postDetail = function (id) {
+            return this.$http.get("http://localhost:3000/details?id=" + id);
         };
         return MyService;
     })();

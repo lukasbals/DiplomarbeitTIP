@@ -102,7 +102,7 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (options): void => {
-        this.my.postDetail(options.data);
+        this.my.postDetail(options.data.Id);
         /*console.log(options.data);*/
 
       }
