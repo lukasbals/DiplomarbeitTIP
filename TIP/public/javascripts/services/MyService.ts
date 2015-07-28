@@ -16,7 +16,7 @@ module TIP {
     getDetails(id, table): ng.IHttpPromise<any> {
       var string: string = '{"id": "' + id + '", "table": "' + table + '"}';
       var json: JSON = JSON.parse(string);
-      console.log(json);
+      //console.log(json);
       return this.$http.post("http://localhost:3000/details/getDetails", json);
     }
   }

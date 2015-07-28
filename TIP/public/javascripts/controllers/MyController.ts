@@ -11,18 +11,29 @@ module TIP {
     // Detail Page
     //
 
+    firstAttribute: string = null;
+    secondAttribute: string = null;
+    linkMainPage: string = null;
     detailDataSource: JSON = null;
 
     initDetail() {
       this.loadIndicator = true;
-      var id = this.getParameter("id");
-      var table = this.getParameter("table");
+      var id: number = this.getParameter("id");
+      var table: string = this.getParameter("table");
       /*alert(id + table)*/
       this.my.getDetails(id, table)
         .success((data): void => {
+        if (table == "geschaeftspartner_st") {
+          this.firstAttribute = "Geschäftspartner";
+          this.secondAttribute = data[0].firmenbez_1;
+          this.linkMainPage = "geschaeftspartner";
+        } else if (table == "personen_st") {
+          this.firstAttribute = "Personen"
+          this.secondAttribute = data[0].nachname;
+          this.linkMainPage = "person";
+        }
         this.detailDataSource = data;
         this.loadIndicator = false;
-        console.log(this.detailDataSource);
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.")
@@ -106,8 +117,6 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (options): void => {
-        //this.my.postDetail(options.data);
-        /*console.log(options.data);*/
         this.loadIndicator = true;
         window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st");
       }
@@ -119,7 +128,6 @@ module TIP {
     dataSourcePerson: any = null;
     initPerson() {
       this.loadIndicator = true;
-      //DevExpress.ui.notify("Du hast den getPersonen-Button geklickt!", "success", 2000);
       this.my.getPerson()
         .success((data): void => {
         this.dataSourcePerson = data;
@@ -168,8 +176,8 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (options): void => {
-        //this.my.postDetail(options.data);
-
+        this.loadIndicator = true;
+        window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "personen_st");
       }
     }
   }

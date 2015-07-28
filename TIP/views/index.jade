@@ -3,12 +3,6 @@ extends layout
 block content
   div#pathBarRow
     p#path.TIPRot
-      span(ng-show="vm.dataSourceGeschaeftspartner").pathObject Geschäftspartner
-      span(ng-show="vm.dataSourcePerson").pathObject Personen
-      //span.grey  /
-      //span.TIPRot.pathObject  Irgendeinefirma
+      span.pathObject Geschäftspartner
   div.container
-    div(ng-show="vm.dataSourceGeschaeftspartner", dx-data-grid="vm.gridGeschaeftspartner")
-    div(ng-show="vm.dataSourcePerson", dx-data-grid="vm.gridPerson")
-    div(ng-show="vm.homePage")
-      h1 Herzlich Willkommen bei M.I.E.
+    h1 Herzlich Willkommen bei M.I.E.

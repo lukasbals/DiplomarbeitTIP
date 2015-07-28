@@ -5,6 +5,9 @@ var TIP;
             var _this = this;
             this.my = my;
             this.loadIndicator = false;
+            this.firstAttribute = null;
+            this.secondAttribute = null;
+            this.linkMainPage = null;
             this.detailDataSource = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
@@ -104,7 +107,8 @@ var TIP;
                     highlightSearchText: false
                 },
                 rowClick: function (options) {
-                    //this.my.postDetail(options.data);
+                    _this.loadIndicator = true;
+                    window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "personen_st");
                 }
             };
         }
@@ -115,9 +119,18 @@ var TIP;
             var table = this.getParameter("table");
             this.my.getDetails(id, table)
                 .success(function (data) {
+                if (table == "geschaeftspartner_st") {
+                    _this.firstAttribute = "Geschäftspartner";
+                    _this.secondAttribute = data[0].firmenbez_1;
+                    _this.linkMainPage = "geschaeftspartner";
+                }
+                else if (table == "personen_st") {
+                    _this.firstAttribute = "Personen";
+                    _this.secondAttribute = data[0].nachname;
+                    _this.linkMainPage = "person";
+                }
                 _this.detailDataSource = data;
                 _this.loadIndicator = false;
-                console.log(_this.detailDataSource);
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");
