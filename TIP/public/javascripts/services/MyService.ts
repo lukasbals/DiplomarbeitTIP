@@ -13,9 +13,11 @@ module TIP {
       return this.$http.get("http://localhost:3000/api/getJsonPerson");
     }
 
-    postDetail(id: number): ng.IHttpPromise<any> {
-      //console.log(data);
-      return this.$http.get("http://localhost:3000/details?id=" + id);
+    getDetails(id, table): ng.IHttpPromise<any> {
+      var string: string = '{"id": "' + id + '", "table": "' + table + '"}';
+      var json: JSON = JSON.parse(string);
+      console.log(json);
+      return this.$http.post("http://localhost:3000/details/getDetails", json);
     }
   }
 

@@ -4,6 +4,53 @@ module TIP {
 
     }
 
+    //
+    // Detail Page
+    //
+
+    detailDataSource: JSON = null;
+
+    getParameter = (theParameter): any => {
+      var params = window.location.search.substr(1).split('&');
+
+      for (var i = 0; i < params.length; i++) {
+        var p = params[i].split('=');
+        if (p[0] == theParameter) {
+          return decodeURIComponent(p[1]);
+        }
+      }
+      return false;
+    }
+
+    getDetail: DevExpress.ui.dxButtonOptions = {
+      text: "getDetail",
+      activeStateEnabled: false,
+      focusStateEnabled: false,
+      hoverStateEnabled: false,
+      onClick: (): void => {
+        //$location.search.id;
+        alert(this.getParameter("id"));
+        var id = this.getParameter("id");
+        var table = this.getParameter("table");
+        this.my.getDetails(id, table)
+          .success((data): void => {
+          this.detailDataSource = data;
+          this.loadIndicator = false;
+          console.log(this.detailDataSource);
+        })
+          .error((data): void => {
+          console.log("Keine DetailDaten bekommen.")
+          this.loadIndicator = false;
+        });
+
+
+      }
+    }
+
+    //
+    // Main Page (index)
+    //
+
     // Displays the homePage if it is true
     homePage: boolean = true;
 
@@ -102,9 +149,10 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (options): void => {
-        this.my.postDetail(options.data.Id);
+        //this.my.postDetail(options.data);
         /*console.log(options.data);*/
-
+        this.loadIndicator = true;
+        window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st")
       }
     }
 
@@ -146,7 +194,8 @@ module TIP {
         highlightSearchText: false
       },
       rowClick: (options): void => {
-        this.my.postDetail(options.data);
+        //this.my.postDetail(options.data);
+
       }
     }
   }

@@ -10,8 +10,11 @@ var TIP;
         MyService.prototype.getPerson = function () {
             return this.$http.get("http://localhost:3000/api/getJsonPerson");
         };
-        MyService.prototype.postDetail = function (id) {
-            return this.$http.get("http://localhost:3000/details?id=" + id);
+        MyService.prototype.getDetails = function (id, table) {
+            var string = '{"id": "' + id + '", "table": "' + table + '"}';
+            var json = JSON.parse(string);
+            console.log(json);
+            return this.$http.post("http://localhost:3000/details/getDetails", json);
         };
         return MyService;
     })();

@@ -4,6 +4,38 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.detailDataSource = null;
+            this.getParameter = function (theParameter) {
+                var params = window.location.search.substr(1).split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var p = params[i].split('=');
+                    if (p[0] == theParameter) {
+                        return decodeURIComponent(p[1]);
+                    }
+                }
+                return false;
+            };
+            this.getDetail = {
+                text: "getDetail",
+                activeStateEnabled: false,
+                focusStateEnabled: false,
+                hoverStateEnabled: false,
+                onClick: function () {
+                    alert(_this.getParameter("id"));
+                    var id = _this.getParameter("id");
+                    var table = _this.getParameter("table");
+                    _this.my.getDetails(id, table)
+                        .success(function (data) {
+                        _this.detailDataSource = data;
+                        _this.loadIndicator = false;
+                        console.log(_this.detailDataSource);
+                    })
+                        .error(function (data) {
+                        console.log("Keine DetailDaten bekommen.");
+                        _this.loadIndicator = false;
+                    });
+                }
+            };
             this.homePage = true;
             this.loadIndicator = false;
             this.dataSourceGeschaeftspartner = null;
@@ -87,7 +119,8 @@ var TIP;
                     highlightSearchText: false
                 },
                 rowClick: function (options) {
-                    _this.my.postDetail(options.data.Id);
+                    _this.loadIndicator = true;
+                    window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st");
                 }
             };
             this.gridPerson = {
@@ -125,7 +158,7 @@ var TIP;
                     highlightSearchText: false
                 },
                 rowClick: function (options) {
-                    _this.my.postDetail(options.data);
+                    //this.my.postDetail(options.data);
                 }
             };
         }
