@@ -78,6 +78,9 @@ var TIP;
                 bindingOptions: {
                     dataSource: "vm.dataSourceGeschaeftspartner"
                 },
+                paging: {
+                    pageSize: 50
+                },
                 searchPanel: {
                     visible: true,
                     width: 250,
@@ -120,6 +123,7 @@ var TIP;
                 bindingOptions: {
                     dataSource: "vm.dataSourcePerson"
                 },
+                paging: false,
                 searchPanel: {
                     visible: true,
                     width: 250,
