@@ -10,6 +10,9 @@ var TIP;
         MyService.prototype.getPerson = function () {
             return this.$http.get("http://localhost:3000/api/getJsonPerson");
         };
+        MyService.prototype.synchDB = function () {
+            return this.$http.get("http://localhost:3000/api/synchDB");
+        };
         MyService.prototype.getGeschaeftspartnerDetail = function (id) {
             var table = "geschaeftspartner_st";
             return this.getDetail(id, table);

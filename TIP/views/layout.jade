@@ -31,7 +31,9 @@ html
           a(href="/")
             img(src="/images/logo.png")
             span.bold Luca Sebastian Dreier
-        div.col-xs-4.right.loadIcon
+        div.col-xs-4.right.loadIcon(ng-hide="vm.synchDB")
+          button.btn(ng-click="vm.synchButton()")
+        div.col-xs-4.right.loadIcon(ng-show="vm.synchDB")
           span.span loading 
           img(src="/images/loadIcon.gif")
       div.row#navBarRow

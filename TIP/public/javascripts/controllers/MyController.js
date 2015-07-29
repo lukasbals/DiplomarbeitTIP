@@ -4,6 +4,7 @@ var TIP;
         function MyViewModel(my) {
             var _this = this;
             this.my = my;
+            this.synchDB = false;
             this.loadIndicator = false;
             this.pathBarAttribute = null;
             this.detailGeschaeftspartnerDataSource = null;
@@ -89,7 +90,7 @@ var TIP;
                 },
                 rowClick: function (options) {
                     _this.loadIndicator = true;
-                    window.location.replace("http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id);
+                    window.location.href = "http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id;
                 }
             };
             this.dataSourcePerson = null;
@@ -132,10 +133,22 @@ var TIP;
                 },
                 rowClick: function (options) {
                     _this.loadIndicator = true;
-                    window.location.replace("http://localhost:3000/detail/detailPerson?id=" + options.data.Id);
+                    window.location.href = "http://localhost:3000/detail/detailPerson?id=" + options.data.Id;
                 }
             };
         }
+        MyViewModel.prototype.synchButton = function () {
+            var _this = this;
+            this.synchDB = true;
+            this.my.synchDB()
+                .success(function () {
+                _this.synchDB = false;
+            })
+                .error(function () {
+                alert("Fehler beim Datenbanken Synchronisieren");
+                _this.synchDB = false;
+            });
+        };
         MyViewModel.prototype.initDetailGeschaeftspartner = function () {
             var _this = this;
             this.loadIndicator = true;

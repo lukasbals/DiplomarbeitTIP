@@ -4,6 +4,19 @@ module TIP {
 
     }
 
+    synchDB: boolean = false;
+    synchButton() {
+      this.synchDB = true;
+      this.my.synchDB()
+        .success((): void=> {
+        this.synchDB = false;
+      })
+        .error((): void=> {
+        alert("Fehler beim Datenbanken Synchronisieren");
+        this.synchDB = false;
+      });
+    }
+
     // Displays the loadIndicator if it is true
     loadIndicator: boolean = false;
 
@@ -164,7 +177,7 @@ module TIP {
       },
       rowClick: (options): void => {
         this.loadIndicator = true;
-        window.location.replace("http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id);
+        window.location.href = "http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id;
       }
     }
 
@@ -225,7 +238,7 @@ module TIP {
       },
       rowClick: (options): void => {
         this.loadIndicator = true;
-        window.location.replace("http://localhost:3000/detail/detailPerson?id=" + options.data.Id);
+        window.location.href = "http://localhost:3000/detail/detailPerson?id=" + options.data.Id;
       }
     }
   }

@@ -30,4 +30,19 @@ router.get("/getJsonAnrede", function (req, res) {
 router.get("/getJsonPersonengruppe", function (req, res) {
     TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
+router.get("/synchDB", function (req, res) {
+    TIPDataStammdatenGpKz.initTableGpKz();
+    TIPDataStammdatenGpKz.loadGpKz();
+    TIPDataStammdatenLand.initTableLand();
+    TIPDataStammdatenLand.loadLand();
+    TIPDataStammdatenAnrede.initTableAnrede();
+    TIPDataStammdatenAnrede.loadAnrede();
+    TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
+    TIPDataStammdatenPersonengruppe.loadPersonengruppe();
+    TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
+    TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
+    TIPDataStammdatenPerson.initTablePerson();
+    TIPDataStammdatenPerson.loadPerson();
+    res.send("done.");
+});
 module.exports = router;

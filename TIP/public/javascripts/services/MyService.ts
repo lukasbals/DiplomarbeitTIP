@@ -14,6 +14,13 @@ module TIP {
     }
 
     //
+    // synch data from TIP server
+    //
+    synchDB(): ng.IHttpPromise<any> {
+      return this.$http.get("http://localhost:3000/api/synchDB");
+    }
+
+    //
     // sets table var and calls getDetail function
     //
     getGeschaeftspartnerDetail(id): ng.IHttpPromise<any> {
