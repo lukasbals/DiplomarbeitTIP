@@ -8,7 +8,7 @@ var initTablePerson = (): void => {
       "id_geschaeftspartner int, " +
       "code_gruppe string(2), " +
       "code_anrede string(10), " +
-      "titel stirng(50), " +
+      "titel string(50), " +
       "vorname string(50), " +
       "nachname string(50), " +
       "abteilung string(50), " +
