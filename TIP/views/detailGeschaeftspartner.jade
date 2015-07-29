@@ -43,10 +43,12 @@ block content
               td {{vm.fax}}
             tr(ng-show="vm.email")
               td.bold Email:
-              td {{vm.email}}
+              td 
+                a(href="mailto:{{vm.email}}") {{vm.email}}
             tr(ng-show="vm.homepage")
               td.bold Homepage:
-              td {{vm.homepage}}
+              td
+                a(href="{{vm.homepage}}") {{vm.homepage}}  
             tr
               td
               td

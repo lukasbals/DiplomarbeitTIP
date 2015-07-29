@@ -50,7 +50,8 @@ block content
               td {{vm.fax}}
             tr(ng-show="vm.email")
               td.bold Email
-              td {{vm.email}}
+              td 
+                a(href="mailto:{{vm.email}}") {{vm.email}}
             tr(ng-show="vm.geburtsdatum")
               td.bold Geburtsdatum
               td {{vm.geburtsdatum}}
