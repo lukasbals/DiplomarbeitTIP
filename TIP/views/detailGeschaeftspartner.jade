@@ -3,10 +3,9 @@ extends layout
 block content
   div#pathBarRow
     p#path.TIPRot
-      a(href="/").TIPRot
+      a(href="/geschaeftspartner").TIPRot
         span.pathObject Geschäftspartner
       span.grey  /
-      span.TIPRot.pathObject  iwas
+      span.TIPRot.pathObject  {{vm.pathBarAttribute}}
   div.container
-    div(ng-init=" vm.initDetailGeschaeftspartner()")
-    h1 DetailPage
+    div(ng-init=" vm.initDetailGeschaeftspartner()", dx-data-grid="vm.detailGeschaeftspartnerOption")

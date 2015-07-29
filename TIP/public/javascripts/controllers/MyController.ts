@@ -11,17 +11,14 @@ module TIP {
     // Detail Page
     //
     detailGeschaeftspartnerDataSource: JSON = null;
-
+    pathBarAttribute: string = null;
     initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
       /*alert(id + table)*/
       this.my.getGeschaeftspartnerDetail(id)
         .success((data): void => {
-        //console.log(data);
-        /*this.detailDataSource = data;*/
-        //var dataString = JSON.stringify(data);
-        /*var dataString = [{id:"1180",id_geschaeftspartner:"2283",code_gruppe:"A",code_anrede:"Herr",titel:null,vorname:null,nachname:"Josef",abteilung:"MARKTLEITUNG",telefon:"+43 3382 5020",mobil:null,fax:"+43 3382 502 0299",email:null,geburtsdatum:null}, {id:"1180",id_geschaeftspartner:"2283",code_gruppe:"A",code_anrede:"Herr",titel:null,vorname:null,nachname:"Josef",abteilung:"MARKTLEITUNG",telefon:"+43 3382 5020",mobil:null,fax:"+43 3382 502 0299",email:null,geburtsdatum:null}];*/
+        this.pathBarAttribute = data[0].firmenbez_1;
         this.detailGeschaeftspartnerDataSource = data;
         console.log(this.detailGeschaeftspartnerDataSource);
         this.loadIndicator = false;
@@ -30,6 +27,13 @@ module TIP {
         console.log("Keine DetailDaten bekommen.")
         this.loadIndicator = false;
       });
+    }
+
+    detailGeschaeftspartnerOption = {
+      bindingOptions: {
+        dataSource: "vm.detailGeschaeftspartnerDataSource"
+      },
+      loadPanel: false
     }
 
     getParameter = (theParameter): any => {
@@ -41,13 +45,6 @@ module TIP {
         }
       }
       return false;
-    }
-
-    detailGeschaeftspartnerOption = {
-      bindingOptions: {
-        dataSource: "vm.detailGeschaeftspartnerDataSource"
-      },
-      loadPanel: false
     }
 
     //

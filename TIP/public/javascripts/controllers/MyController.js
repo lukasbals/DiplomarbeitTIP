@@ -6,6 +6,13 @@ var TIP;
             this.my = my;
             this.loadIndicator = false;
             this.detailGeschaeftspartnerDataSource = null;
+            this.pathBarAttribute = null;
+            this.detailGeschaeftspartnerOption = {
+                bindingOptions: {
+                    dataSource: "vm.detailGeschaeftspartnerDataSource"
+                },
+                loadPanel: false
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -15,12 +22,6 @@ var TIP;
                     }
                 }
                 return false;
-            };
-            this.detailGeschaeftspartnerOption = {
-                bindingOptions: {
-                    dataSource: "vm.detailGeschaeftspartnerDataSource"
-                },
-                loadPanel: false
             };
             this.dataSourceGeschaeftspartner = null;
             this.gridGeschaeftspartner = {
@@ -115,6 +116,7 @@ var TIP;
             var id = this.getParameter("id");
             this.my.getGeschaeftspartnerDetail(id)
                 .success(function (data) {
+                _this.pathBarAttribute = data[0].firmenbez_1;
                 _this.detailGeschaeftspartnerDataSource = data;
                 console.log(_this.detailGeschaeftspartnerDataSource);
                 _this.loadIndicator = false;
