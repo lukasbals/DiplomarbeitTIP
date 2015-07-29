@@ -17,19 +17,5 @@ var setSYNCH = function (tblName, date) {
         });
     });
 };
-var getDetails = function (id, table, res) {
-    var db = new sqlite3.Database("db.sql");
-    db.serialize(function () {
-        db.all("select * from '" + table + "' where id = " + id + ";", function (err, req) {
-            if (req != null) {
-                res.send(req);
-            }
-            else {
-                console.log("Es ist ein Fehler aufgetreten.");
-            }
-        });
-    });
-};
 module.exports.getDB = getDB;
 module.exports.setSYNCH = setSYNCH;
-module.exports.getDetails = getDetails;

@@ -5,10 +5,7 @@ var TIP;
             var _this = this;
             this.my = my;
             this.loadIndicator = false;
-            this.firstAttribute = null;
-            this.secondAttribute = null;
-            this.linkMainPage = null;
-            this.detailDataSource = null;
+            this.detailGeschaeftspartnerDataSource = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -19,11 +16,10 @@ var TIP;
                 }
                 return false;
             };
-            this.gridDetails = {
+            this.detailGeschaeftspartnerOption = {
                 bindingOptions: {
-                    dataSource: "vm.detailDataSource"
+                    dataSource: "vm.detailGeschaeftspartnerDataSource"
                 },
-                columnAutoWidth: true,
                 loadPanel: false
             };
             this.dataSourceGeschaeftspartner = null;
@@ -68,7 +64,7 @@ var TIP;
                 },
                 rowClick: function (options) {
                     _this.loadIndicator = true;
-                    window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st");
+                    window.location.replace("http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id);
                 }
             };
             this.dataSourcePerson = null;
@@ -113,24 +109,14 @@ var TIP;
                 }
             };
         }
-        MyViewModel.prototype.initDetail = function () {
+        MyViewModel.prototype.initDetailGeschaeftspartner = function () {
             var _this = this;
             this.loadIndicator = true;
             var id = this.getParameter("id");
-            var table = this.getParameter("table");
-            this.my.getDetails(id, table)
+            this.my.getGeschaeftspartnerDetail(id)
                 .success(function (data) {
-                if (table == "geschaeftspartner_st") {
-                    _this.firstAttribute = "Geschäftspartner";
-                    _this.secondAttribute = data[0].firmenbez_1;
-                    _this.linkMainPage = "geschaeftspartner";
-                }
-                else if (table == "personen_st") {
-                    _this.firstAttribute = "Personen";
-                    _this.secondAttribute = data[0].nachname;
-                    _this.linkMainPage = "person";
-                }
-                _this.detailDataSource = data;
+                _this.detailGeschaeftspartnerDataSource = data;
+                console.log(_this.detailGeschaeftspartnerDataSource);
                 _this.loadIndicator = false;
             })
                 .error(function (data) {

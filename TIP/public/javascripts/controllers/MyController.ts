@@ -10,31 +10,20 @@ module TIP {
     //
     // Detail Page
     //
-    firstAttribute: string = null;
-    secondAttribute: string = null;
-    linkMainPage: string = null;
-    detailDataSource: JSON = null;
+    detailGeschaeftspartnerDataSource: JSON = null;
 
-    initDetail() {
+    initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
-      var table: string = this.getParameter("table");
       /*alert(id + table)*/
-      this.my.getDetails(id, table)
+      this.my.getGeschaeftspartnerDetail(id)
         .success((data): void => {
-        if (table == "geschaeftspartner_st") {
-          this.firstAttribute = "Geschäftspartner";
-          this.secondAttribute = data[0].firmenbez_1;
-          this.linkMainPage = "geschaeftspartner";
-          /*var id = data[0].id;
-          var gp_nummer = data[0].gp_nummer
-          this.detailDataSource = ["ID: " + id, "GP Nummer: " + gp_nummer];*/
-        } else if (table == "personen_st") {
-          this.firstAttribute = "Personen"
-          this.secondAttribute = data[0].nachname;
-          this.linkMainPage = "person";
-        }
-        this.detailDataSource = data;
+        //console.log(data);
+        /*this.detailDataSource = data;*/
+        //var dataString = JSON.stringify(data);
+        /*var dataString = [{id:"1180",id_geschaeftspartner:"2283",code_gruppe:"A",code_anrede:"Herr",titel:null,vorname:null,nachname:"Josef",abteilung:"MARKTLEITUNG",telefon:"+43 3382 5020",mobil:null,fax:"+43 3382 502 0299",email:null,geburtsdatum:null}, {id:"1180",id_geschaeftspartner:"2283",code_gruppe:"A",code_anrede:"Herr",titel:null,vorname:null,nachname:"Josef",abteilung:"MARKTLEITUNG",telefon:"+43 3382 5020",mobil:null,fax:"+43 3382 502 0299",email:null,geburtsdatum:null}];*/
+        this.detailGeschaeftspartnerDataSource = data;
+        console.log(this.detailGeschaeftspartnerDataSource);
         this.loadIndicator = false;
       })
         .error((data): void => {
@@ -54,11 +43,10 @@ module TIP {
       return false;
     }
 
-    gridDetails: any = {
+    detailGeschaeftspartnerOption = {
       bindingOptions: {
-        dataSource: "vm.detailDataSource"
+        dataSource: "vm.detailGeschaeftspartnerDataSource"
       },
-      columnAutoWidth: true,
       loadPanel: false
     }
 
@@ -78,7 +66,6 @@ module TIP {
         this.loadIndicator = false;
       });
     }
-
 
     gridGeschaeftspartner: any = {
       loadPanel: false,
@@ -121,7 +108,7 @@ module TIP {
       },
       rowClick: (options): void => {
         this.loadIndicator = true;
-        window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "geschaeftspartner_st");
+        window.location.replace("http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id);
       }
     }
 

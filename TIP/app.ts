@@ -8,7 +8,7 @@ import bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
-var details = require('./routes/details');
+var detail = require('./routes/detail');
 var geschaeftspartner = require('./routes/geschaeftspartner');
 var person = require('./routes/person');
 
@@ -34,15 +34,15 @@ app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
-app.use('/details', details);
+app.use('/detail', detail);
 app.use('/geschaeftspartner', geschaeftspartner);
 app.use('/person', person);
 
 // catch 404 and forward to error handler
 app.use((req: any, res: any, next: any): void => {
-    var err: any = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err: any = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handlers
@@ -50,23 +50,23 @@ app.use((req: any, res: any, next: any): void => {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use((err: any, req: any, res: any, next: any): void => {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  app.use((err: any, req: any, res: any, next: any): void => {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use((err: any, req: any, res: any, next: any): void => {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 module.exports = app;

@@ -7,10 +7,10 @@ var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var router = express.Router();
-router.post('/getDetails', function (req, res) {
+router.post('/getGeschaeftspartnerDetail', function (req, res) {
     var id = req.body.id;
     var table = req.body.table;
-    TIPDatabase.getDetails(id, table, res);
+    TIPDataStammdatenGeschaeftspartner.getDetails(id, table, res);
 });
 router.get("/getJsonGpKz", function (req, res) {
     TIPDataStammdatenGpKz.getJsonGpKz(res);

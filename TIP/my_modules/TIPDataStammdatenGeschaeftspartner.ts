@@ -95,6 +95,23 @@ var getJsonGeschaeftspartner = (res): void => {
   });
 }
 
+var getDetails = (id: number, table: string, res): void =>{
+  TIPDatabase.getDB().serialize((): void => {
+
+    //console.log(tblName);
+    TIPDatabase.getDB().all("select * from '" + table + "' where id = " + id + ";", (err, req): void => {
+      //console.log(req);
+      if (req != null) {
+        res.send(req);
+      } else {
+        console.log("Es ist ein Fehler aufgetreten.")
+      }
+
+    });
+  });
+}
+
 module.exports.initTableGeschaeftspartner = initTableGeschaeftspartner;
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
 module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;
+module.exports.getDetails = getDetails;

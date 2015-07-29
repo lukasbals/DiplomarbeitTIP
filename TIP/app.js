@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
-var details = require('./routes/details');
+var detail = require('./routes/detail');
 var geschaeftspartner = require('./routes/geschaeftspartner');
 var person = require('./routes/person');
 var app = express();
@@ -24,7 +24,7 @@ app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
-app.use('/details', details);
+app.use('/detail', detail);
 app.use('/geschaeftspartner', geschaeftspartner);
 app.use('/person', person);
 app.use(function (req, res, next) {

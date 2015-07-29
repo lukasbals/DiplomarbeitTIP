@@ -33,7 +33,7 @@
         "./public/javascripts/controllers/MyController.ts",
         "./public/javascripts/services/MyService.ts",
         "./routes/api.ts",
-        "./routes/details.ts",
+        "./routes/detail.ts",
         "./routes/geschaeftspartner.ts",
         "./routes/person.ts",
         "./typings/angularjs/angular.d.ts",
