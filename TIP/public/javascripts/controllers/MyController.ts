@@ -10,8 +10,12 @@ module TIP {
     //
     // Detail Page
     //
-    detailGeschaeftspartnerDataSource: JSON = null;
+
+    // pathBar attribute for any detail-page
     pathBarAttribute: string = null;
+
+    // detail-page geschaeftspartner
+    detailGeschaeftspartnerDataSource: JSON = null;
     initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
@@ -20,7 +24,6 @@ module TIP {
         .success((data): void => {
         this.pathBarAttribute = data[0].firmenbez_1;
         this.detailGeschaeftspartnerDataSource = data;
-        console.log(this.detailGeschaeftspartnerDataSource);
         this.loadIndicator = false;
       })
         .error((data): void => {
@@ -32,6 +35,31 @@ module TIP {
     detailGeschaeftspartnerOption = {
       bindingOptions: {
         dataSource: "vm.detailGeschaeftspartnerDataSource"
+      },
+      loadPanel: false
+    }
+
+    // detail-page person
+    detailPersonDataSource: JSON = null;
+    initDetailPerson() {
+      this.loadIndicator = true;
+      var id: number = this.getParameter("id");
+      /*alert(id + table)*/
+      this.my.getPersonDetail(id)
+        .success((data): void => {
+        this.pathBarAttribute = data[0].nachname;
+        this.detailPersonDataSource = data;
+        this.loadIndicator = false;
+      })
+        .error((data): void => {
+        console.log("Keine DetailDaten bekommen.")
+        this.loadIndicator = false;
+      });
+    }
+
+    detailPersonOption = {
+      bindingOptions: {
+        dataSource: "vm.detailPersonDataSource"
       },
       loadPanel: false
     }
@@ -164,7 +192,7 @@ module TIP {
       },
       rowClick: (options): void => {
         this.loadIndicator = true;
-        window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "personen_st");
+        window.location.replace("http://localhost:3000/detail/detailPerson?id=" + options.data.Id);
       }
     }
   }

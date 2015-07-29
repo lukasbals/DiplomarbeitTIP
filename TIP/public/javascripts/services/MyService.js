@@ -14,6 +14,10 @@ var TIP;
             var table = "geschaeftspartner_st";
             return this.getDetail(id, table);
         };
+        MyService.prototype.getPersonDetail = function (id) {
+            var table = "personen_st";
+            return this.getDetail(id, table);
+        };
         MyService.prototype.getDetail = function (id, table) {
             var string = '{"id": "' + id + '", "table": "' + table + '"}';
             var json = JSON.parse(string);

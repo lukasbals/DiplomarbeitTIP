@@ -5,11 +5,18 @@ var TIP;
             var _this = this;
             this.my = my;
             this.loadIndicator = false;
-            this.detailGeschaeftspartnerDataSource = null;
             this.pathBarAttribute = null;
+            this.detailGeschaeftspartnerDataSource = null;
             this.detailGeschaeftspartnerOption = {
                 bindingOptions: {
                     dataSource: "vm.detailGeschaeftspartnerDataSource"
+                },
+                loadPanel: false
+            };
+            this.detailPersonDataSource = null;
+            this.detailPersonOption = {
+                bindingOptions: {
+                    dataSource: "vm.detailPersonDataSource"
                 },
                 loadPanel: false
             };
@@ -106,7 +113,7 @@ var TIP;
                 },
                 rowClick: function (options) {
                     _this.loadIndicator = true;
-                    window.location.replace("http://localhost:3000/details?id=" + options.data.Id + "&table=" + "personen_st");
+                    window.location.replace("http://localhost:3000/detail/detailPerson?id=" + options.data.Id);
                 }
             };
         }
@@ -118,7 +125,21 @@ var TIP;
                 .success(function (data) {
                 _this.pathBarAttribute = data[0].firmenbez_1;
                 _this.detailGeschaeftspartnerDataSource = data;
-                console.log(_this.detailGeschaeftspartnerDataSource);
+                _this.loadIndicator = false;
+            })
+                .error(function (data) {
+                console.log("Keine DetailDaten bekommen.");
+                _this.loadIndicator = false;
+            });
+        };
+        MyViewModel.prototype.initDetailPerson = function () {
+            var _this = this;
+            this.loadIndicator = true;
+            var id = this.getParameter("id");
+            this.my.getPersonDetail(id)
+                .success(function (data) {
+                _this.pathBarAttribute = data[0].nachname;
+                _this.detailPersonDataSource = data;
                 _this.loadIndicator = false;
             })
                 .error(function (data) {

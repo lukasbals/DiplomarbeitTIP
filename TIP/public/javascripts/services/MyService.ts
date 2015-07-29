@@ -13,8 +13,16 @@ module TIP {
       return this.$http.get("http://localhost:3000/api/getJsonPerson");
     }
 
+    //
+    // sets table var and calls getDetail function
+    //
     getGeschaeftspartnerDetail(id): ng.IHttpPromise<any> {
       var table = "geschaeftspartner_st";
+      return this.getDetail(id, table);
+    }
+
+    getPersonDetail(id): ng.IHttpPromise<any> {
+      var table = "personen_st";
       return this.getDetail(id, table);
     }
 
