@@ -19,19 +19,15 @@ var TIP;
             this.fax = null;
             this.email = null;
             this.homepage = null;
-            this.detailGeschaeftspartnerOption = {
-                bindingOptions: {
-                    dataSource: "vm.detailGeschaeftspartnerDataSource"
-                },
-                loadPanel: false
-            };
-            this.detailPersonDataSource = null;
-            this.detailPersonOption = {
-                bindingOptions: {
-                    dataSource: "vm.detailPersonDataSource"
-                },
-                loadPanel: false
-            };
+            this.vorname = null;
+            this.nachname = null;
+            this.abteilung = null;
+            this.mobil = null;
+            this.geburtsdatum = null;
+            this.id_geschaeftspartner = null;
+            this.code_gruppe = null;
+            this.code_anrede = null;
+            this.titel = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -162,7 +158,19 @@ var TIP;
             var id = this.getParameter("id");
             this.my.getPersonDetail(id)
                 .success(function (data) {
-                _this.detailPersonDataSource = data;
+                _this.nachname = data[0].nachname;
+                _this.vorname = data[0].vorname;
+                _this.abteilung = data[0].abteilung;
+                _this.telefon = data[0].telefon;
+                _this.mobil = data[0].mobil;
+                _this.fax = data[0].fax;
+                _this.email = data[0].email;
+                _this.geburtsdatum = data[0].geburtstdatum;
+                _this.id_geschaeftspartner = data[0].id_geschaeftspartner;
+                _this.code_gruppe = data[0].code_gruppe;
+                _this.code_anrede = data[0].code_anrede;
+                _this.id = data[0].id;
+                _this.titel = data[0].titel;
                 _this.loadIndicator = false;
             })
                 .error(function (data) {

@@ -3,54 +3,54 @@ extends layout
 block content
   div#pathBarRow
     p#path.TIPRot
-      a(href="/geschaeftspartner").TIPRot
+      a(href="/person").TIPRot
         span.pathObject Personen
       span.grey  /
-      span.TIPRot.pathObject  {{vm.pathBarAttribute}}
+      span.TIPRot.pathObject  {{vm.nachname}}
   div.container
     div(ng-init="vm.initDetailPerson()")
-    h1.center {{vm.pathBarAttribute}}
+    h1.center {{vm.nachname}}
     div.row
       div.col-xs-2
       div.col-xs-8
         table.table.table-condensed
           tbody
-            tr
+            tr(ng-show="vm.id")
               td.bold ID:
-              td 1
-            tr
+              td {{vm.id}}
+            tr(ng-show="vm.id_geschaeftspartner")
               td.bold ID-Geschäftspartner:
-              td 8
-            tr
+              td {{vm.id_geschaeftspartner}}
+            tr(ng-show="vm.code_gruppe")
               td.bold Gruppencode:
-              td 5
-            tr
+              td {{vm.code_gruppe}}
+            tr(ng-show="vm.anrede")
               td.bold Anrede:
-              td Herr
-            tr
+              td {{vm.code_anrede}}
+            tr(ng-show="vm.titel")
               td.bold Titel:
-              td Dr.
-            tr
+              td {{vm.titel}}
+            tr(ng-show="vm.vorname")
               td.bold Vorname:
-              td Max
-            tr
+              td {{vm.vorname}}
+            tr(ng-show="vm.nachname")
               td.bold Nachname:
-              td Sutterlt
-            tr
+              td {{vm.nachname}}
+            tr(ng-show="vm.abteilung")
               td.bold Abteilung:
-              td Marketing
-            tr
+              td {{vm.abteilung}}
+            tr(ng-show="vm.telefon")
               td.bold Telefon:
-              td 08189498
-            tr 
+              td {{vm.telefon}}
+            tr(ng-show="vm.mobil")
               td.bold Mobil
-              td 0664 9876543
-            tr
+              td {{vm.mobil}}
+            tr(ng-show="vm.fax")
               td.bold Fax
-              td 05152 894
-            tr
+              td {{vm.fax}}
+            tr(ng-show="vm.email")
               td.bold Email
-              td maxmuster@mail.at
-            tr 
+              td {{vm.email}}
+            tr(ng-show="vm.geburtsdatum")
               td.bold Geburtsdatum
-              td 25.05.1985
+              td {{vm.geburtsdatum}}

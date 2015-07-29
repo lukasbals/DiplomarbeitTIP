@@ -11,7 +11,6 @@ module TIP {
     // Detail Page
     //
 
-    // detail-page geschaeftspartner
     id: number = null;
     gp_nummer: number = null;
     code_gpkz: string = null;
@@ -26,6 +25,17 @@ module TIP {
     fax: string = null;
     email: string = null;
     homepage: string = null;
+    vorname: string = null;
+    nachname: string = null;
+    abteilung: string = null;
+    mobil: number = null;
+    geburtsdatum: string = null;
+    id_geschaeftspartner: number = null;
+    code_gruppe: string = null;
+    code_anrede: string = null;
+    titel: string = null;
+
+    // detail-page geschaeftspartner
     initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
@@ -53,36 +63,32 @@ module TIP {
       });
     }
 
-    detailGeschaeftspartnerOption = {
-      bindingOptions: {
-        dataSource: "vm.detailGeschaeftspartnerDataSource"
-      },
-      loadPanel: false
-    }
-
     // detail-page person
-    detailPersonDataSource: JSON = null;
     initDetailPerson() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
       /*alert(id + table)*/
       this.my.getPersonDetail(id)
         .success((data): void => {
-        //this.pathBarAttribute = data[0].nachname;
-        this.detailPersonDataSource = data;
+        this.nachname = data[0].nachname;
+        this.vorname = data[0].vorname;
+        this.abteilung = data[0].abteilung;
+        this.telefon = data[0].telefon;
+        this.mobil = data[0].mobil;
+        this.fax = data[0].fax;
+        this.email = data[0].email;
+        this.geburtsdatum = data[0].geburtstdatum;
+        this.id_geschaeftspartner = data[0].id_geschaeftspartner;
+        this.code_gruppe = data[0].code_gruppe;
+        this.code_anrede = data[0].code_anrede;
+        this.id = data[0].id;
+        this.titel = data[0].titel;
         this.loadIndicator = false;
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.")
         this.loadIndicator = false;
       });
-    }
-
-    detailPersonOption = {
-      bindingOptions: {
-        dataSource: "vm.detailPersonDataSource"
-      },
-      loadPanel: false
     }
 
     getParameter = (theParameter): any => {
