@@ -15,31 +15,19 @@ router.post('/getDetail', function (req, res) {
 router.get("/getJsonGeschaeftspartner", function (req, res) {
     TIPDataStammdatenGeschaeftspartner.getJsonGeschaeftspartner(res);
 });
-TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
-TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
 router.get("/getJsonPerson", function (req, res) {
     TIPDataStammdatenPerson.getJsonPerson(res);
 });
-TIPDataStammdatenPerson.initTablePerson();
-TIPDataStammdatenPerson.loadPerson();
 router.get("/getJsonGpKz", function (req, res) {
     TIPDataStammdatenGpKz.getJsonGpKz(res);
 });
-TIPDataStammdatenGpKz.initTableGpKz();
-TIPDataStammdatenGpKz.loadGpKz();
 router.get("/getJsonLand", function (req, res) {
     TIPDataStammdatenLand.getJsonLand(res);
 });
-TIPDataStammdatenLand.initTableLand();
-TIPDataStammdatenLand.loadLand();
 router.get("/getJsonAnrede", function (req, res) {
     TIPDataStammdatenAnrede.getJsonAnrede(res);
 });
-TIPDataStammdatenAnrede.initTableAnrede();
-TIPDataStammdatenAnrede.loadAnrede();
 router.get("/getJsonPersonengruppe", function (req, res) {
     TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
-TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
-TIPDataStammdatenPersonengruppe.loadPersonengruppe();
 module.exports = router;

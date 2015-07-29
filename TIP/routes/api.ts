@@ -26,8 +26,8 @@ router.get("/getJsonGeschaeftspartner", (req, res): void => {
   TIPDataStammdatenGeschaeftspartner.getJsonGeschaeftspartner(res);
 });
 
-TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
-TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
+/*TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
+TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();*/
 //setInterval(() => TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner(), 30000);
 
 //
@@ -37,8 +37,8 @@ router.get("/getJsonPerson", (req, res): void => {
   TIPDataStammdatenPerson.getJsonPerson(res);
 });
 
-TIPDataStammdatenPerson.initTablePerson();
-TIPDataStammdatenPerson.loadPerson();
+/*TIPDataStammdatenPerson.initTablePerson();
+TIPDataStammdatenPerson.loadPerson();*/
 //setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
 
 //
@@ -49,8 +49,8 @@ router.get("/getJsonGpKz", (req, res): void => {
   TIPDataStammdatenGpKz.getJsonGpKz(res);
 });
 
-TIPDataStammdatenGpKz.initTableGpKz();
-TIPDataStammdatenGpKz.loadGpKz();
+/*TIPDataStammdatenGpKz.initTableGpKz();
+TIPDataStammdatenGpKz.loadGpKz();*/
 //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
 
 //
@@ -60,8 +60,8 @@ router.get("/getJsonLand", (req, res): void => {
   TIPDataStammdatenLand.getJsonLand(res);
 });
 
-TIPDataStammdatenLand.initTableLand();
-TIPDataStammdatenLand.loadLand();
+/*TIPDataStammdatenLand.initTableLand();
+TIPDataStammdatenLand.loadLand();*/
 //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
 
 //
@@ -71,8 +71,8 @@ router.get("/getJsonAnrede", (req, res): void => {
   TIPDataStammdatenAnrede.getJsonAnrede(res);
 });
 
-TIPDataStammdatenAnrede.initTableAnrede();
-TIPDataStammdatenAnrede.loadAnrede();
+/*TIPDataStammdatenAnrede.initTableAnrede();
+TIPDataStammdatenAnrede.loadAnrede();*/
 //setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
 
 //
@@ -82,8 +82,8 @@ router.get("/getJsonPersonengruppe", (req, res): void => {
   TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
 
-TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
-TIPDataStammdatenPersonengruppe.loadPersonengruppe();
+/*TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
+TIPDataStammdatenPersonengruppe.loadPersonengruppe();*/
 //setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
 
 module.exports = router;
