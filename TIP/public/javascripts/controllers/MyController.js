@@ -5,8 +5,20 @@ var TIP;
             var _this = this;
             this.my = my;
             this.loadIndicator = false;
-            this.pathBarAttribute = null;
-            this.detailGeschaeftspartnerDataSource = null;
+            this.id = null;
+            this.gp_nummer = null;
+            this.code_gpkz = null;
+            this.firmenbez_1 = null;
+            this.firmenbez_2 = null;
+            this.firmenbez_3 = null;
+            this.strasse = null;
+            this.code_land = null;
+            this.plz = null;
+            this.ort = null;
+            this.telefon = null;
+            this.fax = null;
+            this.email = null;
+            this.homepage = null;
             this.detailGeschaeftspartnerOption = {
                 bindingOptions: {
                     dataSource: "vm.detailGeschaeftspartnerDataSource"
@@ -123,8 +135,20 @@ var TIP;
             var id = this.getParameter("id");
             this.my.getGeschaeftspartnerDetail(id)
                 .success(function (data) {
-                _this.pathBarAttribute = data[0].firmenbez_1;
-                _this.detailGeschaeftspartnerDataSource = data;
+                _this.id = data[0].id;
+                _this.gp_nummer = data[0].gp_nummer;
+                _this.code_gpkz = data[0].code_gpkz;
+                _this.firmenbez_1 = data[0].firmenbez_1;
+                _this.firmenbez_2 = data[0].firmenbez_2;
+                _this.firmenbez_3 = data[0].firmenbez_3;
+                _this.strasse = data[0].strasse;
+                _this.code_land = data[0].code_land;
+                _this.plz = data[0].plz;
+                _this.ort = data[0].ort;
+                _this.telefon = data[0].telefon;
+                _this.fax = data[0].fax;
+                _this.email = data[0].email;
+                _this.homepage = data[0].homepage;
                 _this.loadIndicator = false;
             })
                 .error(function (data) {
@@ -138,7 +162,6 @@ var TIP;
             var id = this.getParameter("id");
             this.my.getPersonDetail(id)
                 .success(function (data) {
-                _this.pathBarAttribute = data[0].nachname;
                 _this.detailPersonDataSource = data;
                 _this.loadIndicator = false;
             })

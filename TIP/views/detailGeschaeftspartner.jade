@@ -6,35 +6,47 @@ block content
       a(href="/geschaeftspartner").TIPRot
         span.pathObject Geschäftspartner
       span.grey  /
-      span.TIPRot.pathObject  {{vm.pathBarAttribute}}
+      span.TIPRot.pathObject  {{vm.firmenbez_1}}
   div.container(ng-init=" vm.initDetailGeschaeftspartner()")
-    h1.center {{vm.pathBarAttribute}}
+    h1.center {{vm.firmenbez_1}}
     div.row
       div.col-xs-2
       div.col-xs-8
         table.table.table-condensed
           tbody
-            tr
+            tr(ng-show="vm.id")
               td.bold ID:
-              td Lukas
-            tr
+              td {{vm.id}}
+            tr(ng-show="vm.gp_nummer")
               td.bold GP Nummer:
-              td BalsLukasdasdölfkjsa
-            tr
+              td {{vm.gp_nummer}}
+            tr(ng-show="vm.code_gpkz")
               td.bold CodeGpKz
-              td ölkjasödflkj
-            tr
+              td {{vm.code_gpkz}}
+            tr(ng-show="vm.firmenbez_1")
               td.bold Firmenbezeichnung 1:
-              td 0664 4343533
-            tr
+              td {{vm.firmenbez_1}}
+            tr(ng-show="vm.firmenbez_2")
               td.bold Firmenbezeichnung 2:
-              td Bals
-            tr
+              td {{vm.firmenbez_2}}
+            tr(ng-show="vm.firmenbez_3")
               td.bold Firmenbezeichnung 3:
-              td asdfasdfs
+              td {{vm.firmenbez_3}}
             tr
-              td
-              td
+              td.bold Adresse:
+              td {{vm.code_land}} - {{vm.plz}} {{vm.ort}} - {{vm.strasse}}
+            tr(ng-show="vm.telefon")
+              td.bold Telefon:
+              td {{vm.telefon}}
+            tr(ng-show="vm.fax")
+              td.bold Fax:
+              td {{vm.fax}}
+            tr(ng-show="vm.email")
+              td.bold Email:
+              td {{vm.email}}
+            tr(ng-show="vm.homepage")
+              td.bold Homepage:
+              td {{vm.homepage}}
             tr
               td
               td

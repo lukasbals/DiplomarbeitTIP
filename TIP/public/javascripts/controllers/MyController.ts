@@ -11,19 +11,40 @@ module TIP {
     // Detail Page
     //
 
-    // pathBar attribute for any detail-page
-    pathBarAttribute: string = null;
-
     // detail-page geschaeftspartner
-    detailGeschaeftspartnerDataSource: JSON = null;
+    id: number = null;
+    gp_nummer: number = null;
+    code_gpkz: string = null;
+    firmenbez_1: string = null;
+    firmenbez_2: string = null;
+    firmenbez_3: string = null;
+    strasse: string = null;
+    code_land: string = null;
+    plz: string = null;
+    ort: string = null;
+    telefon: string = null;
+    fax: string = null;
+    email: string = null;
+    homepage: string = null;
     initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
-      /*alert(id + table)*/
       this.my.getGeschaeftspartnerDetail(id)
         .success((data): void => {
-        this.pathBarAttribute = data[0].firmenbez_1;
-        this.detailGeschaeftspartnerDataSource = data;
+        this.id = data[0].id;
+        this.gp_nummer = data[0].gp_nummer;
+        this.code_gpkz = data[0].code_gpkz;
+        this.firmenbez_1 = data[0].firmenbez_1;
+        this.firmenbez_2 = data[0].firmenbez_2;
+        this.firmenbez_3 = data[0].firmenbez_3;
+        this.strasse = data[0].strasse;
+        this.code_land = data[0].code_land;
+        this.plz = data[0].plz;
+        this.ort = data[0].ort;
+        this.telefon = data[0].telefon;
+        this.fax = data[0].fax;
+        this.email = data[0].email;
+        this.homepage = data[0].homepage;
         this.loadIndicator = false;
       })
         .error((data): void => {
@@ -47,7 +68,7 @@ module TIP {
       /*alert(id + table)*/
       this.my.getPersonDetail(id)
         .success((data): void => {
-        this.pathBarAttribute = data[0].nachname;
+        //this.pathBarAttribute = data[0].nachname;
         this.detailPersonDataSource = data;
         this.loadIndicator = false;
       })
