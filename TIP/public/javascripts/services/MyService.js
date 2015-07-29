@@ -12,9 +12,12 @@ var TIP;
         };
         MyService.prototype.getGeschaeftspartnerDetail = function (id) {
             var table = "geschaeftspartner_st";
+            return this.getDetail(id, table);
+        };
+        MyService.prototype.getDetail = function (id, table) {
             var string = '{"id": "' + id + '", "table": "' + table + '"}';
             var json = JSON.parse(string);
-            return this.$http.post("http://localhost:3000/api/getGeschaeftspartnerDetail", json);
+            return this.$http.post("http://localhost:3000/api/getDetail", json);
         };
         return MyService;
     })();

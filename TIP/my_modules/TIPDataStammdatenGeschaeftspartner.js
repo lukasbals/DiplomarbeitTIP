@@ -75,19 +75,6 @@ var getJsonGeschaeftspartner = function (res) {
         });
     });
 };
-var getDetails = function (id, table, res) {
-    TIPDatabase.getDB().serialize(function () {
-        TIPDatabase.getDB().all("select * from '" + table + "' where id = " + id + ";", function (err, req) {
-            if (req != null) {
-                res.send(req);
-            }
-            else {
-                console.log("Es ist ein Fehler aufgetreten.");
-            }
-        });
-    });
-};
 module.exports.initTableGeschaeftspartner = initTableGeschaeftspartner;
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
 module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;
-module.exports.getDetails = getDetails;

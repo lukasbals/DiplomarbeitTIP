@@ -15,10 +15,16 @@ module TIP {
 
     getGeschaeftspartnerDetail(id): ng.IHttpPromise<any> {
       var table = "geschaeftspartner_st";
+      return this.getDetail(id, table);
+    }
+
+    //
+    // sends getDetail request to the server
+    //
+    getDetail(id, table): ng.IHttpPromise<any> {
       var string: string = '{"id": "' + id + '", "table": "' + table + '"}';
       var json: JSON = JSON.parse(string);
-      //console.log(json);
-      return this.$http.post("http://localhost:3000/api/getGeschaeftspartnerDetail", json);
+      return this.$http.post("http://localhost:3000/api/getDetail", json);
     }
   }
 

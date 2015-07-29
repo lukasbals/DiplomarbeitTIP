@@ -25,5 +25,25 @@ var setSYNCH = (tblName: string, date: Date): void => {
   });
 }
 
+//
+// get Detail for any table
+//
+var getDetail = (id: number, table: string, res): void =>{
+  db.serialize((): void => {
+
+    //console.log(tblName);
+    db.all("select * from '" + table + "' where id = " + id + ";", (err, req): void => {
+      //console.log(req);
+      if (req != null) {
+        res.send(req);
+      } else {
+        console.log("Es ist ein Fehler aufgetreten.")
+      }
+
+    });
+  });
+}
+
 module.exports.getDB = getDB;
 module.exports.setSYNCH = setSYNCH;
+module.exports.getDetail = getDetail;

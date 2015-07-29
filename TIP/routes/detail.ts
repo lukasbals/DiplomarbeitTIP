@@ -1,4 +1,3 @@
-import sqlite3 = require("sqlite3");
 var express = require('express');
 var router = express.Router();
 

@@ -6,11 +6,8 @@ import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
 var detail = require('./routes/detail');
-var geschaeftspartner = require('./routes/geschaeftspartner');
-var person = require('./routes/person');
 
 var app = express();
 
@@ -32,11 +29,8 @@ app.use("/angular-sanitize", express.static(path.join(__dirname, 'node_modules/a
 app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/api', api);
 app.use('/detail', detail);
-app.use('/geschaeftspartner', geschaeftspartner);
-app.use('/person', person);
 
 // catch 404 and forward to error handler
 app.use((req: any, res: any, next: any): void => {

@@ -4,11 +4,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
 var detail = require('./routes/detail');
-var geschaeftspartner = require('./routes/geschaeftspartner');
-var person = require('./routes/person');
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -22,11 +19,8 @@ app.use("/angular", express.static(path.join(__dirname, 'node_modules/angular'))
 app.use("/angular-sanitize", express.static(path.join(__dirname, 'node_modules/angular-sanitize')));
 app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use('/', routes);
-app.use('/users', users);
 app.use('/api', api);
 app.use('/detail', detail);
-app.use('/geschaeftspartner', geschaeftspartner);
-app.use('/person', person);
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
