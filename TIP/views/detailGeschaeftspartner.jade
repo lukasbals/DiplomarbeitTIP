@@ -7,25 +7,35 @@ block content
         span.pathObject Geschäftspartner
       span.grey  /
       span.TIPRot.pathObject  {{vm.pathBarAttribute}}
-  div.container
-    div(ng-init=" vm.initDetailGeschaeftspartner()", dx-data-grid="vm.detailGeschaeftspartnerOption")
-    h1 {{vm.pathBarAttribute}}
+  div.container(ng-init=" vm.initDetailGeschaeftspartner()")
+    h1.center {{vm.pathBarAttribute}}
     div.row
-      div.col-xs-12
+      div.col-xs-2
+      div.col-xs-8
         table.table.table-condensed
           tbody
             tr
-              td.bold.right Vorname:
-              td
+              td.bold ID:
               td Lukas
-              td.bold.right Nachname:
-              td
-              td Bals
             tr
-              td.bold.right Telefonummer:
-              td
+              td.bold GP Nummer:
+              td BalsLukasdasdölfkjsa
+            tr
+              td.bold CodeGpKz
+              td ölkjasödflkj
+            tr
+              td.bold Firmenbezeichnung 1:
               td 0664 4343533
             tr
+              td.bold Firmenbezeichnung 2:
+              td Bals
+            tr
+              td.bold Firmenbezeichnung 3:
+              td asdfasdfs
+            tr
               td
               td
+            tr
               td
+              td
+      div.col-xs-2
