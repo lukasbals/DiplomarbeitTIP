@@ -8,4 +8,49 @@ block content
       span.grey  /
       span.TIPRot.pathObject  {{vm.pathBarAttribute}}
   div.container
-    div(ng-init=" vm.initDetailPerson()", dx-data-grid="vm.detailPersonOption")
+    div(ng-init="vm.initDetailPerson()")
+    h1.center {{vm.pathBarAttribute}}
+    div.row
+      div.col-xs-2
+      div.col-xs-8
+        table.table.table-condensed
+          tbody
+            tr
+              td.bold ID:
+              td 1
+            tr
+              td.bold ID-Geschäftspartner:
+              td 8
+            tr
+              td.bold Gruppencode:
+              td 5
+            tr
+              td.bold Anrede:
+              td Herr
+            tr
+              td.bold Titel:
+              td Dr.
+            tr
+              td.bold Vorname:
+              td Max
+            tr
+              td.bold Nachname:
+              td Sutterlt
+            tr
+              td.bold Abteilung:
+              td Marketing
+            tr
+              td.bold Telefon:
+              td 08189498
+            tr 
+              td.bold Mobil
+              td 0664 9876543
+            tr
+              td.bold Fax
+              td 05152 894
+            tr
+              td.bold Email
+              td maxmuster@mail.at
+            tr 
+              td.bold Geburtsdatum
+              td 25.05.1985
