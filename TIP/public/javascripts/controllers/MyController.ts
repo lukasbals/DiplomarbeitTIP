@@ -11,50 +11,19 @@ module TIP {
     // Detail Page
     //
 
-    id: number = null;
-    gp_nummer: number = null;
-    code_gpkz: string = null;
-    firmenbez_1: string = null;
-    firmenbez_2: string = null;
-    firmenbez_3: string = null;
-    strasse: string = null;
-    code_land: string = null;
-    plz: string = null;
-    ort: string = null;
-    telefon: string = null;
-    fax: string = null;
-    email: string = null;
-    homepage: string = null;
-    vorname: string = null;
-    nachname: string = null;
-    abteilung: string = null;
-    mobil: number = null;
-    geburtsdatum: string = null;
-    id_geschaeftspartner: number = null;
-    code_gruppe: string = null;
-    code_anrede: string = null;
-    titel: string = null;
+    // pathBar attribute for any detail-page
+    pathBarAttribute: string = null;
 
     // detail-page geschaeftspartner
+    detailGeschaeftspartnerDataSource: JSON = null;
     initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
+      /*alert(id + table)*/
       this.my.getGeschaeftspartnerDetail(id)
         .success((data): void => {
-        this.id = data[0].id;
-        this.gp_nummer = data[0].gp_nummer;
-        this.code_gpkz = data[0].code_gpkz;
-        this.firmenbez_1 = data[0].firmenbez_1;
-        this.firmenbez_2 = data[0].firmenbez_2;
-        this.firmenbez_3 = data[0].firmenbez_3;
-        this.strasse = data[0].strasse;
-        this.code_land = data[0].code_land;
-        this.plz = data[0].plz;
-        this.ort = data[0].ort;
-        this.telefon = data[0].telefon;
-        this.fax = data[0].fax;
-        this.email = data[0].email;
-        this.homepage = data[0].homepage;
+        this.pathBarAttribute = data[0].firmenbez_1;
+        this.detailGeschaeftspartnerDataSource = data;
         this.loadIndicator = false;
       })
         .error((data): void => {
@@ -63,7 +32,30 @@ module TIP {
       });
     }
 
+    detailGeschaeftspartnerOption = {
+      bindingOptions: {
+        dataSource: "vm.detailGeschaeftspartnerDataSource"
+      },
+      loadPanel: false
+    }
+
+    //variables for personDetail
+    vorname: string = null;
+    nachname: string = null;
+    abteilung: string = null;
+    telefon: string = null;
+    mobil: number = null;
+    fax: string = null;
+    email: string = null;
+    geburtsdatum : string = null;
+    id: number = null;
+    id_geschaeftspartner : number = null;
+    code_gruppe: string = null;
+    code_anrede: string = null;
+    titel : string = null;
+
     // detail-page person
+    detailPersonDataSource: JSON = null;
     initDetailPerson() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
@@ -83,12 +75,20 @@ module TIP {
         this.code_anrede = data[0].code_anrede;
         this.id = data[0].id;
         this.titel = data[0].titel;
+        this.detailPersonDataSource = data;
         this.loadIndicator = false;
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.")
         this.loadIndicator = false;
       });
+    }
+
+    detailPersonOption = {
+      bindingOptions: {
+        dataSource: "vm.detailPersonDataSource"
+      },
+      loadPanel: false
     }
 
     getParameter = (theParameter): any => {
@@ -156,7 +156,8 @@ module TIP {
       searchPanel: {
         visible: true,
         width: 250,
-        highlightSearchText: false
+        highlightSearchText: false,
+        placeholder: "Suchen..."
       },
       rowClick: (options): void => {
         this.loadIndicator = true;
@@ -215,7 +216,8 @@ module TIP {
       searchPanel: {
         visible: true,
         width: 250,
-        highlightSearchText: false
+        highlightSearchText: false,
+        placeholder: "Suchen..."
       },
       rowClick: (options): void => {
         this.loadIndicator = true;

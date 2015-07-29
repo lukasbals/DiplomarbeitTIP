@@ -5,29 +5,34 @@ var TIP;
             var _this = this;
             this.my = my;
             this.loadIndicator = false;
-            this.id = null;
-            this.gp_nummer = null;
-            this.code_gpkz = null;
-            this.firmenbez_1 = null;
-            this.firmenbez_2 = null;
-            this.firmenbez_3 = null;
-            this.strasse = null;
-            this.code_land = null;
-            this.plz = null;
-            this.ort = null;
-            this.telefon = null;
-            this.fax = null;
-            this.email = null;
-            this.homepage = null;
+            this.pathBarAttribute = null;
+            this.detailGeschaeftspartnerDataSource = null;
+            this.detailGeschaeftspartnerOption = {
+                bindingOptions: {
+                    dataSource: "vm.detailGeschaeftspartnerDataSource"
+                },
+                loadPanel: false
+            };
             this.vorname = null;
             this.nachname = null;
             this.abteilung = null;
+            this.telefon = null;
             this.mobil = null;
+            this.fax = null;
+            this.email = null;
             this.geburtsdatum = null;
+            this.id = null;
             this.id_geschaeftspartner = null;
             this.code_gruppe = null;
             this.code_anrede = null;
             this.titel = null;
+            this.detailPersonDataSource = null;
+            this.detailPersonOption = {
+                bindingOptions: {
+                    dataSource: "vm.detailPersonDataSource"
+                },
+                loadPanel: false
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -76,7 +81,8 @@ var TIP;
                 searchPanel: {
                     visible: true,
                     width: 250,
-                    highlightSearchText: false
+                    highlightSearchText: false,
+                    placeholder: "Suchen..."
                 },
                 rowClick: function (options) {
                     _this.loadIndicator = true;
@@ -117,7 +123,8 @@ var TIP;
                 searchPanel: {
                     visible: true,
                     width: 250,
-                    highlightSearchText: false
+                    highlightSearchText: false,
+                    placeholder: "Suchen..."
                 },
                 rowClick: function (options) {
                     _this.loadIndicator = true;
@@ -131,20 +138,8 @@ var TIP;
             var id = this.getParameter("id");
             this.my.getGeschaeftspartnerDetail(id)
                 .success(function (data) {
-                _this.id = data[0].id;
-                _this.gp_nummer = data[0].gp_nummer;
-                _this.code_gpkz = data[0].code_gpkz;
-                _this.firmenbez_1 = data[0].firmenbez_1;
-                _this.firmenbez_2 = data[0].firmenbez_2;
-                _this.firmenbez_3 = data[0].firmenbez_3;
-                _this.strasse = data[0].strasse;
-                _this.code_land = data[0].code_land;
-                _this.plz = data[0].plz;
-                _this.ort = data[0].ort;
-                _this.telefon = data[0].telefon;
-                _this.fax = data[0].fax;
-                _this.email = data[0].email;
-                _this.homepage = data[0].homepage;
+                _this.pathBarAttribute = data[0].firmenbez_1;
+                _this.detailGeschaeftspartnerDataSource = data;
                 _this.loadIndicator = false;
             })
                 .error(function (data) {
@@ -171,6 +166,7 @@ var TIP;
                 _this.code_anrede = data[0].code_anrede;
                 _this.id = data[0].id;
                 _this.titel = data[0].titel;
+                _this.detailPersonDataSource = data;
                 _this.loadIndicator = false;
             })
                 .error(function (data) {
