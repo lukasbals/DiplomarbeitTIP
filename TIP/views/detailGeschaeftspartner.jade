@@ -1,56 +1,55 @@
 extends layout
 
 block content
-  div(ng-controller="GeschaeftspartnerCtrl")
-    div#pathBarRow
-      p#path.TIPRot
-        a(href="/geschaeftspartner").TIPRot
-          span.pathObject Geschäftspartner
-        span.grey  /
-        span.TIPRot.pathObject  {{vm.detailGeschaeftspartnerDataSource.firmenbez_1}}
-    div.container(ng-init=" vm.initDetailGeschaeftspartner()")
-      h1.center {{vm.detailGeschaeftspartnerDataSource.firmenbez_1}}
-      div.row
-        div.col-xs-2
-        div.col-xs-8
-          table.table.table-condensed
-            tbody
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.id")
-                td.bold ID:
-                td {{vm.detailGeschaeftspartnerDataSource.id}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.gp_nummer")
-                td.bold GP Nummer:
-                td {{vm.detailGeschaeftspartnerDataSource.gp_nummer}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.code_gpkz")
-                td.bold CodeGpKz
-                td {{vm.detailGeschaeftspartnerDataSource.code_gpkz}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.firmenbez_1")
-                td.bold Firmenbezeichnung 1:
-                td {{vm.detailGeschaeftspartnerDataSource.firmenbez_1}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.firmenbez_2")
-                td.bold Firmenbezeichnung 2:
-                td {{vm.detailGeschaeftspartnerDataSource.firmenbez_2}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.firmenbez_3")
-                td.bold Firmenbezeichnung 3:
-                td {{vm.detailGeschaeftspartnerDataSource.firmenbez_3}}
-              tr
-                td.bold Adresse:
-                td {{vm.detailGeschaeftspartnerDataSource.code_land}} - {{vm.detailGeschaeftspartnerDataSource.plz}} {{vm.detailGeschaeftspartnerDataSource.ort}} - {{vm.detailGeschaeftspartnerDataSource.strasse}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.telefon")
-                td.bold Telefon:
-                td {{vm.detailGeschaeftspartnerDataSource.telefon}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.fax")
-                td.bold Fax:
-                td {{vm.detailGeschaeftspartnerDataSource.fax}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.email")
-                td.bold Email:
-                td 
-                  a(href="mailto:{{vm.detailGeschaeftspartnerDataSource.email}}") {{vm.detailGeschaeftspartnerDataSource.email}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.homepage")
-                td.bold Homepage:
-                td
-                  a(href="{{vm.detailGeschaeftspartnerDataSource.homepage}}" target="_blank") {{vm.detailGeschaeftspartnerDataSource.homepage}}  
-              tr
-                td
-                td
-        div.col-xs-2
+  div#pathBarRow
+    p#path.TIPRot
+      a(href="/geschaeftspartner").TIPRot
+        span.pathObject Geschäftspartner
+      span.grey  /
+      span.TIPRot.pathObject  {{vm.firmenbez_1}}
+  div.container(ng-init=" vm.initDetailGeschaeftspartner()")
+    h1.center {{vm.firmenbez_1}}
+    div.row
+      div.col-xs-2
+      div.col-xs-8
+        table.table.table-condensed
+          tbody
+            tr(ng-show="vm.id")
+              td.bold ID:
+              td {{vm.id}}
+            tr(ng-show="vm.gp_nummer")
+              td.bold GP Nummer:
+              td {{vm.gp_nummer}}
+            tr(ng-show="vm.code_gpkz")
+              td.bold CodeGpKz
+              td {{vm.code_gpkz}}
+            tr(ng-show="vm.firmenbez_1")
+              td.bold Firmenbezeichnung 1:
+              td {{vm.firmenbez_1}}
+            tr(ng-show="vm.firmenbez_2")
+              td.bold Firmenbezeichnung 2:
+              td {{vm.firmenbez_2}}
+            tr(ng-show="vm.firmenbez_3")
+              td.bold Firmenbezeichnung 3:
+              td {{vm.firmenbez_3}}
+            tr
+              td.bold Adresse:
+              td {{vm.code_land}} - {{vm.plz}} {{vm.ort}} - {{vm.strasse}}
+            tr(ng-show="vm.telefon")
+              td.bold Telefon:
+              td {{vm.telefon}}
+            tr(ng-show="vm.fax")
+              td.bold Fax:
+              td {{vm.fax}}
+            tr(ng-show="vm.email")
+              td.bold Email:
+              td 
+                a(href="mailto:{{vm.email}}") {{vm.email}}
+            tr(ng-show="vm.homepage")
+              td.bold Homepage:
+              td
+                a(href="{{vm.homepage}}" target="_blank") {{vm.homepage}}  
+            tr
+              td
+              td
+      div.col-xs-2

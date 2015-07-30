@@ -30,6 +30,7 @@
         "./my_modules/TIPDatabase.ts",
         "./my_modules/TIPModels.ts",
         "./public/javascripts/Initialize.ts",
+        "./public/javascripts/controllers/MyController.ts",
         "./public/javascripts/services/MyService.ts",
         "./routes/api.ts",
         "./routes/detail.ts",

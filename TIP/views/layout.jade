@@ -19,37 +19,37 @@ html
     
     script(src="/javascripts/Initialize.js")
     script(src="/javascripts/services/MyService.js")
-    script(src="/javascripts/controllers/GeschaeftspartnerCtrl.js")
-    script(src="/javascripts/controllers/PersonCtrl.js")
+    script(src="/javascripts/controllers/MyController.js")
     
     link(rel='stylesheet', href='/stylesheets/css/style.css')
   body(ng-app="tip")
-    div#loadIndicator(ng-show="vm.loadIndicator")
-      img#loadIcon(src="/images/loadIcon.gif")
-      p loading ...
-    div#statusRow.TIPRot
-      div.col-xs-8#logo
-        a(href="/")
-          img(src="/images/logo.png")
-          span.bold Luca Sebastian Dreier
-      div.col-xs-4.right.loadIcon
-        span.span loading 
-        img(src="/images/loadIcon.gif")
-    div.row#navBarRow
-      div.col-xs-2.redButtonDiv
-        a(href="/geschaeftspartner")
+    div(ng-controller="MyController")
+      div#loadIndicator(ng-show="vm.loadIndicator")
+        img#loadIcon(src="/images/loadIcon.gif")
+        p loading ...
+      div#statusRow.TIPRot
+        div.col-xs-8#logo
+          a(href="/")
+            img(src="/images/logo.png")
+            span.bold Luca Sebastian Dreier
+        div.col-xs-4.right.loadIcon
+          span.span loading 
+          img(src="/images/loadIcon.gif")
+      div.row#navBarRow
+        div.col-xs-2.redButtonDiv
+          a(href="/geschaeftspartner")
+            button.btn
+              p Geschäftspartner
+        div.col-xs-2.redButtonDiv
+          a(href="/person")
+            button.btn
+              p Personen
+        div.col-xs-2.redButtonDiv
           button.btn
-            p Geschäftspartner
-      div.col-xs-2.redButtonDiv
-        a(href="/person")
+        div.col-xs-2.redButtonDiv
           button.btn
-            p Personen
-      div.col-xs-2.redButtonDiv
-        button.btn
-      div.col-xs-2.redButtonDiv
-        button.btn
-      div.col-xs-2.redButtonDiv
-        button.btn
-      div.col-xs-2.redButtonDiv
-        button.btn
-    block content
+        div.col-xs-2.redButtonDiv
+          button.btn
+        div.col-xs-2.redButtonDiv
+          button.btn
+      block content

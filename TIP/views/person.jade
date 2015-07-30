@@ -1,9 +1,8 @@
 extends layout
 
 block content
-  div(ng-controller="PersonCtrl")
-    div#pathBarRow
-      p#path.TIPRot
-        span.pathObject Personen
-    div.container
-      div(ng-init="vm.initPerson()", dx-data-grid="vm.gridPerson")
+  div#pathBarRow
+    p#path.TIPRot
+      span.pathObject Personen
+  div.container
+    div(ng-init="vm.initPerson()", dx-data-grid="vm.gridPerson")
