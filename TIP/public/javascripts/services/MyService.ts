@@ -24,22 +24,9 @@ module TIP {
     // sets table var and calls getDetail function
     //
     getGeschaeftspartnerDetail(id): ng.IHttpPromise<any> {
-      var table = "geschaeftspartner_st";
-      return this.getDetail(id, table);
-    }
-
-    getPersonDetail(id): ng.IHttpPromise<any> {
-      var table = "personen_st";
-      return this.getDetail(id, table);
-    }
-
-    //
-    // sends getDetail request to the server
-    //
-    getDetail(id, table): ng.IHttpPromise<any> {
-      var string: string = '{"id": "' + id + '", "table": "' + table + '"}';
+      var string: string = '{"id": "' + id + '"}';
       var json: JSON = JSON.parse(string);
-      return this.$http.post("http://localhost:3000/api/getDetail", json);
+      return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartner", json);
     }
   }
 

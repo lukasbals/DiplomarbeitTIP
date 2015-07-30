@@ -17,18 +17,5 @@ var setSYNCH = function (tblName, date) {
         });
     });
 };
-var getDetail = function (id, table, res) {
-    db.serialize(function () {
-        db.all("select * from '" + table + "' where id = " + id + ";", function (err, req) {
-            if (req != null) {
-                res.send(req);
-            }
-            else {
-                console.log("Es ist ein Fehler aufgetreten.");
-            }
-        });
-    });
-};
 module.exports.getDB = getDB;
 module.exports.setSYNCH = setSYNCH;
-module.exports.getDetail = getDetail;

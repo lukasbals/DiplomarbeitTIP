@@ -1,6 +1,5 @@
 import express = require("express");
 
-var TIPDatabase = require("../my_modules/TIPDatabase")
 var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
 var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
 var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
@@ -9,21 +8,16 @@ var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPe
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 
 var router = express.Router();
-
-//
-// get Details
-//
-router.post('/getDetail', function(req, res) {
-  var id: number = req.body.id;
-  var table: string = req.body.table;
-  TIPDatabase.getDetail(id, table, res);
-});
-
 //
 // Geschäftspartner
 //
 router.get("/getJsonGeschaeftspartner", (req, res): void => {
   TIPDataStammdatenGeschaeftspartner.getJsonGeschaeftspartner(res);
+});
+
+router.post('/getDetailGeschaeftspartner', function(req, res) {
+  var id: number = req.body.id;
+  TIPDataStammdatenGeschaeftspartner.getDetailGeschaeftspartner(id, res);
 });
 
 //

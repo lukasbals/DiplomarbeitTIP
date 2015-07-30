@@ -14,17 +14,9 @@ var TIP;
             return this.$http.get("http://localhost:3000/api/synchDB");
         };
         MyService.prototype.getGeschaeftspartnerDetail = function (id) {
-            var table = "geschaeftspartner_st";
-            return this.getDetail(id, table);
-        };
-        MyService.prototype.getPersonDetail = function (id) {
-            var table = "personen_st";
-            return this.getDetail(id, table);
-        };
-        MyService.prototype.getDetail = function (id, table) {
-            var string = '{"id": "' + id + '", "table": "' + table + '"}';
+            var string = '{"id": "' + id + '"}';
             var json = JSON.parse(string);
-            return this.$http.post("http://localhost:3000/api/getDetail", json);
+            return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartner", json);
         };
         return MyService;
     })();
