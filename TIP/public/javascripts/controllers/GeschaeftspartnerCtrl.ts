@@ -81,6 +81,9 @@ module TIP {
       bindingOptions: {
         dataSource: "vm.dataSourceGeschaeftspartner"
       },
+      scrolling: {
+        mode: 'infinite'
+      },
       paging: {
         pageSize: 25
       },

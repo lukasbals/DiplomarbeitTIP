@@ -97,7 +97,7 @@ var getDetailPerson = (id: number, res): void =>{
   TIPDatabase.getDB().serialize((): void => {
 
     //console.log(tblName);
-    TIPDatabase.getDB().all("select gp.id as id_geschaeftspartner, p.abteilung, a.bezeichnung as anrede, pg.bezeichnung as personengruppen, p.email, p.fax, gp.firmenbez_1, p.mobil, p.vorname, p.nachname, p.telefon, p.titel from personen_st p inner join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id inner join personengruppen_st pg on p.code_gruppe = pg.code inner join anreden_st a on p.code_anrede = a.code where p.id =" + id + ";", (err, req): void => {
+    TIPDatabase.getDB().all("select id_geschaeftspartner, p.abteilung, a.bezeichnung as anrede, pg.bezeichnung as personengruppen, p.email, p.fax, gp.firmenbez_1, p.mobil, p.vorname, p.nachname, p.telefon, p.titel from personen_st p left join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id left join personengruppen_st pg on p.code_gruppe = pg.code left join anreden_st a on p.code_anrede = a.code where p.id =" + id + ";", (err, req): void => {
       //console.log(req);
       if (req != null) {
         res.send(req);

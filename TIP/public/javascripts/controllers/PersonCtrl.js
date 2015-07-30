@@ -47,6 +47,9 @@ var TIP;
                 bindingOptions: {
                     dataSource: "vm.dataSourcePerson"
                 },
+                scrolling: {
+                    mode: 'infinite'
+                },
                 paging: {
                     pageSize: 25
                 },
