@@ -7,52 +7,52 @@ block content
         a(href="/person").TIPRot
           span.pathObject Personen
         span.grey  /
-        span.TIPRot.pathObject  {{vm.nachname}}
+        span.TIPRot.pathObject  {{vm.detailPersonDataSource.nachname}}
     div.container
       div(ng-init="vm.initDetailPerson()")
-      h1.center {{vm.nachname}}
+      h1.center {{vm.detailPersonDataSource.nachname}}
       div.row
         div.col-xs-2
         div.col-xs-8
           table.table.table-condensed
             tbody
-              tr(ng-show="vm.id")
+              tr(ng-show="vm.detailPersonDataSource.id")
                 td.bold ID:
-                td {{vm.id}}
-              tr(ng-show="vm.id_geschaeftspartner")
+                td {{vm.detailPersonDataSource.id}}
+              tr(ng-show="vm.detailPersonDataSource.id_geschaeftspartner")
                 td.bold ID-Geschäftspartner:
-                td {{vm.id_geschaeftspartner}}
-              tr(ng-show="vm.code_gruppe")
+                td {{vm.detailPersonDataSource.id_geschaeftspartner}}
+              tr(ng-show="vm.detailPersonDataSource.code_gruppe")
                 td.bold Gruppencode:
-                td {{vm.code_gruppe}}
-              tr(ng-show="vm.anrede")
+                td {{vm.detailPersonDataSource.code_gruppe}}
+              tr(ng-show="vm.detailPersonDataSource.anrede")
                 td.bold Anrede:
-                td {{vm.code_anrede}}
-              tr(ng-show="vm.titel")
+                td {{vm.detailPersonDataSource.code_anrede}}
+              tr(ng-show="vm.detailPersonDataSource.titel")
                 td.bold Titel:
-                td {{vm.titel}}
-              tr(ng-show="vm.vorname")
+                td {{vm.detailPersonDataSource.titel}}
+              tr(ng-show="vm.detailPersonDataSource.vorname")
                 td.bold Vorname:
-                td {{vm.vorname}}
-              tr(ng-show="vm.nachname")
+                td {{vm.detailPersonDataSource.vorname}}
+              tr(ng-show="vm.detailPersonDataSource.nachname")
                 td.bold Nachname:
-                td {{vm.nachname}}
-              tr(ng-show="vm.abteilung")
+                td {{vm.detailPersonDataSource.nachname}}
+              tr(ng-show="vm.detailPersonDataSource.abteilung")
                 td.bold Abteilung:
-                td {{vm.abteilung}}
-              tr(ng-show="vm.telefon")
+                td {{vm.detailPersonDataSource.abteilung}}
+              tr(ng-show="vm.detailPersonDataSource.telefon")
                 td.bold Telefon:
-                td {{vm.telefon}}
-              tr(ng-show="vm.mobil")
+                td {{vm.detailPersonDataSource.telefon}}
+              tr(ng-show="vm.detailPersonDataSource.mobil")
                 td.bold Mobil
-                td {{vm.mobil}}
-              tr(ng-show="vm.fax")
+                td {{vm.detailPersonDataSource.mobil}}
+              tr(ng-show="vm.detailPersonDataSource.fax")
                 td.bold Fax
-                td {{vm.fax}}
-              tr(ng-show="vm.email")
+                td {{vm.detailPersonDataSource.fax}}
+              tr(ng-show="vm.detailPersonDataSource.email")
                 td.bold Email
                 td 
-                  a(href="mailto:{{vm.email}}") {{vm.email}}
-              tr(ng-show="vm.geburtsdatum")
+                  a(href="mailto:{{vm.detailPersonDataSource.email}}") {{vm.detailPersonDataSource.email}}
+              tr(ng-show="vm.detailPersonDataSource.geburtsdatum")
                 td.bold Geburtsdatum
-                td {{vm.geburtsdatum}}
+                td {{vm.detailPersonDataSource.geburtsdatum}}

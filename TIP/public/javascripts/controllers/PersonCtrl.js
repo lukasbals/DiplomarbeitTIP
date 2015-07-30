@@ -63,7 +63,7 @@ var TIP;
             var id = this.getParameter("id");
             this.person.getDetailPerson(id)
                 .success(function (data) {
-                _this.detailPersonDataSource = data;
+                _this.detailPersonDataSource = data[0];
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");

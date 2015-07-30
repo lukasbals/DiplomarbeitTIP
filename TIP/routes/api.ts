@@ -29,7 +29,7 @@ router.get("/getJsonPerson", (req, res): void => {
 
 router.post('/getDetailPerson', function(req, res) {
   var id: number = req.body.id;
-  TIPDataStammdatenGeschaeftspartner.getDetailGeschaeftspartner(id, res);
+  TIPDataStammdatenPerson.getDetailPerson(id, res);
 });
 
 //

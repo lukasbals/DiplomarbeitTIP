@@ -90,6 +90,26 @@ var getJsonPerson = (res): void => {
   });
 }
 
+//
+// get Detail for personen_st table
+//
+var getDetailPerson = (id: number, res): void =>{
+  TIPDatabase.getDB().serialize((): void => {
+
+    //console.log(tblName);
+    TIPDatabase.getDB().all("select id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st where id = " + id + ";", (err, req): void => {
+      //console.log(req);
+      if (req != null) {
+        res.send(req);
+      } else {
+        console.log("Es ist ein Fehler aufgetreten.")
+      }
+
+    });
+  });
+}
+
 module.exports.initTablePerson = initTablePerson;
 module.exports.loadPerson = loadPerson;
 module.exports.getJsonPerson = getJsonPerson;
+module.exports.getDetailPerson = getDetailPerson;

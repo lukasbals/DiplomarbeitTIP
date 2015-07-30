@@ -73,6 +73,19 @@ var getJsonPerson = function (res) {
         });
     });
 };
+var getDetailPerson = function (id, res) {
+    TIPDatabase.getDB().serialize(function () {
+        TIPDatabase.getDB().all("select id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st where id = " + id + ";", function (err, req) {
+            if (req != null) {
+                res.send(req);
+            }
+            else {
+                console.log("Es ist ein Fehler aufgetreten.");
+            }
+        });
+    });
+};
 module.exports.initTablePerson = initTablePerson;
 module.exports.loadPerson = loadPerson;
 module.exports.getJsonPerson = getJsonPerson;
+module.exports.getDetailPerson = getDetailPerson;
