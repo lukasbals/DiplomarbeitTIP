@@ -26,7 +26,7 @@ html
     script(src="/javascripts/controllers/LoadCtrl.js")
     
     link(rel='stylesheet', href='/stylesheets/css/style.css')
-  body(ng-app="tip")
+  body(ng-app="tip", ng-controller="LoadCtrl")
     div#loadIndicator(ng-show="vm.loadIndicator")
       img#loadIcon(src="/images/loadIcon.gif")
       p loading ...
@@ -35,7 +35,7 @@ html
         a(href="/")
           img(src="/images/logo.png")
           span.bold Luca Sebastian Dreier
-      div.col-xs-4.right.loadIcon
+      div.col-xs-4.right.loadIcon(ng-show="vm.synchDB")
         span.span loading 
         img(src="/images/loadIcon.gif")
     div.row#navBarRow

@@ -3,6 +3,7 @@ module TIP {
     constructor(private my: LoadService) {
 
     }
+    //loadIndicator: boolean=true;
     synchDB: boolean = false;
     synchButton() {
       this.synchDB = true;
