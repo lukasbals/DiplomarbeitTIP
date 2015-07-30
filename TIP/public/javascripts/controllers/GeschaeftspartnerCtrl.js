@@ -70,7 +70,6 @@ var TIP;
             this.geschaeftspartner.getDetailGeschaeftspartner(id)
                 .success(function (data) {
                 _this.detailGeschaeftspartnerDataSource = data[0];
-                console.log(_this.detailGeschaeftspartnerDataSource);
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");

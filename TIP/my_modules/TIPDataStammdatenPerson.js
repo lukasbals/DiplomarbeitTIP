@@ -75,9 +75,10 @@ var getJsonPerson = function (res) {
 };
 var getDetailPerson = function (id, res) {
     TIPDatabase.getDB().serialize(function () {
-        TIPDatabase.getDB().all("select id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st where id = " + id + ";", function (err, req) {
+        TIPDatabase.getDB().all("select gp.id as id_geschaeftspartner, p.abteilung, a.bezeichnung as anrede, pg.bezeichnung as personengruppen, p.email, p.fax, gp.firmenbez_1, p.mobil, p.vorname, p.nachname, p.telefon, p.titel from personen_st p inner join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id inner join personengruppen_st pg on p.code_gruppe = pg.code inner join anreden_st a on p.code_anrede = a.code where p.id =" + id + ";", function (err, req) {
             if (req != null) {
                 res.send(req);
+                console.log(req);
             }
             else {
                 console.log("Es ist ein Fehler aufgetreten.");

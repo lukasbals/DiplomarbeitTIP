@@ -16,18 +16,12 @@ block content
         div.col-xs-8
           table.table.table-condensed
             tbody
-              tr(ng-show="vm.detailPersonDataSource.id")
-                td.bold ID:
-                td {{vm.detailPersonDataSource.id}}
-              tr(ng-show="vm.detailPersonDataSource.id_geschaeftspartner")
-                td.bold ID-Geschäftspartner:
-                td {{vm.detailPersonDataSource.id_geschaeftspartner}}
-              tr(ng-show="vm.detailPersonDataSource.code_gruppe")
+              tr(ng-show="vm.detailPersonDataSource.personengruppen")
                 td.bold Gruppencode:
-                td {{vm.detailPersonDataSource.code_gruppe}}
+                td {{vm.detailPersonDataSource.personengruppen}}
               tr(ng-show="vm.detailPersonDataSource.anrede")
                 td.bold Anrede:
-                td {{vm.detailPersonDataSource.code_anrede}}
+                td {{vm.detailPersonDataSource.anrede}}
               tr(ng-show="vm.detailPersonDataSource.titel")
                 td.bold Titel:
                 td {{vm.detailPersonDataSource.titel}}
@@ -37,6 +31,10 @@ block content
               tr(ng-show="vm.detailPersonDataSource.nachname")
                 td.bold Nachname:
                 td {{vm.detailPersonDataSource.nachname}}
+              tr(ng-show="vm.detailPersonDataSource.firmenbez_1")
+                td.bold Geschäftspartner:
+                td 
+                  a(href = "http://localhost:3000/detail/detailGeschaeftspartner?id={{vm.detailPersonDataSource.id_geschaeftspartner}}"){{vm.detailPersonDataSource.firmenbez_1}}
               tr(ng-show="vm.detailPersonDataSource.abteilung")
                 td.bold Abteilung:
                 td {{vm.detailPersonDataSource.abteilung}}

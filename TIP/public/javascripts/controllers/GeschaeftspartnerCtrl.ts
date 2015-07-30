@@ -14,7 +14,6 @@ module TIP {
       this.geschaeftspartner.getDetailGeschaeftspartner(id)
         .success((data): void => {
         this.detailGeschaeftspartnerDataSource = data[0];
-        console.log(this.detailGeschaeftspartnerDataSource);
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.")
