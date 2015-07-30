@@ -1,6 +1,6 @@
 module TIP {
   export class LoadViewModel {
-    constructor(private my: MyService) {
+    constructor(private my: LoadService) {
 
     }
     synchDB: boolean = false;
@@ -21,12 +21,12 @@ module TIP {
   }
 
   export class LoadCtrl {
-    constructor(private my: MyService, public $scope: LoadScope) {
+    constructor(private my: LoadService, public $scope: LoadScope) {
       $scope.vm = new LoadViewModel(my);
     }
   }
 
   angular
     .module("tip")
-    .controller("LoadCtrl", ["MyService", "$scope", LoadCtrl]);
+    .controller("LoadCtrl", ["LoadService", "$scope", LoadCtrl]);
 }

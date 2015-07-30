@@ -1,6 +1,6 @@
 module TIP {
   export class PersonViewModel {
-    constructor(private my: MyService) {
+    constructor(private person: PersonService) {
 
     }
     //
@@ -12,7 +12,7 @@ module TIP {
     initDetailPerson() {
       var id: number = this.getParameter("id");
       /*alert(id + table)*/
-      this.my.getPersonDetail(id)
+      this.person.getDetailPerson(id)
         .success((data): void => {
         this.detailPersonDataSource = data;
       })
@@ -37,7 +37,7 @@ module TIP {
     //
     dataSourcePerson: JSON = null;
     initPerson() {
-      this.my.getPerson()
+      this.person.getPerson()
         .success((data): void => {
         this.dataSourcePerson = data;
       })
@@ -96,12 +96,12 @@ module TIP {
   }
 
   export class PersonCtrl {
-    constructor(private my: MyService, public $scope: PersonScope) {
-      $scope.vm = new PersonViewModel(my);
+    constructor(private person: PersonService, public $scope: PersonScope) {
+      $scope.vm = new PersonViewModel(person);
     }
   }
 
   angular
     .module("tip")
-    .controller("PersonCtrl", ["MyService", "$scope", PersonCtrl]);
+    .controller("PersonCtrl", ["PersonService", "$scope", PersonCtrl]);
 }

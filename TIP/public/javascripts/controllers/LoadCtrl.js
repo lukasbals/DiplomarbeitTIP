@@ -29,5 +29,5 @@ var TIP;
     TIP.LoadCtrl = LoadCtrl;
     angular
         .module("tip")
-        .controller("LoadCtrl", ["MyService", "$scope", LoadCtrl]);
+        .controller("LoadCtrl", ["LoadService", "$scope", LoadCtrl]);
 })(TIP || (TIP = {}));

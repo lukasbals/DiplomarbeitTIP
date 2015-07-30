@@ -1,8 +1,8 @@
 var TIP;
 (function (TIP) {
     var GeschaeftspartnerViewModel = (function () {
-        function GeschaeftspartnerViewModel(my) {
-            this.my = my;
+        function GeschaeftspartnerViewModel(geschaeftspartner) {
+            this.geschaeftspartner = geschaeftspartner;
             this.detailGeschaeftspartnerDataSource = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
@@ -65,7 +65,7 @@ var TIP;
         GeschaeftspartnerViewModel.prototype.initDetailGeschaeftspartner = function () {
             var _this = this;
             var id = this.getParameter("id");
-            this.my.getGeschaeftspartnerDetail(id)
+            this.geschaeftspartner.getDetailGeschaeftspartner(id)
                 .success(function (data) {
                 _this.detailGeschaeftspartnerDataSource = data[0];
                 console.log(_this.detailGeschaeftspartnerDataSource);
@@ -76,7 +76,7 @@ var TIP;
         };
         GeschaeftspartnerViewModel.prototype.initGeschaeftspartner = function () {
             var _this = this;
-            this.my.getGeschaeftspartner()
+            this.geschaeftspartner.getGeschaeftspartner()
                 .success(function (data) {
                 _this.dataSourceGeschaeftspartner = data;
             })
@@ -88,15 +88,15 @@ var TIP;
     })();
     TIP.GeschaeftspartnerViewModel = GeschaeftspartnerViewModel;
     var GeschaeftspartnerCtrl = (function () {
-        function GeschaeftspartnerCtrl(my, $scope) {
-            this.my = my;
+        function GeschaeftspartnerCtrl(geschaeftspartner, $scope) {
+            this.geschaeftspartner = geschaeftspartner;
             this.$scope = $scope;
-            $scope.vm = new GeschaeftspartnerViewModel(my);
+            $scope.vm = new GeschaeftspartnerViewModel(geschaeftspartner);
         }
         return GeschaeftspartnerCtrl;
     })();
     TIP.GeschaeftspartnerCtrl = GeschaeftspartnerCtrl;
     angular
         .module("tip")
-        .controller("GeschaeftspartnerCtrl", ["MyService", "$scope", GeschaeftspartnerCtrl]);
+        .controller("GeschaeftspartnerCtrl", ["GeschaeftspartnerService", "$scope", GeschaeftspartnerCtrl]);
 })(TIP || (TIP = {}));

@@ -27,6 +27,11 @@ router.get("/getJsonPerson", (req, res): void => {
   TIPDataStammdatenPerson.getJsonPerson(res);
 });
 
+router.post('/getDetailPerson', function(req, res) {
+  var id: number = req.body.id;
+  TIPDataStammdatenGeschaeftspartner.getDetailGeschaeftspartner(id, res);
+});
+
 //
 // GpKz
 //

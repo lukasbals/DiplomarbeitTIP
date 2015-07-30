@@ -1,6 +1,6 @@
 module TIP {
   export class GeschaeftspartnerViewModel {
-    constructor(private my: MyService) {
+    constructor(private geschaeftspartner: GeschaeftspartnerService) {
 
     }
     //
@@ -11,7 +11,7 @@ module TIP {
     detailGeschaeftspartnerDataSource: JSON = null;
     initDetailGeschaeftspartner() {
       var id: number = this.getParameter("id");
-      this.my.getGeschaeftspartnerDetail(id)
+      this.geschaeftspartner.getDetailGeschaeftspartner(id)
         .success((data): void => {
         this.detailGeschaeftspartnerDataSource = data[0];
         console.log(this.detailGeschaeftspartnerDataSource);
@@ -37,7 +37,7 @@ module TIP {
     //
     dataSourceGeschaeftspartner: JSON = null;
     initGeschaeftspartner() {
-      this.my.getGeschaeftspartner()
+      this.geschaeftspartner.getGeschaeftspartner()
         .success((data): void => {
         this.dataSourceGeschaeftspartner = data;
       })
@@ -100,12 +100,12 @@ module TIP {
   }
 
   export class GeschaeftspartnerCtrl {
-    constructor(private my: MyService, public $scope: GeschaeftspartnerScope) {
-      $scope.vm = new GeschaeftspartnerViewModel(my);
+    constructor(private geschaeftspartner: GeschaeftspartnerService, public $scope: GeschaeftspartnerScope) {
+      $scope.vm = new GeschaeftspartnerViewModel(geschaeftspartner);
     }
   }
 
   angular
     .module("tip")
-    .controller("GeschaeftspartnerCtrl", ["MyService", "$scope", GeschaeftspartnerCtrl]);
+    .controller("GeschaeftspartnerCtrl", ["GeschaeftspartnerService", "$scope", GeschaeftspartnerCtrl]);
 }

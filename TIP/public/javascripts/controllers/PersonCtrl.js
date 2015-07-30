@@ -1,8 +1,8 @@
 var TIP;
 (function (TIP) {
     var PersonViewModel = (function () {
-        function PersonViewModel(my) {
-            this.my = my;
+        function PersonViewModel(person) {
+            this.person = person;
             this.detailPersonDataSource = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
@@ -61,7 +61,7 @@ var TIP;
         PersonViewModel.prototype.initDetailPerson = function () {
             var _this = this;
             var id = this.getParameter("id");
-            this.my.getPersonDetail(id)
+            this.person.getDetailPerson(id)
                 .success(function (data) {
                 _this.detailPersonDataSource = data;
             })
@@ -71,7 +71,7 @@ var TIP;
         };
         PersonViewModel.prototype.initPerson = function () {
             var _this = this;
-            this.my.getPerson()
+            this.person.getPerson()
                 .success(function (data) {
                 _this.dataSourcePerson = data;
             })
@@ -83,15 +83,15 @@ var TIP;
     })();
     TIP.PersonViewModel = PersonViewModel;
     var PersonCtrl = (function () {
-        function PersonCtrl(my, $scope) {
-            this.my = my;
+        function PersonCtrl(person, $scope) {
+            this.person = person;
             this.$scope = $scope;
-            $scope.vm = new PersonViewModel(my);
+            $scope.vm = new PersonViewModel(person);
         }
         return PersonCtrl;
     })();
     TIP.PersonCtrl = PersonCtrl;
     angular
         .module("tip")
-        .controller("PersonCtrl", ["MyService", "$scope", PersonCtrl]);
+        .controller("PersonCtrl", ["PersonService", "$scope", PersonCtrl]);
 })(TIP || (TIP = {}));
