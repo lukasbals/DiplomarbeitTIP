@@ -26,13 +26,26 @@ module TIP {
 
     // pathBar attribute for any detail-page
     pathBarAttribute: string = null;
+    //variables for personDetail
+    vorname: string = null;
+    nachname: string = null;
+    abteilung: string = null;
+    telefon: string = null;
+    mobil: number = null;
+    fax: string = null;
+    email: string = null;
+    geburtsdatum: string = null;
+    id: number = null;
+    id_geschaeftspartner: number = null;
+    code_gruppe: string = null;
+    code_anrede: string = null;
+    titel: string = null;
 
     // detail-page geschaeftspartner
     detailGeschaeftspartnerDataSource: JSON = null;
     initDetailGeschaeftspartner() {
       this.loadIndicator = true;
       var id: number = this.getParameter("id");
-      /*alert(id + table)*/
       this.my.getGeschaeftspartnerDetail(id)
         .success((data): void => {
         this.pathBarAttribute = data[0].firmenbez_1;
@@ -51,21 +64,6 @@ module TIP {
       },
       loadPanel: false
     }
-
-    //variables for personDetail
-    vorname: string = null;
-    nachname: string = null;
-    abteilung: string = null;
-    telefon: string = null;
-    mobil: number = null;
-    fax: string = null;
-    email: string = null;
-    geburtsdatum : string = null;
-    id: number = null;
-    id_geschaeftspartner : number = null;
-    code_gruppe: string = null;
-    code_anrede: string = null;
-    titel : string = null;
 
     // detail-page person
     detailPersonDataSource: JSON = null;
@@ -166,8 +164,8 @@ module TIP {
       bindingOptions: {
         dataSource: "vm.dataSourceGeschaeftspartner"
       },
-      paging:{
-        pageSize:50
+      paging: {
+        pageSize: 25
       },
       searchPanel: {
         visible: true,
@@ -229,7 +227,9 @@ module TIP {
       bindingOptions: {
         dataSource: "vm.dataSourcePerson"
       },
-      paging:false,
+      paging: {
+        pageSize: 25
+      },
       searchPanel: {
         visible: true,
         width: 250,

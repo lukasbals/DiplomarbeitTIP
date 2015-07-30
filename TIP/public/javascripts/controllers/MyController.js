@@ -7,13 +7,6 @@ var TIP;
             this.synchDB = false;
             this.loadIndicator = false;
             this.pathBarAttribute = null;
-            this.detailGeschaeftspartnerDataSource = null;
-            this.detailGeschaeftspartnerOption = {
-                bindingOptions: {
-                    dataSource: "vm.detailGeschaeftspartnerDataSource"
-                },
-                loadPanel: false
-            };
             this.vorname = null;
             this.nachname = null;
             this.abteilung = null;
@@ -27,6 +20,13 @@ var TIP;
             this.code_gruppe = null;
             this.code_anrede = null;
             this.titel = null;
+            this.detailGeschaeftspartnerDataSource = null;
+            this.detailGeschaeftspartnerOption = {
+                bindingOptions: {
+                    dataSource: "vm.detailGeschaeftspartnerDataSource"
+                },
+                loadPanel: false
+            };
             this.detailPersonDataSource = null;
             this.detailPersonOption = {
                 bindingOptions: {
@@ -80,7 +80,7 @@ var TIP;
                     dataSource: "vm.dataSourceGeschaeftspartner"
                 },
                 paging: {
-                    pageSize: 50
+                    pageSize: 25
                 },
                 searchPanel: {
                     visible: true,
@@ -124,7 +124,9 @@ var TIP;
                 bindingOptions: {
                     dataSource: "vm.dataSourcePerson"
                 },
-                paging: false,
+                paging: {
+                    pageSize: 25
+                },
                 searchPanel: {
                     visible: true,
                     width: 250,
