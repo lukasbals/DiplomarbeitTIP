@@ -145,7 +145,6 @@ var getDetailPersonForGP = (id: number, res): void => {
       });
     }, (): void=> {
         res.json(result);
-        console.log(result);
       });
   });
 }

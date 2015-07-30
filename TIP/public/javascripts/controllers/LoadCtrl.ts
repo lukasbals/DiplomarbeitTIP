@@ -11,7 +11,7 @@ module TIP {
           console.log("success");
       })
         .error((): void=> {
-        alert("Fehler beim Datenbanken Synchronisieren");
+        alert("Fehler beim Synchronisieren der Datenbanken");
       });
     }
   }

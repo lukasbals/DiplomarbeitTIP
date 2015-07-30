@@ -12,7 +12,7 @@ var TIP;
                 console.log("success");
             })
                 .error(function () {
-                alert("Fehler beim Datenbanken Synchronisieren");
+                alert("Fehler beim Synchronisieren der Datenbanken");
             });
         };
         return LoadViewModel;

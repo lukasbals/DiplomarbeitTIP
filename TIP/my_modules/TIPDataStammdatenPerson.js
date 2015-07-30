@@ -123,7 +123,6 @@ var getDetailPersonForGP = function (id, res) {
             });
         }, function () {
             res.json(result);
-            console.log(result);
         });
     });
 };
