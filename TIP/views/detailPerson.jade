@@ -1,57 +1,58 @@
 extends layout
 
 block content
-  div#pathBarRow
-    p#path.TIPRot
-      a(href="/person").TIPRot
-        span.pathObject Personen
-      span.grey  /
-      span.TIPRot.pathObject  {{vm.nachname}}
-  div.container
-    div(ng-init="vm.initDetailPerson()")
-    h1.center {{vm.nachname}}
-    div.row
-      div.col-xs-2
-      div.col-xs-8
-        table.table.table-condensed
-          tbody
-            tr(ng-show="vm.id")
-              td.bold ID:
-              td {{vm.id}}
-            tr(ng-show="vm.id_geschaeftspartner")
-              td.bold ID-Geschäftspartner:
-              td {{vm.id_geschaeftspartner}}
-            tr(ng-show="vm.code_gruppe")
-              td.bold Gruppencode:
-              td {{vm.code_gruppe}}
-            tr(ng-show="vm.anrede")
-              td.bold Anrede:
-              td {{vm.code_anrede}}
-            tr(ng-show="vm.titel")
-              td.bold Titel:
-              td {{vm.titel}}
-            tr(ng-show="vm.vorname")
-              td.bold Vorname:
-              td {{vm.vorname}}
-            tr(ng-show="vm.nachname")
-              td.bold Nachname:
-              td {{vm.nachname}}
-            tr(ng-show="vm.abteilung")
-              td.bold Abteilung:
-              td {{vm.abteilung}}
-            tr(ng-show="vm.telefon")
-              td.bold Telefon:
-              td {{vm.telefon}}
-            tr(ng-show="vm.mobil")
-              td.bold Mobil
-              td {{vm.mobil}}
-            tr(ng-show="vm.fax")
-              td.bold Fax
-              td {{vm.fax}}
-            tr(ng-show="vm.email")
-              td.bold Email
-              td 
-                a(href="mailto:{{vm.email}}") {{vm.email}}
-            tr(ng-show="vm.geburtsdatum")
-              td.bold Geburtsdatum
-              td {{vm.geburtsdatum}}
+  div(ng-controller="PersonCtrl")
+    div#pathBarRow
+      p#path.TIPRot
+        a(href="/person").TIPRot
+          span.pathObject Personen
+        span.grey  /
+        span.TIPRot.pathObject  {{vm.nachname}}
+    div.container
+      div(ng-init="vm.initDetailPerson()")
+      h1.center {{vm.nachname}}
+      div.row
+        div.col-xs-2
+        div.col-xs-8
+          table.table.table-condensed
+            tbody
+              tr(ng-show="vm.id")
+                td.bold ID:
+                td {{vm.id}}
+              tr(ng-show="vm.id_geschaeftspartner")
+                td.bold ID-Geschäftspartner:
+                td {{vm.id_geschaeftspartner}}
+              tr(ng-show="vm.code_gruppe")
+                td.bold Gruppencode:
+                td {{vm.code_gruppe}}
+              tr(ng-show="vm.anrede")
+                td.bold Anrede:
+                td {{vm.code_anrede}}
+              tr(ng-show="vm.titel")
+                td.bold Titel:
+                td {{vm.titel}}
+              tr(ng-show="vm.vorname")
+                td.bold Vorname:
+                td {{vm.vorname}}
+              tr(ng-show="vm.nachname")
+                td.bold Nachname:
+                td {{vm.nachname}}
+              tr(ng-show="vm.abteilung")
+                td.bold Abteilung:
+                td {{vm.abteilung}}
+              tr(ng-show="vm.telefon")
+                td.bold Telefon:
+                td {{vm.telefon}}
+              tr(ng-show="vm.mobil")
+                td.bold Mobil
+                td {{vm.mobil}}
+              tr(ng-show="vm.fax")
+                td.bold Fax
+                td {{vm.fax}}
+              tr(ng-show="vm.email")
+                td.bold Email
+                td 
+                  a(href="mailto:{{vm.email}}") {{vm.email}}
+              tr(ng-show="vm.geburtsdatum")
+                td.bold Geburtsdatum
+                td {{vm.geburtsdatum}}

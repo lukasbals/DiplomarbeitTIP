@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  div#pathBarRow
-    p#path.TIPRot
-      span.pathObject Geschäftspartner
-      //span.grey  /
-      //span.TIPRot.pathObject  Irgendeinefirma
-  div.container
-    div(ng-init="vm.initGeschaeftspartner()", dx-data-grid="vm.gridGeschaeftspartner")
+  div(ng-controller="GeschaeftspartnerCtrl")
+    div#pathBarRow
+      p#path.TIPRot
+        span.pathObject Geschäftspartner
+        //span.grey  /
+        //span.TIPRot.pathObject  Irgendeinefirma
+    div.container
+      div(ng-init="vm.initGeschaeftspartner()", dx-data-grid="vm.gridGeschaeftspartner")
