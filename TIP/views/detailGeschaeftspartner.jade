@@ -21,9 +21,9 @@ block content
               tr(ng-show="vm.detailGeschaeftspartnerDataSource.gp_nummer")
                 td.bold GP Nummer:
                 td {{vm.detailGeschaeftspartnerDataSource.gp_nummer}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.code_gpkz")
-                td.bold CodeGpKz
-                td {{vm.detailGeschaeftspartnerDataSource.code_gpkz}}
+              tr(ng-show="vm.detailGeschaeftspartnerDataSource.gpkz")
+                td.bold Kennzeichen
+                td {{vm.detailGeschaeftspartnerDataSource.gpkz}}
               tr(ng-show="vm.detailGeschaeftspartnerDataSource.firmenbez_1")
                 td.bold Firmenbezeichnung 1:
                 td {{vm.detailGeschaeftspartnerDataSource.firmenbez_1}}
@@ -35,7 +35,7 @@ block content
                 td {{vm.detailGeschaeftspartnerDataSource.firmenbez_3}}
               tr
                 td.bold Adresse:
-                td {{vm.detailGeschaeftspartnerDataSource.code_land}} - {{vm.detailGeschaeftspartnerDataSource.plz}} {{vm.detailGeschaeftspartnerDataSource.ort}} - {{vm.detailGeschaeftspartnerDataSource.strasse}}
+                td {{vm.detailGeschaeftspartnerDataSource.land}} - {{vm.detailGeschaeftspartnerDataSource.plz}} {{vm.detailGeschaeftspartnerDataSource.ort}} - {{vm.detailGeschaeftspartnerDataSource.strasse}}
               tr(ng-show="vm.detailGeschaeftspartnerDataSource.telefon")
                 td.bold Telefon:
                 td {{vm.detailGeschaeftspartnerDataSource.telefon}}

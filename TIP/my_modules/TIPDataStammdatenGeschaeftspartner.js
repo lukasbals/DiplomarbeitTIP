@@ -77,7 +77,7 @@ var getJsonGeschaeftspartner = function (res) {
 };
 var getDetailGeschaeftspartner = function (id, res) {
     TIPDatabase.getDB().serialize(function () {
-        TIPDatabase.getDB().all("select gp_nummer, code_gpkz, firmenbez_1, firmenbez_2, firmenbez_3, strasse, code_land, plz, ort, telefon, fax, email from geschaeftspartner_st where id = " + id + ";", function (err, req) {
+        TIPDatabase.getDB().all("select l.bezeichnung as land, gp. bezeichnung as gpkz, email, fax, firmenbez_1, firmenbez_2, firmenbez_3, gp_nummer, homepage, is_eu, ort, plz, strasse, telefon from geschaeftspartner_st g inner join laender_st l on g.code_land = l.code inner join gpkz_st gp on g.code_gpkz = gp.code where g.id =" + id + ";", function (err, req) {
             if (req != null) {
                 res.send(req);
             }

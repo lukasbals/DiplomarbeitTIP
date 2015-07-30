@@ -20,25 +20,28 @@ var TIP;
                         dataField: 'CodeAnrede',
                         caption: "Anrede",
                         width: 70,
-                        allowFiltering: false
+                        allowFiltering: true
                     }, {
                         dataField: 'Titel',
-                        allowFiltering: false,
+                        allowFiltering: true,
                         width: 90
                     }, {
-                        dataField: 'Vorname'
+                        dataField: 'Vorname',
+                        allowFiltering: true
                     }, {
-                        dataField: 'Nachname'
+                        dataField: 'Nachname',
+                        allowFiltering: true
                     }, {
-                        dataField: 'Abteilung'
+                        dataField: 'Abteilung',
+                        allowFiltering: true
                     }, {
                         dataField: "Telefon",
                         width: 150,
-                        allowFiltering: false
+                        allowFiltering: true
                     }, {
                         dataField: "Email",
                         width: 230,
-                        allowFiltering: false
+                        allowFiltering: true
                     }],
                 columnAutoWidth: true,
                 bindingOptions: {

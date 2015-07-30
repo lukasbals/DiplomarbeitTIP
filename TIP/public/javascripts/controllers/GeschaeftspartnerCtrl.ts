@@ -52,29 +52,31 @@ module TIP {
         dataField: 'GpNummer',
         caption: "Nummer",
         width: 70,
-        allowFiltering: false
+        allowFiltering: true
       }, {
-          dataField: 'Firmenbez1'
+          dataField: 'Firmenbez1',
+          allowFiltering: true
         }, {
           dataField: 'Firmenbez2',
-          width: 200
+          width: 200,
+          allowFiltering: true
         }, {
           dataField: 'Strasse',
           width: 200,
-          allowFiltering: false
+          allowFiltering: true
         }, {
           dataField: 'Plz',
           width: 60,
-          allowFiltering: false
+          allowFiltering: true
         }, {
           dataField: "Ort",
           width: 150,
-          allowFiltering: false
+          allowFiltering: true
         }, {
           dataField: "CodeLand",
           width: 50,
           caption: "Land",
-          allowFiltering: false
+          allowFiltering: true
         }],
       columnAutoWidth: true,
       bindingOptions: {
