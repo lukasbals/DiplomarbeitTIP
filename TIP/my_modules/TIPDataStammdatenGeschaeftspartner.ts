@@ -25,8 +25,6 @@ var loadGeschaeftspartner = (): void => {
   console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
   var date = new Date();
 
-
-
   // GET request to the TIP server -- Geschaeftspartner
   request.get(
     "http://10.20.50.53/tip/api/DM360/Stammdaten/Geschaeftspartner",
@@ -98,11 +96,11 @@ var getJsonGeschaeftspartner = (res): void => {
 //
 // get Detail for geschaeftspartner_st table
 //
-var getDetailGeschaeftspartner = (id: number, res): void =>{
+var getDetailGeschaeftspartner = (id: number, res): void => {
   TIPDatabase.getDB().serialize((): void => {
 
     //console.log(tblName);
-    TIPDatabase.getDB().all("select l.bezeichnung as land, gp. bezeichnung as gpkz, email, fax, firmenbez_1, firmenbez_2, firmenbez_3, gp_nummer, homepage, is_eu, ort, plz, strasse, telefon from geschaeftspartner_st g left join laender_st l on g.code_land = l.code left join gpkz_st gp on g.code_gpkz = gp.code where g.id =" + id + ";", (err, req): void => {
+    TIPDatabase.getDB().all("select l.bezeichnung as land, gp. bezeichnung as gpkz, email, fax, firmenbez_1, firmenbez_2, firmenbez_3, gp_nummer, homepage, is_eu, ort, plz, strasse, telefon from geschaeftspartner_st g left join laender_st l on g.code_land = l.code left join gpkz_st gp on g.code_gpkz = gp.code where g.id =?;", [id], (err, req): void => {
       //console.log(req);
       if (req != null) {
         res.send(req);
