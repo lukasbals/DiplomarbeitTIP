@@ -98,6 +98,31 @@ var getDetailPerson = function (id, res) {
             });
         }, function () {
             res.json(result);
+        });
+    });
+};
+var getDetailPersonForGP = function (id, res) {
+    var result = new Array();
+    TIPDatabase.getDB().serialize(function () {
+        console.log("IN");
+        TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st where id_geschaeftspartner =?;", [id], function (err, row) {
+            result.push({
+                Id: row.id,
+                IdGeschaeftspartner: row.id_geschaeftspartner,
+                CodePersonengruppe: row.code_gruppe,
+                CodeAnrede: row.code_anrede,
+                Titel: row.titel,
+                Vorname: row.vorname,
+                Nachname: row.nachname,
+                Abteilung: row.abteilung,
+                Telefon: row.telefon,
+                Mobil: row.mobil,
+                Fax: row.fax,
+                Email: row.email,
+                Geburtsdatum: row.Geburtsdatum
+            });
+        }, function () {
+            res.json(result);
             console.log(result);
         });
     });
@@ -106,3 +131,4 @@ module.exports.initTablePerson = initTablePerson;
 module.exports.loadPerson = loadPerson;
 module.exports.getJsonPerson = getJsonPerson;
 module.exports.getDetailPerson = getDetailPerson;
+module.exports.getDetailPersonForGP = getDetailPersonForGP;

@@ -12,6 +12,11 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartner", json);
         };
+        GeschaeftspartnerService.prototype.getDetailPersonForGP = function (id) {
+            var string = '{"id": "' + id + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/getDetailPersonForGP", json);
+        };
         return GeschaeftspartnerService;
     })();
     TIP.GeschaeftspartnerService = GeschaeftspartnerService;

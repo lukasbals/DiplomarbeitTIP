@@ -9,10 +9,9 @@ block content
         span.grey  /
         span.TIPRot.pathObject  {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
     div.container(ng-init=" vm.initDetailGeschaeftspartner()")
-      h1.center {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
       div.row
-        div.col-xs-2
-        div.col-xs-8
+        div.col-md-6
+          h1.center {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
           table.table.table-condensed
             tbody
               tr(ng-show="vm.detailGeschaeftspartnerDataSource.GpNummer")
@@ -50,4 +49,6 @@ block content
               tr
                 td
                 td
-        div.col-xs-2
+        div.col-md-6
+          h1.center Personen
+          div(dx-data-grid="vm.gridPersonInGP")

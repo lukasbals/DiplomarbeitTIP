@@ -16,9 +16,13 @@ router.post('/getDetailGeschaeftspartner', function (req, res) {
 router.get("/getJsonPerson", function (req, res) {
     TIPDataStammdatenPerson.getJsonPerson(res);
 });
-router.post('/getDetailPerson', function (req, res) {
+router.post("/getDetailPerson", function (req, res) {
     var id = req.body.id;
     TIPDataStammdatenPerson.getDetailPerson(id, res);
+});
+router.post("/getDetailPersonForGP", function (req, res) {
+    var id = req.body.id;
+    TIPDataStammdatenPerson.getDetailPersonForGP(id, res);
 });
 router.get("/getJsonGpKz", function (req, res) {
     TIPDataStammdatenGpKz.getJsonGpKz(res);

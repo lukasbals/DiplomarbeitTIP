@@ -27,9 +27,14 @@ router.get("/getJsonPerson", (req, res): void => {
   TIPDataStammdatenPerson.getJsonPerson(res);
 });
 
-router.post('/getDetailPerson', function(req, res) {
+router.post("/getDetailPerson", function(req, res) {
   var id: number = req.body.id;
   TIPDataStammdatenPerson.getDetailPerson(id, res);
+});
+
+router.post("/getDetailPersonForGP", function(req, res) {
+  var id: number = req.body.id;
+  TIPDataStammdatenPerson.getDetailPersonForGP(id, res);
 });
 
 //

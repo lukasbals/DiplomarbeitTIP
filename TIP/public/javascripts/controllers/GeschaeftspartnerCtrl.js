@@ -4,6 +4,7 @@ var TIP;
         function GeschaeftspartnerViewModel(geschaeftspartner) {
             this.geschaeftspartner = geschaeftspartner;
             this.detailGeschaeftspartnerDataSource = null;
+            this.detailPersonDataSourceInGP = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -66,6 +67,24 @@ var TIP;
                     window.location.href = "http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id;
                 }
             };
+            this.gridPersonInGP = {
+                columns: [{
+                        dataField: "Anrede"
+                    }, {
+                        dataField: "Vorname"
+                    }, {
+                        dataField: "Nachname"
+                    }, {
+                        dataField: "Abteilung"
+                    }],
+                columnAutoWidth: true,
+                bindingOptions: {
+                    dataSource: "vm.detailPersonDataSourceInGP"
+                },
+                rowClick: function (options) {
+                    window.location.href = "http://localhost:3000/detail/detailPerson?id=" + options.data.Id;
+                }
+            };
         }
         GeschaeftspartnerViewModel.prototype.initDetailGeschaeftspartner = function () {
             var _this = this;
@@ -75,6 +94,12 @@ var TIP;
                 _this.detailGeschaeftspartnerDataSource = data[0];
             })
                 .error(function (data) {
+                console.log("Keine DetailDaten bekommen.");
+            });
+            this.geschaeftspartner.getDetailPersonForGP(id)
+                .success(function (data) {
+                _this.detailPersonDataSourceInGP = data;
+            }).error(function (data) {
                 console.log("Keine DetailDaten bekommen.");
             });
         };

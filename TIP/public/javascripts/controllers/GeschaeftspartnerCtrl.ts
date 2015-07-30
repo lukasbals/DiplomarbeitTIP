@@ -9,15 +9,22 @@ module TIP {
 
     // detail-page geschaeftspartner
     detailGeschaeftspartnerDataSource: JSON = null;
+    detailPersonDataSourceInGP: JSON = null;
     initDetailGeschaeftspartner() {
       var id: number = this.getParameter("id");
       this.geschaeftspartner.getDetailGeschaeftspartner(id)
         .success((data): void => {
-          //console.log(data[0]);
+        //console.log(data[0]);
         this.detailGeschaeftspartnerDataSource = data[0];
       })
         .error((data): void => {
-        console.log("Keine DetailDaten bekommen.")
+        console.log("Keine DetailDaten bekommen.");
+      });
+      this.geschaeftspartner.getDetailPersonForGP(id)
+        .success((data): void=> {
+        this.detailPersonDataSourceInGP = data;
+      }).error((data): void => {
+        console.log("Keine DetailDaten bekommen.");
       });
     }
 
@@ -96,6 +103,26 @@ module TIP {
       },
       rowClick: (options): void => {
         window.location.href = "http://localhost:3000/detail/detailGeschaeftspartner?id=" + options.data.Id;
+      }
+    }
+
+    gridPersonInGP: any = {
+      //loadPanel: false,
+      columns: [{
+          dataField: "Anrede"
+        }, {
+          dataField: "Vorname"
+        }, {
+          dataField: "Nachname"
+        }, {
+          dataField: "Abteilung"
+        }],
+      columnAutoWidth: true,
+      bindingOptions: {
+        dataSource: "vm.detailPersonDataSourceInGP"
+      },
+      rowClick: (options): void => {
+        window.location.href = "http://localhost:3000/detail/detailPerson?id=" + options.data.Id;
       }
     }
   }

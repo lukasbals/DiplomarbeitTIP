@@ -15,7 +15,7 @@ module TIP {
       this.person.getDetailPerson(id)
         .success((data): void => {
         this.detailPersonDataSource = data[0];
-        console.log(this.detailPersonDataSource);
+        //console.log(this.detailPersonDataSource);
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.")
