@@ -1,22 +1,22 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-  // makes personen_st TABLE
+// makes personen_st TABLE
 var initTablePerson = (): void => {
-    TIPDatabase.getDB().run("create table if not exists personen_st ( " +
-      "id int primary key, " +
-      "id_geschaeftspartner int, " +
-      "code_gruppe string(2), " +
-      "code_anrede string(10), " +
-      "titel string(50), " +
-      "vorname string(50), " +
-      "nachname string(50), " +
-      "abteilung string(50), " +
-      "telefon string(50), " +
-      "mobil string(50), " +
-      "fax string(50), " +
-      "email string(50), " +
-      "geburtsdatum date)");
+  TIPDatabase.getDB().run("create table if not exists personen_st ( " +
+    "id int primary key, " +
+    "id_geschaeftspartner int, " +
+    "code_gruppe string(2), " +
+    "code_anrede string(10), " +
+    "titel string(50), " +
+    "vorname string(50), " +
+    "nachname string(50), " +
+    "abteilung string(50), " +
+    "telefon string(50), " +
+    "mobil string(50), " +
+    "fax string(50), " +
+    "email string(50), " +
+    "geburtsdatum date)");
 }
 
 // loads the TABLE personen_st from the TIP Server
@@ -93,20 +93,33 @@ var getJsonPerson = (res): void => {
 //
 // get Detail for personen_st table
 //
-var getDetailPerson = (id: number, res): void =>{
+var getDetailPerson = (id: number, res): void => {
+  var result: TIP.IPersonDetailModel[] = new Array();
   TIPDatabase.getDB().serialize((): void => {
-
-    //console.log(tblName);
-    TIPDatabase.getDB().all("select id_geschaeftspartner, p.abteilung, a.bezeichnung as anrede, pg.bezeichnung as personengruppen, p.email, p.fax, gp.firmenbez_1, p.mobil, p.vorname, p.nachname, p.telefon, p.titel from personen_st p left join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id left join personengruppen_st pg on p.code_gruppe = pg.code left join anreden_st a on p.code_anrede = a.code where p.id =?;",[id], (err, req): void => {
-      //console.log(req);
-      if (req != null) {
-        res.send(req);
-        //console.log(req);
-      } else {
-        console.log("Es ist ein Fehler aufgetreten.")
-      }
-
-    });
+    console.log("IN");
+    TIPDatabase.getDB().each("select p.id, p.id_geschaeftspartner, p.code_gruppe, p.code_anrede, p.titel, p.vorname, p.nachname, p.abteilung, p.telefon, p.mobil, p.fax, p.email, p.geburtsdatum, pg.bezeichnung as gruppe, a.bezeichnung as anrede, gp.firmenbez_1 from personen_st p left join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id left join personengruppen_st pg on p.code_gruppe = pg.code left join anreden_st a on p.code_anrede = a.code where p.id =?;", [id], (err, row): void => {
+      result.push({
+        Id: row.id,
+        IdGeschaeftspartner: row.id_geschaeftspartner,
+        CodePersonengruppe: row.code_gruppe,
+        CodeAnrede: row.code_anrede,
+        Titel: row.titel,
+        Vorname: row.vorname,
+        Nachname: row.nachname,
+        Abteilung: row.abteilung,
+        Telefon: row.telefon,
+        Mobil: row.mobil,
+        Fax: row.fax,
+        Email: row.email,
+        Geburtsdatum: row.Geburtsdatum,
+        Gruppe: row.gruppe,
+        Anrede: row.anrede,
+        Firmenbez1: row.firmenbez_1
+      });
+    }, (): void=> {
+      res.json(result);
+      console.log(result);
+      });
   });
 }
 

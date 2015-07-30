@@ -76,14 +76,30 @@ var getJsonGeschaeftspartner = function (res) {
     });
 };
 var getDetailGeschaeftspartner = function (id, res) {
+    var result = new Array();
     TIPDatabase.getDB().serialize(function () {
-        TIPDatabase.getDB().all("select l.bezeichnung as land, gp. bezeichnung as gpkz, email, fax, firmenbez_1, firmenbez_2, firmenbez_3, gp_nummer, homepage, is_eu, ort, plz, strasse, telefon from geschaeftspartner_st g left join laender_st l on g.code_land = l.code left join gpkz_st gp on g.code_gpkz = gp.code where g.id =?;", [id], function (err, req) {
-            if (req != null) {
-                res.send(req);
-            }
-            else {
-                console.log("Es ist ein Fehler aufgetreten.");
-            }
+        TIPDatabase.getDB().each("select g.code_land, g.code_gpkz, g.id, l.bezeichnung as land, gp.bezeichnung as gpkz, g.email, g.fax, g.firmenbez_1, g.firmenbez_2, g.firmenbez_3, g.gp_nummer, g.homepage, l.is_eu, g.ort, g.plz, g.strasse, g.telefon from geschaeftspartner_st g left join laender_st l on g.code_land = l.code left join gpkz_st gp on g.code_gpkz = gp.code where g.id =?;", [id], function (err, row) {
+            result.push({
+                Id: row.id,
+                GpNummer: row.gp_nummer,
+                CodeGpKz: row.code_gpkz,
+                Firmenbez1: row.firmenbez_1,
+                Firmenbez2: row.firmenbez_2,
+                Firmenbez3: row.firmenbez_3,
+                Strasse: row.strasse,
+                CodeLand: row.code_land,
+                Plz: row.plz,
+                Ort: row.ort,
+                Telefon: row.telefon,
+                Fax: row.fax,
+                Email: row.email,
+                Homepage: row.homepage,
+                Land: row.land,
+                GpKz: row.gpkz,
+                IsEU: row.is_eu
+            });
+        }, function () {
+            res.json(result);
         });
     });
 };

@@ -7,50 +7,50 @@ block content
         a(href="/person").TIPRot
           span.pathObject Personen
         span.grey  /
-        span.TIPRot.pathObject  {{vm.detailPersonDataSource.nachname}}
+        span.TIPRot.pathObject  {{vm.detailPersonDataSource.Nachname}}
     div.container
       div(ng-init="vm.initDetailPerson()")
-      h1.center {{vm.detailPersonDataSource.nachname}}
+      h1.center {{vm.detailPersonDataSource.Nachname}}
       div.row
         div.col-xs-2
         div.col-xs-8
           table.table.table-condensed
             tbody
-              tr(ng-show="vm.detailPersonDataSource.personengruppen")
-                td.bold Gruppencode:
-                td {{vm.detailPersonDataSource.personengruppen}}
-              tr(ng-show="vm.detailPersonDataSource.anrede")
+              tr(ng-show="vm.detailPersonDataSource.Gruppe")
+                td.bold Gruppen:
+                td {{vm.detailPersonDataSource.Gruppe}}
+              tr(ng-show="vm.detailPersonDataSource.Anrede")
                 td.bold Anrede:
-                td {{vm.detailPersonDataSource.anrede}}
-              tr(ng-show="vm.detailPersonDataSource.titel")
+                td {{vm.detailPersonDataSource.Anrede}}
+              tr(ng-show="vm.detailPersonDataSource.Titel")
                 td.bold Titel:
-                td {{vm.detailPersonDataSource.titel}}
-              tr(ng-show="vm.detailPersonDataSource.vorname")
+                td {{vm.detailPersonDataSource.Titel}}
+              tr(ng-show="vm.detailPersonDataSource.Vorname")
                 td.bold Vorname:
-                td {{vm.detailPersonDataSource.vorname}}
-              tr(ng-show="vm.detailPersonDataSource.nachname")
+                td {{vm.detailPersonDataSource.Vorname}}
+              tr(ng-show="vm.detailPersonDataSource.Nachname")
                 td.bold Nachname:
-                td {{vm.detailPersonDataSource.nachname}}
-              tr(ng-show="vm.detailPersonDataSource.firmenbez_1")
+                td {{vm.detailPersonDataSource.Nachname}}
+              tr(ng-show="vm.detailPersonDataSource.Firmenbez1")
                 td.bold Geschäftspartner:
                 td 
-                  a(href = "http://localhost:3000/detail/detailGeschaeftspartner?id={{vm.detailPersonDataSource.id_geschaeftspartner}}"){{vm.detailPersonDataSource.firmenbez_1}}
-              tr(ng-show="vm.detailPersonDataSource.abteilung")
+                  a(href = "http://localhost:3000/detail/detailGeschaeftspartner?id={{vm.detailPersonDataSource.IdGeschaeftspartner}}"){{vm.detailPersonDataSource.Firmenbez1}}
+              tr(ng-show="vm.detailPersonDataSource.Abteilung")
                 td.bold Abteilung:
-                td {{vm.detailPersonDataSource.abteilung}}
-              tr(ng-show="vm.detailPersonDataSource.telefon")
+                td {{vm.detailPersonDataSource.Abteilung}}
+              tr(ng-show="vm.detailPersonDataSource.Telefon")
                 td.bold Telefon:
-                td {{vm.detailPersonDataSource.telefon}}
-              tr(ng-show="vm.detailPersonDataSource.mobil")
+                td {{vm.detailPersonDataSource.Telefon}}
+              tr(ng-show="vm.detailPersonDataSource.Mobil")
                 td.bold Mobil
-                td {{vm.detailPersonDataSource.mobil}}
-              tr(ng-show="vm.detailPersonDataSource.fax")
+                td {{vm.detailPersonDataSource.Mobil}}
+              tr(ng-show="vm.detailPersonDataSource.Fax")
                 td.bold Fax
-                td {{vm.detailPersonDataSource.fax}}
-              tr(ng-show="vm.detailPersonDataSource.email")
+                td {{vm.detailPersonDataSource.Fax}}
+              tr(ng-show="vm.detailPersonDataSource.Email")
                 td.bold Email
                 td 
-                  a(href="mailto:{{vm.detailPersonDataSource.email}}") {{vm.detailPersonDataSource.email}}
-              tr(ng-show="vm.detailPersonDataSource.geburtsdatum")
+                  a(href="mailto:{{vm.detailPersonDataSource.Email}}") {{vm.detailPersonDataSource.Email}}
+              tr(ng-show="vm.detailPersonDataSource.Geburtsdatum")
                 td.bold Geburtsdatum
-                td {{vm.detailPersonDataSource.geburtsdatum}}
+                td {{vm.detailPersonDataSource.Geburtsdatum}}

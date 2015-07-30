@@ -13,6 +13,7 @@ module TIP {
       var id: number = this.getParameter("id");
       this.geschaeftspartner.getDetailGeschaeftspartner(id)
         .success((data): void => {
+          //console.log(data[0]);
         this.detailGeschaeftspartnerDataSource = data[0];
       })
         .error((data): void => {
