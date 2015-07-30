@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=no')
     title= title
 
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
@@ -31,9 +32,7 @@ html
           a(href="/")
             img(src="/images/logo.png")
             span.bold Luca Sebastian Dreier
-        div.col-xs-4.right.loadIcon(ng-hide="vm.synchDB")
-          button.btn(ng-click="vm.synchButton()")
-        div.col-xs-4.right.loadIcon(ng-show="vm.synchDB")
+        div.col-xs-4.right.loadIcon
           span.span loading 
           img(src="/images/loadIcon.gif")
       div.row#navBarRow
