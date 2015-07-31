@@ -2,9 +2,7 @@ extends layout
 
 block content
   div(ng-controller="PersonCtrl")
-    div.container
-      div(ng-init="vm.initDetailPerson()")
-      //- h1.center {{vm.detailPersonDataSource.Nachname}}
+    div.container-fluid(ng-init="vm.initDetailPerson()")
       div.row
         div.col-xs-2
         div.col-xs-8
