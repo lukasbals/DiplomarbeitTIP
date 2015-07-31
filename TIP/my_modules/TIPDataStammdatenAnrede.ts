@@ -15,7 +15,7 @@ var loadAnrede = (): void => {
 
   // GET request to the TIP server -- Anrede
   request.get(
-    "http://10.20.50.53/tip/api/DM360/Stammdaten/Anrede",
+    "http://10.20.50.53/tip/" + "api/DM360/Stammdaten/Anrede",
     (error, response, body: string): void => {
       var data: TIP.IAnredeModel[] = JSON.parse(body);
 

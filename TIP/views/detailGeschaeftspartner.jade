@@ -14,35 +14,35 @@ block content
           h1.center {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
           table.table.table-condensed
             tbody
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.GpNummer")
+              tr
                 td.bold GP Nummer:
                 td {{vm.detailGeschaeftspartnerDataSource.GpNummer}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.GpKz")
+              tr
                 td.bold Kennzeichen
                 td {{vm.detailGeschaeftspartnerDataSource.GpKz}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Firmenbez1")
+              tr
                 td.bold Firmenbezeichnung 1:
                 td {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Firmenbez2")
+              tr
                 td.bold Firmenbezeichnung 2:
                 td {{vm.detailGeschaeftspartnerDataSource.Firmenbez2}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Firmenbez3")
+              tr
                 td.bold Firmenbezeichnung 3:
                 td {{vm.detailGeschaeftspartnerDataSource.Firmenbez3}}
               tr
                 td.bold Adresse:
                 td {{vm.detailGeschaeftspartnerDataSource.Land}} - {{vm.detailGeschaeftspartnerDataSource.Plz}} {{vm.detailGeschaeftspartnerDataSource.Ort}} - {{vm.detailGeschaeftspartnerDataSource.Strasse}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Telefon")
+              tr
                 td.bold Telefon:
                 td {{vm.detailGeschaeftspartnerDataSource.Telefon}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Fax")
+              tr
                 td.bold Fax:
                 td {{vm.detailGeschaeftspartnerDataSource.Fax}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Email")
+              tr
                 td.bold Email:
                 td 
                   a(href="mailto:{{vm.detailGeschaeftspartnerDataSource.Email}}") {{vm.detailGeschaeftspartnerDataSource.Email}}
-              tr(ng-show="vm.detailGeschaeftspartnerDataSource.Homepage")
+              tr
                 td.bold Homepage:
                 td
                   a(href="{{vm.detailGeschaeftspartnerDataSource.Homepage}}" target="_blank") {{vm.detailGeschaeftspartnerDataSource.Homepage}}  

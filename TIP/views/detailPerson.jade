@@ -16,42 +16,42 @@ block content
         div.col-xs-8
           table.table.table-condensed
             tbody
-              tr(ng-show="vm.detailPersonDataSource.Gruppe")
+              tr
                 td.bold Gruppen:
                 td {{vm.detailPersonDataSource.Gruppe}}
-              tr(ng-show="vm.detailPersonDataSource.Anrede")
+              tr
                 td.bold Anrede:
                 td {{vm.detailPersonDataSource.Anrede}}
-              tr(ng-show="vm.detailPersonDataSource.Titel")
+              tr
                 td.bold Titel:
                 td {{vm.detailPersonDataSource.Titel}}
-              tr(ng-show="vm.detailPersonDataSource.Vorname")
+              tr
                 td.bold Vorname:
                 td {{vm.detailPersonDataSource.Vorname}}
-              tr(ng-show="vm.detailPersonDataSource.Nachname")
+              tr
                 td.bold Nachname:
                 td {{vm.detailPersonDataSource.Nachname}}
-              tr(ng-show="vm.detailPersonDataSource.Firmenbez1")
+              tr
                 td.bold Geschäftspartner:
                 td 
                   a(href = "http://localhost:3000/detail/detailGeschaeftspartner?id={{vm.detailPersonDataSource.IdGeschaeftspartner}}"){{vm.detailPersonDataSource.Firmenbez1}}
-              tr(ng-show="vm.detailPersonDataSource.Abteilung")
+              tr
                 td.bold Abteilung:
                 td {{vm.detailPersonDataSource.Abteilung}}
-              tr(ng-show="vm.detailPersonDataSource.Telefon")
+              tr
                 td.bold Telefon:
                 td {{vm.detailPersonDataSource.Telefon}}
-              tr(ng-show="vm.detailPersonDataSource.Mobil")
+              tr
                 td.bold Mobil
                 td {{vm.detailPersonDataSource.Mobil}}
-              tr(ng-show="vm.detailPersonDataSource.Fax")
+              tr
                 td.bold Fax
                 td {{vm.detailPersonDataSource.Fax}}
-              tr(ng-show="vm.detailPersonDataSource.Email")
+              tr
                 td.bold Email
                 td 
                   a(href="mailto:{{vm.detailPersonDataSource.Email}}") {{vm.detailPersonDataSource.Email}}
-              tr(ng-show="vm.detailPersonDataSource.Geburtsdatum")
+              tr
                 td.bold Geburtsdatum
                 td {{vm.detailPersonDataSource.Geburtsdatum}}
               tr

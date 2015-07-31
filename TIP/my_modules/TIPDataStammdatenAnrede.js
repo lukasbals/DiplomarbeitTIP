@@ -8,7 +8,7 @@ var initTableAnrede = function () {
 var loadAnrede = function () {
     console.log("In TIPDataStammdatenAnrede -- loadAnrede");
     var date = new Date();
-    request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Anrede", function (error, response, body) {
+    request.get("http://10.20.50.53/tip/" + "api/DM360/Stammdaten/Anrede", function (error, response, body) {
         var data = JSON.parse(body);
         TIPDatabase.getDB().serialize(function () {
             var insertStmt = TIPDatabase.getDB().prepare("insert into anreden_st (code, bezeichnung) values (?, ?)");
