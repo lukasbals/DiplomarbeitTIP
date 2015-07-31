@@ -33,9 +33,10 @@ html
       img#loadIcon(src="/images/loadIcon.gif")
       p loading ...
     div#statusRow.TIPRot
-      div.col-xs-8#logo
-        a(href="/")
-          img(src="/images/logo.png")
+      div.container-fluid
+        div.col-xs-8#logo
+          a(href="/")
+            img(src="/images/logo.png")
       div.col-xs-4.right.loadIcon(ng-show="vm.synchDB")
         span.span loading 
         img(src="/images/loadIcon.gif")
