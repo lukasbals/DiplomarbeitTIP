@@ -60,18 +60,21 @@ module TIP {
       loadPanel: false,
       columns: [{
         dataField: 'GpNummer',
-        caption: "GP Nummer",
+        caption: "GP-Nr.",
         width: 70,
         allowFiltering: true
       }, {
           dataField: 'Firmenbez1',
+          caption: "Firmenbez. 1",
           allowFiltering: true
         }, {
           dataField: 'Firmenbez2',
+          caption: "Firmenbez. 2",
           width: 200,
           allowFiltering: true
         }, {
           dataField: 'Strasse',
+          caption: "Straße",
           width: 200,
           allowFiltering: true
         }, {

@@ -11,14 +11,14 @@ block content
     div.container(ng-init=" vm.initDetailGeschaeftspartner()")
       div.row
         div.col-md-6
-          h1.center {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
+          //- h1.center {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
           table.table.table-condensed
             tbody
               tr
-                td.bold GP Nummer:
+                td.bold GP-Nr.:
                 td {{vm.detailGeschaeftspartnerDataSource.GpNummer}}
               tr
-                td.bold Kennzeichen
+                td.bold Kennzeichen:
                 td {{vm.detailGeschaeftspartnerDataSource.GpKz}}
               tr
                 td.bold Firmenbez. 1:
@@ -31,7 +31,10 @@ block content
                 td {{vm.detailGeschaeftspartnerDataSource.Firmenbez3}}
               tr
                 td.bold Adresse:
-                td {{vm.detailGeschaeftspartnerDataSource.Land}} - {{vm.detailGeschaeftspartnerDataSource.Plz}} {{vm.detailGeschaeftspartnerDataSource.Ort}} - {{vm.detailGeschaeftspartnerDataSource.Strasse}}
+                td {{vm.detailGeschaeftspartnerDataSource.Strasse}}
+              tr 
+                td
+                td {{vm.detailGeschaeftspartnerDataSource.CodeLand}} - {{vm.detailGeschaeftspartnerDataSource.Plz}} {{vm.detailGeschaeftspartnerDataSource.Ort}}
               tr
                 td.bold Telefon:
                 td {{vm.detailGeschaeftspartnerDataSource.Telefon}}
@@ -50,5 +53,5 @@ block content
                 td
                 td
         div.col-md-6
-          h1.center Personen
+          //- h1.center Personen
           div(dx-data-grid="vm.gridPersonInGP")
