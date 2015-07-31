@@ -36,20 +36,20 @@ html
       p loading ...
     div#statusRow.TIPRot
       div.container-fluid
-        div.col-xs-8#logo
+        div.col-xs-10#logo
           a(href="/")
             img(src="/images/logo.png")
-      div.col-xs-4.right.loadIcon(ng-show="vm.synchDB")
-        div(class="sk-cube-grid")
-          div(class="sk-cube sk-cube1")
-          div(class="sk-cube sk-cube2")
-          div(class="sk-cube sk-cube3")
-          div(class="sk-cube sk-cube4")
-          div(class="sk-cube sk-cube5")
-          div(class="sk-cube sk-cube6")
-          div(class="sk-cube sk-cube7")
-          div(class="sk-cube sk-cube8")
-          div(class="sk-cube sk-cube9")
+        div.col-xs-2.right.loadIcon
+          div(class="sk-cube-grid")
+            div(class="sk-cube sk-cube1")
+            div(class="sk-cube sk-cube2")
+            div(class="sk-cube sk-cube3")
+            div(class="sk-cube sk-cube4")
+            div(class="sk-cube sk-cube5")
+            div(class="sk-cube sk-cube6")
+            div(class="sk-cube sk-cube7")
+            div(class="sk-cube sk-cube8")
+            div(class="sk-cube sk-cube9")
     div.row#navBarRow
       div.col-xs-2.redButtonDiv
         a(href="/geschaeftspartner")
@@ -70,3 +70,4 @@ html
       div.col-xs-2.redButtonDiv
         button.btn
     block content
+//- (ng-show="vm.synchDB")
