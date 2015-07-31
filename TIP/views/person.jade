@@ -2,5 +2,12 @@ extends layout
 
 block content
   div(ng-controller="PersonCtrl")
+<<<<<<< HEAD
     div.container
+=======
+    div#pathBarRow
+      p#path.TIPRot
+        span.pathObject Personen
+    div.container-fluid#gridContent
+>>>>>>> origin/master
       div(ng-init="vm.initPerson()", dx-data-grid="vm.gridPerson")
