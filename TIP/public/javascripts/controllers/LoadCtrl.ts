@@ -3,21 +3,23 @@ module TIP {
     constructor(private my: LoadService) {
 
     }
-/*
+    /*synchDB: boolean = false;
+    state: string = document.readyState;
+    setInterval = (() => {
+      if(state == "loading"){
+        this.synchDB = true;
+      }else{
+        this.synchDB = false;
+      }
+    }, 1000)*/
+
+    /*vm.start = () => {
+
+    }*/
+
     loadIndicator: boolean = false;
 
-    vm.$on("LOAD", function(){
-      vm.loadIndicator = true;
-    })
-
-    vm.$emit("LOAD")*/
-
-
-
-    //loadIndicator: boolean=true;
-    synchDB: boolean = false;
     synchButton() {
-      this.synchDB = true;
       this.my.synchDB()
         .success((): void=> {
         console.log("success");

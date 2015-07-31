@@ -3,10 +3,9 @@ var TIP;
     var LoadViewModel = (function () {
         function LoadViewModel(my) {
             this.my = my;
-            this.synchDB = false;
+            this.loadIndicator = false;
         }
         LoadViewModel.prototype.synchButton = function () {
-            this.synchDB = true;
             this.my.synchDB()
                 .success(function () {
                 console.log("success");
