@@ -31,10 +31,10 @@ html
 
   body(ng-app="tip", ng-controller="LoadCtrl")
     div#statusRow.TIPRot
-      div.col-xs-1#logo
-        a(href="/")
-          img(src="/images/logo.png")
-      div.col-xs-10
+      div.container-fluid
+        div.col-xs-1#logo
+          a(href="/")
+            img(src="/images/logo.png")
         div.col-xs-2.redButtonDiv
           a(href="/geschaeftspartner")
             button.btn Geschäftspartner
@@ -42,23 +42,20 @@ html
           a(href="/person")
             button.btn Personen
         div.col-xs-2.redButtonDiv
-          button.btn
+          button.btn Luca
         div.col-xs-2.redButtonDiv
-          button.btn
+          button.btn Sebastian
         div.col-xs-2.redButtonDiv
-          button.btn
-        div.col-xs-2.redButtonDiv
-          button.btn
-      div.col-xs-1.right#loadIcon
-        div(class="sk-cube-grid")
-          div(class="sk-cube sk-cube1")
-          div(class="sk-cube sk-cube2")
-          div(class="sk-cube sk-cube3")
-          div(class="sk-cube sk-cube4")
-          div(class="sk-cube sk-cube5")
-          div(class="sk-cube sk-cube6")
-          div(class="sk-cube sk-cube7")
-          div(class="sk-cube sk-cube8")
-          div(class="sk-cube sk-cube9")
+          button.btn Dreier
+        div.col-xs-1.right#loadIcon
+          div(class="sk-cube-grid")
+            div(class="sk-cube sk-cube1")
+            div(class="sk-cube sk-cube2")
+            div(class="sk-cube sk-cube3")
+            div(class="sk-cube sk-cube4")
+            div(class="sk-cube sk-cube5")
+            div(class="sk-cube sk-cube6")
+            div(class="sk-cube sk-cube7")
+            div(class="sk-cube sk-cube8")
+            div(class="sk-cube sk-cube9")
     block content
-//- (ng-show="vm.synchDB")

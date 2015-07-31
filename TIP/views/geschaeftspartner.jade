@@ -2,5 +2,5 @@ extends layout
 
 block content
   div(ng-controller="GeschaeftspartnerCtrl")
-    div.container-fluid
+    div.container-fluid.contentContainer
       div(ng-init="vm.initGeschaeftspartner()", dx-data-grid="vm.gridGeschaeftspartner")
