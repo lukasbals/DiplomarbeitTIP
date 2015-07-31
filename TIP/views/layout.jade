@@ -28,6 +28,8 @@ html
     script(src="/javascripts/controllers/LoadCtrl.js")
     
     link(rel='stylesheet', href='/stylesheets/css/style.css')
+    link(rel='stylesheet', href='/stylesheets/css/loadingStyle.css')
+
   body(ng-app="tip", ng-controller="LoadCtrl")
     div#loadIndicator(ng-show="vm.loadIndicator")
       img#loadIcon(src="/images/loadIcon.gif")
@@ -38,8 +40,16 @@ html
           a(href="/")
             img(src="/images/logo.png")
       div.col-xs-4.right.loadIcon(ng-show="vm.synchDB")
-        span.span loading 
-        img(src="/images/loadIcon.gif")
+        div(class="sk-cube-grid")
+          div(class="sk-cube sk-cube1")
+          div(class="sk-cube sk-cube2")
+          div(class="sk-cube sk-cube3")
+          div(class="sk-cube sk-cube4")
+          div(class="sk-cube sk-cube5")
+          div(class="sk-cube sk-cube6")
+          div(class="sk-cube sk-cube7")
+          div(class="sk-cube sk-cube8")
+          div(class="sk-cube sk-cube9")
     div.row#navBarRow
       div.col-xs-2.redButtonDiv
         a(href="/geschaeftspartner")
