@@ -48,7 +48,7 @@ module TIP {
     }
 
     gridPerson: any = {
-      //loadPanel: false,
+      loadPanel: false,
       columns: [{
         dataField: 'CodeAnrede',
         caption: "Anrede",

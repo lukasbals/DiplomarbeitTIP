@@ -16,6 +16,7 @@ var TIP;
             };
             this.dataSourcePerson = null;
             this.gridPerson = {
+                loadPanel: false,
                 columns: [{
                         dataField: 'CodeAnrede',
                         caption: "Anrede",
