@@ -3,6 +3,8 @@ module TIP {
     constructor(private geschaeftspartner: GeschaeftspartnerService) {
 
     }
+    loadIndicator: boolean = false;
+
     //
     // Detail Page
     //
@@ -16,6 +18,7 @@ module TIP {
         .success((data): void => {
         //console.log(data[0]);
         this.detailGeschaeftspartnerDataSource = data[0];
+        this.loadIndicator = true;
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.");

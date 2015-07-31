@@ -3,6 +3,7 @@ var TIP;
     var GeschaeftspartnerViewModel = (function () {
         function GeschaeftspartnerViewModel(geschaeftspartner) {
             this.geschaeftspartner = geschaeftspartner;
+            this.loadIndicator = false;
             this.detailGeschaeftspartnerDataSource = null;
             this.detailPersonDataSourceInGP = null;
             this.getParameter = function (theParameter) {
@@ -92,6 +93,7 @@ var TIP;
             this.geschaeftspartner.getDetailGeschaeftspartner(id)
                 .success(function (data) {
                 _this.detailGeschaeftspartnerDataSource = data[0];
+                _this.loadIndicator = true;
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");

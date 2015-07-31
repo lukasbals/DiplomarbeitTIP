@@ -3,13 +3,24 @@ module TIP {
     constructor(private my: LoadService) {
 
     }
+/*
+    loadIndicator: boolean = false;
+
+    vm.$on("LOAD", function(){
+      vm.loadIndicator = true;
+    })
+
+    vm.$emit("LOAD")*/
+
+
+
     //loadIndicator: boolean=true;
     synchDB: boolean = false;
     synchButton() {
       this.synchDB = true;
       this.my.synchDB()
         .success((): void=> {
-          console.log("success");
+        console.log("success");
       })
         .error((): void=> {
         alert("Fehler beim Synchronisieren der Datenbanken");
