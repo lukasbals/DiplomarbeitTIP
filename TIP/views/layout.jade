@@ -30,9 +30,6 @@ html
     link(rel='stylesheet', href='/stylesheets/css/style.css')
 
   body(ng-app="tip", ng-controller="LoadCtrl")
-    div#loadIndicator(ng-show="vm.loadIndicator")
-      img#loadIcon(src="/images/loadIcon.gif")
-      p loading ...
     div#statusRow.TIPRot
       div.col-xs-1#logo
         a(href="/")
@@ -67,6 +64,5 @@ html
           div(class="sk-cube sk-cube7")
           div(class="sk-cube sk-cube8")
           div(class="sk-cube sk-cube9")
-      
     block content
 //- (ng-show="vm.synchDB")

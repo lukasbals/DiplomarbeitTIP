@@ -9,12 +9,6 @@
   height: @height;
 }
 
-//mixin to set values for padding
-.padding-left-right(@left, @right) {
-  padding-left: @left;
-  padding-right: @right;
-}
-
 //defines the font of the buttons
 .whiteBoldFont {
   color: #fff;
@@ -36,24 +30,8 @@
 tr {
   z-index: -1;
 }
-.dx-datagrid:hover{
+.dx-datagrid:hover {
   cursor: pointer;
-}
-#loadIcon {
-  width: 200px;
-  height: 200px;
-}
-#loadIndicator {
-  color: @TIPRot;
-  text-align: center;
-  padding-top: 15%;
-  width: 200px;
-  opacity: 0.9;
-  margin-top: -70px;
-  z-index: 1;
-  position: fixed;
-  background-color: white;
-  .width-and-height;
 }
 body {
   font-size: 14px;
@@ -78,7 +56,8 @@ a:hover {
   z-index: 1;
   opacity: 0.9;
   background-color: @lightgrey;
-  margin-top: -15px;
+
+  //margin-top: -15px;
   position: fixed;
   .width-and-height(100%,50px);
   border-bottom-style: solid;
@@ -87,6 +66,7 @@ a:hover {
 }
 #logo {
   margin-top: 7px;
+  text-align: left;
 }
 #logo img {
   .width-and-height(36px, 36px);
@@ -96,7 +76,8 @@ a:hover {
   font-size: 12px;
 }
 .redButtonDiv {
-  height: 40px;
+  height: 30px;
+  margin-top: 10px;
 }
 .btn {
   background-color: @TIPRot;
@@ -132,7 +113,6 @@ a:hover {
 #loading-bar .bar {
   background: #e4071c;
 }
-
-#gridContent{
+#gridContent {
   margin-top: 7px;
 }
