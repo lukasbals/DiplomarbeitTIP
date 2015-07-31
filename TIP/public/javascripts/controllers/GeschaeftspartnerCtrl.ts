@@ -3,7 +3,6 @@ module TIP {
     constructor(private geschaeftspartner: GeschaeftspartnerService) {
 
     }
-    loadIndicator: boolean;
 
     //
     // Detail Page
@@ -13,14 +12,13 @@ module TIP {
     detailGeschaeftspartnerDataSource: JSON = null;
     detailPersonDataSourceInGP: JSON = null;
     initDetailGeschaeftspartner() {
-      this.loadIndicator = true;
       var id: number = this.getParameter("id");
       this.geschaeftspartner.getDetailGeschaeftspartner(id)
         .success((data): void => {
         //console.log(data[0]);
         this.detailGeschaeftspartnerDataSource = data[0];
 
-        this.loadIndicator = false;
+
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.");
@@ -49,11 +47,9 @@ module TIP {
     //
     dataSourceGeschaeftspartner: JSON = null;
     initGeschaeftspartner() {
-      this.loadIndicator=true;
       this.geschaeftspartner.getGeschaeftspartner()
         .success((data): void => {
         this.dataSourceGeschaeftspartner = data;
-        this.loadIndicator = false;
       })
         .error((data): void => {
         console.log("Keine Geschaeeftspartner bekommen.");
@@ -61,7 +57,7 @@ module TIP {
     }
 
     gridGeschaeftspartner: any = {
-      //loadPanel: false,
+      loadPanel: false,
       columns: [{
         dataField: 'GpNummer',
         caption: "Nummer",

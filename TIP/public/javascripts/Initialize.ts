@@ -9,5 +9,6 @@ module TIP {
     .module("tip", ["ngSanitize", "dx", "angular-loading-bar"])
     .config(['cfpLoadingBarProvider', (cfpLoadingBarProvider) => {
     cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.latencyThreshold = 5;
   }]);
 }

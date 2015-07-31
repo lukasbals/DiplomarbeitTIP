@@ -17,6 +17,7 @@ var TIP;
             };
             this.dataSourceGeschaeftspartner = null;
             this.gridGeschaeftspartner = {
+                loadPanel: false,
                 columns: [{
                         dataField: 'GpNummer',
                         caption: "Nummer",
@@ -88,12 +89,10 @@ var TIP;
         }
         GeschaeftspartnerViewModel.prototype.initDetailGeschaeftspartner = function () {
             var _this = this;
-            this.loadIndicator = true;
             var id = this.getParameter("id");
             this.geschaeftspartner.getDetailGeschaeftspartner(id)
                 .success(function (data) {
                 _this.detailGeschaeftspartnerDataSource = data[0];
-                _this.loadIndicator = false;
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");
@@ -107,11 +106,9 @@ var TIP;
         };
         GeschaeftspartnerViewModel.prototype.initGeschaeftspartner = function () {
             var _this = this;
-            this.loadIndicator = true;
             this.geschaeftspartner.getGeschaeftspartner()
                 .success(function (data) {
                 _this.dataSourceGeschaeftspartner = data;
-                _this.loadIndicator = false;
             })
                 .error(function (data) {
                 console.log("Keine Geschaeeftspartner bekommen.");
