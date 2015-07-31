@@ -10,8 +10,8 @@
   height: 33%;
   background-color: #e4071c;
   float: left;
-  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+  -webkit-animation: sk-cubeGridScaleDelay 1.6s infinite ease-in-out;
+  animation: sk-cubeGridScaleDelay 1.6s infinite ease-in-out;
 }
 .sk-cube-grid .sk-cube1 {
   -webkit-animation-delay: 0.2s;
