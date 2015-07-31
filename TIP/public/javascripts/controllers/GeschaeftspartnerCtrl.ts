@@ -60,7 +60,7 @@ module TIP {
       loadPanel: false,
       columns: [{
         dataField: 'GpNummer',
-        caption: "Nummer",
+        caption: "GP Nummer",
         width: 70,
         allowFiltering: true
       }, {
