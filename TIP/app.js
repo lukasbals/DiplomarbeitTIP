@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/devextreme", express.static(path.join(__dirname, 'devextreme')));
 app.use("/angular", express.static(path.join(__dirname, 'node_modules/angular')));
 app.use("/angular-sanitize", express.static(path.join(__dirname, 'node_modules/angular-sanitize')));
+app.use("/angular-loading-bar", express.static(path.join(__dirname, 'node_modules/angular-loading-bar/build')));
 app.use("/jquery", express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use('/', routes);
 app.use('/api', api);

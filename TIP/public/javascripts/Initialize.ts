@@ -6,5 +6,8 @@ module TIP {
   DevExpress.devices.current({ platform: "generic" });
 
   angular
-    .module("tip", ["ngSanitize", "dx"]);
+    .module("tip", ["ngSanitize", "dx", "angular-loading-bar"])
+    .config(['cfpLoadingBarProvider', (cfpLoadingBarProvider) => {
+    cfpLoadingBarProvider.includeSpinner = false;
+  }]);
 }
