@@ -40,8 +40,8 @@ block content
                 td.bold Homepage:
                 td
                   a(href="{{vm.detailGeschaeftspartnerDataSource.Homepage}}" target="_blank") {{vm.detailGeschaeftspartnerDataSource.Homepage}}  
-              tr
-                td
-                td
         div.col-md-6
           div(dx-data-grid="vm.gridPersonInGP")
+      div.row
+        div.col-md-1
+          button.btn(Type="button" onClick="history.go(-1);return true;") Zurück

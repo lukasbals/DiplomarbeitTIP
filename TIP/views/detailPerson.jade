@@ -46,9 +46,6 @@ block content
               tr
                 td.bold Geburtsdatum:
                 td {{vm.detailPersonDataSource.Geburtsdatum}}
-              tr
-                td
-                td
         div.col-md-6
           table.table.table-condensed
             tbody
@@ -84,6 +81,6 @@ block content
                 td.bold Homepage:
                 td
                   a(href="{{vm.detailGeschaeftspartnerDataSourceForPersonForPerson.Homepage}}" target="_blank") {{vm.detailGeschaeftspartnerDataSourceForPerson.Homepage}}  
-              tr
-                td
-                td
+      div.row
+        div.col-md-1
+          button.btn(Type="button" onClick="history.go(-1);return true;") Zurück
