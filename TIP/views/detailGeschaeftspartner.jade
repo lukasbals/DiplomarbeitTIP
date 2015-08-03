@@ -3,9 +3,9 @@ extends layout
 block content
   div(ng-controller="GeschaeftspartnerCtrl")
     div.container-fluid.contentContainer(ng-init=" vm.initDetailGeschaeftspartner()")
+      title {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
       div.row
         div.col-md-6
-          //- h1.center {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
           table.table.table-condensed
             tbody
               tr
@@ -25,10 +25,7 @@ block content
                 td {{vm.detailGeschaeftspartnerDataSource.Firmenbez3}}
               tr
                 td.bold Adresse:
-                td {{vm.detailGeschaeftspartnerDataSource.Strasse}}
-              tr 
-                td
-                td {{vm.detailGeschaeftspartnerDataSource.CodeLand}} - {{vm.detailGeschaeftspartnerDataSource.Plz}} {{vm.detailGeschaeftspartnerDataSource.Ort}}
+                td {{vm.detailGeschaeftspartnerDataSource.Strasse}}<br>{{vm.detailGeschaeftspartnerDataSource.Land}} - {{vm.detailGeschaeftspartnerDataSource.Plz}} {{vm.detailGeschaeftspartnerDataSource.Ort}}
               tr
                 td.bold Telefon:
                 td {{vm.detailGeschaeftspartnerDataSource.Telefon}}
@@ -47,5 +44,4 @@ block content
                 td
                 td
         div.col-md-6
-          //- h1.center Personen
           div(dx-data-grid="vm.gridPersonInGP")

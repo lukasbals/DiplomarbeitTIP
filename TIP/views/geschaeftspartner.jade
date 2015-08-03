@@ -3,4 +3,5 @@ extends layout
 block content
   div(ng-controller="GeschaeftspartnerCtrl")
     div.container-fluid.contentContainer
+      title Geschäftspartner
       div(ng-init="vm.initGeschaeftspartner()", dx-data-grid="vm.gridGeschaeftspartner")

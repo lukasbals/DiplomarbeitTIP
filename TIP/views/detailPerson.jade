@@ -3,9 +3,9 @@ extends layout
 block content
   div(ng-controller="PersonCtrl")
     div.container-fluid.contentContainer(ng-init="vm.initDetailPerson()")
+      title {{vm.detailPersonDataSource.Nachname}}
       div.row
-        div.col-xs-2
-        div.col-xs-8
+        div.col-md-6
           table.table.table-condensed
             tbody
               tr
@@ -46,6 +46,44 @@ block content
               tr
                 td.bold Geburtsdatum:
                 td {{vm.detailPersonDataSource.Geburtsdatum}}
+              tr
+                td
+                td
+        div.col-md-6
+          table.table.table-condensed
+            tbody
+              tr
+                td.bold GP-Nr.:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.GpNummer}}
+              tr
+                td.bold Kennzeichen:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.GpKz}}
+              tr
+                td.bold Firmenbez. 1:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.Firmenbez1}}
+              tr
+                td.bold Firmenbez. 2:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.Firmenbez2}}
+              tr
+                td.bold Firmenbez. 3:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.Firmenbez3}}
+              tr
+                td.bold Adresse:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.Strasse}}<br>{{vm.detailGeschaeftspartnerDataSourceForPerson.Land}} - {{vm.detailGeschaeftspartnerDataSourceForPerson.Plz}} {{vm.detailGeschaeftspartnerDataSourceForPerson.Ort}}
+              tr
+                td.bold Telefon:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.Telefon}}
+              tr
+                td.bold Fax:
+                td {{vm.detailGeschaeftspartnerDataSourceForPerson.Fax}}
+              tr
+                td.bold Email:
+                td 
+                  a(href="mailto:{{vm.detailGeschaeftspartnerDataSourceForPerson.Email}}") {{vm.detailGeschaeftspartnerDataSourceForPerson.Email}}
+              tr
+                td.bold Homepage:
+                td
+                  a(href="{{vm.detailGeschaeftspartnerDataSourceForPersonForPerson.Homepage}}" target="_blank") {{vm.detailGeschaeftspartnerDataSourceForPerson.Homepage}}  
               tr
                 td
                 td

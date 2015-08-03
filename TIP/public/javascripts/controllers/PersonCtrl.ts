@@ -9,16 +9,25 @@ module TIP {
 
     // detail-page person
     detailPersonDataSource: JSON = null;
+    detailGeschaeftspartnerDataSourceForPerson: JSON = null;
     initDetailPerson() {
       var id: number = this.getParameter("id");
       /*alert(id + table)*/
       this.person.getDetailPerson(id)
         .success((data): void => {
         this.detailPersonDataSource = data[0];
-        //console.log(this.detailPersonDataSource);
+        console.log(this.detailPersonDataSource);
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.")
+      });
+      this.person.getDetailGeschaeftspartnerForPerson(id)
+        .success((data): void => {
+        console.log(data[0]);
+        this.detailGeschaeftspartnerDataSourceForPerson = data[0];
+      })
+        .error((data): void => {
+        console.log("Keine DetailDaten bekommen.");
       });
     }
 

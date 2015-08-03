@@ -20,6 +20,11 @@ router.post('/getDetailGeschaeftspartner', function(req, res) {
   TIPDataStammdatenGeschaeftspartner.getDetailGeschaeftspartner(id, res);
 });
 
+router.post('/getDetailGeschaeftspartnerForPerson', function(req, res) {
+  var id: number = req.body.id;
+  TIPDataStammdatenGeschaeftspartner.getDetailGeschaeftspartnerForPerson(id, res);
+});
+
 //
 // Personen
 //

@@ -117,16 +117,58 @@ var getDetailGeschaeftspartner = (id: number, res): void => {
         Fax: row.fax,
         Email: row.email,
         Homepage: row.homepage,
-        Land:row.land,
+        Land: row.land,
         GpKz: row.gpkz,
         IsEU: row.is_eu
-        })
+      })
     }, (): void=> {
-      res.json(result);
+        res.json(result);
       });
+  });
+}
+
+//
+// get Detail for geschaeftspartner_st table
+//
+var getDetailGeschaeftspartnerForPerson = (id: number, res): void => {
+  var result: TIP.IGpDetailModel[] = new Array();
+  TIPDatabase.getDB().serialize((): void => {
+
+    TIPDatabase.getDB().get("select id_geschaeftspartner from personen_st where id = ?", [id], (err, row): void => {
+      var idGP: number = row.id_geschaeftspartner;
+      //console.log(res.id_geschaeftspartner);
+      //console.log(idGP);
+
+      TIPDatabase.getDB().each("select g.code_land, g.code_gpkz, g.id, l.bezeichnung as land, gp.bezeichnung as gpkz, g.email, g.fax, g.firmenbez_1, g.firmenbez_2, g.firmenbez_3, g.gp_nummer, g.homepage, l.is_eu, g.ort, g.plz, g.strasse, g.telefon from geschaeftspartner_st g left join laender_st l on g.code_land = l.code left join gpkz_st gp on g.code_gpkz = gp.code where g.id =?;", [idGP], (err, row): void => {
+        //console.log(req);
+        result.push({
+          Id: row.id,
+          GpNummer: row.gp_nummer,
+          CodeGpKz: row.code_gpkz,
+          Firmenbez1: row.firmenbez_1,
+          Firmenbez2: row.firmenbez_2,
+          Firmenbez3: row.firmenbez_3,
+          Strasse: row.strasse,
+          CodeLand: row.code_land,
+          Plz: row.plz,
+          Ort: row.ort,
+          Telefon: row.telefon,
+          Fax: row.fax,
+          Email: row.email,
+          Homepage: row.homepage,
+          Land: row.land,
+          GpKz: row.gpkz,
+          IsEU: row.is_eu
+        });
+      }, (): void=> {
+          res.json(result);
+          //console.log(result);
+        });
+    });
   });
 }
 module.exports.initTableGeschaeftspartner = initTableGeschaeftspartner;
 module.exports.loadGeschaeftspartner = loadGeschaeftspartner;
 module.exports.getJsonGeschaeftspartner = getJsonGeschaeftspartner;
 module.exports.getDetailGeschaeftspartner = getDetailGeschaeftspartner;
+module.exports.getDetailGeschaeftspartnerForPerson = getDetailGeschaeftspartnerForPerson;

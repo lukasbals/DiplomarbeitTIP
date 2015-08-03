@@ -16,6 +16,12 @@ module TIP {
       var json: JSON = JSON.parse(string);
       return this.$http.post("http://localhost:3000/api/getDetailPerson", json);
     }
+
+    getDetailGeschaeftspartnerForPerson(id: number): ng.IHttpPromise<any> {
+      var string: string = '{"id": "' + id + '"}';
+      var json: JSON = JSON.parse(string);
+      return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartnerForPerson", json);
+    }
   }
 
   angular

@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 router.get('/', function (req, res, next) {
-    res.render('index', { title: 'M.I.E.' });
+    res.render('index');
 });
 router.get("/geschaeftspartner", function (req, res, next) {
-    res.render("geschaeftspartner", { title: "Geschäftspartner" });
+    res.render("geschaeftspartner");
 });
 router.get("/person", function (req, res, next) {
-    res.render("person", { title: "Personen" });
+    res.render("person");
 });
 module.exports = router;

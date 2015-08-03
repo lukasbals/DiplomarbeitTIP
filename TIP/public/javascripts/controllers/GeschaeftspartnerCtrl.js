@@ -20,7 +20,6 @@ var TIP;
                 loadPanel: false,
                 columns: [{
                         dataField: 'GpNummer',
-                        caption: "GP Nummer",
                         caption: "GP-Nr.",
                         width: 70,
                         allowFiltering: true

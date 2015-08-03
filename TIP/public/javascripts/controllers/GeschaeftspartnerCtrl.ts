@@ -17,8 +17,6 @@ module TIP {
         .success((data): void => {
         //console.log(data[0]);
         this.detailGeschaeftspartnerDataSource = data[0];
-
-
       })
         .error((data): void => {
         console.log("Keine DetailDaten bekommen.");

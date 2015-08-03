@@ -12,6 +12,11 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/getDetailPerson", json);
         };
+        PersonService.prototype.getDetailGeschaeftspartnerForPerson = function (id) {
+            var string = '{"id": "' + id + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartnerForPerson", json);
+        };
         return PersonService;
     })();
     TIP.PersonService = PersonService;

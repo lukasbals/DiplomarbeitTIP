@@ -4,6 +4,7 @@ var TIP;
         function PersonViewModel(person) {
             this.person = person;
             this.detailPersonDataSource = null;
+            this.detailGeschaeftspartnerDataSourceForPerson = null;
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -71,6 +72,15 @@ var TIP;
             this.person.getDetailPerson(id)
                 .success(function (data) {
                 _this.detailPersonDataSource = data[0];
+                console.log(_this.detailPersonDataSource);
+            })
+                .error(function (data) {
+                console.log("Keine DetailDaten bekommen.");
+            });
+            this.person.getDetailGeschaeftspartnerForPerson(id)
+                .success(function (data) {
+                console.log(data[0]);
+                _this.detailGeschaeftspartnerDataSourceForPerson = data[0];
             })
                 .error(function (data) {
                 console.log("Keine DetailDaten bekommen.");

@@ -3,4 +3,5 @@ extends layout
 block content
   div(ng-controller="PersonCtrl")
     div.container-fluid.contentContainer
+      title Personen
       div(ng-init="vm.initPerson()", dx-data-grid="vm.gridPerson")

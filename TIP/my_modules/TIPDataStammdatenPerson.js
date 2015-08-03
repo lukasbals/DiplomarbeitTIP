@@ -76,7 +76,6 @@ var getJsonPerson = function (res) {
 var getDetailPerson = function (id, res) {
     var result = new Array();
     TIPDatabase.getDB().serialize(function () {
-        console.log("IN");
         TIPDatabase.getDB().each("select p.id, p.id_geschaeftspartner, p.code_gruppe, p.code_anrede, p.titel, p.vorname, p.nachname, p.abteilung, p.telefon, p.mobil, p.fax, p.email, p.geburtsdatum, pg.bezeichnung as gruppe, a.bezeichnung as anrede, gp.firmenbez_1 from personen_st p left join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id left join personengruppen_st pg on p.code_gruppe = pg.code left join anreden_st a on p.code_anrede = a.code where p.id =?;", [id], function (err, row) {
             result.push({
                 Id: row.id,
@@ -104,7 +103,6 @@ var getDetailPerson = function (id, res) {
 var getDetailPersonForGP = function (id, res) {
     var result = new Array();
     TIPDatabase.getDB().serialize(function () {
-        console.log("IN");
         TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st where id_geschaeftspartner =?;", [id], function (err, row) {
             result.push({
                 Id: row.id,
