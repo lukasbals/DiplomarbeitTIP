@@ -20,7 +20,7 @@
 tr {
   z-index: -1;
 }
-.dx-datagrid{
+.dx-datagrid {
   margin-bottom: 20px;
 }
 .dx-datagrid:hover {
@@ -75,14 +75,14 @@ a:hover {
   background-color: @TIPRot;
   .width-and-height;
   .whiteBoldFont !important;
-  border-style:hidden;
+  border-style: hidden;
   box-shadow: 0 0 5px @grey, -0px -0px 5px @grey;
   outline: none !important;
   &:hover {
     background-color: @TIPRot;
     .width-and-height;
     .whiteBoldFont !important;
-    border-style:hidden;
+    border-style: hidden;
     box-shadow: 0 0 10px @grey, -0px -0px 10px @grey;
     outline: none !important;
   }
@@ -90,7 +90,7 @@ a:hover {
     background-color: @TIPRot;
     .width-and-height;
     .whiteBoldFont !important;
-    border-style:hidden;
+    border-style: hidden;
     box-shadow: 0 0 15px @grey, -0px -0px 15px @grey;
     outline: none !important;
   }
@@ -105,28 +105,38 @@ a:hover {
 #loading-bar .bar {
   background: #e4071c;
 }
-.contentContainer{
+.contentContainer {
   margin-top: 67px;
 }
-small{
-  color:grey;
+small {
+  color: grey;
 }
-.col-xs-2{
-  width:14%;
+
+.col-xs-2 {
+  width: 14%;
 }
-.portraitmode{
+.col-xs-4 {
+  width: 28%;
+}
+.portraitmode {
   display: none;
+}
+@media screen and (max-width:995px) {
+  .col-xs-1{
+    width: 7%;
+  }
+  #statusRow {
+    height: 90px;
+  }
+  .portraitmode {
+    display: inline;
+  }
+  .landscapemode {
+    display: none;
+  }
 
 }
-@media screen and (max-width:995px){
-  #statusRow{
-    height:90px;
-  }
-  .portraitmode{
-    display:inline;
-    margin-top: 50px;
-  }
-  .landscapemode{
-    display:none;
-  }
+.headerRow {
+  padding-left: 10px;
+  padding-right: 10px;
 }

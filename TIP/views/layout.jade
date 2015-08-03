@@ -31,35 +31,69 @@ html
   body(ng-app="tip", ng-controller="LoadCtrl")
     div#statusRow.TIPRot
       div.container-fluid
-        div.col-xs-1#logo
-          a(href="/")
-            img(src="/images/logo.png")
-        div.col-xs-2.redButtonDiv
-          a(href="/geschaeftspartner")
-            button.btn Geschäftspartner
-        div.col-xs-2.redButtonDiv
-          a(href="/person")
-            button.btn Personen
-        div.col-xs-2.redButtonDiv
-          button.btn Luca
         div.landscapemode
-          div.col-xs-2.redButtonDiv
-            button.btn Sebastian
-          div.col-xs-2.redButtonDiv
-            button.btn Dreier
-          div.col-xs-2.redButtonDiv
-            button.btn Dreier
-        div.col-xs-1.right#loadIcon
-          div(class="sk-cube-grid")
-            div(class="sk-cube sk-cube1")
-            div(class="sk-cube sk-cube2")
-            div(class="sk-cube sk-cube3")
-            div(class="sk-cube sk-cube4")
-            div(class="sk-cube sk-cube5")
-            div(class="sk-cube sk-cube6")
-            div(class="sk-cube sk-cube7")
-            div(class="sk-cube sk-cube8")
-            div(class="sk-cube sk-cube9")
+          div.row.headerRow
+            div.col-xs-1#logo
+              a(href="/")
+                img(src="/images/logo.png")
+            div.col-xs-2.redButtonDiv
+              a(href="/geschaeftspartner")
+                button.btn Geschäftspartner
+            div.col-xs-2.redButtonDiv
+              a(href="/person")
+                button.btn Personen
+            div.col-xs-2.redButtonDiv
+              button.btn Luca
+            div.col-xs-2.redButtonDiv
+              button.btn Sebastian
+            div.col-xs-2.redButtonDiv
+              button.btn Dreier
+            div.col-xs-2.redButtonDiv
+              button.btn Dreier
+            div.col-xs-1.right#loadIcon
+              div(class="sk-cube-grid")
+                div(class="sk-cube sk-cube1")
+                div(class="sk-cube sk-cube2")
+                div(class="sk-cube sk-cube3")
+                div(class="sk-cube sk-cube4")
+                div(class="sk-cube sk-cube5")
+                div(class="sk-cube sk-cube6")
+                div(class="sk-cube sk-cube7")
+                div(class="sk-cube sk-cube8")
+                div(class="sk-cube sk-cube9")
         div.portraitmode
-          
+          div.row.headerRow
+            div.col-xs-1#logo
+              a(href="/")
+                img(src="/images/logo.png")
+            div.col-xs-4.redButtonDiv
+              a(href="/geschaeftspartner")
+                button.btn Geschäftspartner
+            div.col-xs-4.redButtonDiv
+              a(href="/person")
+                button.btn Personen
+            div.col-xs-4.redButtonDiv
+              button.btn Luca
+            div.col-xs-1.right#loadIcon
+              div(class="sk-cube-grid")
+                div(class="sk-cube sk-cube1")
+                div(class="sk-cube sk-cube2")
+                div(class="sk-cube sk-cube3")
+                div(class="sk-cube sk-cube4")
+                div(class="sk-cube sk-cube5")
+                div(class="sk-cube sk-cube6")
+                div(class="sk-cube sk-cube7")
+                div(class="sk-cube sk-cube8")
+                div(class="sk-cube sk-cube9")
+          div.row.headerRow#secondRow
+            div.col-xs-1
+            div.col-xs-4.redButtonDiv
+              a(href="/geschaeftspartner")
+                button.btn Geschäftspartner
+            div.col-xs-4.redButtonDiv
+              a(href="/person")
+                button.btn Personen
+            div.col-xs-4.redButtonDiv
+              button.btn Luca
+            div.col-xs-1
     block content
