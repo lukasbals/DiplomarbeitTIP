@@ -36,9 +36,6 @@ a {
 a:hover {
   color: @TIPRot;
 }
-.right {
-  text-align: right;
-}
 .TIPRot {
   color: @TIPRot;
 }
@@ -57,15 +54,12 @@ a:hover {
   border-bottom-width: 1px;
 }
 #logo {
-  margin-top: 7px;
-  text-align: left;
-  margin-left: -15px;
+  position: absolute;
+  top: 7px;
+  left: 0;
 }
 #logo img {
   .width-and-height(36px, 36px);
-}
-#loadIcon {
-  padding-top: 13px;
 }
 .redButtonDiv {
   height: 30px;
@@ -111,22 +105,41 @@ a:hover {
 small {
   color: grey;
 }
-
-.col-xs-2 {
-  width: 14%;
+#navTable {
+  width: 100%;
 }
-.col-xs-4 {
-  width: 28%;
+.navTd {
+  width: 16.6666666666666%;
+}
+.navTd div{
+  width: 100%;
 }
 .portraitmode {
   display: none;
 }
+.sk-cube-grid {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  left: calc(~'100% - 36px');
+}
 @media screen and (max-width:995px) {
-  .col-xs-1{
-    width: 7%;
+  .navTd{
+    width:33.33333333333%;
+  }
+  .contentContainer {
+    margin-top: 107px;
   }
   #statusRow {
     height: 90px;
+    margin-top: -107px;
+  }
+  #logo {
+    top: 27px;
+  }
+  .sk-cube-grid {
+    top: 32px;
   }
   .portraitmode {
     display: inline;
@@ -134,7 +147,6 @@ small {
   .landscapemode {
     display: none;
   }
-
 }
 .headerRow {
   padding-left: 10px;
