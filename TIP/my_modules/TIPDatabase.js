@@ -1,5 +1,6 @@
 var sqlite3 = require("sqlite3");
 var db = new sqlite3.Database("db.sql");
+var TIPInterface = require("../my_modules/TIPInterface");
 var getDB = function () {
     return db;
 };

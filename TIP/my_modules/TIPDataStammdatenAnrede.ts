@@ -1,8 +1,10 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPInterface = require("../my_modules/TIPInterface");
 
 // makes anreden_st TABLE
 var initTableAnrede = (): void => {
+  TIPInterface.syncCount = TIPInterface.syncCount + 1;
   TIPDatabase.getDB().run("create table if not exists anreden_st (" +
     "code string(10) primary key, " +
     "bezeichnung string(80))");
@@ -40,9 +42,11 @@ var loadAnrede = (): void => {
 
         if (insertCount > 0) {
           insertStmt.finalize();
+          TIPInterface.syncCount = TIPInterface.syncCount - 1;
         }
         if (updateCount > 0) {
           updateStmt.finalize();
+          TIPInterface.syncCount = TIPInterface.syncCount - 1;
         }
       });
     });

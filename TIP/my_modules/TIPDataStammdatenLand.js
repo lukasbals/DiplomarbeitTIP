@@ -1,6 +1,8 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPInterface = require("../my_modules/TIPInterface");
 var initTableLand = function () {
+    TIPInterface.syncCount = TIPInterface.syncCount + 1;
     TIPDatabase.getDB().run("create table if not exists laender_st (" +
         "code string(3) primary key, " +
         "bezeichnung string(30), " +

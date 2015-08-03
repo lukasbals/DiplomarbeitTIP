@@ -28,6 +28,7 @@
         "./my_modules/TIPDataStammdatenPerson.ts",
         "./my_modules/TIPDataStammdatenPersonengruppe.ts",
         "./my_modules/TIPDatabase.ts",
+        "./my_modules/TIPInterface.ts",
         "./my_modules/TIPModels.ts",
         "./public/javascripts/Initialize.ts",
         "./public/javascripts/controllers/GeschaeftspartnerCtrl.ts",

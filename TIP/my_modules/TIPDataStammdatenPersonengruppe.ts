@@ -1,8 +1,10 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPInterface = require("../my_modules/TIPInterface");
 
 // makes personengruppe_st TABLE
 var initTablePersonengruppe = (): void => {
+  TIPInterface.syncCount = TIPInterface.syncCount + 1;
   TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
     "code string(2) primary key, " +
     "bezeichnung string(50))");

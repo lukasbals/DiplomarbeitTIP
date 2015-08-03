@@ -1,6 +1,8 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPInterface = require("../my_modules/TIPInterface");
 var initTableGeschaeftspartner = function () {
+    TIPInterface.syncCount = TIPInterface.syncCount + 1;
     TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
         "id integer primary key asc, " +
         "gp_nummer integer, " +
@@ -41,9 +43,11 @@ var loadGeschaeftspartner = function () {
             });
             if (insertCount > 0) {
                 insertStmt.finalize();
+                TIPInterface.syncCount = TIPInterface.syncCount - 1;
             }
             if (updateCount > 0) {
                 updateStmt.finalize();
+                TIPInterface.syncCount = TIPInterface.syncCount - 1;
             }
         });
     });

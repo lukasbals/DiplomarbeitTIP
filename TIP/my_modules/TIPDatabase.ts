@@ -1,6 +1,7 @@
 import sqlite3 = require("sqlite3");
 //set connection to node.js Database
 var db = new sqlite3.Database("db.sql");
+var TIPInterface = require("../my_modules/TIPInterface");
 
 var getDB = (): sqlite3.Database => {
   return db;
@@ -20,7 +21,6 @@ var setSYNCH = (tblName: string, date: Date): void => {
       } else {
         db.run("insert into synch_st (tabelle, ltzt_synch_start) values (?, ?)", [tblName, d]);
       }
-
     });
   });
 }

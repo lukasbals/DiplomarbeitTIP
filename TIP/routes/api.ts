@@ -6,6 +6,7 @@ var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
+var TIPInterface = require("../my_modules/TIPInterface");
 
 var router = express.Router();
 //
@@ -75,30 +76,15 @@ router.get("/getJsonPersonengruppe", (req, res): void => {
 // synch data from TIP server to node database
 //
 router.get("/synchDB", (req, res): void => {
-  TIPDataStammdatenGpKz.initTableGpKz();
-  TIPDataStammdatenGpKz.loadGpKz();
-  //setInterval(() => TIPDataStammdatenGpKz.loadGpKz(), 30000);
-
-  TIPDataStammdatenLand.initTableLand();
-  TIPDataStammdatenLand.loadLand();
-  //setInterval(() => TIPDataStammdatenLand.loadLand(), 30000);
-
-  TIPDataStammdatenAnrede.initTableAnrede();
-  TIPDataStammdatenAnrede.loadAnrede();
-  //setInterval(() => TIPDataStammdatenAnrede.loadAnrede(), 30000);
-
-  TIPDataStammdatenPersonengruppe.initTablePersonengruppe();
-  TIPDataStammdatenPersonengruppe.loadPersonengruppe();
-  //setInterval(() => TIPDataStammdatenPersonengruppe.loadPersonengruppe(), 30000);
-
-  TIPDataStammdatenGeschaeftspartner.initTableGeschaeftspartner();
-  TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner();
-  //setInterval(() => TIPDataStammdatenGeschaeftspartner.loadGeschaeftspartner(), 30000);
-
-  TIPDataStammdatenPerson.initTablePerson();
-  TIPDataStammdatenPerson.loadPerson();
-  //setInterval(() => TIPDataStammdatenPerson.loadPerson(), 5000);
+  TIPInterface.doSync();
   res.send("done.");
+});
+
+/*setInterval(() => console.log(TIPInterface.isSyncActive()), 1000);*/
+
+router.get("/isSyncActive", (req, res): void => {
+  TIPInterface.isSyncActive();
+  //res.send("done.");
 });
 
 module.exports = router;

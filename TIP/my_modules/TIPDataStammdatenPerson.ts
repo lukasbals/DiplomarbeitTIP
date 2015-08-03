@@ -1,8 +1,10 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPInterface = require("../my_modules/TIPInterface");
 
 // makes personen_st TABLE
 var initTablePerson = (): void => {
+  TIPInterface.syncCount = TIPInterface.syncCount + 1;
   TIPDatabase.getDB().run("create table if not exists personen_st ( " +
     "id int primary key, " +
     "id_geschaeftspartner int, " +
@@ -51,9 +53,11 @@ var loadPerson = (): void => {
 
         if (insertCount > 0) {
           insertStmt.finalize();
+          TIPInterface.syncCount = TIPInterface.syncCount - 1;
         }
         if (updateCount > 0) {
           updateStmt.finalize();
+          TIPInterface.syncCount = TIPInterface.syncCount - 1;
         }
       });
     });
@@ -153,4 +157,4 @@ module.exports.initTablePerson = initTablePerson;
 module.exports.loadPerson = loadPerson;
 module.exports.getJsonPerson = getJsonPerson;
 module.exports.getDetailPerson = getDetailPerson;
-module.exports.getDetailPersonForGP= getDetailPersonForGP;
+module.exports.getDetailPersonForGP = getDetailPersonForGP;

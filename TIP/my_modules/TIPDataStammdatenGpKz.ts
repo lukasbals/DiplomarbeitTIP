@@ -1,8 +1,10 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPInterface = require("../my_modules/TIPInterface");
 
 // makes gpkz_st TABLE
 var initTableGpKz = (): void => {
+  TIPInterface.syncCount = TIPInterface.syncCount + 1;
   TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
     "code string(2) primary key, " +
     "bezeichnung string(30))");
