@@ -4,12 +4,12 @@ module TIP {
     isSyncActive(): boolean;
   }
 
-  // export interface ITIPArray {
-  //   TIPDataStammdatenAnrede: void;
-  //   TIPDataStammdatenGeschaeftspartner: void;
-  //   TIPDataStammdatenGpKz: void;
-  //   TIPDataStammdatenLand: void;
-  //   TIPDataStammdatenPerson: void;
-  //   TIPDataStammdatenPersonengruppe: void;
-  // }
+  export interface ITIPArray {
+    TIPDataStammdatenAnrede: void;
+    TIPDataStammdatenGeschaeftspartner: void;
+    TIPDataStammdatenGpKz: void;
+    TIPDataStammdatenLand: void;
+    TIPDataStammdatenPerson: void;
+    TIPDataStammdatenPersonengruppe: void;
+  }
 }

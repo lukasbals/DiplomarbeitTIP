@@ -1,29 +1,14 @@
 var sqlite3 = require("sqlite3");
 var db = new sqlite3.Database("db.sql");
-var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
-var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
-var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
-var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
-var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
-var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var TIP;
 (function (TIP) {
-    var TIPDatabase = (function () {
-        function TIPDatabase() {
-            this.tipDataArray = [
-                TIPDataStammdatenAnrede,
-                TIPDataStammdatenGeschaeftspartner,
-                TIPDataStammdatenGpKz,
-                TIPDataStammdatenLand,
-                TIPDataStammdatenPerson,
-                TIPDataStammdatenPersonengruppe
-            ];
+    var TIPDatabaseImpl = (function () {
+        function TIPDatabaseImpl() {
         }
-        TIPDatabase.prototype.getDB = function () {
-            console.log("HELLO");
+        TIPDatabaseImpl.prototype.getDB = function () {
             return db;
         };
-        TIPDatabase.prototype.setSYNCH = function (tblName, date) {
+        TIPDatabaseImpl.prototype.setSYNCH = function (tblName, date) {
             db.serialize(function () {
                 db.run("create table if not exists synch_st (tabelle string(50), ltzt_synch_start TIMESTAMP)");
                 var d = date.toLocaleString();
@@ -37,30 +22,8 @@ var TIP;
                 });
             });
         };
-        TIPDatabase.prototype.doSync = function () {
-            this.tipDataArray.forEach(function (e) {
-                e.doSync();
-            });
-        };
-        TIPDatabase.prototype.isSyncActive = function () {
-            var count = 0;
-            this.tipDataArray.forEach(function (e) {
-                if (e.isSyncActive() == true) {
-                    count++;
-                }
-                else {
-                    count--;
-                }
-            });
-            if (count == 0) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        };
-        return TIPDatabase;
+        return TIPDatabaseImpl;
     })();
-    TIP.TIPDatabase = TIPDatabase;
+    TIP.TIPDatabaseImpl = TIPDatabaseImpl;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDatabase();
+module.exports = new TIP.TIPDatabaseImpl();

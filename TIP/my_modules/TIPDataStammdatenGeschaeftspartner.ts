@@ -1,13 +1,12 @@
 var request = require("request");
-var TIPDatabase = require("../my_modules/TIPDatabase");
+var TIPDatabase = require("./TIPDatabase");
 
-module TIP  {
-  export class TIPDataStammdatenGeschaeftspartner implements ITIPData  {
-    doSync(): void  {
+module TIP {
+  export class TIPDataStammdatenGeschaeftspartner implements ITIPData {
+    doSync(): void {
       this.initTableGeschaeftspartner();
       this.loadGeschaeftspartner();
     }
-
     isSyncActive(): boolean {
       return null;
     }
@@ -77,32 +76,36 @@ module TIP  {
     }
 
     getJsonGeschaeftspartner(res): void {
-      console.log("IN");
       var result: TIP.IGpStammModel[] = new Array();
-
-      TIPDatabase.getDB().serialize((): void => {
-        TIPDatabase.getDB().each("select id, gp_nummer, code_gpkz, firmenbez_1, firmenbez_2, firmenbez_3, strasse, code_land, plz, ort, telefon, fax, email, homepage from geschaeftspartner_st;", (error, row): void => {
-          result.push({
-            Id: row.id,
-            GpNummer: row.gp_nummer,
-            CodeGpKz: row.code_gpkz,
-            Firmenbez1: row.firmenbez_1,
-            Firmenbez2: row.firmenbez_2,
-            Firmenbez3: row.firmenbez_3,
-            Strasse: row.strasse,
-            CodeLand: row.code_land,
-            Plz: row.plz,
-            Ort: row.ort,
-            Telefon: row.telefon,
-            Fax: row.fax,
-            Email: row.email,
-            Homepage: row.homepage
-          });
-        }, (): void => {
-            //console.log(result);
-            res.json(result);
-          });
-      });
+      try {
+        TIPDatabase.getDB().serialize((): void => {
+          TIPDatabase.getDB().each("select id, gp_nummer, code_gpkz, firmenbez_1, firmenbez_2, firmenbez_3, strasse, code_land, plz, ort, telefon, fax, email, homepage from geschaeftspartner_st;", (error, row): void => {
+            result.push({
+              Id: row.id,
+              GpNummer: row.gp_nummer,
+              CodeGpKz: row.code_gpkz,
+              Firmenbez1: row.firmenbez_1,
+              Firmenbez2: row.firmenbez_2,
+              Firmenbez3: row.firmenbez_3,
+              Strasse: row.strasse,
+              CodeLand: row.code_land,
+              Plz: row.plz,
+              Ort: row.ort,
+              Telefon: row.telefon,
+              Fax: row.fax,
+              Email: row.email,
+              Homepage: row.homepage
+            });
+          }, (): void => {
+              //console.log(result);
+              res.json(result);
+            });
+        });
+      } catch (e) {
+        console.log(e);
+        console.log(TIPDatabase);
+        console.log(TIPDatabase.getDB);
+      }
     }
 
     //

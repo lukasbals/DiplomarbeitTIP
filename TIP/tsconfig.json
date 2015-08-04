@@ -30,6 +30,7 @@
         "./my_modules/TIPDatabase.ts",
         "./my_modules/TIPInterface.ts",
         "./my_modules/TIPModels.ts",
+        "./my_modules/TIPSync.ts",
         "./public/javascripts/Initialize.ts",
         "./public/javascripts/controllers/GeschaeftspartnerCtrl.ts",
         "./public/javascripts/controllers/LoadCtrl.ts",

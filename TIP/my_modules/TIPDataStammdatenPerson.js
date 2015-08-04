@@ -64,7 +64,7 @@ var TIP;
         TIPDataStammdatenPerson.prototype.getJsonPerson = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
-                TIPDatabase.TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st;", function (error, row) {
+                TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st;", function (error, row) {
                     result.push({
                         Id: row.id,
                         IdGeschaeftspartner: row.id_geschaeftspartner,

@@ -77,7 +77,7 @@ module TIP {
     getJsonPerson(res): void {
       var result: TIP.IPersonModel[] = new Array();
       TIPDatabase.getDB().serialize((): void => {
-        TIPDatabase.TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st;", (error, row): void => {
+        TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st;", (error, row): void => {
           result.push({
             Id: row.id,
             IdGeschaeftspartner: row.id_geschaeftspartner,
