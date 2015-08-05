@@ -68,7 +68,7 @@ module TIP {
     }
 
     getJsonGpKz(res): void {
-      var result = new Array();
+      var result: TIP.IGpKzModel[] = new Array();
       TIPDatabase.getDB().serialize((): void => {
         TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", (error, row): void => {
           result.push({

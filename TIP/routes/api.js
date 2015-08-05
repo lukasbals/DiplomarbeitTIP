@@ -41,6 +41,9 @@ router.get("/getJsonAnrede", function (req, res) {
 router.get("/getJsonPersonengruppe", function (req, res) {
     TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
+router.get("/getJsonBesuchPlan", function (req, res) {
+    TIPDataVertreterBesuchPlan.getJsonBesuchPlan(res);
+});
 router.get("/synchDB", function (req, res) {
     TIPSync.doSync();
     res.send("done.");

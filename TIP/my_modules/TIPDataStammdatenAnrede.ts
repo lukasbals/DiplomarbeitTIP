@@ -67,7 +67,7 @@ module TIP {
     }
 
     getJsonAnrede(res): void {
-      var result = new Array();
+      var result: TIP.IAnredeModel[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
         TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", (error, row): void => {

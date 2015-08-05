@@ -32,7 +32,7 @@ var TIP;
                     var insertCount = 0;
                     var updateCount = 0;
                     data.forEach(function (val) {
-                        TIPDatabase.getDB().get("select count(*) as result from berichte where client_id = ?", [val.Code], function (error, row) {
+                        TIPDatabase.getDB().get("select count(*) as result from berichte where client_id = ?", [val.ClientId], function (error, row) {
                             if (row.result > 0) {
                                 updateCount++;
                                 updateStmt.run([val.Id, val.ClientIdBesuch, val.IdBesuch, val.Titel, val.Text, val.ClientId]);

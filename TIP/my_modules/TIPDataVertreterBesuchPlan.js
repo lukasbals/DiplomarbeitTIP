@@ -34,7 +34,7 @@ var TIP;
                     var insertCount = 0;
                     var updateCount = 0;
                     data.forEach(function (val) {
-                        TIPDatabase.getDB().get("select count(*) as result from besuche_plan where client_id = ?", [val.Code], function (error, row) {
+                        TIPDatabase.getDB().get("select count(*) as result from besuche_plan where client_id = ?", [val.ClientId], function (error, row) {
                             if (row.result > 0) {
                                 updateCount++;
                                 updateStmt.run([val.Id, val.ClientIdTourPlan, val.IdTourPlan, val.IdGeschaeftspartner, val.Von, val.Bis, val.Status, val.ClientId]);
@@ -59,6 +59,16 @@ var TIP;
         };
         TIPDataVertreterBesuchPlanClass.prototype.isSyncActive = function () {
             return this.isActive;
+        };
+        TIPDataVertreterBesuchPlanClass.prototype.getJsonBesuchPlan = function (res) {
+            var result = new Array();
+            TIPDatabase.getDB().serialize(function () {
+                TIPDatabase.getDB().each("select client_id, id, client_id_tour_plan, id_tour_plan, id_geschaeftspartner, von, bis, status from besuche_plan;", function (error, row) {
+                    result.push({});
+                }, function () {
+                    res.json(result);
+                });
+            });
         };
         return TIPDataVertreterBesuchPlanClass;
     })();

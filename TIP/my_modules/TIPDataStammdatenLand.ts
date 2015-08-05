@@ -68,7 +68,7 @@ module TIP {
     }
 
     getJsonLand(res): void {
-      var result = new Array();
+      var result: TIP.ILandModel[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
         TIPDatabase.getDB().each("select code, bezeichnung, is_eu from laender_st;", (error, row): void => {
@@ -85,6 +85,5 @@ module TIP {
     }
   }
 }
-
 
 module.exports = new TIP.TIPDataStammdatenLandClass();

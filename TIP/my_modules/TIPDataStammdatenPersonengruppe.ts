@@ -67,7 +67,7 @@ module TIP {
     }
 
     getJsonPersonengruppe(res): void {
-      var result = new Array();
+      var result: IPersonengruppeModel[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
         TIPDatabase.getDB().each("select code, bezeichnung from personengruppen_st;", (error, row): void => {
@@ -81,7 +81,6 @@ module TIP {
           });
       });
     }
-
   }
 }
 

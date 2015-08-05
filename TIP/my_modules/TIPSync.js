@@ -7,6 +7,8 @@ var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var TIPDataVertreterBericht = require("../my_modules/TIPDataVertreterBericht");
 var TIPDataVertreterBesuch = require("../my_modules/TIPDataVertreterBesuch");
 var TIPDataVertreterBesuchPlan = require("../my_modules/TIPDataVertreterBesuchPlan");
+var TIPDataVertreterBesuchstyp = require("../my_modules/TIPDataVertreterBesuchstyp");
+var TIPDataVertreterTourPlan = require("../my_modules/TIPDataVertreterTourPlan");
 var TIP;
 (function (TIP) {
     var TIPSync = (function () {
@@ -20,7 +22,9 @@ var TIP;
                 TIPDataStammdatenPersonengruppe,
                 TIPDataVertreterBericht,
                 TIPDataVertreterBesuch,
-                TIPDataVertreterBesuchPlan
+                TIPDataVertreterBesuchPlan,
+                TIPDataVertreterBesuchstyp,
+                TIPDataVertreterTourPlan
             ];
         }
         TIPSync.prototype.doSync = function () {

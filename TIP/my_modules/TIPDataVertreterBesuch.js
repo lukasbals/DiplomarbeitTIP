@@ -34,7 +34,7 @@ var TIP;
                     var insertCount = 0;
                     var updateCount = 0;
                     data.forEach(function (val) {
-                        TIPDatabase.getDB().get("select count(*) as result from besuche where client_id = ?", [val.Code], function (error, row) {
+                        TIPDatabase.getDB().get("select count(*) as result from besuche where client_id = ?", [val.ClientId], function (error, row) {
                             if (row.result > 0) {
                                 updateCount++;
                                 updateStmt.run([val.Id, val.IdBesuchstyp, val.ClientIdBesuchPlan, val.IdBesuchPlan, val.IdGeschaeftspartner, val.Von, val.Bis, val.ClientId]);

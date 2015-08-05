@@ -73,6 +73,13 @@ router.get("/getJsonPersonengruppe", (req, res): void => {
 });
 
 //
+// BesuchPlan
+//
+router.get("/getJsonBesuchPlan", (req, res): void => {
+  TIPDataVertreterBesuchPlan.getJsonBesuchPlan(res);
+});
+
+//
 // synch data from TIP server to node database
 //
 router.get("/synchDB", (req, res): void => {

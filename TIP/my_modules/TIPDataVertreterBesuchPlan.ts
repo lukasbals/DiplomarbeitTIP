@@ -32,7 +32,7 @@ module TIP {
       request.get(
         "http://10.20.50.53/tip/" + "api/DM360/Vertreter/BesuchPlan",
         (error, response, body: string): void => {
-          var data: TIP.IAnredeModel[] = JSON.parse(body);
+          var data: TIP.IBesuchPlanModel[] = JSON.parse(body);
 
           TIPDatabase.getDB().serialize((): void => {
             var insertStmt = TIPDatabase.getDB().prepare("insert into besuche_plan (client_id, id, client_id_tour_plan, id_tour_plan, id_geschaeftspartner, von, bis, status) values (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -42,7 +42,7 @@ module TIP {
             var updateCount = 0;
 
             data.forEach((val: any): void => {
-              TIPDatabase.getDB().get("select count(*) as result from besuche_plan where client_id = ?", [val.Code], (error, row): void => {
+              TIPDatabase.getDB().get("select count(*) as result from besuche_plan where client_id = ?", [val.ClientId], (error, row): void => {
                 if (row.result > 0) {
                   updateCount++;
                   updateStmt.run([val.Id, val.ClientIdTourPlan, val.IdTourPlan, val.IdGeschaeftspartner, val.Von, val.Bis, val.Status, val.ClientId]);
@@ -70,6 +70,22 @@ module TIP {
 
     isSyncActive(): boolean {
       return this.isActive;
+    }
+
+    getJsonBesuchPlan(res): void  {
+      var result: TIP.IBesuchPlanModel = new Array();
+
+      TIPDatabase.getDB().serialize((): void => {
+        TIPDatabase.getDB().each("select client_id, id, client_id_tour_plan, id_tour_plan, id_geschaeftspartner, von, bis, status from besuche_plan;", (error, row): void => {
+          result.push({
+            
+          });
+        }, (): void => {
+            //console.log(result);
+            res.json(result);
+          });
+      });
+
     }
 
   }

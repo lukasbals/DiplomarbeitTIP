@@ -32,7 +32,7 @@ module TIP {
       request.get(
         "http://10.20.50.53/tip/" + "api/DM360/Vertreter/Besuch",
         (error, response, body: string): void => {
-          var data: TIP.IAnredeModel[] = JSON.parse(body);
+          var data: TIP.IBesuchModel[] = JSON.parse(body);
 
           TIPDatabase.getDB().serialize((): void => {
             var insertStmt = TIPDatabase.getDB().prepare("insert into besuche (client_id, id, id_besuchstyp, client_id_besuch_plan, id_besuch_plan, id_geschaeftspartner, von, bis) values (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -42,7 +42,7 @@ module TIP {
             var updateCount = 0;
 
             data.forEach((val: any): void => {
-              TIPDatabase.getDB().get("select count(*) as result from besuche where client_id = ?", [val.Code], (error, row): void => {
+              TIPDatabase.getDB().get("select count(*) as result from besuche where client_id = ?", [val.ClientId], (error, row): void => {
                 if (row.result > 0) {
                   updateCount++;
                   updateStmt.run([val.Id, val.IdBesuchstyp, val.ClientIdBesuchPlan, val.IdBesuchPlan, val.IdGeschaeftspartner, val.Von, val.Bis, val.ClientId]);

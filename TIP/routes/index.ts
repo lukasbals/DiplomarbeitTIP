@@ -14,4 +14,8 @@ router.get("/person", function(req, res, next) {
   res.render("person");
 });
 
+router.get("/besuch", function(req, res, next) {
+  res.render("besuch");
+});
+
 module.exports = router;

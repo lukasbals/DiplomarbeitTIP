@@ -90,4 +90,48 @@ module TIP {
     Anrede: string;
     Firmenbez1: string;
   }
+
+  export interface IBerichtModel {
+    ClientId: number;
+    ClientIdBesuch: number;
+    Id: number;
+    IdBesuch: number;
+    Text: string;
+    Titel: string;
+  }
+
+  export interface IBesuchModel {
+    ClientId: number;
+    Id: number;
+    IdBesuchstyp: number;
+    ClientIdBesuchPlan: number;
+    IdBesuchPlan: number;
+    IdGeschaeftspartner: number;
+    Von: Date;
+    Bis: Date;
+  }
+
+  export interface IBesuchPlanModel {
+    ClientId: number;
+    Id: number;
+    IdTourPlan: number;
+    ClientIdTourPlan: number;
+    IdGeschaeftspartner: number;
+    Von: Date;
+    Bis: Date;
+    Status: number;
+  }
+
+  export interface IBesuchstypModel {
+    Id: number;
+    Bezeichnung: string;
+  }
+
+  export interface ITourPlanModel {
+    ClientId: number;
+    Id: number;
+    TourName: string;
+    Von: Date;
+    Bis: Date;
+  }
 }
