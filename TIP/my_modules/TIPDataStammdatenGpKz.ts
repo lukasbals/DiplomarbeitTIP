@@ -6,19 +6,19 @@ module TIP {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
-      this.initTableGpKz();
-      this.loadGpKz();
+      this.initTable();
+      this.loadTable();
     }
 
     // makes gpkz_st TABLE
-    initTableGpKz(): void {
+    initTable(): void {
       TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
         "code string(2) primary key, " +
         "bezeichnung string(30))");
     }
 
     // loads the TABLE gpkz_st from the TIP Server
-    loadGpKz(): void {
+    loadTable(): void {
       console.log("In TIPDataStammdatenGpKz -- loadGpKz");
       var date = new Date();
 

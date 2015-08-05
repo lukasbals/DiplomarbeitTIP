@@ -8,10 +8,10 @@ var TIP;
         }
         TIPDataStammdatenPersonClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTablePerson();
-            this.loadPerson();
+            this.initTable();
+            this.loadTable();
         };
-        TIPDataStammdatenPersonClass.prototype.initTablePerson = function () {
+        TIPDataStammdatenPersonClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists personen_st ( " +
                 "id int primary key, " +
                 "id_geschaeftspartner int, " +
@@ -27,7 +27,7 @@ var TIP;
                 "email string(50), " +
                 "geburtsdatum date)");
         };
-        TIPDataStammdatenPersonClass.prototype.loadPerson = function () {
+        TIPDataStammdatenPersonClass.prototype.loadTable = function () {
             var _this = this;
             console.log("In TIPDataStammdatenPerson -- loadPerson");
             var date = new Date();

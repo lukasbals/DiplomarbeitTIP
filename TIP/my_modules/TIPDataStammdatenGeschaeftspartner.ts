@@ -6,13 +6,12 @@ module TIP {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
-      this.initTableGeschaeftspartner();
-      this.loadGeschaeftspartner();
+      this.initTable();
+      this.loadTable();
     }
 
-
     // makes geschaeftspartner_st TABLE
-    initTableGeschaeftspartner(): void {
+    initTable(): void {
       TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
         "id integer primary key asc, " +
         "gp_nummer integer, " +
@@ -31,7 +30,7 @@ module TIP {
     }
 
     // loads the TABLE geschaeftspartner_st from the TIP Server
-    loadGeschaeftspartner(): void {
+    loadTable(): void {
       console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
       var date = new Date();
 

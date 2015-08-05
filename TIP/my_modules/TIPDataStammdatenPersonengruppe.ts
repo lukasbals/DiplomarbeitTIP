@@ -6,19 +6,19 @@ module TIP {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
-      this.initTablePersonengruppe();
-      this.loadPersonengruppe();
+      this.initTable();
+      this.loadTable();
     }
 
     // makes personengruppe_st TABLE
-    initTablePersonengruppe(): void {
+    initTable(): void {
       TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
         "code string(2) primary key, " +
         "bezeichnung string(50))");
     }
 
     // loads the TABLE personengruppen_st from the TIP Server
-    loadPersonengruppe(): void {
+    loadTable(): void {
       console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
       var date = new Date();
 

@@ -8,16 +8,16 @@ var TIP;
         }
         TIPDataStammdatenLandClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTableLand();
-            this.loadLand();
+            this.initTable();
+            this.loadTable();
         };
-        TIPDataStammdatenLandClass.prototype.initTableLand = function () {
+        TIPDataStammdatenLandClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists laender_st (" +
                 "code string(3) primary key, " +
                 "bezeichnung string(30), " +
                 "is_eu boolean)");
         };
-        TIPDataStammdatenLandClass.prototype.loadLand = function () {
+        TIPDataStammdatenLandClass.prototype.loadTable = function () {
             var _this = this;
             console.log("In TIPDataStammdatenLand -- loadLand");
             var date = new Date();

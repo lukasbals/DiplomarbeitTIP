@@ -8,15 +8,15 @@ var TIP;
         }
         TIPDataVertreterClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTableAnrede();
-            this.loadAnrede();
+            this.initTable();
+            this.loadTable();
         };
-        TIPDataVertreterClass.prototype.initTableAnrede = function () {
+        TIPDataVertreterClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists anreden_st (" +
                 "code string(10) primary key, " +
                 "bezeichnung string(80))");
         };
-        TIPDataVertreterClass.prototype.loadAnrede = function () {
+        TIPDataVertreterClass.prototype.loadTable = function () {
             var _this = this;
             console.log("In TIPDataStammdatenAnrede -- loadAnrede");
             var date = new Date();

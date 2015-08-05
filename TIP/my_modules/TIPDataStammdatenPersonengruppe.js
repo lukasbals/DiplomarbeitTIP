@@ -8,15 +8,15 @@ var TIP;
         }
         TIPDataStammdatenPersonengruppeClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTablePersonengruppe();
-            this.loadPersonengruppe();
+            this.initTable();
+            this.loadTable();
         };
-        TIPDataStammdatenPersonengruppeClass.prototype.initTablePersonengruppe = function () {
+        TIPDataStammdatenPersonengruppeClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
                 "code string(2) primary key, " +
                 "bezeichnung string(50))");
         };
-        TIPDataStammdatenPersonengruppeClass.prototype.loadPersonengruppe = function () {
+        TIPDataStammdatenPersonengruppeClass.prototype.loadTable = function () {
             var _this = this;
             console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
             var date = new Date();

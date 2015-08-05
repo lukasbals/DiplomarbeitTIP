@@ -8,10 +8,10 @@ var TIP;
         }
         TIPDataStammdatenGeschaeftspartnerClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTableGeschaeftspartner();
-            this.loadGeschaeftspartner();
+            this.initTable();
+            this.loadTable();
         };
-        TIPDataStammdatenGeschaeftspartnerClass.prototype.initTableGeschaeftspartner = function () {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
                 "id integer primary key asc, " +
                 "gp_nummer integer, " +
@@ -28,7 +28,7 @@ var TIP;
                 "email text, " +
                 "homepage text)");
         };
-        TIPDataStammdatenGeschaeftspartnerClass.prototype.loadGeschaeftspartner = function () {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.loadTable = function () {
             var _this = this;
             console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
             var date = new Date();

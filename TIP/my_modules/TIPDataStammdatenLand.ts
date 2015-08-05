@@ -6,12 +6,12 @@ module TIP {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
-      this.initTableLand();
-      this.loadLand();
+      this.initTable();
+      this.loadTable();
     }
 
     // makes laender_st TABLE
-    initTableLand(): void {
+    initTable(): void {
       TIPDatabase.getDB().run("create table if not exists laender_st (" +
         "code string(3) primary key, " +
         "bezeichnung string(30), " +
@@ -19,7 +19,7 @@ module TIP {
     }
 
     // loads the TABLE laender_st from the TIP Server
-    loadLand(): void {
+    loadTable(): void {
       console.log("In TIPDataStammdatenLand -- loadLand");
       var date = new Date();
 

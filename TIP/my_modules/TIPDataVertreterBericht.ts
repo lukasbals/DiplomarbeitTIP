@@ -6,19 +6,19 @@ module TIP {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
-      this.initTableAnrede();
-      this.loadAnrede();
+      this.initTable();
+      this.loadTable();
     }
 
     // makes anreden_st TABLE
-    initTableAnrede(): void {
+    initTable(): void {
       TIPDatabase.getDB().run("create table if not exists anreden_st (" +
         "code string(10) primary key, " +
         "bezeichnung string(80))");
     }
 
     // loads the TABLE anreden_st from the TIP Server
-    loadAnrede(): void {
+    loadTable(): void {
       console.log("In TIPDataStammdatenAnrede -- loadAnrede");
       var date = new Date();
 

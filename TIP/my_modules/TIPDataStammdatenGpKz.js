@@ -8,15 +8,15 @@ var TIP;
         }
         TIPDataStammdatenGpKzClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTableGpKz();
-            this.loadGpKz();
+            this.initTable();
+            this.loadTable();
         };
-        TIPDataStammdatenGpKzClass.prototype.initTableGpKz = function () {
+        TIPDataStammdatenGpKzClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
                 "code string(2) primary key, " +
                 "bezeichnung string(30))");
         };
-        TIPDataStammdatenGpKzClass.prototype.loadGpKz = function () {
+        TIPDataStammdatenGpKzClass.prototype.loadTable = function () {
             var _this = this;
             console.log("In TIPDataStammdatenGpKz -- loadGpKz");
             var date = new Date();
