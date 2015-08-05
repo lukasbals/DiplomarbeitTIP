@@ -73,12 +73,14 @@ module TIP {
     }
 
     getJsonBesuchPlan(res): void  {
-      var result: TIP.IBesuchPlanModel = new Array();
+      var result: TIP.ISchedulerData[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
-        TIPDatabase.getDB().each("select client_id, id, client_id_tour_plan, id_tour_plan, id_geschaeftspartner, von, bis, status from besuche_plan;", (error, row): void => {
+        TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id;", (error, row): void => {
           result.push({
-            
+            text: row.firmenbez_1,
+            startDate: row.von,
+            endDate: row.bis
           });
         }, (): void => {
             //console.log(result);

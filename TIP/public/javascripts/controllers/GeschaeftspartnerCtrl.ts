@@ -9,8 +9,8 @@ module TIP {
     //
 
     // detail-page geschaeftspartner
-    detailGeschaeftspartnerDataSource: JSON = null;
-    detailPersonDataSourceInGP: JSON = null;
+    detailGeschaeftspartnerDataSource: TIP.IGpDetailModel = null;
+    detailPersonDataSourceInGP: TIP.IPersonModel = null;
     initDetailGeschaeftspartner() {
       var id: number = this.getParameter("id");
       this.geschaeftspartner.getDetailGeschaeftspartner(id)
@@ -43,7 +43,7 @@ module TIP {
     //
     // Geschäftspartner Page
     //
-    dataSourceGeschaeftspartner: JSON = null;
+    dataSourceGeschaeftspartner: TIP.IGpStammModel = null;
     initGeschaeftspartner() {
       this.geschaeftspartner.getGeschaeftspartner()
         .success((data): void => {

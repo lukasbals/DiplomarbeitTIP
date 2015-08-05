@@ -134,4 +134,10 @@ module TIP {
     Von: Date;
     Bis: Date;
   }
+
+  export interface ISchedulerData{
+    text: string;
+    startDate: Date;
+    endDate: Date;
+  }
 }

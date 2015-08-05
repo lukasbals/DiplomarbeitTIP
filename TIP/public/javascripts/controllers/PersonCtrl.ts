@@ -8,8 +8,8 @@ module TIP {
     //
 
     // detail-page person
-    detailPersonDataSource: JSON = null;
-    detailGeschaeftspartnerDataSourceForPerson: JSON = null;
+    detailPersonDataSource: TIP.IPersonDetailModel = null;
+    detailGeschaeftspartnerDataSourceForPerson: TIP.IGpDetailModel = null;
     initDetailPerson() {
       var id: number = this.getParameter("id");
       /*alert(id + table)*/
@@ -45,7 +45,7 @@ module TIP {
     //
     // Personen Page
     //
-    dataSourcePerson: JSON = null;
+    dataSourcePerson: TIP.IPersonModel = null;
     initPerson() {
       this.person.getPerson()
         .success((data): void => {
