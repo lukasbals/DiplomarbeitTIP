@@ -2,6 +2,8 @@ module TIP {
   export interface ITIPData {
     doSync(): void;
     isSyncActive(): boolean;
+    initTable(): void;
+    loadTable(): void;
   }
   export interface IAnredeModel {
     Code: string;

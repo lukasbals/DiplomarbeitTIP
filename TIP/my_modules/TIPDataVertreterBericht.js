@@ -2,21 +2,21 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenAnredeClass = (function () {
-        function TIPDataStammdatenAnredeClass() {
+    var TIPDataVertreterClass = (function () {
+        function TIPDataVertreterClass() {
             this.isActive = false;
         }
-        TIPDataStammdatenAnredeClass.prototype.doSync = function () {
+        TIPDataVertreterClass.prototype.doSync = function () {
             this.isActive = true;
-            this.initTable();
-            this.loadTable();
+            this.initTableAnrede();
+            this.loadAnrede();
         };
-        TIPDataStammdatenAnredeClass.prototype.initTable = function () {
+        TIPDataVertreterClass.prototype.initTableAnrede = function () {
             TIPDatabase.getDB().run("create table if not exists anreden_st (" +
                 "code string(10) primary key, " +
                 "bezeichnung string(80))");
         };
-        TIPDataStammdatenAnredeClass.prototype.loadTable = function () {
+        TIPDataVertreterClass.prototype.loadAnrede = function () {
             var _this = this;
             console.log("In TIPDataStammdatenAnrede -- loadAnrede");
             var date = new Date();
@@ -51,10 +51,10 @@ var TIP;
             var tblName = "anreden_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenAnredeClass.prototype.isSyncActive = function () {
+        TIPDataVertreterClass.prototype.isSyncActive = function () {
             return this.isActive;
         };
-        TIPDataStammdatenAnredeClass.prototype.getJsonAnrede = function (res) {
+        TIPDataVertreterClass.prototype.getJsonAnrede = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", function (error, row) {
@@ -67,8 +67,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenAnredeClass;
+        return TIPDataVertreterClass;
     })();
-    TIP.TIPDataStammdatenAnredeClass = TIPDataStammdatenAnredeClass;
+    TIP.TIPDataVertreterClass = TIPDataVertreterClass;
 })(TIP || (TIP = {}));
 module.exports = new TIP.TIPDataStammdatenAnredeClass();

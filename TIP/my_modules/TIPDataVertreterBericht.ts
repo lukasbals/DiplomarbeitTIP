@@ -2,23 +2,23 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 module TIP {
-  export class TIPDataStammdatenAnredeClass implements ITIPData {
+  export class TIPDataVertreterClass implements ITIPData {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
-      this.initTable();
-      this.loadTable();
+      this.initTableAnrede();
+      this.loadAnrede();
     }
 
     // makes anreden_st TABLE
-    initTable(): void {
+    initTableAnrede(): void {
       TIPDatabase.getDB().run("create table if not exists anreden_st (" +
         "code string(10) primary key, " +
         "bezeichnung string(80))");
     }
 
     // loads the TABLE anreden_st from the TIP Server
-    loadTable(): void {
+    loadAnrede(): void {
       console.log("In TIPDataStammdatenAnrede -- loadAnrede");
       var date = new Date();
 
