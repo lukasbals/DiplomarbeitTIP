@@ -2,15 +2,12 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 module TIP {
-  export class TIPDataStammdatenAnrede implements ITIPData {
+  export class TIPDataStammdatenAnredeClass implements ITIPData {
+    isActive: boolean = false;
     doSync(): void {
+      this.isActive = true;
       this.initTableAnrede();
       this.loadAnrede();
-    }
-
-    isSyncActive(): boolean  {
-
-      return null;
     }
 
     // makes anreden_st TABLE
@@ -56,12 +53,17 @@ module TIP {
             if (updateCount > 0) {
               updateStmt.finalize();
             }
+            this.isActive = false;
           });
         });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "anreden_st";
       TIPDatabase.setSYNCH(tblName, date);
+    }
+
+    isSyncActive(): boolean {
+      return this.isActive;
     }
 
     getJsonAnrede(res): void {
@@ -82,4 +84,4 @@ module TIP {
   }
 }
 
-module.exports = new TIP.TIPDataStammdatenAnrede();
+module.exports = new TIP.TIPDataStammdatenAnredeClass();

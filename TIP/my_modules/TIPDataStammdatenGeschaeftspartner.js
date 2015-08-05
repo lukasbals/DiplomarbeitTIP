@@ -2,17 +2,16 @@ var request = require("request");
 var TIPDatabase = require("./TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenGeschaeftspartner = (function () {
-        function TIPDataStammdatenGeschaeftspartner() {
+    var TIPDataStammdatenGeschaeftspartnerClass = (function () {
+        function TIPDataStammdatenGeschaeftspartnerClass() {
+            this.isActive = false;
         }
-        TIPDataStammdatenGeschaeftspartner.prototype.doSync = function () {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.doSync = function () {
+            this.isActive = true;
             this.initTableGeschaeftspartner();
             this.loadGeschaeftspartner();
         };
-        TIPDataStammdatenGeschaeftspartner.prototype.isSyncActive = function () {
-            return null;
-        };
-        TIPDataStammdatenGeschaeftspartner.prototype.initTableGeschaeftspartner = function () {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.initTableGeschaeftspartner = function () {
             TIPDatabase.getDB().run("create table if not exists geschaeftspartner_st ( " +
                 "id integer primary key asc, " +
                 "gp_nummer integer, " +
@@ -29,7 +28,8 @@ var TIP;
                 "email text, " +
                 "homepage text)");
         };
-        TIPDataStammdatenGeschaeftspartner.prototype.loadGeschaeftspartner = function () {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.loadGeschaeftspartner = function () {
+            var _this = this;
             console.log("In TIPDataStammdatenGeschaeftspartner -- loadGeschaeftspartner");
             var date = new Date();
             request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Geschaeftspartner", function (error, response, body) {
@@ -57,12 +57,16 @@ var TIP;
                     if (updateCount > 0) {
                         updateStmt.finalize();
                     }
+                    _this.isActive = false;
                 });
             });
             var tblName = "geschaeftspartner_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenGeschaeftspartner.prototype.getJsonGeschaeftspartner = function (res) {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.isSyncActive = function () {
+            return this.isActive;
+        };
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.getJsonGeschaeftspartner = function (res) {
             var result = new Array();
             try {
                 TIPDatabase.getDB().serialize(function () {
@@ -94,7 +98,7 @@ var TIP;
                 console.log(TIPDatabase.getDB);
             }
         };
-        TIPDataStammdatenGeschaeftspartner.prototype.getDetailGeschaeftspartner = function (id, res) {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.getDetailGeschaeftspartner = function (id, res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select g.code_land, g.code_gpkz, g.id, l.bezeichnung as land, gp.bezeichnung as gpkz, g.email, g.fax, g.firmenbez_1, g.firmenbez_2, g.firmenbez_3, g.gp_nummer, g.homepage, l.is_eu, g.ort, g.plz, g.strasse, g.telefon from geschaeftspartner_st g left join laender_st l on g.code_land = l.code left join gpkz_st gp on g.code_gpkz = gp.code where g.id =?;", [id], function (err, row) {
@@ -122,7 +126,7 @@ var TIP;
                 });
             });
         };
-        TIPDataStammdatenGeschaeftspartner.prototype.getDetailGeschaeftspartnerForPerson = function (id, res) {
+        TIPDataStammdatenGeschaeftspartnerClass.prototype.getDetailGeschaeftspartnerForPerson = function (id, res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().get("select id_geschaeftspartner from personen_st where id = ?", [id], function (err, row) {
@@ -153,8 +157,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenGeschaeftspartner;
+        return TIPDataStammdatenGeschaeftspartnerClass;
     })();
-    TIP.TIPDataStammdatenGeschaeftspartner = TIPDataStammdatenGeschaeftspartner;
+    TIP.TIPDataStammdatenGeschaeftspartnerClass = TIPDataStammdatenGeschaeftspartnerClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataStammdatenGeschaeftspartner();
+module.exports = new TIP.TIPDataStammdatenGeschaeftspartnerClass();

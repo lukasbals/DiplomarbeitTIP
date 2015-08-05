@@ -2,13 +2,13 @@ var sqlite3 = require("sqlite3");
 var db = new sqlite3.Database("db.sql");
 var TIP;
 (function (TIP) {
-    var TIPDatabaseImpl = (function () {
-        function TIPDatabaseImpl() {
+    var TIPDatabaseClass = (function () {
+        function TIPDatabaseClass() {
         }
-        TIPDatabaseImpl.prototype.getDB = function () {
+        TIPDatabaseClass.prototype.getDB = function () {
             return db;
         };
-        TIPDatabaseImpl.prototype.setSYNCH = function (tblName, date) {
+        TIPDatabaseClass.prototype.setSYNCH = function (tblName, date) {
             db.serialize(function () {
                 db.run("create table if not exists synch_st (tabelle string(50), ltzt_synch_start TIMESTAMP)");
                 var d = date.toLocaleString();
@@ -22,8 +22,8 @@ var TIP;
                 });
             });
         };
-        return TIPDatabaseImpl;
+        return TIPDatabaseClass;
     })();
-    TIP.TIPDatabaseImpl = TIPDatabaseImpl;
+    TIP.TIPDatabaseClass = TIPDatabaseClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDatabaseImpl();
+module.exports = new TIP.TIPDatabaseClass();

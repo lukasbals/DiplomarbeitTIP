@@ -2,22 +2,22 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenAnrede = (function () {
-        function TIPDataStammdatenAnrede() {
+    var TIPDataStammdatenAnredeClass = (function () {
+        function TIPDataStammdatenAnredeClass() {
+            this.isActive = false;
         }
-        TIPDataStammdatenAnrede.prototype.doSync = function () {
+        TIPDataStammdatenAnredeClass.prototype.doSync = function () {
+            this.isActive = true;
             this.initTableAnrede();
             this.loadAnrede();
         };
-        TIPDataStammdatenAnrede.prototype.isSyncActive = function () {
-            return null;
-        };
-        TIPDataStammdatenAnrede.prototype.initTableAnrede = function () {
+        TIPDataStammdatenAnredeClass.prototype.initTableAnrede = function () {
             TIPDatabase.getDB().run("create table if not exists anreden_st (" +
                 "code string(10) primary key, " +
                 "bezeichnung string(80))");
         };
-        TIPDataStammdatenAnrede.prototype.loadAnrede = function () {
+        TIPDataStammdatenAnredeClass.prototype.loadAnrede = function () {
+            var _this = this;
             console.log("In TIPDataStammdatenAnrede -- loadAnrede");
             var date = new Date();
             request.get("http://10.20.50.53/tip/" + "api/DM360/Stammdaten/Anrede", function (error, response, body) {
@@ -45,12 +45,16 @@ var TIP;
                     if (updateCount > 0) {
                         updateStmt.finalize();
                     }
+                    _this.isActive = false;
                 });
             });
             var tblName = "anreden_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenAnrede.prototype.getJsonAnrede = function (res) {
+        TIPDataStammdatenAnredeClass.prototype.isSyncActive = function () {
+            return this.isActive;
+        };
+        TIPDataStammdatenAnredeClass.prototype.getJsonAnrede = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", function (error, row) {
@@ -63,8 +67,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenAnrede;
+        return TIPDataStammdatenAnredeClass;
     })();
-    TIP.TIPDataStammdatenAnrede = TIPDataStammdatenAnrede;
+    TIP.TIPDataStammdatenAnredeClass = TIPDataStammdatenAnredeClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataStammdatenAnrede();
+module.exports = new TIP.TIPDataStammdatenAnredeClass();

@@ -2,14 +2,14 @@ var request = require("request");
 var TIPDatabase = require("./TIPDatabase");
 
 module TIP {
-  export class TIPDataStammdatenGeschaeftspartner implements ITIPData {
+  export class TIPDataStammdatenGeschaeftspartnerClass implements ITIPData {
+    isActive: boolean = false;
     doSync(): void {
+      this.isActive = true;
       this.initTableGeschaeftspartner();
       this.loadGeschaeftspartner();
     }
-    isSyncActive(): boolean {
-      return null;
-    }
+
 
     // makes geschaeftspartner_st TABLE
     initTableGeschaeftspartner(): void {
@@ -67,12 +67,17 @@ module TIP {
             if (updateCount > 0) {
               updateStmt.finalize();
             }
+            this.isActive = false;
           });
         });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "geschaeftspartner_st";
       TIPDatabase.setSYNCH(tblName, date);
+    }
+
+    isSyncActive(): boolean {
+      return this.isActive;
     }
 
     getJsonGeschaeftspartner(res): void {
@@ -185,4 +190,4 @@ module TIP {
   }
 }
 
-module.exports = new TIP.TIPDataStammdatenGeschaeftspartner();
+module.exports = new TIP.TIPDataStammdatenGeschaeftspartnerClass();

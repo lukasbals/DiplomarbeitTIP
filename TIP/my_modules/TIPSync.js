@@ -9,23 +9,32 @@ var TIP;
     var TIPSync = (function () {
         function TIPSync() {
             this.tipDataArray = [
-                TIP.TIPDataStammdatenAnrede,
-                TIP.TIPDataStammdatenGeschaeftspartner,
-                TIP.TIPDataStammdatenGpKz,
-                TIP.TIPDataStammdatenLand,
-                TIP.TIPDataStammdatenPerson,
-                TIP.TIPDataStammdatenPersonengruppe
+                TIPDataStammdatenAnrede,
+                TIPDataStammdatenGeschaeftspartner,
+                TIPDataStammdatenGpKz,
+                TIPDataStammdatenLand,
+                TIPDataStammdatenPerson,
+                TIPDataStammdatenPersonengruppe
             ];
         }
         TIPSync.prototype.doSync = function () {
             this.tipDataArray.forEach(function (e) {
+                e.doSync();
             });
         };
         TIPSync.prototype.isSyncActive = function () {
             var count = 0;
             this.tipDataArray.forEach(function (e) {
+                if (e.isSyncActive() == true) {
+                    count++;
+                }
             });
-            return null;
+            if (count == 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
         };
         return TIPSync;
     })();

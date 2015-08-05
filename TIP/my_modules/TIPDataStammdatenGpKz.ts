@@ -2,15 +2,14 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 module TIP {
-  export class TIPDataStammdatenGpKz implements ITIPData  {
+  export class TIPDataStammdatenGpKzClass implements ITIPData  {
+    isActive: boolean = false;
     doSync(): void {
+      this.isActive = true;
       this.initTableGpKz();
       this.loadGpKz();
     }
 
-    isSyncActive(): boolean {
-      return null;
-    }
     // makes gpkz_st TABLE
     initTableGpKz(): void {
       TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
@@ -55,12 +54,17 @@ module TIP {
             if (updateCount > 0) {
               updateStmt.finalize();
             }
+            this.isActive = false;
           });
         });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "gpkz_st";
       TIPDatabase.setSYNCH(tblName, date);
+    }
+
+    isSyncActive(): boolean {
+      return this.isActive;
     }
 
     getJsonGpKz(res): void {
@@ -81,4 +85,4 @@ module TIP {
 }
 
 
-module.exports = new TIP.TIPDataStammdatenGpKz();
+module.exports = new TIP.TIPDataStammdatenGpKzClass();

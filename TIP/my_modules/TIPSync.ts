@@ -6,7 +6,7 @@ var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPe
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 
 module TIP {
-  export class TIPSync implements ITIPData{
+  export class TIPSync implements ITIPData {
     tipDataArray = [
       TIPDataStammdatenAnrede,
       TIPDataStammdatenGeschaeftspartner,
@@ -18,16 +18,23 @@ module TIP {
 
     doSync(): void {
       this.tipDataArray.forEach((e): void => {
-        //e.doSync();
+        e.doSync();
       });
     }
 
     isSyncActive(): boolean {
       var count: number = 0;
       this.tipDataArray.forEach((e): void => {
-
+        if (e.isSyncActive() == true) {
+          count++;
+        }
+        //console.log("in der schleife" + e.isSyncActive());
       });
-      return null;
+      if (count == 0) {
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 }

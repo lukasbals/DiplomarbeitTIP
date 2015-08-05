@@ -1,9 +1,10 @@
 import sqlite3 = require("sqlite3");
+
 //set connection to node.js Database
 var db = new sqlite3.Database("db.sql")
 
 module TIP {
-  export class TIPDatabaseImpl {
+  export class TIPDatabaseClass {
     getDB(): sqlite3.Database {
       return db;
     }
@@ -28,4 +29,4 @@ module TIP {
   }
 }
 
-module.exports = new TIP.TIPDatabaseImpl();
+module.exports = new TIP.TIPDatabaseClass();

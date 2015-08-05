@@ -2,22 +2,22 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenGpKz = (function () {
-        function TIPDataStammdatenGpKz() {
+    var TIPDataStammdatenGpKzClass = (function () {
+        function TIPDataStammdatenGpKzClass() {
+            this.isActive = false;
         }
-        TIPDataStammdatenGpKz.prototype.doSync = function () {
+        TIPDataStammdatenGpKzClass.prototype.doSync = function () {
+            this.isActive = true;
             this.initTableGpKz();
             this.loadGpKz();
         };
-        TIPDataStammdatenGpKz.prototype.isSyncActive = function () {
-            return null;
-        };
-        TIPDataStammdatenGpKz.prototype.initTableGpKz = function () {
+        TIPDataStammdatenGpKzClass.prototype.initTableGpKz = function () {
             TIPDatabase.getDB().run("create table if not exists gpkz_st (" +
                 "code string(2) primary key, " +
                 "bezeichnung string(30))");
         };
-        TIPDataStammdatenGpKz.prototype.loadGpKz = function () {
+        TIPDataStammdatenGpKzClass.prototype.loadGpKz = function () {
+            var _this = this;
             console.log("In TIPDataStammdatenGpKz -- loadGpKz");
             var date = new Date();
             request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/GpKz", function (error, response, body) {
@@ -45,12 +45,16 @@ var TIP;
                     if (updateCount > 0) {
                         updateStmt.finalize();
                     }
+                    _this.isActive = false;
                 });
             });
             var tblName = "gpkz_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenGpKz.prototype.getJsonGpKz = function (res) {
+        TIPDataStammdatenGpKzClass.prototype.isSyncActive = function () {
+            return this.isActive;
+        };
+        TIPDataStammdatenGpKzClass.prototype.getJsonGpKz = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", function (error, row) {
@@ -63,8 +67,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenGpKz;
+        return TIPDataStammdatenGpKzClass;
     })();
-    TIP.TIPDataStammdatenGpKz = TIPDataStammdatenGpKz;
+    TIP.TIPDataStammdatenGpKzClass = TIPDataStammdatenGpKzClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataStammdatenGpKz();
+module.exports = new TIP.TIPDataStammdatenGpKzClass();

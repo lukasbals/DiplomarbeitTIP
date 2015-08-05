@@ -5,7 +5,7 @@ var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
-var TIPInterface = require("../my_modules/TIPInterface");
+var TIPSync = require("../my_modules/TIPSync");
 var router = express.Router();
 router.get("/getJsonGeschaeftspartner", function (req, res) {
     TIPDataStammdatenGeschaeftspartner.getJsonGeschaeftspartner(res);
@@ -42,10 +42,11 @@ router.get("/getJsonPersonengruppe", function (req, res) {
     TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
 });
 router.get("/synchDB", function (req, res) {
-    TIPInterface.doSync();
+    TIPSync.doSync();
     res.send("done.");
 });
+setInterval(function () { return console.log(TIPSync.isSyncActive()); }, 1000);
 router.get("/isSyncActive", function (req, res) {
-    TIPInterface.isSyncActive();
+    TIPSync.isSyncActive();
 });
 module.exports = router;

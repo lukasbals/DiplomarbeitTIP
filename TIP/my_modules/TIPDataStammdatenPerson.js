@@ -2,17 +2,16 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenPerson = (function () {
-        function TIPDataStammdatenPerson() {
+    var TIPDataStammdatenPersonClass = (function () {
+        function TIPDataStammdatenPersonClass() {
+            this.isActive = false;
         }
-        TIPDataStammdatenPerson.prototype.doSync = function () {
+        TIPDataStammdatenPersonClass.prototype.doSync = function () {
+            this.isActive = true;
             this.initTablePerson();
             this.loadPerson();
         };
-        TIPDataStammdatenPerson.prototype.isSyncActive = function () {
-            return null;
-        };
-        TIPDataStammdatenPerson.prototype.initTablePerson = function () {
+        TIPDataStammdatenPersonClass.prototype.initTablePerson = function () {
             TIPDatabase.getDB().run("create table if not exists personen_st ( " +
                 "id int primary key, " +
                 "id_geschaeftspartner int, " +
@@ -28,7 +27,8 @@ var TIP;
                 "email string(50), " +
                 "geburtsdatum date)");
         };
-        TIPDataStammdatenPerson.prototype.loadPerson = function () {
+        TIPDataStammdatenPersonClass.prototype.loadPerson = function () {
+            var _this = this;
             console.log("In TIPDataStammdatenPerson -- loadPerson");
             var date = new Date();
             request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Person", function (error, response, body) {
@@ -56,12 +56,16 @@ var TIP;
                     if (updateCount > 0) {
                         updateStmt.finalize();
                     }
+                    _this.isActive = false;
                 });
             });
             var tblName = "personen_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenPerson.prototype.getJsonPerson = function (res) {
+        TIPDataStammdatenPersonClass.prototype.isSyncActive = function () {
+            return this.isActive;
+        };
+        TIPDataStammdatenPersonClass.prototype.getJsonPerson = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st;", function (error, row) {
@@ -85,7 +89,7 @@ var TIP;
                 });
             });
         };
-        TIPDataStammdatenPerson.prototype.getDetailPerson = function (id, res) {
+        TIPDataStammdatenPersonClass.prototype.getDetailPerson = function (id, res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select p.id, p.id_geschaeftspartner, p.code_gruppe, p.code_anrede, p.titel, p.vorname, p.nachname, p.abteilung, p.telefon, p.mobil, p.fax, p.email, p.geburtsdatum, pg.bezeichnung as gruppe, a.bezeichnung as anrede, gp.firmenbez_1 from personen_st p left join geschaeftspartner_st gp on p.id_geschaeftspartner = gp.id left join personengruppen_st pg on p.code_gruppe = pg.code left join anreden_st a on p.code_anrede = a.code where p.id =?;", [id], function (err, row) {
@@ -112,7 +116,7 @@ var TIP;
                 });
             });
         };
-        TIPDataStammdatenPerson.prototype.getDetailPersonForGP = function (id, res) {
+        TIPDataStammdatenPersonClass.prototype.getDetailPersonForGP = function (id, res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select id, id_geschaeftspartner, code_gruppe, code_anrede, titel, vorname, nachname, abteilung, telefon, mobil, fax, email, geburtsdatum from personen_st where id_geschaeftspartner =?;", [id], function (err, row) {
@@ -136,8 +140,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenPerson;
+        return TIPDataStammdatenPersonClass;
     })();
-    TIP.TIPDataStammdatenPerson = TIPDataStammdatenPerson;
+    TIP.TIPDataStammdatenPersonClass = TIPDataStammdatenPersonClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataStammdatenPerson();
+module.exports = new TIP.TIPDataStammdatenPersonClass();

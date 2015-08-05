@@ -2,22 +2,22 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenPersonengruppe = (function () {
-        function TIPDataStammdatenPersonengruppe() {
+    var TIPDataStammdatenPersonengruppeClass = (function () {
+        function TIPDataStammdatenPersonengruppeClass() {
+            this.isActive = false;
         }
-        TIPDataStammdatenPersonengruppe.prototype.doSync = function () {
+        TIPDataStammdatenPersonengruppeClass.prototype.doSync = function () {
+            this.isActive = true;
             this.initTablePersonengruppe();
             this.loadPersonengruppe();
         };
-        TIPDataStammdatenPersonengruppe.prototype.isSyncActive = function () {
-            return null;
-        };
-        TIPDataStammdatenPersonengruppe.prototype.initTablePersonengruppe = function () {
+        TIPDataStammdatenPersonengruppeClass.prototype.initTablePersonengruppe = function () {
             TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
                 "code string(2) primary key, " +
                 "bezeichnung string(50))");
         };
-        TIPDataStammdatenPersonengruppe.prototype.loadPersonengruppe = function () {
+        TIPDataStammdatenPersonengruppeClass.prototype.loadPersonengruppe = function () {
+            var _this = this;
             console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
             var date = new Date();
             request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Personengruppe", function (error, response, body) {
@@ -45,12 +45,16 @@ var TIP;
                     if (updateCount > 0) {
                         updateStmt.finalize();
                     }
+                    _this.isActive = false;
                 });
             });
             var tblName = "personengruppen_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenPersonengruppe.prototype.getJsonPersonengruppe = function (res) {
+        TIPDataStammdatenPersonengruppeClass.prototype.isSyncActive = function () {
+            return this.isActive;
+        };
+        TIPDataStammdatenPersonengruppeClass.prototype.getJsonPersonengruppe = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select code, bezeichnung from personengruppen_st;", function (error, row) {
@@ -63,8 +67,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenPersonengruppe;
+        return TIPDataStammdatenPersonengruppeClass;
     })();
-    TIP.TIPDataStammdatenPersonengruppe = TIPDataStammdatenPersonengruppe;
+    TIP.TIPDataStammdatenPersonengruppeClass = TIPDataStammdatenPersonengruppeClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataStammdatenPersonengruppe();
+module.exports = new TIP.TIPDataStammdatenPersonengruppeClass();

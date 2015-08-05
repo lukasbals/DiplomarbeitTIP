@@ -2,14 +2,12 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 module TIP {
-  export class TIPDataStammdatenLand implements ITIPData {
+  export class TIPDataStammdatenLandClass implements ITIPData {
+    isActive: boolean = false;
     doSync(): void {
+      this.isActive = true;
       this.initTableLand();
       this.loadLand();
-    }
-
-    isSyncActive(): boolean {
-      return null;
     }
 
     // makes laender_st TABLE
@@ -56,12 +54,17 @@ module TIP {
             if (updateCount > 0) {
               updateStmt.finalize();
             }
+            this.isActive = false;
           });
         });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "laender_st";
       TIPDatabase.setSYNCH(tblName, date);
+    }
+
+    isSyncActive(): boolean {
+      return this.isActive;
     }
 
     getJsonLand(res): void {
@@ -84,4 +87,4 @@ module TIP {
 }
 
 
-module.exports = new TIP.TIPDataStammdatenLand();
+module.exports = new TIP.TIPDataStammdatenLandClass();

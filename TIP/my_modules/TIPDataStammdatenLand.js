@@ -2,23 +2,23 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataStammdatenLand = (function () {
-        function TIPDataStammdatenLand() {
+    var TIPDataStammdatenLandClass = (function () {
+        function TIPDataStammdatenLandClass() {
+            this.isActive = false;
         }
-        TIPDataStammdatenLand.prototype.doSync = function () {
+        TIPDataStammdatenLandClass.prototype.doSync = function () {
+            this.isActive = true;
             this.initTableLand();
             this.loadLand();
         };
-        TIPDataStammdatenLand.prototype.isSyncActive = function () {
-            return null;
-        };
-        TIPDataStammdatenLand.prototype.initTableLand = function () {
+        TIPDataStammdatenLandClass.prototype.initTableLand = function () {
             TIPDatabase.getDB().run("create table if not exists laender_st (" +
                 "code string(3) primary key, " +
                 "bezeichnung string(30), " +
                 "is_eu boolean)");
         };
-        TIPDataStammdatenLand.prototype.loadLand = function () {
+        TIPDataStammdatenLandClass.prototype.loadLand = function () {
+            var _this = this;
             console.log("In TIPDataStammdatenLand -- loadLand");
             var date = new Date();
             request.get("http://10.20.50.53/tip/api/DM360/Stammdaten/Land", function (error, response, body) {
@@ -46,12 +46,16 @@ var TIP;
                     if (updateCount > 0) {
                         updateStmt.finalize();
                     }
+                    _this.isActive = false;
                 });
             });
             var tblName = "laender_st";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataStammdatenLand.prototype.getJsonLand = function (res) {
+        TIPDataStammdatenLandClass.prototype.isSyncActive = function () {
+            return this.isActive;
+        };
+        TIPDataStammdatenLandClass.prototype.getJsonLand = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
                 TIPDatabase.getDB().each("select code, bezeichnung, is_eu from laender_st;", function (error, row) {
@@ -65,8 +69,8 @@ var TIP;
                 });
             });
         };
-        return TIPDataStammdatenLand;
+        return TIPDataStammdatenLandClass;
     })();
-    TIP.TIPDataStammdatenLand = TIPDataStammdatenLand;
+    TIP.TIPDataStammdatenLandClass = TIPDataStammdatenLandClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataStammdatenLand();
+module.exports = new TIP.TIPDataStammdatenLandClass();

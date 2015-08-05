@@ -2,14 +2,12 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 module TIP {
-  export class TIPDataStammdatenPerson implements ITIPData {
+  export class TIPDataStammdatenPersonClass implements ITIPData {
+    isActive: boolean = false;
     doSync(): void {
+      this.isActive = true;
       this.initTablePerson();
       this.loadPerson();
-    }
-
-    isSyncActive(): boolean {
-      return null;
     }
 
     // makes personen_st TABLE
@@ -66,12 +64,17 @@ module TIP {
             if (updateCount > 0) {
               updateStmt.finalize();
             }
+            this.isActive = false;
           });
         });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "personen_st";
       TIPDatabase.setSYNCH(tblName, date);
+    }
+
+    isSyncActive(): boolean {
+      return this.isActive;
     }
 
     getJsonPerson(res): void {
@@ -162,4 +165,4 @@ module TIP {
   }
 }
 
-module.exports = new TIP.TIPDataStammdatenPerson();
+module.exports = new TIP.TIPDataStammdatenPersonClass();

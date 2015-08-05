@@ -1,16 +1,15 @@
 var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
-module TIP  {
-  export class TIPDataStammdatenPersonengruppe implements ITIPData {
+module TIP {
+  export class TIPDataStammdatenPersonengruppeClass implements ITIPData {
+    isActive: boolean = false;
     doSync(): void {
+      this.isActive = true;
       this.initTablePersonengruppe();
       this.loadPersonengruppe();
     }
 
-    isSyncActive(): boolean {
-      return null;
-    }
     // makes personengruppe_st TABLE
     initTablePersonengruppe(): void {
       TIPDatabase.getDB().run("create table if not exists personengruppen_st (" +
@@ -22,8 +21,6 @@ module TIP  {
     loadPersonengruppe(): void {
       console.log("In TIPDataStammdatenPersonenGruppe -- loadPersonengruppe");
       var date = new Date();
-
-
 
       // GET request to the TIP server -- Persoenengruppe
       request.get(
@@ -56,12 +53,17 @@ module TIP  {
             if (updateCount > 0) {
               updateStmt.finalize();
             }
+            this.isActive = false;
           });
         });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "personengruppen_st";
       TIPDatabase.setSYNCH(tblName, date);
+    }
+
+    isSyncActive(): boolean {
+      return this.isActive;
     }
 
     getJsonPersonengruppe(res): void {
@@ -83,4 +85,4 @@ module TIP  {
   }
 }
 
-module.exports = new TIP.TIPDataStammdatenPersonengruppe();
+module.exports = new TIP.TIPDataStammdatenPersonengruppeClass();
