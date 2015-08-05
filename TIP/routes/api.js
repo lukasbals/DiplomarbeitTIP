@@ -45,7 +45,6 @@ router.get("/synchDB", function (req, res) {
     TIPSync.doSync();
     res.send("done.");
 });
-setInterval(function () { return console.log(TIPSync.isSyncActive()); }, 1000);
 router.get("/isSyncActive", function (req, res) {
     TIPSync.isSyncActive();
 });

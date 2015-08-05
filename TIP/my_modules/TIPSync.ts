@@ -4,16 +4,18 @@ var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
+var TIPDataVertreterBericht = require("../my_modules/TIPDataVertreterBericht");
 
 module TIP {
-  export class TIPSync implements ITIPData {
+  export class TIPSync {
     tipDataArray = [
       TIPDataStammdatenAnrede,
       TIPDataStammdatenGeschaeftspartner,
       TIPDataStammdatenGpKz,
       TIPDataStammdatenLand,
       TIPDataStammdatenPerson,
-      TIPDataStammdatenPersonengruppe
+      TIPDataStammdatenPersonengruppe,
+      TIPDataVertreterBericht
     ];
 
     doSync(): void {

@@ -80,7 +80,7 @@ router.get("/synchDB", (req, res): void => {
   res.send("done.");
 });
 
-setInterval(() => console.log(TIPSync.isSyncActive()), 1000);
+//setInterval(() => console.log(TIPSync.isSyncActive()), 1000);
 
 router.get("/isSyncActive", (req, res): void => {
   TIPSync.isSyncActive();

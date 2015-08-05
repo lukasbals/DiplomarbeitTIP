@@ -4,6 +4,7 @@ var TIPDataStammdatenLand = require("../my_modules/TIPDataStammdatenLand");
 var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
+var TIPDataVertreterBericht = require("../my_modules/TIPDataVertreterBericht");
 var TIP;
 (function (TIP) {
     var TIPSync = (function () {
@@ -14,7 +15,8 @@ var TIP;
                 TIPDataStammdatenGpKz,
                 TIPDataStammdatenLand,
                 TIPDataStammdatenPerson,
-                TIPDataStammdatenPersonengruppe
+                TIPDataStammdatenPersonengruppe,
+                TIPDataVertreterBericht
             ];
         }
         TIPSync.prototype.doSync = function () {
