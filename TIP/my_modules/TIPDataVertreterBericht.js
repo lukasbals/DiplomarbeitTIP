@@ -2,16 +2,16 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 var TIP;
 (function (TIP) {
-    var TIPDataVertreterClass = (function () {
-        function TIPDataVertreterClass() {
+    var TIPDataVertreterBerichtClass = (function () {
+        function TIPDataVertreterBerichtClass() {
             this.isActive = false;
         }
-        TIPDataVertreterClass.prototype.doSync = function () {
+        TIPDataVertreterBerichtClass.prototype.doSync = function () {
             this.isActive = true;
             this.initTable();
             this.loadTable();
         };
-        TIPDataVertreterClass.prototype.initTable = function () {
+        TIPDataVertreterBerichtClass.prototype.initTable = function () {
             TIPDatabase.getDB().run("create table if not exists berichte (" +
                 "client_id int primary key, " +
                 "id int, " +
@@ -20,9 +20,9 @@ var TIP;
                 "titel string(50), " +
                 "text TEXT)");
         };
-        TIPDataVertreterClass.prototype.loadTable = function () {
+        TIPDataVertreterBerichtClass.prototype.loadTable = function () {
             var _this = this;
-            console.log("In TIPDataVertreter -- loadVertreter");
+            console.log("In TIPDataVertreterBericht -- loadVertreterBericht");
             var date = new Date();
             request.get("http://10.20.50.53/tip/" + "api/DM360/Vertreter/Bericht", function (error, response, body) {
                 var data = JSON.parse(body);
@@ -55,24 +55,11 @@ var TIP;
             var tblName = "berichte";
             TIPDatabase.setSYNCH(tblName, date);
         };
-        TIPDataVertreterClass.prototype.isSyncActive = function () {
+        TIPDataVertreterBerichtClass.prototype.isSyncActive = function () {
             return this.isActive;
         };
-        TIPDataVertreterClass.prototype.getJsonAnrede = function (res) {
-            var result = new Array();
-            TIPDatabase.getDB().serialize(function () {
-                TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", function (error, row) {
-                    result.push({
-                        Code: row.code,
-                        Bezeichnung: row.bezeichnung,
-                    });
-                }, function () {
-                    res.json(result);
-                });
-            });
-        };
-        return TIPDataVertreterClass;
+        return TIPDataVertreterBerichtClass;
     })();
-    TIP.TIPDataVertreterClass = TIPDataVertreterClass;
+    TIP.TIPDataVertreterBerichtClass = TIPDataVertreterBerichtClass;
 })(TIP || (TIP = {}));
-module.exports = new TIP.TIPDataVertreterClass();
+module.exports = new TIP.TIPDataVertreterBerichtClass();

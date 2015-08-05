@@ -2,7 +2,7 @@ var request = require("request");
 var TIPDatabase = require("../my_modules/TIPDatabase");
 
 module TIP {
-  export class TIPDataVertreterClass implements ITIPData {
+  export class TIPDataVertreterBerichtClass implements ITIPData {
     isActive: boolean = false;
     doSync(): void {
       this.isActive = true;
@@ -23,7 +23,7 @@ module TIP {
 
     // loads the TABLE anreden_st from the TIP Server
     loadTable(): void {
-      console.log("In TIPDataVertreter -- loadVertreter");
+      console.log("In TIPDataVertreterBericht -- loadVertreterBericht");
       var date = new Date();
 
       // GET request to the TIP server -- Anrede
@@ -69,23 +69,7 @@ module TIP {
     isSyncActive(): boolean {
       return this.isActive;
     }
-
-    getJsonAnrede(res): void {
-      var result = new Array();
-
-      TIPDatabase.getDB().serialize((): void => {
-        TIPDatabase.getDB().each("select code, bezeichnung from anreden_st;", (error, row): void => {
-          result.push({
-            Code: row.code,
-            Bezeichnung: row.bezeichnung,
-          });
-        }, (): void => {
-            //console.log(result);
-            res.json(result);
-          });
-      });
-    }
   }
 }
 
-module.exports = new TIP.TIPDataVertreterClass();
+module.exports = new TIP.TIPDataVertreterBerichtClass();

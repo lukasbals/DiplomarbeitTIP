@@ -28,6 +28,8 @@
         "./my_modules/TIPDataStammdatenPerson.ts",
         "./my_modules/TIPDataStammdatenPersonengruppe.ts",
         "./my_modules/TIPDataVertreterBericht.ts",
+        "./my_modules/TIPDataVertreterBesuch.ts",
+        "./my_modules/TIPDataVertreterBesuchPlan.ts",
         "./my_modules/TIPDatabase.ts",
         "./my_modules/TIPInterface.ts",
         "./my_modules/TIPSync.ts",
