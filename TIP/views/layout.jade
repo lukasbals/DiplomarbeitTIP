@@ -5,13 +5,16 @@ html
 
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel="stylesheet" href="/angular-loading-bar/loading-bar.min.css")
+    link(rel='stylesheet', href='/devextreme/stylesheets/dx.common.css')
+    link(rel='stylesheet', href='/devextreme/stylesheets/dx.light.css')  
+    link(rel='stylesheet', href='/stylesheets/css/style.css')
+    
     script(src="/jquery/jquery.min.js")
     script(src="/angular/angular.js")
     script(src="/angular-sanitize/angular-sanitize.js")
     script(src="/javascripts/loading-bar.min.js")
     
-    link(rel='stylesheet', href='/devextreme/stylesheets/dx.common.css')
-    link(rel='stylesheet', href='/devextreme/stylesheets/dx.light.css')
+
     script(src="/devextreme/javascript/jquery.globalize/globalize.js")
     script(src="/devextreme/javascript/devextreme-localization/dx.webappjs.de.js")
     script(src="/devextreme/javascript/devextreme-modules/dx.module-core.js")
@@ -32,7 +35,7 @@ html
     script(src="/javascripts/services/RestService.js")
 
 
-    link(rel='stylesheet', href='/stylesheets/css/style.css')
+    
 
   body(ng-app="tip", ng-controller="LoadCtrl")
   include navBar  
