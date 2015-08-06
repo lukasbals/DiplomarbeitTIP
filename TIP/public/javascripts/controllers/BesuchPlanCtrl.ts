@@ -1,6 +1,6 @@
 module TIP {
   export class BesuchPlanViewModel {
-    constructor(private besuchPlan: BesuchPlanService, private json: JsonService) {
+    constructor(private besuchPlan: BesuchPlanService) {
 
     }
 
@@ -8,7 +8,7 @@ module TIP {
     initBesuchPlan() {
       this.besuchPlan.getBesuchPlan()
         .success((data): void => {
-        this.json.parse(data);
+        this.besuchPlan.parse(data);
         this.dataSourceBesuchPlan = data;
 
         // this.dataSourceBesuchPlan = [
@@ -31,7 +31,7 @@ module TIP {
       },
       views: ["workWeek", "day"],
       currentView: "workWeek",
-      currentDate: new Date(2015, 7, 3),
+      currentDate: new Date(2012, 7, 3),
       // firstDayOfWeek: 1,
       startDayHour: 8,
       endDayHour: 19,
@@ -45,12 +45,12 @@ module TIP {
   }
 
   export class BesuchPlanCtrl {
-    constructor(private besuchPlan: BesuchPlanService, private json: JsonService, public $scope: BesuchPlanScope) {
-      $scope.vm = new BesuchPlanViewModel(besuchPlan, json);
+    constructor(private besuchPlan: BesuchPlanService, public $scope: BesuchPlanScope) {
+      $scope.vm = new BesuchPlanViewModel(besuchPlan);
     }
   }
 
   angular
     .module("tip")
-    .controller("BesuchPlanCtrl", ["BesuchPlanService", "$scope", "JsonService", BesuchPlanCtrl]);
+    .controller("BesuchPlanCtrl", ["BesuchPlanService", "$scope", BesuchPlanCtrl]);
 }
