@@ -1,4 +1,4 @@
-/*! 
+/*!
 * DevExtreme Web
 * Version: 15.1.4
 * Build date: Jun 22, 2015
@@ -155,7 +155,7 @@ Globalize.addCultureInfo("de", {messages: {
         "dxScheduler-editorLabelEndDate": "Endzeit",
         "dxScheduler-editorLabelDescription": "Beschreibung",
         "dxScheduler-editorLabelRecurrence": "Wiederholung",
-        "dxScheduler-openAppointment": "Offenen termin",
+        "dxScheduler-openAppointment": "Termin öffnen",
         "dxScheduler-recurrenceNever": "Nie",
         "dxScheduler-recurrenceDaily": "Täglich",
         "dxScheduler-recurrenceWeekly": "Wöchentlich",

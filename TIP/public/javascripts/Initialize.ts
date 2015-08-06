@@ -1,8 +1,8 @@
 declare var Globalize: any;
 
 module TIP {
-  var clientLanguageToUse = navigator.language || navigator.browserLanguage;
-  //Globalize.culture(clientLanguageToUse);
+  // var clientLanguageToUse = navigator.language || navigator.browserLanguage;
+  Globalize.culture(navigator.language || navigator.browserLanguage);
   DevExpress.devices.current({ platform: "generic" });
 
   angular
