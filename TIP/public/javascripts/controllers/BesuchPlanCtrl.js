@@ -1,35 +1,29 @@
 var TIP;
 (function (TIP) {
     var BesuchPlanViewModel = (function () {
-        function BesuchPlanViewModel(besuchPlan) {
+        function BesuchPlanViewModel(besuchPlan, json) {
             this.besuchPlan = besuchPlan;
+            this.json = json;
             this.dataSourceBesuchPlan = null;
             this.schedulerBesuchPlan = {
                 bindingOptions: {
                     dataSource: "vm.dataSourceBesuchPlan"
                 },
-                views: ["month", "week", "workWeek", "day"],
+                views: ["workWeek", "day"],
                 currentView: "workWeek",
-                currentDate: new Date(),
-                firstDayOfWeek: 1,
+                currentDate: new Date(2015, 7, 3),
                 startDayHour: 8,
                 endDayHour: 19,
                 width: "100%",
                 height: 600
             };
         }
-        ;
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {
             var _this = this;
             this.besuchPlan.getBesuchPlan()
                 .success(function (data) {
-                _this.dataSourceBesuchPlan = [
-                    {
-                        text: "Website Re-Design Plan",
-                        startDate: new Date("2015-08-05T09:00:00"),
-                        endDate: new Date("2015-08-05T10:00:00")
-                    }
-                ];
+                _this.json.parse(data);
+                _this.dataSourceBesuchPlan = data;
                 console.log(_this.dataSourceBesuchPlan);
             })
                 .error(function (data) {
@@ -40,15 +34,16 @@ var TIP;
     })();
     TIP.BesuchPlanViewModel = BesuchPlanViewModel;
     var BesuchPlanCtrl = (function () {
-        function BesuchPlanCtrl(besuchPlan, $scope) {
+        function BesuchPlanCtrl(besuchPlan, json, $scope) {
             this.besuchPlan = besuchPlan;
+            this.json = json;
             this.$scope = $scope;
-            $scope.vm = new BesuchPlanViewModel(besuchPlan);
+            $scope.vm = new BesuchPlanViewModel(besuchPlan, json);
         }
         return BesuchPlanCtrl;
     })();
     TIP.BesuchPlanCtrl = BesuchPlanCtrl;
     angular
         .module("tip")
-        .controller("BesuchPlanCtrl", ["BesuchPlanService", "$scope", BesuchPlanCtrl]);
+        .controller("BesuchPlanCtrl", ["BesuchPlanService", "$scope", "JsonService", BesuchPlanCtrl]);
 })(TIP || (TIP = {}));
