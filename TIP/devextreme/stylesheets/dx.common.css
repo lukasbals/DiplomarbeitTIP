@@ -1,4 +1,4 @@
-/*!
+/*! 
 * DevExtreme
 * Version: 15.1.4
 * Build date: Jun 22, 2015
@@ -65,7 +65,7 @@
   -ms-transform: translate3d(100%,0,0);
   -o-transform: translate3d(100%,0,0);
   transform: translate3d(100%,0,0);
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-overflow-animation.dx-enter.dx-enter-active.dx-forward
 {
@@ -74,7 +74,7 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-overflow-animation.dx-enter.dx-backward
 {
@@ -83,7 +83,7 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-overflow-animation.dx-enter.dx-enter-active.dx-backward
 {
@@ -92,7 +92,7 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-overflow-animation.dx-leave.dx-forward
 {
@@ -101,7 +101,7 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-overflow-animation.dx-leave.dx-leave-active.dx-forward
 {
@@ -110,7 +110,7 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-overflow-animation.dx-leave.dx-backward
 {
@@ -119,7 +119,7 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-overflow-animation.dx-leave.dx-leave-active.dx-backward
 {
@@ -128,7 +128,7 @@
   -ms-transform: translate3d(100%,0,0);
   -o-transform: translate3d(100%,0,0);
   transform: translate3d(100%,0,0);
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-slide-animation.dx-enter.dx-forward
 {
@@ -196,7 +196,7 @@
 }
 .dx-ios7-slide-animation.dx-enter.dx-forward
 {
-  /*z-index: 2;*/
+  z-index: 2;
   -webkit-transform: translate3d(100%,0,0);
   -moz-transform: translate3d(100%,0,0);
   -ms-transform: translate3d(100%,0,0);
@@ -205,7 +205,7 @@
 }
 .dx-ios7-slide-animation.dx-enter.dx-enter-active.dx-forward
 {
-  /*z-index: 2;*/
+  z-index: 2;
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
   -ms-transform: translate3d(0,0,0);
@@ -219,7 +219,7 @@
   -ms-transform: translate3d(-20%,0,0);
   -o-transform: translate3d(-20%,0,0);
   transform: translate3d(-20%,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-slide-animation.dx-enter.dx-enter-active.dx-backward
 {
@@ -228,11 +228,11 @@
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-slide-animation.dx-leave.dx-forward
 {
-  /*z-index: 1;*/
+  z-index: 1;
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
   -ms-transform: translate3d(0,0,0);
@@ -246,11 +246,11 @@
   -ms-transform: translate3d(-20%,0,0);
   -o-transform: translate3d(-20%,0,0);
   transform: translate3d(-20%,0,0);
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-slide-animation.dx-leave.dx-backward
 {
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-ios7-slide-animation.dx-leave.dx-leave-active.dx-backward
 {
@@ -259,7 +259,7 @@
   -ms-transform: translate3d(100%,0,0);
   -o-transform: translate3d(100%,0,0);
   transform: translate3d(100%,0,0);
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-ios7-toolbar-animation.dx-enter.dx-forward
 {
@@ -269,7 +269,7 @@
   -o-transform: translate3d(40%,0,0);
   transform: translate3d(40%,0,0);
   opacity: 0;
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-ios7-toolbar-animation.dx-enter.dx-enter-active.dx-forward
 {
@@ -279,7 +279,7 @@
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
   opacity: 1;
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-ios7-toolbar-animation.dx-enter.dx-backward
 {
@@ -289,7 +289,7 @@
   -o-transform: translate3d(-40%,0,0);
   transform: translate3d(-40%,0,0);
   opacity: 0;
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-toolbar-animation.dx-enter.dx-enter-active.dx-backward
 {
@@ -299,7 +299,7 @@
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
   opacity: 1;
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-toolbar-animation.dx-leave.dx-forward
 {
@@ -309,7 +309,7 @@
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
   opacity: 1;
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-toolbar-animation.dx-leave.dx-leave-active.dx-forward
 {
@@ -319,7 +319,7 @@
   -o-transform: translate3d(-40%,0,0);
   transform: translate3d(-40%,0,0);
   opacity: 0;
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-ios7-toolbar-animation.dx-leave.dx-backward
 {
@@ -329,7 +329,7 @@
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
   opacity: 1;
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-ios7-toolbar-animation.dx-leave.dx-leave-active.dx-backward
 {
@@ -339,7 +339,7 @@
   -o-transform: translate3d(40%,0,0);
   transform: translate3d(40%,0,0);
   opacity: 0;
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-drop-animation.dx-enter, .dx-drop-animation.dx-leave.dx-leave-active
 {
@@ -442,7 +442,7 @@
 {
   font-family: "#";
 }
-/*.dx-widget
+.dx-widget
 {
   -ms-content-zooming: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -450,7 +450,7 @@
   -webkit-touch-callout: none;
   padding: 0;
   outline: 0;
-}*/
+}
 .dx-widget, .dx-widget:before, .dx-widget:after, .dx-widget *, .dx-widget *:before, .dx-widget *:after
 {
   -webkit-box-sizing: border-box;
@@ -502,7 +502,7 @@
 .dx-resizable-handle
 {
   position: absolute;
-  /*z-index: 50;*/
+  z-index: 50;
 }
 .dx-resizable-handle-left, .dx-resizable-handle-right
 {
@@ -636,7 +636,7 @@
 {
   cursor: default;
 }
-/*.dx-button
+.dx-button
 {
   display: inline-block;
   cursor: pointer;
@@ -655,7 +655,7 @@
   -ms-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
-}*/
+}
 .dx-button .dx-icon
 {
   -webkit-user-drag: none;
@@ -780,7 +780,7 @@
   -ms-transform: none;
   -o-transform: none;
   transform: none;
-  /*z-index: 0;*/
+  z-index: 0;
 }
 .dx-scrollable-scrollbar-simulated ::-webkit-scrollbar, .dx-scrollable-scrollbar-simulated .dx-scrollable-container ::-webkit-scrollbar
 {
@@ -928,7 +928,7 @@
   height: 44px;
   left: 50%;
   position: absolute;
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-scrollable-native.dx-scrollable-native-android .dx-scrollview-pull-down
 {
@@ -2559,7 +2559,7 @@
 {
   top: 0;
   left: 0;
-  /*z-index: 1000;*/
+  z-index: 1000;
 }
 .dx-overlay-wrapper, .dx-overlay-wrapper *, .dx-overlay-wrapper:before, .dx-overlay-wrapper:after, .dx-overlay-wrapper *:before, .dx-overlay-wrapper *:after
 {
@@ -2579,7 +2579,7 @@
 .dx-overlay-content
 {
   position: absolute;
-  /*z-index: 1000;*/
+  z-index: 1000;
   outline: 0;
   overflow: hidden;
 }
@@ -2721,7 +2721,7 @@
 .dx-popover-arrow
 {
   position: absolute;
-  /*z-index: 2000;*/
+  z-index: 2000;
   overflow: hidden;
 }
 .dx-popover-arrow:after
@@ -3873,7 +3873,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  /*z-index: 1;*/
+  z-index: 1;
 }
 .dx-device-android .dx-slideoutview-content
 {
@@ -4078,7 +4078,7 @@
   cursor: crosshair;
   top: 0;
   left: 0;
-  /*z-index: 5;*/
+  z-index: 5;
   background-repeat: no-repeat;
 }
 .dx-colorview-palette-gradient-white
@@ -4219,7 +4219,7 @@
   display: block;
   position: absolute;
   top: 50%;
-  /*z-index: 1;*/
+  z-index: 1;
   width: 15px;
   height: 15px;
   margin-top: -7.5px;
@@ -4237,7 +4237,7 @@
 {
   position: absolute;
   top: 50%;
-  /*z-index: 2;*/
+  z-index: 2;
   width: 17px;
   height: 17px;
   margin-top: -8.5px;
@@ -4307,7 +4307,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  /*z-index: 2;*/
+  z-index: 2;
   pointer-events: none;
   overflow: hidden;
 }
@@ -4494,7 +4494,7 @@
   position: absolute;
   vertical-align: middle;
   cursor: pointer;
-  /*z-index: 10000;*/
+  z-index: 10000;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -4502,7 +4502,7 @@
 .dx-datagrid-columns-separator
 {
   position: absolute;
-  /*z-index: 3;*/
+  z-index: 3;
   width: 3px;
 }
 .dx-datagrid-columns-separator-transparent
@@ -4515,7 +4515,7 @@
   width: 100%;
   position: absolute;
   top: 0;
-  /*z-index: 3;*/
+  z-index: 3;
   cursor: col-resize;
 }
 .dx-datagrid-table-content
@@ -4719,7 +4719,7 @@
 }
 .dx-datagrid-filter-row .dx-menu
 {
-  /*z-index: 1;*/
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -4841,11 +4841,11 @@
 }
 .dx-datagrid-rowsview.dx-scrollable .dx-scrollable-content
 {
-  /*z-index: 2;*/
+  z-index: 2;
 }
 .dx-datagrid-rowsview .dx-scrollable-scrollbar
 {
-  /*z-index: 3;*/
+  z-index: 3;
 }
 .dx-datagrid-rowsview:focus
 {
@@ -5231,7 +5231,7 @@
 {
   position: absolute;
   display: none;
-  /*z-index: 2000;*/
+  z-index: 2000;
   cursor: pointer;
 }
 .dx-context-menu.dx-overlay-content
@@ -5246,7 +5246,7 @@
 .dx-context-menu .dx-menu-item .dx-submenu
 {
   position: absolute;
-  /*z-index: 1003;*/
+  z-index: 1003;
 }
 .dx-context-menu .dx-menu-separator
 {
