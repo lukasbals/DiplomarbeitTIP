@@ -61,7 +61,7 @@ div#statusRow.TIPRot
                 a(href="/person")
                   button.btn Zockerkind
       div.col-xs-1
-        div(class="sk-cube-grid")
+        div(class="sk-cube-grid", ng-show="vm.isLoading")
           div(class="sk-cube sk-cube1")
           div(class="sk-cube sk-cube2")
           div(class="sk-cube sk-cube3")

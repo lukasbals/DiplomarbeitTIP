@@ -1,12 +1,23 @@
 var TIP;
 (function (TIP) {
     var LoadViewModel = (function () {
-        function LoadViewModel(my) {
-            this.my = my;
-            this.loadIndicator = false;
+        function LoadViewModel(loading) {
+            this.loading = loading;
+            this.isLoading = false;
         }
+        LoadViewModel.prototype.initIsLoading = function () {
+            var _this = this;
+            setInterval(function () {
+                _this.loading.getIsSyncActive()
+                    .success(function (data) {
+                    _this.isLoading = data;
+                }).error(function (data) {
+                    alert("Irgendwas beim isLoading is schief gelaufen");
+                });
+            }, 1000);
+        };
         LoadViewModel.prototype.synchButton = function () {
-            this.my.synchDB()
+            this.loading.synchDB()
                 .success(function () {
                 console.log("success");
             })
@@ -18,10 +29,10 @@ var TIP;
     })();
     TIP.LoadViewModel = LoadViewModel;
     var LoadCtrl = (function () {
-        function LoadCtrl(my, $scope) {
-            this.my = my;
+        function LoadCtrl(loading, $scope) {
+            this.loading = loading;
             this.$scope = $scope;
-            $scope.vm = new LoadViewModel(my);
+            $scope.vm = new LoadViewModel(loading);
         }
         return LoadCtrl;
     })();

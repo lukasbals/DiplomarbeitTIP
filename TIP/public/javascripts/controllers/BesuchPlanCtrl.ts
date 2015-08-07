@@ -11,14 +11,7 @@ module TIP {
         this.besuchPlan.parse(data);
         this.dataSourceBesuchPlan = data;
 
-        // this.dataSourceBesuchPlan = [
-        //   {
-        //     text: "Website Re-Design Plan",
-        //     startDate: ("2015-08-05T09:00:00"),
-        //     endDate: ("2015-08-05T10:00:00")
-        //   }
-        // ];
-        console.log(this.dataSourceBesuchPlan);
+        //console.log(this.dataSourceBesuchPlan);
       })
         .error((data): void => {
         console.log("Keine BesuchPlane bekommen.");

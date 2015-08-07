@@ -9,6 +9,10 @@ module TIP {
     synchDB(): ng.IHttpPromise<any> {
       return this.$http.get("http://localhost:3000/api/synchDB");
     }
+
+    getIsSyncActive(): ng.IHttpPromise<any> {
+      return this.$http.get("http://localhost:3000/api/isSyncActive");
+    }
   }
 
   angular

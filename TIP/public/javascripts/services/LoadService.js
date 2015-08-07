@@ -7,6 +7,9 @@ var TIP;
         LoadService.prototype.synchDB = function () {
             return this.$http.get("http://localhost:3000/api/synchDB");
         };
+        LoadService.prototype.getIsSyncActive = function () {
+            return this.$http.get("http://localhost:3000/api/isSyncActive");
+        };
         return LoadService;
     })();
     TIP.LoadService = LoadService;

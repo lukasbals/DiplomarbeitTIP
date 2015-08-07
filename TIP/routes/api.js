@@ -50,6 +50,7 @@ router.get("/synchDB", function (req, res) {
     res.send("done.");
 });
 router.get("/isSyncActive", function (req, res) {
-    TIPSync.isSyncActive();
+    console.log("IN");
+    res.send(TIPSync.isSyncActive());
 });
 module.exports = router;

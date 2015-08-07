@@ -1,26 +1,24 @@
 module TIP {
   export class LoadViewModel {
-    constructor(private my: LoadService) {
+    constructor(private loading: LoadService) {
 
     }
-    /*synchDB: boolean = false;
-    state: string = document.readyState;
-    setInterval = (() => {
-      if(state == "loading"){
-        this.synchDB = true;
-      }else{
-        this.synchDB = false;
-      }
-    }, 1000)*/
 
-    /*vm.start = () => {
-
-    }*/
-
-    loadIndicator: boolean = false;
+    isLoading: boolean = false;
+    initIsLoading() {
+      setInterval((): void => {
+        this.loading.getIsSyncActive()
+          .success((data): void => {
+          //console.log(data);
+          this.isLoading = data;
+        }).error((data): void=> {
+          alert("Irgendwas beim isLoading is schief gelaufen");
+        });
+      }, 1000);
+    }
 
     synchButton() {
-      this.my.synchDB()
+      this.loading.synchDB()
         .success((): void=> {
         console.log("success");
       })
@@ -35,8 +33,8 @@ module TIP {
   }
 
   export class LoadCtrl {
-    constructor(private my: LoadService, public $scope: LoadScope) {
-      $scope.vm = new LoadViewModel(my);
+    constructor(private loading: LoadService, public $scope: LoadScope) {
+      $scope.vm = new LoadViewModel(loading);
     }
   }
 

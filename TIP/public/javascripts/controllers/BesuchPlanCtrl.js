@@ -23,7 +23,6 @@ var TIP;
                 .success(function (data) {
                 _this.besuchPlan.parse(data);
                 _this.dataSourceBesuchPlan = data;
-                console.log(_this.dataSourceBesuchPlan);
             })
                 .error(function (data) {
                 console.log("Keine BesuchPlane bekommen.");
