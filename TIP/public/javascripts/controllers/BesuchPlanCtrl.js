@@ -4,12 +4,24 @@ var TIP;
         function BesuchPlanViewModel(besuchPlan) {
             this.besuchPlan = besuchPlan;
             this.dataSourceBesuchPlan = null;
-            this.schedulerBesuchPlan = {
+            this.schedulerLandscapeBesuchPlan = {
                 bindingOptions: {
                     dataSource: "vm.dataSourceBesuchPlan"
                 },
-                views: ["workWeek", "day"],
+                views: ["workWeek", "day", "month"],
                 currentView: "workWeek",
+                currentDate: new Date(2012, 1, 3),
+                startDayHour: 8,
+                endDayHour: 19,
+                width: "100%",
+                height: 600
+            };
+            this.schedulerPortraitBesuchPlan = {
+                bindingOptions: {
+                    dataSource: "vm.dataSourceBesuchPlan"
+                },
+                views: ["workWeek", "day", "month"],
+                currentView: "day",
                 currentDate: new Date(2012, 1, 3),
                 startDayHour: 8,
                 endDayHour: 19,

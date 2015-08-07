@@ -2,6 +2,7 @@ extends layout
 
 block content
   div(ng-controller="BesuchPlanCtrl")
-    div.container-fluid.contentContainer
+    div(ng-init="vm.initBesuchPlan()").container-fluid.contentContainer
       title Besuch
-      div(ng-init="vm.initBesuchPlan()", dx-scheduler="vm.schedulerBesuchPlan")
+      div#landscapeScheduler(dx-scheduler="vm.schedulerLandscapeBesuchPlan")
+      div#portraitScheduler(dx-scheduler="vm.schedulerPortraitBesuchPlan")

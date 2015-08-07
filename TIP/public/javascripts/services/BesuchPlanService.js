@@ -13,6 +13,7 @@ var TIP;
             if (!json) {
                 return json;
             }
+            console.log(json);
             if (!(typeof json === "string")) {
                 json = JSON.stringify(json);
             }
