@@ -31,7 +31,7 @@ module TIP {
       },
       views: ["workWeek", "day"],
       currentView: "workWeek",
-      currentDate: new Date(2012, 7, 3),
+      currentDate: new Date(2012, 1, 3),
       // firstDayOfWeek: 1,
       startDayHour: 8,
       endDayHour: 19,
