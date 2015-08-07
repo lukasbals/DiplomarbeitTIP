@@ -8,25 +8,25 @@ var TIP;
                 bindingOptions: {
                     dataSource: "vm.dataSourceBesuchPlan"
                 },
-                views: ["workWeek", "day", "month"],
+                views: ["workWeek", "day"],
                 currentView: "workWeek",
                 currentDate: new Date(2012, 1, 3),
                 startDayHour: 8,
                 endDayHour: 19,
                 width: "100%",
-                height: 600
+                height: "100%"
             };
             this.schedulerPortraitBesuchPlan = {
                 bindingOptions: {
                     dataSource: "vm.dataSourceBesuchPlan"
                 },
-                views: ["workWeek", "day", "month"],
+                views: ["day"],
                 currentView: "day",
                 currentDate: new Date(2012, 1, 3),
                 startDayHour: 8,
                 endDayHour: 19,
                 width: "100%",
-                height: 600
+                height: "100%"
             };
         }
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {
