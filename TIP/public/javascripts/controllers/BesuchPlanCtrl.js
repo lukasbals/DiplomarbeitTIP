@@ -23,7 +23,7 @@ var TIP;
                 bindingOptions: {
                     dataSource: "vm.dataSourceBesuchPlan"
                 },
-                views: ["day"],
+                views: ["day", "workWeek"],
                 currentView: "day",
                 currentDate: new Date(2012, 1, 3),
                 startDayHour: 8,
