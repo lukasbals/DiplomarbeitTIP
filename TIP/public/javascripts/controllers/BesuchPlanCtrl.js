@@ -4,7 +4,7 @@ var TIP;
         function BesuchPlanViewModel(besuchPlan) {
             this.besuchPlan = besuchPlan;
             this.dataSourceBesuchPlan = null;
-            this.schedulerLandscapeBesuchPlan = {
+            this.schedulerBesuchPlan = {
                 bindingOptions: {
                     dataSource: "vm.dataSourceBesuchPlan"
                 },
@@ -18,18 +18,6 @@ var TIP;
                     console.log(options.appointment.text + options.appointment.startDate);
                     DevExpress.ui.notify(options.Betreff, "success", 1000);
                 }
-            };
-            this.schedulerPortraitBesuchPlan = {
-                bindingOptions: {
-                    dataSource: "vm.dataSourceBesuchPlan"
-                },
-                views: ["day", "workWeek"],
-                currentView: "day",
-                currentDate: new Date(2012, 1, 3),
-                startDayHour: 8,
-                endDayHour: 19,
-                width: "100%",
-                height: "100%"
             };
         }
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {

@@ -16,7 +16,7 @@ module TIP {
       });
     }
 
-    schedulerLandscapeBesuchPlan: any = {
+    schedulerBesuchPlan: any = {
       bindingOptions: {
         dataSource: "vm.dataSourceBesuchPlan"
       },
@@ -34,19 +34,6 @@ module TIP {
       }
     }
 
-    schedulerPortraitBesuchPlan: any = {
-      bindingOptions: {
-        dataSource: "vm.dataSourceBesuchPlan"
-      },
-      views: ["day", "workWeek"],
-      currentView: "day",
-      currentDate: new Date(2012, 1, 3),
-      // firstDayOfWeek: 1,
-      startDayHour: 8,
-      endDayHour: 19,
-      width: "100%",
-      height: "100%"
-    }
   }
 
   export interface BesuchPlanScope extends ng.IScope {
