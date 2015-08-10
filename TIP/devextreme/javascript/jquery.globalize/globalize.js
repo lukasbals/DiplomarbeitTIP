@@ -179,17 +179,17 @@ Globalize.cultures[ "default" ] = {
 			firstDay: 0,
 			days: {
 				// full day names
-				names: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+				names: [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
 				// abbreviated day names
-				namesAbbr: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
+				namesAbbr: [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam" ],
 				// shortest day names
-				namesShort: [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]
+				namesShort: [ "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa" ]
 			},
 			months: {
 				// full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-				names: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "" ],
+				names: [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember", "" ],
 				// abbreviated month names
-				namesAbbr: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "" ]
+				namesAbbr: [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez", "" ]
 			},
 			// AM and PM designators in one of these forms:
 			// The usual view, and the upper and lower case versions
