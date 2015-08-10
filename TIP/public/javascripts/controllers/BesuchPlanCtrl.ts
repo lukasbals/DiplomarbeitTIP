@@ -27,7 +27,11 @@ module TIP {
       startDayHour: 8,
       endDayHour: 19,
       width: "100%",
-      height: "100%"
+      height: "100%",
+      onAppointmentAdding: (options: {Betreff}): void => {
+        alert(options.Betreff);
+        DevExpress.ui.notify(options.Betreff, "success", 1000);
+      }
     }
 
     schedulerPortraitBesuchPlan: any = {

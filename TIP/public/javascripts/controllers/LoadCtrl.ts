@@ -12,7 +12,7 @@ module TIP {
           //console.log(data);
           this.isLoading = data;
         }).error((data): void=> {
-          alert("Irgendwas beim isLoading is schief gelaufen");
+          //alert("Irgendwas beim isLoading is schief gelaufen");
         });
       }, 1000);
     }

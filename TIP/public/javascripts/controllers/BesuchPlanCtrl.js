@@ -14,7 +14,11 @@ var TIP;
                 startDayHour: 8,
                 endDayHour: 19,
                 width: "100%",
-                height: "100%"
+                height: "100%",
+                onAppointmentAdding: function (options) {
+                    alert(options.Betreff);
+                    DevExpress.ui.notify(options.Betreff, "success", 1000);
+                }
             };
             this.schedulerPortraitBesuchPlan = {
                 bindingOptions: {

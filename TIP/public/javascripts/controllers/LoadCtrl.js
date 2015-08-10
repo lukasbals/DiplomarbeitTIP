@@ -12,7 +12,6 @@ var TIP;
                     .success(function (data) {
                     _this.isLoading = data;
                 }).error(function (data) {
-                    alert("Irgendwas beim isLoading is schief gelaufen");
                 });
             }, 1000);
         };
