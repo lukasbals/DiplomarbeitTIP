@@ -1,6 +1,6 @@
 var TIP;
 (function (TIP) {
-    Globalize.culture(navigator.language || navigator.browserLanguage);
+    Globalize.culture("de-AT");
     DevExpress.devices.current({ platform: "generic" });
     angular
         .module("tip", ["ngSanitize", "dx", "angular-loading-bar"])
