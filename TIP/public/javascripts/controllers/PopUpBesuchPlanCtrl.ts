@@ -3,6 +3,33 @@ module TIP {
     constructor(private PopUpBesuchPlan: PopUpBesuchPlanService) {
 
     }
+
+    visiblePopup: boolean = false;
+    info;
+    text: string = "Tobis schönster Tag!";
+
+    Button = {
+      text: "Click me!",
+      onClick: ():  void => {
+        console.log("IN");
+        this.visiblePopup = true;
+        console.log(this.visiblePopup);
+      }
+    }
+
+    popUpOptions = {
+      width: 300,
+      height: 250,
+      contentTemplate: this.info,
+      showTitle: true,
+      title: "Information",
+      bindingOptions: {
+        visible: "vm.visiblePopup"
+      },
+      dragEnabled: false,
+      closeOnOutsideClick: true
+    }
+
   }
 
   export interface PopUpBesuchPlanScope extends ng.IScope {
