@@ -14,7 +14,7 @@ module TIP {
         return json;
       }
 
-      console.log(json);
+      // console.log(json);
 
       if (!(typeof json === "string")) {
         json = JSON.stringify(json);

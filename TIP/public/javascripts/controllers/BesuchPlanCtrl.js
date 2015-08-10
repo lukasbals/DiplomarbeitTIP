@@ -10,13 +10,12 @@ var TIP;
                 },
                 views: ["workWeek", "day"],
                 currentView: "workWeek",
-                currentDate: new Date(2012, 1, 3),
                 startDayHour: 8,
                 endDayHour: 19,
                 width: "100%",
                 height: "100%",
                 onAppointmentAdding: function (options) {
-                    alert(options.Betreff);
+                    console.log(options.appointment.text + options.appointment.startDate);
                     DevExpress.ui.notify(options.Betreff, "success", 1000);
                 }
             };

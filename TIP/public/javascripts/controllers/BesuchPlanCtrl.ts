@@ -22,14 +22,14 @@ module TIP {
       },
       views: ["workWeek", "day"],
       currentView: "workWeek",
-      currentDate: new Date(2012, 1, 3),
+      // currentDate: new Date(2012, 1, 3),
       // firstDayOfWeek: 1,
       startDayHour: 8,
       endDayHour: 19,
       width: "100%",
       height: "100%",
-      onAppointmentAdding: (options: {Betreff}): void => {
-        alert(options.Betreff);
+      onAppointmentAdding: (options): void => {
+        console.log(options.appointment.text + options.appointment.startDate);
         DevExpress.ui.notify(options.Betreff, "success", 1000);
       }
     }
