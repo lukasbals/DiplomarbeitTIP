@@ -42,7 +42,6 @@
         "./public/javascripts/controllers/PersonCtrl.ts",
         "./public/javascripts/services/BesuchPlanService.ts",
         "./public/javascripts/services/GeschaeftspartnerService.ts",
-        "./public/javascripts/services/JsonService.ts",
         "./public/javascripts/services/LoadService.ts",
         "./public/javascripts/services/PersonService.ts",
         "./public/javascripts/services/RestService.ts",
