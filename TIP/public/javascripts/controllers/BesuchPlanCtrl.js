@@ -10,6 +10,7 @@ var TIP;
                 },
                 views: ["workWeek", "day"],
                 currentView: "workWeek",
+                currentDate: new Date(2012, 1, 3),
                 startDayHour: 8,
                 endDayHour: 19,
                 width: "100%",
@@ -17,7 +18,8 @@ var TIP;
                 onAppointmentAdding: function (options) {
                     console.log(options.appointment.text + options.appointment.startDate);
                     DevExpress.ui.notify(options.Betreff, "success", 1000);
-                }
+                },
+                template: "vm.myTemplate"
             };
         }
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {

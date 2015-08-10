@@ -16,13 +16,15 @@ module TIP {
       });
     }
 
+    myTemplate;
+
     schedulerBesuchPlan: any = {
       bindingOptions: {
         dataSource: "vm.dataSourceBesuchPlan"
       },
       views: ["workWeek", "day"],
       currentView: "workWeek",
-      // currentDate: new Date(2012, 1, 3),
+      currentDate: new Date(2012, 1, 3),
       // firstDayOfWeek: 1,
       startDayHour: 8,
       endDayHour: 19,
@@ -31,7 +33,8 @@ module TIP {
       onAppointmentAdding: (options): void => {
         console.log(options.appointment.text + options.appointment.startDate);
         DevExpress.ui.notify(options.Betreff, "success", 1000);
-      }
+      },
+      template: "vm.myTemplate"
     }
 
   }
