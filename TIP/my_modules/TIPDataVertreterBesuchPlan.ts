@@ -78,12 +78,13 @@ module TIP {
       var result: TIP.ISchedulerData[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
-        TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.client_id from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where is_deleted = 0;", (error, row): void => {
+        TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.client_id, bp.id_geschaeftspartner from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where is_deleted = 0;", (error, row): void => {
           result.push({
             text: row.firmenbez_1,
             startDate: row.von,
             endDate: row.bis,
-            ClientId: row.client_id
+            ClientId: row.client_id,
+            IdGeschaeftspartner: row.id_geschaeftspartner
           });
         }, (): void => {
             //console.log(result);
@@ -95,6 +96,18 @@ module TIP {
 
     deleteBesuchPlanAppointment(id: number, res): void {
       TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id]);
+      res.send("OK");
+    }
+
+    updateBesuchPlanAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+      var sD = startDate.toLocaleString();
+      var eD = endDate.toLocaleString();
+      console.log("Hier wird gloggt!");
+      console.log(id);
+      console.log(sD);
+      console.log(eD);
+      console.log(id_geschaeftspartner);
+      TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where id = ?", [sD, eD, id_geschaeftspartner, id]);
       res.send("OK");
     }
   }

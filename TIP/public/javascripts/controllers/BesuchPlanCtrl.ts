@@ -40,16 +40,13 @@ module TIP {
         this.besuchPlan.deleteBesuchPlanAppointment(id);
 
       },
-      onAppointmentUpdated: (options): void =>{
-        var text: string = options.appointment.text;
+      onAppointmentUpdated: (options): void => {
+        var id_geschaeftspartner: number = options.appointment.IdGeschaeftspartner;
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
 
-
-        this.besuchPlan.updateBesuchPlanAppointment(text,startDate,endDate,id);
-
-        console.log(text + startDate + endDate);
+        this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
       }
     }
 

@@ -65,12 +65,13 @@ var TIP;
         TIPDataVertreterBesuchPlanClass.prototype.getJsonBesuchPlan = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
-                TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.client_id from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where is_deleted = 0;", function (error, row) {
+                TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.client_id, bp.id_geschaeftspartner from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where is_deleted = 0;", function (error, row) {
                     result.push({
                         text: row.firmenbez_1,
                         startDate: row.von,
                         endDate: row.bis,
-                        ClientId: row.client_id
+                        ClientId: row.client_id,
+                        IdGeschaeftspartner: row.id_geschaeftspartner
                     });
                 }, function () {
                     res.json(result);
@@ -79,6 +80,17 @@ var TIP;
         };
         TIPDataVertreterBesuchPlanClass.prototype.deleteBesuchPlanAppointment = function (id, res) {
             TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id]);
+            res.send("OK");
+        };
+        TIPDataVertreterBesuchPlanClass.prototype.updateBesuchPlanAppointment = function (id, startDate, endDate, id_geschaeftspartner, res) {
+            var sD = startDate.toLocaleString();
+            var eD = endDate.toLocaleString();
+            console.log("Hier wird gloggt!");
+            console.log(id);
+            console.log(sD);
+            console.log(eD);
+            console.log(id_geschaeftspartner);
+            TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where id = ?", [sD, eD, id_geschaeftspartner, id]);
             res.send("OK");
         };
         return TIPDataVertreterBesuchPlanClass;

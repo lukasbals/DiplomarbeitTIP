@@ -142,5 +142,6 @@ module TIP {
     startDate: Date;
     endDate: Date;
     ClientId: number;
+    IdGeschaeftspartner: number;
   }
 }

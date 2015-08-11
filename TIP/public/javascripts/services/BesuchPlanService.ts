@@ -15,8 +15,8 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/deleteBesuchPlanAppointment", json);
     }
 
-    updateBesuchPlanAppointment(text: string, startDate: Date, endDate: Date, id: number): ng.IHttpPromise<any> {
-      var string: string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '"}';
+    updateBesuchPlanAppointment(id_geschaeftspartner: number, startDate: Date, endDate: Date, id: number): ng.IHttpPromise<any> {
+      var string: string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
       var json: JSON = JSON.parse(string);
       return this.$http.post("http://localhost:3000/api/updateBesuchPlanAppointment", json);
     }

@@ -46,12 +46,15 @@ router.get("/getJsonBesuchPlan", function (req, res) {
     TIPDataVertreterBesuchPlan.getJsonBesuchPlan(res);
 });
 router.post("/deleteBesuchPlanAppointment", function (req, res) {
-    console.log("IN");
     var id = req.body.id;
     TIPDataVertreterBesuchPlan.deleteBesuchPlanAppointment(id, res);
 });
 router.post("/updateBesuchPlanAppointment", function (req, res) {
-    console.log("IN");
+    var id = req.body.id;
+    var startDate = req.body.startDate;
+    var endDate = req.body.endDate;
+    var id_geschaeftspartner = req.body.id_geschaeftspartner;
+    TIPDataVertreterBesuchPlan.updateBesuchPlanAppointment(id, startDate, endDate, id_geschaeftspartner, res);
 });
 router.get("/synchDB", function (req, res) {
     TIPSync.doSync();

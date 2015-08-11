@@ -26,12 +26,11 @@ var TIP;
                     _this.besuchPlan.deleteBesuchPlanAppointment(id);
                 },
                 onAppointmentUpdated: function (options) {
-                    var text = options.appointment.text;
+                    var id_geschaeftspartner = options.appointment.IdGeschaeftspartner;
                     var startDate = options.appointment.startDate;
                     var endDate = options.appointment.endDate;
                     var id = options.appointment.ClientId;
-                    _this.besuchPlan.updateBesuchPlanAppointment(text, startDate, endDate, id);
-                    console.log(text + startDate + endDate);
+                    _this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
                 }
             };
         }
