@@ -86,6 +86,11 @@ router.post("/deleteBesuchPlanAppointment", function(req, res) {
   TIPDataVertreterBesuchPlan.deleteBesuchPlanAppointment(id, res);
 });
 
+router.post("/updateBesuchPlanAppointment", function(req, res) {
+  console.log("IN");
+  //TODO
+});
+
 //
 // synch data from TIP server to node database
 //

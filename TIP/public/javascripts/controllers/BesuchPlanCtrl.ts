@@ -44,6 +44,10 @@ module TIP {
         var text: string = options.appointment.text;
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
+        var id: number = options.appointment.ClientId;
+
+
+        this.besuchPlan.updateBesuchPlanAppointment(text,startDate,endDate,id);
 
         console.log(text + startDate + endDate);
       }

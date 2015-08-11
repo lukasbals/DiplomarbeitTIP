@@ -29,6 +29,8 @@ var TIP;
                     var text = options.appointment.text;
                     var startDate = options.appointment.startDate;
                     var endDate = options.appointment.endDate;
+                    var id = options.appointment.ClientId;
+                    _this.besuchPlan.updateBesuchPlanAppointment(text, startDate, endDate, id);
                     console.log(text + startDate + endDate);
                 }
             };

@@ -13,6 +13,11 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/deleteBesuchPlanAppointment", json);
         };
+        BesuchPlanService.prototype.updateBesuchPlanAppointment = function (text, startDate, endDate, id) {
+            var string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/updateBesuchPlanAppointment", json);
+        };
         BesuchPlanService.prototype.parse = function (json) {
             var _this = this;
             if (!json) {

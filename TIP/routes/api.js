@@ -50,6 +50,9 @@ router.post("/deleteBesuchPlanAppointment", function (req, res) {
     var id = req.body.id;
     TIPDataVertreterBesuchPlan.deleteBesuchPlanAppointment(id, res);
 });
+router.post("/updateBesuchPlanAppointment", function (req, res) {
+    console.log("IN");
+});
 router.get("/synchDB", function (req, res) {
     TIPSync.doSync();
     res.send("done.");
