@@ -34,6 +34,9 @@ module TIP {
         console.log(options.appointment.text + options.appointment.startDate);
         DevExpress.ui.notify(options.Betreff, "success", 1000);
       },
+      onAppointmentDeleted: (options): void => {
+        
+      },
       template: "myTemplate"
     }
 

@@ -19,6 +19,8 @@ var TIP;
                     console.log(options.appointment.text + options.appointment.startDate);
                     DevExpress.ui.notify(options.Betreff, "success", 1000);
                 },
+                onAppointmentDeleted: function (options) {
+                },
                 template: "myTemplate"
             };
         }
