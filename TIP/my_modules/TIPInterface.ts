@@ -120,6 +120,8 @@ module TIP {
     Von: Date;
     Bis: Date;
     Status: number;
+    IsDeleted: number;
+    IsChanged: number;
   }
 
   export interface IBesuchstypModel {
@@ -140,6 +142,5 @@ module TIP {
     startDate: Date;
     endDate: Date;
     ClientId: number;
-    Id: number;
   }
 }

@@ -36,13 +36,9 @@ module TIP {
       },
       onAppointmentDeleted: (options): void => {
         console.log(options.appointment);
-        if (options.appointment.ClientId != null) {
-          var id: number = options.appointment.ClientId;
-          this.besuchPlan.deleteBesuchPlanAppointment(id);
-        } else {
-          var id: number = options.appointment.Id;
-          this.besuchPlan.deleteBesuchPlanAppointment(id);
-        }
+        var id: number = options.appointment.ClientId;
+        this.besuchPlan.deleteBesuchPlanAppointment(id);
+
       }
     }
 

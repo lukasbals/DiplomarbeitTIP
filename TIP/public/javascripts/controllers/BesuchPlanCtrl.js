@@ -22,14 +22,8 @@ var TIP;
                 },
                 onAppointmentDeleted: function (options) {
                     console.log(options.appointment);
-                    if (options.appointment.ClientId != null) {
-                        var id = options.appointment.ClientId;
-                        _this.besuchPlan.deleteBesuchPlanAppointment(id);
-                    }
-                    else {
-                        var id = options.appointment.Id;
-                        _this.besuchPlan.deleteBesuchPlanAppointment(id);
-                    }
+                    var id = options.appointment.ClientId;
+                    _this.besuchPlan.deleteBesuchPlanAppointment(id);
                 }
             };
         }
