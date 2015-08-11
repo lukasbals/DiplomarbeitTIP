@@ -24,6 +24,12 @@ var TIP;
                     console.log(options.appointment);
                     var id = options.appointment.ClientId;
                     _this.besuchPlan.deleteBesuchPlanAppointment(id);
+                },
+                onAppointmentUpdated: function (options) {
+                    var text = options.appointment.text;
+                    var startDate = options.appointment.startDate;
+                    var endDate = options.appointment.endDate;
+                    console.log(text + startDate + endDate);
                 }
             };
         }
