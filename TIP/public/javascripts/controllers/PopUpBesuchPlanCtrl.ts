@@ -30,6 +30,7 @@ module TIP {
       closeOnOutsideClick: true
     }
 
+
   }
 
   export interface PopUpBesuchPlanScope extends ng.IScope {

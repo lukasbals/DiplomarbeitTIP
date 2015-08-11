@@ -19,7 +19,7 @@ var TIP;
                     console.log(options.appointment.text + options.appointment.startDate);
                     DevExpress.ui.notify(options.Betreff, "success", 1000);
                 },
-                template: "vm.myTemplate"
+                template: "myTemplate"
             };
         }
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {

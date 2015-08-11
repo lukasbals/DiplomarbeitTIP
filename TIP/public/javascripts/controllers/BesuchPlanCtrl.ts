@@ -34,8 +34,19 @@ module TIP {
         console.log(options.appointment.text + options.appointment.startDate);
         DevExpress.ui.notify(options.Betreff, "success", 1000);
       },
-      template: "vm.myTemplate"
+      template: "myTemplate"
     }
+
+
+    // titleView = {
+    //   dataSource: this.dataSourceBesuchPlan,
+    //   itemTemplate: "myTemplate"
+    // }
+    //
+    // Template = {
+    //   name: "myTemplate",
+    //   tablet: true
+    // }
 
   }
 

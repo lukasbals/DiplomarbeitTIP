@@ -4,15 +4,18 @@ block content
   div(ng-controller="BesuchPlanCtrl")
     div(ng-init="vm.initBesuchPlan()").container-fluid.contentContainer
       title Besuch
-      script(dx-template="myTemplate")
-        h1 {{stateInfo.name}}
-        p
-          b Capital: 
-          i {{stateInfo.capital}}
-        p
-          b Area: 
-          i{{stateInfo.area}}
-        p
-          b Population: 
-          i {{stateInfo.population}}
+      //- script(dx-template="myTemplate")
+      //-   h1 {{stateInfo.name}}
+      //-   p
+      //-     b Capital: 
+      //-     i {{stateInfo.capital}}
+      //-   p
+      //-     b Area: 
+      //-     i {{stateInfo.area}}
+      //-   p
+      //-     b Population: 
+      //-     i {{stateInfo.population}}
+      //- div(dx-tile-view="{ dataSource: this.dataSourceBesuchPlan, itemTemplate: 'myTemplate' }")
+      //-   div(data-options="dxTemplate: {name: 'myTemplate'}")
+      //-     h1 {{vm.text}}
       div#landscapeScheduler(dx-scheduler="vm.schedulerBesuchPlan")
