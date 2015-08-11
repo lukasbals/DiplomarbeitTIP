@@ -2,6 +2,7 @@ var TIP;
 (function (TIP) {
     var BesuchPlanViewModel = (function () {
         function BesuchPlanViewModel(besuchPlan) {
+            var _this = this;
             this.besuchPlan = besuchPlan;
             this.dataSourceBesuchPlan = null;
             this.schedulerBesuchPlan = {
@@ -20,8 +21,16 @@ var TIP;
                     DevExpress.ui.notify(options.Betreff, "success", 1000);
                 },
                 onAppointmentDeleted: function (options) {
-                },
-                template: "myTemplate"
+                    console.log(options.appointment);
+                    if (options.appointment.ClientId != null) {
+                        var id = options.appointment.ClientId;
+                        _this.besuchPlan.deleteBesuchPlanAppointment(id);
+                    }
+                    else {
+                        var id = options.appointment.Id;
+                        _this.besuchPlan.deleteBesuchPlanAppointment(id);
+                    }
+                }
             };
         }
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {

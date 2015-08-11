@@ -76,11 +76,13 @@ module TIP {
       var result: TIP.ISchedulerData[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
-        TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id;", (error, row): void => {
+        TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.id, bp.client_id from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id;", (error, row): void => {
           result.push({
             text: row.firmenbez_1,
             startDate: row.von,
-            endDate: row.bis
+            endDate: row.bis,
+            ClientId: row.client_id,
+            Id: row.id
           });
         }, (): void => {
             //console.log(result);
@@ -90,6 +92,10 @@ module TIP {
 
     }
 
+    deleteBesuchPlanAppointment(id: number, res): void {
+      TIPDatabase.getDB().run("delete from besuche_plan where id =" + id + ";");
+      res.send("OK");
+    }
   }
 }
 

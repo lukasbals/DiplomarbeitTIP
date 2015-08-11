@@ -80,6 +80,12 @@ router.get("/getJsonBesuchPlan", (req, res): void => {
   TIPDataVertreterBesuchPlan.getJsonBesuchPlan(res);
 });
 
+router.post("/deleteBesuchPlanAppointment", function(req, res) {
+  console.log("IN");
+  var id: number = req.body.id;
+  TIPDataVertreterBesuchPlan.deleteBesuchPlanAppointment(id, res);
+});
+
 //
 // synch data from TIP server to node database
 //
@@ -91,7 +97,6 @@ router.get("/synchDB", (req, res): void => {
 //setInterval(() => console.log(TIPSync.isSyncActive()), 1000);
 
 router.get("/isSyncActive", (req, res): void => {
-  console.log("IN");
   res.send(TIPSync.isSyncActive());
   //res.send("done.");
 });

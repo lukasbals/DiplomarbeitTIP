@@ -139,5 +139,7 @@ module TIP {
     text: string;
     startDate: Date;
     endDate: Date;
+    ClientId: number;
+    Id: number;
   }
 }

@@ -35,21 +35,16 @@ module TIP {
         DevExpress.ui.notify(options.Betreff, "success", 1000);
       },
       onAppointmentDeleted: (options): void => {
-        
-      },
-      template: "myTemplate"
+        console.log(options.appointment);
+        if (options.appointment.ClientId != null) {
+          var id: number = options.appointment.ClientId;
+          this.besuchPlan.deleteBesuchPlanAppointment(id);
+        } else {
+          var id: number = options.appointment.Id;
+          this.besuchPlan.deleteBesuchPlanAppointment(id);
+        }
+      }
     }
-
-
-    // titleView = {
-    //   dataSource: this.dataSourceBesuchPlan,
-    //   itemTemplate: "myTemplate"
-    // }
-    //
-    // Template = {
-    //   name: "myTemplate",
-    //   tablet: true
-    // }
 
   }
 

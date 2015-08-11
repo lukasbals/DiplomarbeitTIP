@@ -31,18 +31,10 @@ html
     script(src="/javascripts/controllers/LoadCtrl.js")
     script(src="/javascripts/services/BesuchPlanService.js")
     script(src="/javascripts/controllers/BesuchPlanCtrl.js")
-    script(src="/javascripts/services/PopUpBesuchPlanService.js")
-    script(src="/javascripts/controllers/PopUpBesuchPlanCtrl.js")
-
 
     
 
   body(ng-app="tip", ng-controller="LoadCtrl")
     div(ng-init="vm.initIsLoading()")
     include navBar
-    //- div.popup(dx-popup="vm.popUpOptions")
-    //-   div(data-options="vm.info")
-    //-     p
-    //-       | Full Name:
-    //-       span {{vm.text}}
     block content

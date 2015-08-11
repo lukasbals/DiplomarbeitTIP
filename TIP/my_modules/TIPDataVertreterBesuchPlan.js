@@ -63,16 +63,22 @@ var TIP;
         TIPDataVertreterBesuchPlanClass.prototype.getJsonBesuchPlan = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
-                TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id;", function (error, row) {
+                TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.id, bp.client_id from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id;", function (error, row) {
                     result.push({
                         text: row.firmenbez_1,
                         startDate: row.von,
-                        endDate: row.bis
+                        endDate: row.bis,
+                        ClientId: row.client_id,
+                        Id: row.id
                     });
                 }, function () {
                     res.json(result);
                 });
             });
+        };
+        TIPDataVertreterBesuchPlanClass.prototype.deleteBesuchPlanAppointment = function (id, res) {
+            TIPDatabase.getDB().run("delete from besuche_plan where id =" + id + ";");
+            res.send("OK");
         };
         return TIPDataVertreterBesuchPlanClass;
     })();

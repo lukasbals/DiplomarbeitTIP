@@ -8,6 +8,11 @@ var TIP;
         BesuchPlanService.prototype.getBesuchPlan = function () {
             return this.$http.get("http://localhost:3000/api/getJsonBesuchPlan");
         };
+        BesuchPlanService.prototype.deleteBesuchPlanAppointment = function (id) {
+            var string = '{"id": "' + id + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/deleteBesuchPlanAppointment", json);
+        };
         BesuchPlanService.prototype.parse = function (json) {
             var _this = this;
             if (!json) {

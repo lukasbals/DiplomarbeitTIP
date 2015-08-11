@@ -45,12 +45,16 @@ router.get("/getJsonPersonengruppe", function (req, res) {
 router.get("/getJsonBesuchPlan", function (req, res) {
     TIPDataVertreterBesuchPlan.getJsonBesuchPlan(res);
 });
+router.post("/deleteBesuchPlanAppointment", function (req, res) {
+    console.log("IN");
+    var id = req.body.id;
+    TIPDataVertreterBesuchPlan.deleteBesuchPlanAppointment(id, res);
+});
 router.get("/synchDB", function (req, res) {
     TIPSync.doSync();
     res.send("done.");
 });
 router.get("/isSyncActive", function (req, res) {
-    console.log("IN");
     res.send(TIPSync.isSyncActive());
 });
 module.exports = router;
