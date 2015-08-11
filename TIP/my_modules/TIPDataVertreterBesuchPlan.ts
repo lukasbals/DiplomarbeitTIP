@@ -93,7 +93,7 @@ module TIP {
     }
 
     deleteBesuchPlanAppointment(id: number, res): void {
-      TIPDatabase.getDB().run("delete from besuche_plan where id =" + id + ";");
+      TIPDatabase.getDB().run("delete from besuche_plan where id = ?;", [id]);
       res.send("OK");
     }
   }

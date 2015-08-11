@@ -77,7 +77,7 @@ var TIP;
             });
         };
         TIPDataVertreterBesuchPlanClass.prototype.deleteBesuchPlanAppointment = function (id, res) {
-            TIPDatabase.getDB().run("delete from besuche_plan where id =" + id + ";");
+            TIPDatabase.getDB().run("delete from besuche_plan where id = ?;", [id]);
             res.send("OK");
         };
         return TIPDataVertreterBesuchPlanClass;
