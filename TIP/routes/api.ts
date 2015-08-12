@@ -93,6 +93,11 @@ router.post("/updateBesuchPlanAppointment", function(req, res) {
   TIPDataVertreterBesuchPlan.updateBesuchPlanAppointment(id, startDate, endDate, id_geschaeftspartner, res);
 });
 
+router.post("/getDetailBesuchPlan", function(req, res) {
+  var id: number = req.body.id;
+  TIPDataVertreterBesuchPlan.getDetailBesuchPlan(id, res);
+});
+
 //
 // synch data from TIP server to node database
 //

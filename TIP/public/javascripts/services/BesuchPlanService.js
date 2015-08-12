@@ -18,6 +18,11 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/updateBesuchPlanAppointment", json);
         };
+        BesuchPlanService.prototype.getDetailBesuchPlan = function (id) {
+            var string = '{"id": "' + id + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/getDetailBesuchPlan", json);
+        };
         BesuchPlanService.prototype.parse = function (json) {
             var _this = this;
             if (!json) {

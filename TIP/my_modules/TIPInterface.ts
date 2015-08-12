@@ -128,6 +128,32 @@ module TIP {
     IsChanged: number;
   }
 
+  export interface IBesuchPlanDetailModel {
+    ClientId: number;
+    Id: number;
+    IdTourPlan: number;
+    ClientIdTourPlan: number;
+    IdGeschaeftspartner: number;
+    startDate: Date;
+    endDate: Date;
+    Status: number;
+    IsDeleted: number;
+    IsChanged: number;
+    GpNummer: number;
+    CodeGpKz: string;
+    Firmenbez1: string;
+    Firmenbez2: string;
+    Firmenbez3: string;
+    Strasse: string;
+    CodeLand: string;
+    Plz: string;
+    Ort: string;
+    Telefon: string;
+    Fax: string;
+    Email: string;
+    Homepage: string;
+  }
+
   export interface IBesuchstypModel {
     Id: number;
     Bezeichnung: string;

@@ -21,6 +21,12 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/updateBesuchPlanAppointment", json);
     }
 
+    getDetailBesuchPlan(id: number): ng.IHttpPromise<any> {
+      var string: string = '{"id": "' + id + '"}';
+      var json: JSON = JSON.parse(string);
+      return this.$http.post("http://localhost:3000/api/getDetailBesuchPlan", json);
+    }
+
     parse(json: any): any {
       if (!json) {
         return json;

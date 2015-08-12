@@ -90,6 +90,42 @@ var TIP;
             TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id]);
             res.send("OK");
         };
+        TIPDataVertreterBesuchPlanClass.prototype.getDetailBesuchPlan = function (id, res) {
+            var result = new Array();
+            console.log(id);
+            TIPDatabase.getDB().serialize(function () {
+                TIPDatabase.getDB().each("select bp.client_id, bp.id, bp.id_tour_plan, bp.client_id_tour_plan, bp.id_geschaeftspartner, bp.von, bp.bis, bp.status, bp.is_deleted, bp.is_changed, gp.gp_nummer, gp.code_gpkz, gp.firmenbez_1, gp.firmenbez_2, gp.firmenbez_3, gp.strasse, gp.code_land, gp.plz, gp.ort, gp.telefon, gp.fax, gp.email, gp.homepage from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where bp.client_id = ?;", [id], function (err, row) {
+                    result.push({
+                        ClientId: row.client_id,
+                        Id: row.id,
+                        IdTourPlan: row.id_tour_plan,
+                        ClientIdTourPlan: row.client_id_tour_plan,
+                        IdGeschaeftspartner: row.id_geschaeftspartner,
+                        startDate: row.von,
+                        endDate: row.bis,
+                        Status: row.status,
+                        IsDeleted: row.is_deleted,
+                        IsChanged: row.is_changed,
+                        GpNummer: row.gp_nummer,
+                        CodeGpKz: row.code_gpkz,
+                        Firmenbez1: row.firmenbez_1,
+                        Firmenbez2: row.firmenbez_2,
+                        Firmenbez3: row.firmenbez_3,
+                        Strasse: row.strasse,
+                        CodeLand: row.code_land,
+                        Plz: row.plz,
+                        Ort: row.ort,
+                        Telefon: row.telefon,
+                        Fax: row.fax,
+                        Email: row.email,
+                        Homepage: row.homepage
+                    });
+                }, function () {
+                    console.log(result);
+                    res.json(result);
+                });
+            });
+        };
         return TIPDataVertreterBesuchPlanClass;
     })();
     TIP.TIPDataVertreterBesuchPlanClass = TIPDataVertreterBesuchPlanClass;

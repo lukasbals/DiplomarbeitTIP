@@ -4,6 +4,43 @@ module TIP {
 
     }
 
+    detailBesuchPlanDataSource: TIP.IBesuchPlanDetailModel = null;
+    startDate: Date = null;
+    endDate: Date = null;
+    initDetailBesuchPlan() {
+      var id: number = this.getParameter("id");
+      var startDate: Date = this.getParameter("startDate");
+      var endDate: Date = this.getParameter("endDate");
+      //alert(id);
+      if (id >= 0) {
+        //alert("ändern");
+        this.besuchPlan.getDetailBesuchPlan(id)
+          .success((data): void => {
+          console.log(data);
+          this.besuchPlan.parse(data);
+          this.detailBesuchPlanDataSource = data[0];
+          this.startDate = data[0].startDate;
+          this.endDate = data[0].endDate;
+          alert(this.endDate);
+        });
+      } else {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        //alert("Neues Ereignis");
+      }
+    }
+
+    getParameter = (theParameter): any => {
+      var params = window.location.search.substr(1).split('&');
+      for (var i = 0; i < params.length; i++) {
+        var p = params[i].split('=');
+        if (p[0] == theParameter) {
+          return decodeURIComponent(p[1]);
+        }
+      }
+      return false;
+    }
+
     dataSourceBesuchPlan: TIP.ISchedulerData = null;
     initBesuchPlan() {
       this.besuchPlan.getBesuchPlan()

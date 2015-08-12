@@ -4,6 +4,19 @@ var TIP;
         function BesuchPlanViewModel(besuchPlan) {
             var _this = this;
             this.besuchPlan = besuchPlan;
+            this.detailBesuchPlanDataSource = null;
+            this.startDate = null;
+            this.endDate = null;
+            this.getParameter = function (theParameter) {
+                var params = window.location.search.substr(1).split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var p = params[i].split('=');
+                    if (p[0] == theParameter) {
+                        return decodeURIComponent(p[1]);
+                    }
+                }
+                return false;
+            };
             this.dataSourceBesuchPlan = null;
             this.schedulerBesuchPlan = {
                 bindingOptions: {
@@ -34,6 +47,27 @@ var TIP;
                 }
             };
         }
+        BesuchPlanViewModel.prototype.initDetailBesuchPlan = function () {
+            var _this = this;
+            var id = this.getParameter("id");
+            var startDate = this.getParameter("startDate");
+            var endDate = this.getParameter("endDate");
+            if (id >= 0) {
+                this.besuchPlan.getDetailBesuchPlan(id)
+                    .success(function (data) {
+                    console.log(data);
+                    _this.besuchPlan.parse(data);
+                    _this.detailBesuchPlanDataSource = data[0];
+                    _this.startDate = data[0].startDate;
+                    _this.endDate = data[0].endDate;
+                    alert(_this.endDate);
+                });
+            }
+            else {
+                this.startDate = startDate;
+                this.endDate = endDate;
+            }
+        };
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {
             var _this = this;
             this.besuchPlan.getBesuchPlan()
