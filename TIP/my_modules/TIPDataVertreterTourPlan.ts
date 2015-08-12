@@ -5,7 +5,6 @@ module TIP {
   export class TIPDataVertreterTourPlanClass implements ITIPData {
     isActive: boolean = false;
     doSync(): void {
-      console.log("IN");
       this.isActive = true;
       this.initTable();
       this.loadTable();
@@ -13,7 +12,6 @@ module TIP {
 
     //makes besuchstypen_st TABLE
     initTable(): void {
-      console.log("IN");
       TIPDatabase.getDB().run("create table if not exists touren_plan (" +
       "client_id int primary key, " +
       "id int," +

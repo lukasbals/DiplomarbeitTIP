@@ -13,11 +13,13 @@ module TIP {
     // makes anreden_st TABLE
     initTable(): void {
       TIPDatabase.getDB().run("create table if not exists berichte (" +
-        "client_id int primary key, " +
+        "client_id INTEGER PRIMARY KEY, " +
         "id int, " +
         "client_id_besuch int, " +
         "id_besuch int, " +
         "titel string(50), " +
+        "is_deleted int, " +
+        "is_changed int, " +
         "text TEXT)");
     }
 
@@ -33,20 +35,20 @@ module TIP {
           var data: TIP.IBerichtModel[] = JSON.parse(body);
 
           TIPDatabase.getDB().serialize((): void => {
-            var insertStmt = TIPDatabase.getDB().prepare("insert into berichte (client_id, id, client_id_besuch, id_besuch, titel, text) values (?, ?, ?, ?, ?, ?)");
-            var updateStmt = TIPDatabase.getDB().prepare("update berichte set id = ?, client_id_besuch = ?, id_besuch = ?, titel = ?, text = ? where client_id = ?");
+            var insertStmt = TIPDatabase.getDB().prepare("insert into berichte (id, client_id_besuch, id_besuch, titel, is_deleted, is_changed, text) values (?, ?, ?, ?, ?, ?, ?)");
+            var updateStmt = TIPDatabase.getDB().prepare("update berichte set client_id_besuch = ?, id_besuch = ?, titel = ?, is_deleted = ?, is_changed = ?, text = ? where id = ?");
 
             var insertCount = 0;
             var updateCount = 0;
 
             data.forEach((val: any): void => {
-              TIPDatabase.getDB().get("select count(*) as result from berichte where client_id = ?", [val.ClientId], (error, row): void => {
+              TIPDatabase.getDB().get("select count(*) as result from berichte where id = ?", [val.Id], (error, row): void => {
                 if (row.result > 0) {
                   updateCount++;
-                  updateStmt.run([val.Id, val.ClientIdBesuch, val.IdBesuch, val.Titel, val.Text, val.ClientId]);
+                  updateStmt.run([val.ClientIdBesuch, val.IdBesuch, val.Titel, val.IsDeleted, val.IsChanged, val.Text, val.Id]);
                 } else {
                   insertCount++;
-                  insertStmt.run([val.ClientId, val.Id, val.ClientIdBesuch, val.IdBesuch, val.Titel, val.Text]);
+                  insertStmt.run([val.Id, val.ClientIdBesuch, val.IdBesuch, val.Titel, val.IsDeleted, val.IsChanged, val.Text]);
                 }
               });
             });

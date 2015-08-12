@@ -7,13 +7,11 @@ var TIP;
             this.isActive = false;
         }
         TIPDataVertreterTourPlanClass.prototype.doSync = function () {
-            console.log("IN");
             this.isActive = true;
             this.initTable();
             this.loadTable();
         };
         TIPDataVertreterTourPlanClass.prototype.initTable = function () {
-            console.log("IN");
             TIPDatabase.getDB().run("create table if not exists touren_plan (" +
                 "client_id int primary key, " +
                 "id int," +

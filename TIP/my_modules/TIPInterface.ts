@@ -98,6 +98,8 @@ module TIP {
     IdBesuch: number;
     Text: string;
     Titel: string;
+    IsDeleted: number;
+    IsChanged: number;
   }
 
   export interface IBesuchModel {
@@ -109,6 +111,8 @@ module TIP {
     IdGeschaeftspartner: number;
     Von: Date;
     Bis: Date;
+    IsDeleted: number;
+    IsChanged: number;
   }
 
   export interface IBesuchPlanModel {
@@ -137,7 +141,7 @@ module TIP {
     Bis: Date;
   }
 
-  export interface ISchedulerData{
+  export interface ISchedulerData {
     text: string;
     startDate: Date;
     endDate: Date;
