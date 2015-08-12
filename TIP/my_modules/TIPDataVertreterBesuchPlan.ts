@@ -91,7 +91,6 @@ module TIP {
             res.json(result);
           });
       });
-
     }
 
     deleteBesuchPlanAppointment(id: number, res): void {
@@ -104,11 +103,6 @@ module TIP {
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
       var eD = y.toISOString();
-      // console.log("Hier wird gloggt!");
-      // console.log(id);
-      // console.log(sD);
-      // console.log(eD);
-      // console.log(id_geschaeftspartner);
       TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id]);
       res.send("OK");
     }
