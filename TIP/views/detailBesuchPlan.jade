@@ -3,7 +3,8 @@ extends layout
 block content
   div(ng-controller="BesuchPlanCtrl")
     div.container-fluid.contentContainer(ng-init=" vm.initDetailBesuchPlan()")
-      title {{vm.detailBesuchPlanDataSource.Firmenbez1}}
+      title(ng-show="vm.detailBesuchPlanDataSource.Firmenbez1") {{vm.detailBesuchPlanDataSource.Firmenbez1}}
+      title(ng-hide="vm.detailBesuchPlanDataSource.Firmenbez1") Neues Ereignis erstellen
       div.row
         div.col-md-6
           h2(ng-hide="vm.detailBesuchPlanDataSource.Firmenbez1") Neues Ereignis erstellen:

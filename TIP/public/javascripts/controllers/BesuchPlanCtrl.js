@@ -51,8 +51,10 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuchPlan.updateBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchPlanDataSource.ClientId);
-                    DevExpress.ui.notify("Sie haben den Termin angepasst.", "success", 3000);
+                    _this.besuchPlan.updateBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchPlanDataSource.ClientId)
+                        .success(function (data) {
+                        window.location.href = "/besuchPlan";
+                    });
                 }
             };
             this.save = {
@@ -116,6 +118,8 @@ var TIP;
                     _this.detailBesuchPlanDataSource = data[0];
                     _this.startDate = new Date(data[0].startDate);
                     _this.endDate = new Date(data[0].endDate);
+                    _this.gpId = data[0].IdGeschaeftspartner;
+                    console.log(_this.detailBesuchPlanDataSource);
                 });
             }
             else {

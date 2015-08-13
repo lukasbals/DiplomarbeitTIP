@@ -28,10 +28,11 @@ module TIP {
           this.detailBesuchPlanDataSource = data[0];
           this.startDate = new Date(data[0].startDate);
           this.endDate = new Date(data[0].endDate);
-          //console.log(this.detailBesuchPlanDataSource);
+          this.gpId = data[0].IdGeschaeftspartner;
+          console.log(this.detailBesuchPlanDataSource);
         });
       } else {
-        this.startDate =  new Date(this.getParameter("startDate"));
+        this.startDate = new Date(this.getParameter("startDate"));
         this.endDate = new Date(this.getParameter("endDate"));
         //alert("Neues Ereignis");
       }
@@ -85,8 +86,11 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuchPlan.updateBesuchPlanAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchPlanDataSource.ClientId);
-        DevExpress.ui.notify("Sie haben den Termin angepasst.", "success", 3000);
+        this.besuchPlan.updateBesuchPlanAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchPlanDataSource.ClientId)
+          .success((data): void => {
+          window.location.href = "/besuchPlan";
+        });
+
       }
     }
 
@@ -95,11 +99,11 @@ module TIP {
       text: "Speichern",
       onClick: (): void => {
         this.besuchPlan.saveBesuchPlanAppointment(this.gpId, this.startDate, this.endDate)
-          .success((data): void =>{
-            //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
-            window.location.href = "/besuchPlan";
-          });
-        }
+          .success((data): void => {
+          //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
+          window.location.href = "/besuchPlan";
+        });
+      }
     }
 
     getParameter = (theParameter): any => {
