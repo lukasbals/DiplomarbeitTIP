@@ -11,12 +11,13 @@ block content
           h2(ng-show="vm.detailBesuchPlanDataSource.Firmenbez1") {{vm.detailBesuchPlanDataSource.Firmenbez1}} bearbeiten
           div(dx-lookup="vm.lookup")
         div.col-md-6
-          div.col-xs-6
-            h2 Anfangszeitpunkt
-            div(dx-date-box="vm.dateboxAnfang")
-          div.col-xs-6
-            h2 Endzeitpunkt
-            div(dx-date-box="vm.dateboxEnde")
+          div.row
+            div.col-xs-6
+              h2 Anfangszeitpunkt
+              div(dx-date-box="vm.dateboxAnfang")
+            div.col-xs-6
+              h2 Endzeitpunkt
+              div(dx-date-box="vm.dateboxEnde")
       div.row
         div.col-md-6
           div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.loeschen").btnOptionsDetailBesuchPlan
