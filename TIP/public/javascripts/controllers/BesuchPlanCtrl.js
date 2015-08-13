@@ -20,17 +20,13 @@ var TIP;
                 }
             };
             this.dateboxAnfang = {
-                min: new Date(2000, 0, 1),
-                max: new Date(2999, 12, 31),
-                format: "date",
+                format: "datetime",
                 bindingOptions: {
                     value: "vm.startDate"
                 }
             };
             this.dateboxEnde = {
-                min: new Date(2000, 0, 1),
-                max: new Date(2999, 12, 31),
-                format: "date",
+                format: "datetime",
                 bindingOptions: {
                     value: "vm.endDate"
                 }
@@ -81,15 +77,15 @@ var TIP;
             if (id >= 0) {
                 this.besuchPlan.getDetailBesuchPlan(id)
                     .success(function (data) {
-                    _this.besuchPlan.parse(data);
+                    _this.besuchPlan.parse(data[0]);
                     _this.detailBesuchPlanDataSource = data[0];
-                    _this.startDate = data[0].startDate;
-                    _this.endDate = data[0].endDate;
+                    _this.startDate = new Date(data[0].startDate);
+                    _this.endDate = new Date(data[0].endDate);
                 });
             }
             else {
-                this.startDate = this.getParameter("startDate");
-                this.endDate = this.getParameter("endDate");
+                this.startDate = new Date(this.getParameter("startDate"));
+                this.endDate = new Date(this.getParameter("endDate"));
             }
         };
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {

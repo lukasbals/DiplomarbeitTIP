@@ -21,15 +21,15 @@ module TIP {
         this.besuchPlan.getDetailBesuchPlan(id)
           .success((data): void => {
           //console.log(data);
-          this.besuchPlan.parse(data);
+          this.besuchPlan.parse(data[0]);
           this.detailBesuchPlanDataSource = data[0];
-          this.startDate = data[0].startDate;
-          this.endDate = data[0].endDate;
+          this.startDate = new Date(data[0].startDate);
+          this.endDate = new Date(data[0].endDate);
           //console.log(this.detailBesuchPlanDataSource);
         });
       } else {
-        this.startDate =  this.getParameter("startDate");
-        this.endDate = this.getParameter("endDate");
+        this.startDate =  new Date(this.getParameter("startDate"));
+        this.endDate = new Date(this.getParameter("endDate"));
         //alert("Neues Ereignis");
       }
     }
@@ -46,20 +46,16 @@ module TIP {
     }
 
     dateboxAnfang = {
-      min: new Date(2000, 0, 1),
-      max: new Date(2999, 12, 31),
-      format: "date",
-      // value: "vm.startDate"
+      format: "datetime",
+      // value: this.startDate
       bindingOptions: {
         value: "vm.startDate"
       }
     }
 
     dateboxEnde = {
-      min: new Date(2000, 0, 1),
-      max: new Date(2999, 12, 31),
-      format: "date",
-      // value: "vm.endDate"
+      format: "datetime",
+      // value: this.endDate
       bindingOptions: {
         value: "vm.endDate"
       }
@@ -95,7 +91,6 @@ module TIP {
       views: ["workWeek", "day"],
       currentView: "workWeek",
       currentDate: new Date(2012, 1, 3),
-      // firstDayOfWeek: 1,
       startDayHour: 8,
       endDayHour: 19,
       width: "100%",
@@ -114,7 +109,6 @@ module TIP {
         this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
       }
     }
-
   }
 
   export interface BesuchPlanScope extends ng.IScope {
