@@ -10,6 +10,7 @@ var TIP;
             this.startDate = null;
             this.endDate = null;
             this.lookup = {
+                placeholder: "Geschäftspartner ändern...",
                 bindingOptions: {
                     dataSource: "vm.dataSourceGeschaeftspartnerForSearch",
                 },
@@ -23,12 +24,44 @@ var TIP;
                 format: "datetime",
                 bindingOptions: {
                     value: "vm.startDate"
+                },
+                onClosed: function (option) {
+                    _this.startDate = option.model.vm.startDate;
                 }
             };
             this.dateboxEnde = {
                 format: "datetime",
                 bindingOptions: {
                     value: "vm.endDate"
+                },
+                onClosed: function (option) {
+                    _this.endDate = option.model.vm.endDate;
+                }
+            };
+            this.loeschen = {
+                type: "danger",
+                text: "Löschen",
+                onClick: function () {
+                    _this.besuchPlan.deleteBesuchPlanAppointment(_this.detailBesuchPlanDataSource.ClientId);
+                    window.location.href = "/besuchPlan";
+                }
+            };
+            this.update = {
+                type: "success",
+                text: "Speichern",
+                onClick: function () {
+                    _this.besuchPlan.updateBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchPlanDataSource.ClientId);
+                    DevExpress.ui.notify("Sie haben den Termin angepasst.", "success", 3000);
+                }
+            };
+            this.save = {
+                type: "success",
+                text: "Speichern",
+                onClick: function () {
+                    _this.besuchPlan.saveBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate)
+                        .success(function (data) {
+                        window.location.href = "/besuchPlan";
+                    });
                 }
             };
             this.getParameter = function (theParameter) {
@@ -49,7 +82,7 @@ var TIP;
                 views: ["workWeek", "day"],
                 currentView: "workWeek",
                 currentDate: new Date(2012, 1, 3),
-                startDayHour: 8,
+                startDayHour: 7,
                 endDayHour: 19,
                 width: "100%",
                 height: "100%",

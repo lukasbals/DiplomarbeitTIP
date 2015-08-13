@@ -74,7 +74,7 @@ module TIP {
       return this.isActive;
     }
 
-    getJsonBesuchPlan(res): void  {
+    getJsonBesuchPlan(res): void {
       var result: TIP.ISchedulerData[] = new Array();
 
       TIPDatabase.getDB().serialize((): void => {
@@ -93,18 +93,38 @@ module TIP {
       });
     }
 
-    deleteBesuchPlanAppointment(id: number, res): void {
+    deleteBesuchPlanAppointment(id: number, res): void {
       TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id]);
       res.send("OK");
     }
 
-    updateBesuchPlanAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+    updateBesuchPlanAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
       var x = new Date(startDate.toLocaleString());
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
       var eD = y.toISOString();
       TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id]);
       res.send("OK");
+    }
+
+    saveBesuchPlanAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+      var x = new Date(startDate.toLocaleString());
+      var y = new Date(endDate.toLocaleString());
+      var sD = x.toISOString();
+      var eD = y.toISOString();
+      var IsDeleted: number = 0;
+      var IsChanged: number = 1;
+      console.log(sD);
+      console.log(eD);
+      console.log(id_geschaeftspartner);
+      TIPDatabase.getDB().run("insert into besuche_plan (von, bis, id_geschaeftspartner, is_deleted, is_changed) values (?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged], (err) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send("OK");
+        }
+      });
+
     }
 
     getDetailBesuchPlan(id: number, res): void {
@@ -139,7 +159,7 @@ module TIP {
             Homepage: row.homepage
           });
         }, (): void=> {
-          console.log(result);
+            console.log(result);
             res.json(result);
           });
       });

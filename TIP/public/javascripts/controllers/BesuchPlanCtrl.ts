@@ -35,6 +35,7 @@ module TIP {
     }
 
     lookup = {
+      placeholder: "Geschäftspartner ändern...",
       bindingOptions: {
         dataSource: "vm.dataSourceGeschaeftspartnerForSearch",
       },
@@ -50,6 +51,9 @@ module TIP {
       // value: this.startDate
       bindingOptions: {
         value: "vm.startDate"
+      },
+      onClosed: (option): void => {
+        this.startDate = option.model.vm.startDate;
       }
     }
 
@@ -58,7 +62,41 @@ module TIP {
       // value: this.endDate
       bindingOptions: {
         value: "vm.endDate"
+      },
+      onClosed: (option): void => {
+        // this.endDate = options;
+        this.endDate = option.model.vm.endDate;
       }
+    }
+
+    loeschen: DevExpress.ui.dxButtonOptions = {
+      type: "danger",
+      text: "Löschen",
+      onClick: (): void => {
+        this.besuchPlan.deleteBesuchPlanAppointment(this.detailBesuchPlanDataSource.ClientId);
+        window.location.href = "/besuchPlan";
+      }
+    }
+
+    update: DevExpress.ui.dxButtonOptions = {
+      type: "success",
+      text: "Speichern",
+      onClick: (): void => {
+        this.besuchPlan.updateBesuchPlanAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchPlanDataSource.ClientId);
+        DevExpress.ui.notify("Sie haben den Termin angepasst.", "success", 3000);
+      }
+    }
+
+    save: DevExpress.ui.dxButtonOptions = {
+      type: "success",
+      text: "Speichern",
+      onClick: (): void => {
+        this.besuchPlan.saveBesuchPlanAppointment(this.gpId, this.startDate, this.endDate)
+          .success((data): void =>{
+            //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
+            window.location.href = "/besuchPlan";
+          });
+        }
     }
 
     getParameter = (theParameter): any => {
@@ -91,7 +129,7 @@ module TIP {
       views: ["workWeek", "day"],
       currentView: "workWeek",
       currentDate: new Date(2012, 1, 3),
-      startDayHour: 8,
+      startDayHour: 7,
       endDayHour: 19,
       width: "100%",
       height: "100%",
@@ -105,7 +143,6 @@ module TIP {
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
-
         this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
       }
     }

@@ -5,9 +5,20 @@ block content
     div.container-fluid.contentContainer(ng-init=" vm.initDetailBesuchPlan()")
       title {{vm.detailBesuchPlanDataSource.Firmenbez1}}
       div.row
-        div.col-md-6  
+        div.col-md-6
+          h2(ng-show="vm.detailBesuchPlanDataSource.Firmenbez1") {{vm.detailBesuchPlanDataSource.Firmenbez1}}
           div(dx-lookup="vm.lookup")
+      div.row
         div.col-md-3
+          h2 Anfangszeitpunkt
           div(dx-date-box="vm.dateboxAnfang")
         div.col-md-3
+          h2 Endzeitpunkt
           div(dx-date-box="vm.dateboxEnde")
+      div.row
+        div.col-md-2
+          div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.loeschen")
+        div.col-md-2
+          div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.update")
+        div.col-md-2
+          div(ng-hide="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.save")
