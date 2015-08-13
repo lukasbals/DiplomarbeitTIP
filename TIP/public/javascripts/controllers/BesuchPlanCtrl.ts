@@ -4,6 +4,8 @@ module TIP {
 
     }
 
+    currentDate: Date = new Date();
+
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     detailBesuchPlanDataSource: TIP.IBesuchPlanDetailModel = null;
     gpId: number = null;
@@ -11,6 +13,7 @@ module TIP {
     endDate: Date = null;
 
     initDetailBesuchPlan() {
+      this.currentDate = new Date(this.getParameter("startDate"));
       this.besuchPlan.getAllGeschaeftspartnerForSearch()
         .success((data): void => {
         this.dataSourceGeschaeftspartnerForSearch = data;
@@ -124,11 +127,11 @@ module TIP {
 
     schedulerBesuchPlan: any = {
       bindingOptions: {
-        dataSource: "vm.dataSourceBesuchPlan"
+        dataSource: "vm.dataSourceBesuchPlan",
+        currentDate: "vm.currentDate"
       },
       views: ["workWeek", "day"],
       currentView: "workWeek",
-      currentDate: new Date(2012, 1, 3),
       startDayHour: 7,
       endDayHour: 19,
       width: "100%",

@@ -4,6 +4,7 @@ var TIP;
         function BesuchPlanViewModel(besuchPlan) {
             var _this = this;
             this.besuchPlan = besuchPlan;
+            this.currentDate = new Date();
             this.dataSourceGeschaeftspartnerForSearch = null;
             this.detailBesuchPlanDataSource = null;
             this.gpId = null;
@@ -77,11 +78,11 @@ var TIP;
             this.dataSourceBesuchPlan = null;
             this.schedulerBesuchPlan = {
                 bindingOptions: {
-                    dataSource: "vm.dataSourceBesuchPlan"
+                    dataSource: "vm.dataSourceBesuchPlan",
+                    currentDate: "vm.currentDate"
                 },
                 views: ["workWeek", "day"],
                 currentView: "workWeek",
-                currentDate: new Date(2012, 1, 3),
                 startDayHour: 7,
                 endDayHour: 19,
                 width: "100%",
@@ -102,6 +103,7 @@ var TIP;
         }
         BesuchPlanViewModel.prototype.initDetailBesuchPlan = function () {
             var _this = this;
+            this.currentDate = new Date(this.getParameter("startDate"));
             this.besuchPlan.getAllGeschaeftspartnerForSearch()
                 .success(function (data) {
                 _this.dataSourceGeschaeftspartnerForSearch = data;

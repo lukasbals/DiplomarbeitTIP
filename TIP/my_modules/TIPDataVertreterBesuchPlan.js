@@ -97,10 +97,11 @@ var TIP;
             var eD = y.toISOString();
             var IsDeleted = 0;
             var IsChanged = 1;
+            var Status = 1;
             console.log(sD);
             console.log(eD);
             console.log(id_geschaeftspartner);
-            TIPDatabase.getDB().run("insert into besuche_plan (von, bis, id_geschaeftspartner, is_deleted, is_changed) values (?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged], function (err) {
+            TIPDatabase.getDB().run("insert into besuche_plan (von, bis, id_geschaeftspartner, is_deleted, is_changed,status) values (?, ?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, Status], function (err) {
                 if (err) {
                     res.send(err);
                 }

@@ -6,19 +6,18 @@ block content
       title {{vm.detailBesuchPlanDataSource.Firmenbez1}}
       div.row
         div.col-md-6
-          h2(ng-show="vm.detailBesuchPlanDataSource.Firmenbez1") {{vm.detailBesuchPlanDataSource.Firmenbez1}}
+          h2(ng-hide="vm.detailBesuchPlanDataSource.Firmenbez1") Neues Ereignis erstellen:
+          h2(ng-show="vm.detailBesuchPlanDataSource.Firmenbez1") {{vm.detailBesuchPlanDataSource.Firmenbez1}} bearbeiten
           div(dx-lookup="vm.lookup")
+        div.col-md-6
+          div.col-xs-6
+            h2 Anfangszeitpunkt
+            div(dx-date-box="vm.dateboxAnfang")
+          div.col-xs-6
+            h2 Endzeitpunkt
+            div(dx-date-box="vm.dateboxEnde")
       div.row
-        div.col-md-3
-          h2 Anfangszeitpunkt
-          div(dx-date-box="vm.dateboxAnfang")
-        div.col-md-3
-          h2 Endzeitpunkt
-          div(dx-date-box="vm.dateboxEnde")
-      div.row
-        div.col-md-2
-          div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.loeschen")
-        div.col-md-2
-          div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.update")
-        div.col-md-2
-          div(ng-hide="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.save")
+        div.col-md-6
+          div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.loeschen").btnOptionsDetailBesuchPlan
+          div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.update").btnOptionsDetailBesuchPlan
+          div(ng-hide="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.save").btnOptionsDetailBesuchPlan
