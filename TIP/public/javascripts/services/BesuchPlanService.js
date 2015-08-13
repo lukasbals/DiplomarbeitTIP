@@ -23,6 +23,9 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/getDetailBesuchPlan", json);
         };
+        BesuchPlanService.prototype.getAllGeschaeftspartnerForSearch = function () {
+            return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
+        };
         BesuchPlanService.prototype.parse = function (json) {
             var _this = this;
             if (!json) {

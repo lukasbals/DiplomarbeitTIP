@@ -4,9 +4,37 @@ var TIP;
         function BesuchPlanViewModel(besuchPlan) {
             var _this = this;
             this.besuchPlan = besuchPlan;
+            this.dataSourceGeschaeftspartnerForSearch = null;
             this.detailBesuchPlanDataSource = null;
+            this.gpId = null;
             this.startDate = null;
             this.endDate = null;
+            this.lookup = {
+                bindingOptions: {
+                    dataSource: "vm.dataSourceGeschaeftspartnerForSearch",
+                },
+                displayExpr: "Firmenbez1",
+                title: "Geschäftspartner",
+                onValueChanged: function (options) {
+                    _this.gpId = options.itemData.Id;
+                }
+            };
+            this.dateboxAnfang = {
+                min: new Date(2000, 0, 1),
+                max: new Date(2999, 12, 31),
+                format: "date",
+                bindingOptions: {
+                    value: "vm.startDate"
+                }
+            };
+            this.dateboxEnde = {
+                min: new Date(2000, 0, 1),
+                max: new Date(2999, 12, 31),
+                format: "date",
+                bindingOptions: {
+                    value: "vm.endDate"
+                }
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -29,10 +57,6 @@ var TIP;
                 endDayHour: 19,
                 width: "100%",
                 height: "100%",
-                onAppointmentAdding: function (options) {
-                    console.log(options.appointment.text + options.appointment.startDate);
-                    DevExpress.ui.notify(options.Betreff, "success", 1000);
-                },
                 onAppointmentDeleted: function (options) {
                     console.log(options.appointment);
                     var id = options.appointment.ClientId;
@@ -49,23 +73,23 @@ var TIP;
         }
         BesuchPlanViewModel.prototype.initDetailBesuchPlan = function () {
             var _this = this;
+            this.besuchPlan.getAllGeschaeftspartnerForSearch()
+                .success(function (data) {
+                _this.dataSourceGeschaeftspartnerForSearch = data;
+            });
             var id = this.getParameter("id");
-            var startDate = this.getParameter("startDate");
-            var endDate = this.getParameter("endDate");
             if (id >= 0) {
                 this.besuchPlan.getDetailBesuchPlan(id)
                     .success(function (data) {
-                    console.log(data);
                     _this.besuchPlan.parse(data);
                     _this.detailBesuchPlanDataSource = data[0];
                     _this.startDate = data[0].startDate;
                     _this.endDate = data[0].endDate;
-                    alert(_this.endDate);
                 });
             }
             else {
-                this.startDate = startDate;
-                this.endDate = endDate;
+                this.startDate = this.getParameter("startDate");
+                this.endDate = this.getParameter("endDate");
             }
         };
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {

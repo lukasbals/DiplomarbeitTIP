@@ -4,29 +4,64 @@ module TIP {
 
     }
 
+    dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     detailBesuchPlanDataSource: TIP.IBesuchPlanDetailModel = null;
+    gpId: number = null;
     startDate: Date = null;
     endDate: Date = null;
+
     initDetailBesuchPlan() {
+      this.besuchPlan.getAllGeschaeftspartnerForSearch()
+        .success((data): void => {
+        this.dataSourceGeschaeftspartnerForSearch = data;
+      });
       var id: number = this.getParameter("id");
-      var startDate: Date = this.getParameter("startDate");
-      var endDate: Date = this.getParameter("endDate");
-      //alert(id);
       if (id >= 0) {
         //alert("ändern");
         this.besuchPlan.getDetailBesuchPlan(id)
           .success((data): void => {
-          console.log(data);
+          //console.log(data);
           this.besuchPlan.parse(data);
           this.detailBesuchPlanDataSource = data[0];
           this.startDate = data[0].startDate;
           this.endDate = data[0].endDate;
-          alert(this.endDate);
+          //console.log(this.detailBesuchPlanDataSource);
         });
       } else {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate =  this.getParameter("startDate");
+        this.endDate = this.getParameter("endDate");
         //alert("Neues Ereignis");
+      }
+    }
+
+    lookup = {
+      bindingOptions: {
+        dataSource: "vm.dataSourceGeschaeftspartnerForSearch",
+      },
+      displayExpr: "Firmenbez1",
+      title: "Geschäftspartner",
+      onValueChanged: (options): void => {
+        this.gpId = options.itemData.Id;
+      }
+    }
+
+    dateboxAnfang = {
+      min: new Date(2000, 0, 1),
+      max: new Date(2999, 12, 31),
+      format: "date",
+      // value: "vm.startDate"
+      bindingOptions: {
+        value: "vm.startDate"
+      }
+    }
+
+    dateboxEnde = {
+      min: new Date(2000, 0, 1),
+      max: new Date(2999, 12, 31),
+      format: "date",
+      // value: "vm.endDate"
+      bindingOptions: {
+        value: "vm.endDate"
       }
     }
 
@@ -53,8 +88,6 @@ module TIP {
       });
     }
 
-    myTemplate;
-
     schedulerBesuchPlan: any = {
       bindingOptions: {
         dataSource: "vm.dataSourceBesuchPlan"
@@ -67,15 +100,10 @@ module TIP {
       endDayHour: 19,
       width: "100%",
       height: "100%",
-      onAppointmentAdding: (options): void => {
-        console.log(options.appointment.text + options.appointment.startDate);
-        DevExpress.ui.notify(options.Betreff, "success", 1000);
-      },
       onAppointmentDeleted: (options): void => {
         console.log(options.appointment);
         var id: number = options.appointment.ClientId;
         this.besuchPlan.deleteBesuchPlanAppointment(id);
-
       },
       onAppointmentUpdated: (options): void => {
         var id_geschaeftspartner: number = options.appointment.IdGeschaeftspartner;

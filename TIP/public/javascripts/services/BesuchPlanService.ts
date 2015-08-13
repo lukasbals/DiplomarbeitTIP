@@ -27,6 +27,10 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/getDetailBesuchPlan", json);
     }
 
+    getAllGeschaeftspartnerForSearch():ng.IHttpPromise<any> {
+      return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
+    }
+
     parse(json: any): any {
       if (!json) {
         return json;
@@ -52,10 +56,6 @@ module TIP {
       });
     }
   }
-
-
-
-
 
   angular
     .module("tip")

@@ -3,4 +3,11 @@ extends layout
 block content
   div(ng-controller="BesuchPlanCtrl")
     div.container-fluid.contentContainer(ng-init=" vm.initDetailBesuchPlan()")
-      title {{vm.detailGeschaeftspartnerDataSource.Firmenbez1}}
+      title {{vm.detailBesuchPlanDataSource.Firmenbez1}}
+      div.row
+        div.col-md-6  
+          div(dx-lookup="vm.lookup")
+        div.col-md-3
+          div(dx-date-box="vm.dateboxAnfang")
+        div.col-md-3
+          div(dx-date-box="vm.dateboxAnfang")
