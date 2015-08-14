@@ -20,6 +20,7 @@ block content
               div(dx-date-box="vm.dateboxEnde")
       div.row
         div.col-md-6
+          div(dx-button="vm.cancel").btnOptionsDetailBesuchPlan
           div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.loeschen").btnOptionsDetailBesuchPlan
           div(ng-show="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.update").btnOptionsDetailBesuchPlan
           div(ng-hide="vm.detailBesuchPlanDataSource.ClientId", dx-button="vm.save").btnOptionsDetailBesuchPlan

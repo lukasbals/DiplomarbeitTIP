@@ -67,6 +67,13 @@ var TIP;
                     });
                 }
             };
+            this.cancel = {
+                text: "Abbrechen",
+                onClick: function () {
+                    history.go(-1);
+                    return true;
+                }
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
