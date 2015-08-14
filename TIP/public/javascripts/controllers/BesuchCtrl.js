@@ -91,18 +91,16 @@ var TIP;
             this.berichtHeadingContent = null;
             this.berichtHeading = {
                 placeholder: "Titel ...",
-                value: null,
-                change: function (options) {
-                    console.log(options);
-                    alert("value");
+                onChange: function () {
+                    console.log(_this.berichtHeadingContent);
                 }
             };
+            this.berichtContentContent = null;
             this.berichtContent = {
                 placeholder: "Bericht ... ",
                 height: 100,
-                onChange: function (value) {
-                    console.log(value);
-                    alert("value");
+                onChange: function () {
+                    console.log(_this.berichtContentContent);
                 }
             };
             this.getParameter = function (theParameter) {

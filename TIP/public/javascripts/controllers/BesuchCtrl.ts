@@ -142,24 +142,28 @@ module TIP {
     }
 
     berichtHeadingContent = null;
-    berichtHeading = {
+    berichtHeading: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Titel ...",
-      value: null,
-      change: (options): void=> {
-        console.log(options);
-        //this.berichtHeadingContent = value;
-        alert("value");
+      onChange: (): void=> {
+        console.log(this.berichtHeadingContent);
       }
     }
-    berichtContent = {
+    berichtContentContent = null;
+    berichtContent: DevExpress.ui.dxTextAreaOptions = {
       placeholder: "Bericht ... ",
       height: 100,
-      onChange: (value): void=> {
-        console.log(value);
-        //this.berichtHeadingContent = value;
-        alert("value");
+      onChange: (): void=> {
+        console.log(this.berichtContentContent);
       }
     }
+
+    // saveBericht: DevExpress.ui.dxButtonOptions = {
+    //   text: "Bericht speichern",
+    //   type: "success",
+    //   onClick: (): void => {
+    //
+    //   }
+    // }
 
     getParameter = (theParameter): any => {
       var params = window.location.search.substr(1).split('&');
