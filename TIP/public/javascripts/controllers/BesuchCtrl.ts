@@ -7,8 +7,10 @@ module TIP {
     currentDate: Date = new Date();
 
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
+    dataSourceBesuchstypForSearch: IBesuchstypModel = null;
     detailBesuchDataSource: TIP.IBesuchDetailModel = null;
     gpId: number = null;
+    btId: number = null;
     startDate: Date = null;
     endDate: Date = null;
 
@@ -17,6 +19,10 @@ module TIP {
       this.besuch.getAllGeschaeftspartnerForSearch()
         .success((data): void => {
         this.dataSourceGeschaeftspartnerForSearch = data;
+      });
+      this.besuch.getAllBesuchstypForSearch()
+        .success((data): void => {
+        this.dataSourceBesuchstypForSearch = data;
       });
       var id: number = this.getParameter("id");
       if (id >= 0) {
@@ -38,7 +44,7 @@ module TIP {
       }
     }
 
-    lookup = {
+    lookupGeschaeftspartner = {
       placeholder: "Geschäftspartner ändern...",
       bindingOptions: {
         dataSource: "vm.dataSourceGeschaeftspartnerForSearch",
@@ -47,6 +53,18 @@ module TIP {
       title: "Geschäftspartner",
       onValueChanged: (options): void => {
         this.gpId = options.itemData.Id;
+      }
+    }
+
+    lookupBesuchstyp = {
+      placeholder: "Besuchstyp ändern...",
+      bindingOptions: {
+        dataSource: "vm.dataSourceBesuchstypForSearch",
+      },
+      displayExpr: "Bezeichnung",
+      title: "Besuchstypen",
+      onValueChanged: (options): void => {
+        this.btId = options.itemData.Id;
       }
     }
 

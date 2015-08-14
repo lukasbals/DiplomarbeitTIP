@@ -7,6 +7,7 @@ var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPe
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var TIPDataVertreterBesuchPlan = require("../my_modules/TIPDataVertreterBesuchPlan");
 var TIPDataVertreterBesuch = require("../my_modules/TIPDataVertreterBesuch");
+var TIPDataVertreterBesuchstyp = require("../my_modules/TIPDataVertreterBesuchstyp");
 var TIPSync = require("../my_modules/TIPSync");
 var router = express.Router();
 router.get("/getJsonGeschaeftspartner", function (req, res) {
@@ -90,6 +91,9 @@ router.post("/saveBesuchPlanAppointment", function (req, res) {
 router.post("/getDetailBesuchPlan", function (req, res) {
     var id = req.body.id;
     TIPDataVertreterBesuchPlan.getDetailBesuchPlan(id, res);
+});
+router.get("/getJsonBesuchstyp", function (req, res) {
+    TIPDataVertreterBesuchstyp.getJsonBesuchstyp(res);
 });
 router.get("/synchDB", function (req, res) {
     TIPSync.doSync();

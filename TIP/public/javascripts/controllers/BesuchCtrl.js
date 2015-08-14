@@ -6,11 +6,13 @@ var TIP;
             this.besuch = besuch;
             this.currentDate = new Date();
             this.dataSourceGeschaeftspartnerForSearch = null;
+            this.dataSourceBesuchstypForSearch = null;
             this.detailBesuchDataSource = null;
             this.gpId = null;
+            this.btId = null;
             this.startDate = null;
             this.endDate = null;
-            this.lookup = {
+            this.lookupGeschaeftspartner = {
                 placeholder: "Geschäftspartner ändern...",
                 bindingOptions: {
                     dataSource: "vm.dataSourceGeschaeftspartnerForSearch",
@@ -19,6 +21,17 @@ var TIP;
                 title: "Geschäftspartner",
                 onValueChanged: function (options) {
                     _this.gpId = options.itemData.Id;
+                }
+            };
+            this.lookupBesuchstyp = {
+                placeholder: "Besuchstyp ändern...",
+                bindingOptions: {
+                    dataSource: "vm.dataSourceBesuchstypForSearch",
+                },
+                displayExpr: "Bezeichnung",
+                title: "Besuchstypen",
+                onValueChanged: function (options) {
+                    _this.btId = options.itemData.Id;
                 }
             };
             this.dateboxAnfang = {
@@ -116,6 +129,10 @@ var TIP;
             this.besuch.getAllGeschaeftspartnerForSearch()
                 .success(function (data) {
                 _this.dataSourceGeschaeftspartnerForSearch = data;
+            });
+            this.besuch.getAllBesuchstypForSearch()
+                .success(function (data) {
+                _this.dataSourceBesuchstypForSearch = data;
             });
             var id = this.getParameter("id");
             if (id >= 0) {

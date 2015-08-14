@@ -139,6 +139,7 @@ module TIP {
     Fax: string;
     Email: string;
     Homepage: string;
+    Bezeichnung: string;
   }
 
   export interface IBesuchPlanModel {

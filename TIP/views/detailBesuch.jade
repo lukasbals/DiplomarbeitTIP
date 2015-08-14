@@ -6,16 +6,26 @@ block content
       title(ng-show="vm.detailBesuchDataSource.Firmenbez1") {{vm.detailBesuchDataSource.Firmenbez1}}
       title(ng-hide="vm.detailBesuchDataSource.Firmenbez1") Neues Ereignis erstellen
       div.row
-        div.col-md-6
-          h2(ng-hide="vm.detailBesuchDataSource.Firmenbez1") Neues Ereignis erstellen:
-          h2(ng-show="vm.detailBesuchDataSource.Firmenbez1") {{vm.detailBesuchDataSource.Firmenbez1}} bearbeiten
-          div(dx-lookup="vm.lookup")
-        div.col-md-6
+        div.col-md-9
           div.row
-            div.col-xs-6
+            div.col-md-12
+              h2(ng-hide="vm.detailBesuchDataSource.Firmenbez1") Neues Ereignis erstellen:
+              h2(ng-show="vm.detailBesuchDataSource.Firmenbez1") {{vm.detailBesuchDataSource.Firmenbez1}}
+                small  Geschäftspartner
+              div(dx-lookup="vm.lookupGeschaeftspartner")
+          div.row
+            div.col-md-12
+              h2(ng-hide="vm.detailBesuchDataSource.Bezeichnung") Besuchstyp auswählen:
+              h2(ng-show="vm.detailBesuchDataSource.Bezeichnung") {{vm.detailBesuchDataSource.Bezeichnung}}
+                small  Besuchstyp
+              div(dx-lookup="vm.lookupBesuchstyp")
+        div.col-xs-3
+          div.row
+            div.col-md-12
               h2 Anfangszeitpunkt
               div(dx-date-box="vm.dateboxAnfang")
-            div.col-xs-6
+          div.row
+            div.col-md-12
               h2 Endzeitpunkt
               div(dx-date-box="vm.dateboxEnde")
       div.row

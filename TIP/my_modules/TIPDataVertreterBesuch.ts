@@ -143,7 +143,7 @@ module TIP {
       console.log(id);
       TIPDatabase.getDB().serialize((): void => {
         //console.log("IN");
-        TIPDatabase.getDB().each("select b.client_id, b.id, b.id_besuchstyp, b.client_id_besuch_plan, b.id_besuch_plan, b.id_geschaeftspartner, b.von, b.bis, b.is_deleted, b.is_changed, gp.gp_nummer, gp.code_gpkz, gp.firmenbez_1, gp.firmenbez_2, gp.firmenbez_3, gp.strasse, gp.code_land, gp.plz, gp.ort, gp.telefon, gp.fax, gp.email, gp.homepage from besuche b left join geschaeftspartner_st gp on b.id_geschaeftspartner = gp.id where b.client_id = ?;", [id], (err, row): void => {
+        TIPDatabase.getDB().each("select b.client_id, b.id, b.id_besuchstyp, b.client_id_besuch_plan, b.id_besuch_plan, b.id_geschaeftspartner, b.von, b.bis, b.is_deleted, b.is_changed, gp.gp_nummer, gp.code_gpkz, gp.firmenbez_1, gp.firmenbez_2, gp.firmenbez_3, gp.strasse, gp.code_land, gp.plz, gp.ort, gp.telefon, gp.fax, gp.email, gp.homepage, bt.bezeichnung from besuche b left join geschaeftspartner_st gp on b.id_geschaeftspartner = gp.id left join besuchstypen_st bt on b.id_besuchstyp = bt.id where b.client_id = ?;", [id], (err, row): void => {
           result.push({
             ClientId: row.client_id,
             Id: row.id,
@@ -167,7 +167,8 @@ module TIP {
             Telefon: row.telefon,
             Fax: row.fax,
             Email: row.email,
-            Homepage: row.homepage
+            Homepage: row.homepage,
+            Bezeichnung: row.bezeichnung
           });
         }, (): void=> {
             console.log(result);

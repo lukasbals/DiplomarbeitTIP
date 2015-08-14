@@ -31,6 +31,9 @@ var TIP;
         BesuchService.prototype.getAllGeschaeftspartnerForSearch = function () {
             return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
         };
+        BesuchService.prototype.getAllBesuchstypForSearch = function () {
+            return this.$http.get("http://localhost:3000/api/getJsonBesuchstyp");
+        };
         BesuchService.prototype.parse = function (json) {
             var _this = this;
             if (!json) {

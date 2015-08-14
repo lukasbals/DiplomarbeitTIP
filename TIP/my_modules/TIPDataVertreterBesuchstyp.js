@@ -54,6 +54,19 @@ var TIP;
         TIPDataVertreterBesuchstypClass.prototype.isSyncActive = function () {
             return this.isActive;
         };
+        TIPDataVertreterBesuchstypClass.prototype.getJsonBesuchstyp = function (res) {
+            var result = new Array();
+            TIPDatabase.getDB().serialize(function () {
+                TIPDatabase.getDB().each("select id, bezeichnung from besuchstypen_st;", function (error, row) {
+                    result.push({
+                        Id: row.id,
+                        Bezeichnung: row.bezeichnung
+                    });
+                }, function () {
+                    res.json(result);
+                });
+            });
+        };
         return TIPDataVertreterBesuchstypClass;
     })();
     TIP.TIPDataVertreterBesuchstypClass = TIPDataVertreterBesuchstypClass;

@@ -37,6 +37,10 @@ module TIP {
       return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
     }
 
+    getAllBesuchstypForSearch():ng.IHttpPromise<any> {
+      return this.$http.get("http://localhost:3000/api/getJsonBesuchstyp");
+    }
+
     parse(json: any): any {
       if (!json) {
         return json;

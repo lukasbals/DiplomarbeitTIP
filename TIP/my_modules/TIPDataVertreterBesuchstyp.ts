@@ -65,7 +65,21 @@ module TIP {
     isSyncActive(): boolean {
       return this.isActive;
     }
-
+    
+    getJsonBesuchstyp(res): void {
+      var result: TIP.IBesuchstypModel[] = new Array();
+      TIPDatabase.getDB().serialize((): void => {
+        TIPDatabase.getDB().each("select id, bezeichnung from besuchstypen_st;", (error, row): void => {
+          result.push({
+            Id: row.id,
+            Bezeichnung: row.bezeichnung
+          });
+        }, (): void => {
+            //console.log(result);
+            res.json(result);
+          });
+      });
+    }
   }
 }
 
