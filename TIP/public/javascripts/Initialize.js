@@ -1,5 +1,10 @@
 var TIP;
 (function (TIP) {
+    Globalize.addCultureInfo("de-AT", "default", {
+        messages: {
+            "dxScheduler-openAppointment": "Termin öffnen"
+        }
+    });
     Globalize.culture("de-AT");
     DevExpress.devices.current({ platform: "generic" });
     angular
