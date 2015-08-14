@@ -104,12 +104,12 @@ module TIP {
 
     }
 
-    updateBesuchAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+    updateBesuchAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, id_besuchstyp: number, res): void {
       var x = new Date(startDate.toLocaleString());
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
       var eD = y.toISOString();
-      TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id], (err) => {
+      TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id_besuchstyp, id], (err) => {
         if (err) {
           console.log(err);
         } else {
@@ -118,7 +118,7 @@ module TIP {
       });
     }
 
-    saveBesuchAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+    saveBesuchAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, id_besuchstyp: number, res): void {
       var x = new Date(startDate.toLocaleString());
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
@@ -128,7 +128,7 @@ module TIP {
       console.log(sD);
       console.log(eD);
       console.log(id_geschaeftspartner);
-      TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed) values (?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged], (err) => {
+      TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], (err) => {
         if (err) {
           res.send(err);
         } else {

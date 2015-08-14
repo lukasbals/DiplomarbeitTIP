@@ -9,20 +9,26 @@ module TIP {
       return this.$http.get("http://localhost:3000/api/getJsonBesuch");
     }
 
+    getDetailGeschaeftspartner(id: number): ng.IHttpPromise<any> {
+      var string: string = '{"id": "' + id + '"}';
+      var json: JSON = JSON.parse(string);
+      return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartner", json);
+    }
+
     deleteBesuchAppointment(id: number): ng.IHttpPromise<any> {
       var string: string = '{"id": "' + id + '"}';
       var json: JSON = JSON.parse(string);
       return this.$http.post("http://localhost:3000/api/deleteBesuchAppointment", json);
     }
 
-    updateBesuchAppointment(id_geschaeftspartner: number, startDate: Date, endDate: Date, id: number): ng.IHttpPromise<any> {
-      var string: string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
+    updateBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date, id: number): ng.IHttpPromise<any> {
+      var string: string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
       var json: JSON = JSON.parse(string);
       return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", json);
     }
 
-    saveBesuchAppointment(id_geschaeftspartner: number, startDate: Date, endDate: Date): ng.IHttpPromise<any> {
-      var string: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
+    saveBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date): ng.IHttpPromise<any> {
+      var string: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
       var json: JSON = JSON.parse(string);
       return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", json);
     }

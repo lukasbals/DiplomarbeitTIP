@@ -74,6 +74,13 @@ var TIP;
                     return true;
                 }
             };
+            this.besuch = {
+                text: "Zu Besuche hinzufügen",
+                type: "default",
+                onClick: function () {
+                    window.location.href = "/detail/detailBesuch?id=" + null + "&startDate=" + _this.startDate + "&endDate=" + _this.endDate + "&IdGeschaeftspartner=" + _this.gpId;
+                }
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {

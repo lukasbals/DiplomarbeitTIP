@@ -12,6 +12,7 @@ var TIP;
             this.btId = null;
             this.startDate = null;
             this.endDate = null;
+            this.gpName = null;
             this.lookupGeschaeftspartner = {
                 placeholder: "Geschäftspartner ändern...",
                 bindingOptions: {
@@ -64,7 +65,7 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.updateBesuchAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId)
+                    _this.besuch.updateBesuchAppointment(_this.gpId, _this.btId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId)
                         .success(function (data) {
                         window.location.href = "/Besuch";
                     });
@@ -74,7 +75,7 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.saveBesuchAppointment(_this.gpId, _this.startDate, _this.endDate)
+                    _this.besuch.saveBesuchAppointment(_this.gpId, _this.btId, _this.startDate, _this.endDate)
                         .success(function (data) {
                         window.location.href = "/Besuch";
                     });
@@ -115,17 +116,17 @@ var TIP;
                     _this.besuch.deleteBesuchAppointment(id);
                 },
                 onAppointmentUpdated: function (options) {
+                    var id_besuchstyp = options.appointment.IdBesuchstyp;
                     var id_geschaeftspartner = options.appointment.IdGeschaeftspartner;
                     var startDate = options.appointment.startDate;
                     var endDate = options.appointment.endDate;
                     var id = options.appointment.ClientId;
-                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, startDate, endDate, id);
+                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id);
                 }
             };
         }
         BesuchViewModel.prototype.initDetailBesuch = function () {
             var _this = this;
-            this.currentDate = new Date(this.getParameter("startDate"));
             this.besuch.getAllGeschaeftspartnerForSearch()
                 .success(function (data) {
                 _this.dataSourceGeschaeftspartnerForSearch = data;
@@ -143,10 +144,19 @@ var TIP;
                     _this.startDate = new Date(data[0].startDate);
                     _this.endDate = new Date(data[0].endDate);
                     _this.gpId = data[0].IdGeschaeftspartner;
+                    _this.btId = data[0].IdBesuchstyp;
+                    _this.gpName = data[0].Firmenbez1;
                     console.log(_this.detailBesuchDataSource);
                 });
             }
             else {
+                this.gpId = this.getParameter("IdGeschaeftspartner");
+                if (this.gpId >= 0) {
+                    this.besuch.getDetailGeschaeftspartner(this.gpId)
+                        .success(function (data) {
+                        _this.gpName = data[0].Firmenbez1;
+                    });
+                }
                 this.startDate = new Date(this.getParameter("startDate"));
                 this.endDate = new Date(this.getParameter("endDate"));
             }

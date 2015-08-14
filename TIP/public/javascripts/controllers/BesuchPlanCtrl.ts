@@ -114,6 +114,15 @@ module TIP {
       }
     }
 
+    besuch: DevExpress.ui.dxButtonOptions = {
+      text: "Zu Besuche hinzufügen",
+      type: "default",
+      onClick: (): void => {
+        window.location.href = "/detail/detailBesuch?id=" + null + "&startDate=" + this.startDate + "&endDate=" + this.endDate + "&IdGeschaeftspartner=" + this.gpId;
+
+      }
+    }
+
     getParameter = (theParameter): any => {
       var params = window.location.search.substr(1).split('&');
       for (var i = 0; i < params.length; i++) {

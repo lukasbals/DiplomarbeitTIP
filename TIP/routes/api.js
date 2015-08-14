@@ -56,13 +56,15 @@ router.post("/updateBesuchAppointment", function (req, res) {
     var startDate = req.body.startDate;
     var endDate = req.body.endDate;
     var id_geschaeftspartner = req.body.id_geschaeftspartner;
-    TIPDataVertreterBesuch.updateBesuchAppointment(id, startDate, endDate, id_geschaeftspartner, res);
+    var id_besuchstyp = req.body.id_besuchstyp;
+    TIPDataVertreterBesuch.updateBesuchAppointment(id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, res);
 });
 router.post("/saveBesuchAppointment", function (req, res) {
     var startDate = req.body.startDate;
     var endDate = req.body.endDate;
     var id_geschaeftspartner = req.body.id_geschaeftspartner;
-    TIPDataVertreterBesuch.saveBesuchAppointment(startDate, endDate, id_geschaeftspartner, res);
+    var id_besuchstyp = req.body.id_besuchstyp;
+    TIPDataVertreterBesuch.saveBesuchAppointment(startDate, endDate, id_geschaeftspartner, id_besuchstyp, res);
 });
 router.post("/getDetailBesuch", function (req, res) {
     var id = req.body.id;

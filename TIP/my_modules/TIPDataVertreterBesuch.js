@@ -88,12 +88,12 @@ var TIP;
                 }
             });
         };
-        TIPDataVertreterBesuchClass.prototype.updateBesuchAppointment = function (id, startDate, endDate, id_geschaeftspartner, res) {
+        TIPDataVertreterBesuchClass.prototype.updateBesuchAppointment = function (id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, res) {
             var x = new Date(startDate.toLocaleString());
             var y = new Date(endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
-            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id], function (err) {
+            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id_besuchstyp, id], function (err) {
                 if (err) {
                     console.log(err);
                 }
@@ -102,7 +102,7 @@ var TIP;
                 }
             });
         };
-        TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (startDate, endDate, id_geschaeftspartner, res) {
+        TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (startDate, endDate, id_geschaeftspartner, id_besuchstyp, res) {
             var x = new Date(startDate.toLocaleString());
             var y = new Date(endDate.toLocaleString());
             var sD = x.toISOString();
@@ -112,7 +112,7 @@ var TIP;
             console.log(sD);
             console.log(eD);
             console.log(id_geschaeftspartner);
-            TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed) values (?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged], function (err) {
+            TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function (err) {
                 if (err) {
                     res.send(err);
                 }

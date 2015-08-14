@@ -8,18 +8,23 @@ var TIP;
         BesuchService.prototype.getBesuch = function () {
             return this.$http.get("http://localhost:3000/api/getJsonBesuch");
         };
+        BesuchService.prototype.getDetailGeschaeftspartner = function (id) {
+            var string = '{"id": "' + id + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/getDetailGeschaeftspartner", json);
+        };
         BesuchService.prototype.deleteBesuchAppointment = function (id) {
             var string = '{"id": "' + id + '"}';
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/deleteBesuchAppointment", json);
         };
-        BesuchService.prototype.updateBesuchAppointment = function (id_geschaeftspartner, startDate, endDate, id) {
-            var string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
+        BesuchService.prototype.updateBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, id) {
+            var string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", json);
         };
-        BesuchService.prototype.saveBesuchAppointment = function (id_geschaeftspartner, startDate, endDate) {
-            var string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
+        BesuchService.prototype.saveBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate) {
+            var string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", json);
         };

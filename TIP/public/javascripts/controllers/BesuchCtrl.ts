@@ -13,9 +13,9 @@ module TIP {
     btId: number = null;
     startDate: Date = null;
     endDate: Date = null;
+    gpName: string = null;
 
     initDetailBesuch() {
-      this.currentDate = new Date(this.getParameter("startDate"));
       this.besuch.getAllGeschaeftspartnerForSearch()
         .success((data): void => {
         this.dataSourceGeschaeftspartnerForSearch = data;
@@ -35,9 +35,18 @@ module TIP {
           this.startDate = new Date(data[0].startDate);
           this.endDate = new Date(data[0].endDate);
           this.gpId = data[0].IdGeschaeftspartner;
+          this.btId = data[0].IdBesuchstyp;
+          this.gpName = data[0].Firmenbez1;
           console.log(this.detailBesuchDataSource);
         });
       } else {
+        this.gpId = this.getParameter("IdGeschaeftspartner");
+        if(this.gpId >= 0 ){
+          this.besuch.getDetailGeschaeftspartner(this.gpId)
+          .success((data): void => {
+            this.gpName = data[0].Firmenbez1;
+          });
+        }
         this.startDate = new Date(this.getParameter("startDate"));
         this.endDate = new Date(this.getParameter("endDate"));
         //alert("Neues Ereignis");
@@ -104,7 +113,7 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.updateBesuchAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId)
+        this.besuch.updateBesuchAppointment(this.gpId, this.btId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId)
           .success((data): void => {
           window.location.href = "/Besuch";
         });
@@ -116,7 +125,7 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.saveBesuchAppointment(this.gpId, this.startDate, this.endDate)
+        this.besuch.saveBesuchAppointment(this.gpId, this.btId, this.startDate, this.endDate)
           .success((data): void => {
           //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
           window.location.href = "/Besuch";
@@ -172,11 +181,12 @@ module TIP {
         this.besuch.deleteBesuchAppointment(id);
       },
       onAppointmentUpdated: (options): void => {
+        var id_besuchstyp: number = options.appointment.IdBesuchstyp;
         var id_geschaeftspartner: number = options.appointment.IdGeschaeftspartner;
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
-        this.besuch.updateBesuchAppointment(id_geschaeftspartner, startDate, endDate, id);
+        this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id);
       }
     }
   }
