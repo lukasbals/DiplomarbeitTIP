@@ -94,8 +94,13 @@ module TIP {
     }
 
     deleteBesuchPlanAppointment(id: number, res): void {
-      TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id]);
-      res.send("OK");
+      TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id], (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("OK");
+        }
+      });
     }
 
     updateBesuchPlanAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
@@ -103,8 +108,13 @@ module TIP {
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
       var eD = y.toISOString();
-      TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id]);
-      res.send("OK");
+      TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id], (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("OK");
+        }
+      });
     }
 
     saveBesuchPlanAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {

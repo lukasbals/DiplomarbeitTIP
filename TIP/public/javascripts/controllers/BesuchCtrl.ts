@@ -1,35 +1,35 @@
 module TIP {
-  export class BesuchPlanViewModel {
-    constructor(private besuchPlan: BesuchPlanService) {
+  export class BesuchViewModel {
+    constructor(private besuch: BesuchService) {
 
     }
 
     currentDate: Date = new Date();
 
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
-    detailBesuchPlanDataSource: TIP.IBesuchPlanDetailModel = null;
+    detailBesuchDataSource: TIP.IBesuchDetailModel = null;
     gpId: number = null;
     startDate: Date = null;
     endDate: Date = null;
 
-    initDetailBesuchPlan() {
+    initDetailBesuch() {
       this.currentDate = new Date(this.getParameter("startDate"));
-      this.besuchPlan.getAllGeschaeftspartnerForSearch()
+      this.besuch.getAllGeschaeftspartnerForSearch()
         .success((data): void => {
         this.dataSourceGeschaeftspartnerForSearch = data;
       });
       var id: number = this.getParameter("id");
       if (id >= 0) {
         //alert("ändern");
-        this.besuchPlan.getDetailBesuchPlan(id)
+        this.besuch.getDetailBesuch(id)
           .success((data): void => {
           //console.log(data);
-          this.besuchPlan.parse(data[0]);
-          this.detailBesuchPlanDataSource = data[0];
+          this.besuch.parse(data[0]);
+          this.detailBesuchDataSource = data[0];
           this.startDate = new Date(data[0].startDate);
           this.endDate = new Date(data[0].endDate);
           this.gpId = data[0].IdGeschaeftspartner;
-          console.log(this.detailBesuchPlanDataSource);
+          console.log(this.detailBesuchDataSource);
         });
       } else {
         this.startDate = new Date(this.getParameter("startDate"));
@@ -77,8 +77,8 @@ module TIP {
       type: "danger",
       text: "Löschen",
       onClick: (): void => {
-        this.besuchPlan.deleteBesuchPlanAppointment(this.detailBesuchPlanDataSource.ClientId);
-        window.location.href = "/besuchPlan";
+        this.besuch.deleteBesuchAppointment(this.detailBesuchDataSource.ClientId);
+        window.location.href = "/Besuch";
       }
     }
 
@@ -86,9 +86,9 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuchPlan.updateBesuchPlanAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchPlanDataSource.ClientId)
+        this.besuch.updateBesuchAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId)
           .success((data): void => {
-          window.location.href = "/besuchPlan";
+          window.location.href = "/Besuch";
         });
 
       }
@@ -98,10 +98,10 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuchPlan.saveBesuchPlanAppointment(this.gpId, this.startDate, this.endDate)
+        this.besuch.saveBesuchAppointment(this.gpId, this.startDate, this.endDate)
           .success((data): void => {
           //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
-          window.location.href = "/besuchPlan";
+          window.location.href = "/Besuch";
         });
       }
     }
@@ -125,21 +125,21 @@ module TIP {
       return false;
     }
 
-    dataSourceBesuchPlan: TIP.ISchedulerData = null;
-    initBesuchPlan() {
-      this.besuchPlan.getBesuchPlan()
+    dataSourceBesuch: TIP.ISchedulerData = null;
+    initBesuch() {
+      this.besuch.getBesuch()
         .success((data): void => {
-        this.besuchPlan.parse(data);
-        this.dataSourceBesuchPlan = data;
+        this.besuch.parse(data);
+        this.dataSourceBesuch = data;
       })
         .error((data): void => {
-        console.log("Keine BesuchPlane bekommen.");
+        console.log("Keine Besuche bekommen.");
       });
     }
 
-    schedulerBesuchPlan: any = {
+    schedulerBesuch: any = {
       bindingOptions: {
-        dataSource: "vm.dataSourceBesuchPlan",
+        dataSource: "vm.dataSourceBesuch",
         currentDate: "vm.currentDate"
       },
       views: ["workWeek", "day"],
@@ -151,32 +151,29 @@ module TIP {
       onAppointmentDeleted: (options): void => {
         console.log(options.appointment);
         var id: number = options.appointment.ClientId;
-        this.besuchPlan.deleteBesuchPlanAppointment(id);
+        this.besuch.deleteBesuchAppointment(id);
       },
       onAppointmentUpdated: (options): void => {
         var id_geschaeftspartner: number = options.appointment.IdGeschaeftspartner;
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
-        this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
-      },
-      showAppointmentPopup: (options): void => {
-        window.location.href = "/detail/detailBesuchPlan?id=" + options.ClientId + "&startDate=" + options.startDate + "&endDate=" + options.endDate;
+        this.besuch.updateBesuchAppointment(id_geschaeftspartner, startDate, endDate, id);
       }
     }
   }
 
-  export interface BesuchPlanScope extends ng.IScope {
-    vm: BesuchPlanViewModel;
+  export interface BesuchScope extends ng.IScope {
+    vm: BesuchViewModel;
   }
 
-  export class BesuchPlanCtrl {
-    constructor(private besuchPlan: BesuchPlanService, public $scope: BesuchPlanScope) {
-      $scope.vm = new BesuchPlanViewModel(besuchPlan);
+  export class BesuchCtrl {
+    constructor(private besuch: BesuchService, public $scope: BesuchScope) {
+      $scope.vm = new BesuchViewModel(besuch);
     }
   }
 
   angular
     .module("tip")
-    .controller("BesuchPlanCtrl", ["BesuchPlanService", "$scope", BesuchPlanCtrl]);
+    .controller("BesuchCtrl", ["BesuchService", "$scope", BesuchCtrl]);
 }

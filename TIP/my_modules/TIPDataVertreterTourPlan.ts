@@ -41,10 +41,10 @@ module TIP {
               TIPDatabase.getDB().get("select count(*) as result from touren_plan where client_id = ?", [val.ClientId], (error, row): void => {
                 if (row.result > 0) {
                   updateCount++;
-                  updateStmt.run([val.Id, val.TourName, val.Von, val.Bis, val.ClientId]);
+                  updateStmt.run([val.Id, val.TourName, val.startDate, val.endDate, val.ClientId]);
                 } else {
                   insertCount++;
-                  insertStmt.run([val.ClientId, val.Id, val.TourName, val.Von, val.Bis]);
+                  insertStmt.run([val.ClientId, val.Id, val.TourName, val.startDate, val.endDate]);
                 }
               });
             });

@@ -1,12 +1,12 @@
 var TIP;
 (function (TIP) {
-    var BesuchPlanViewModel = (function () {
-        function BesuchPlanViewModel(besuchPlan) {
+    var BesuchViewModel = (function () {
+        function BesuchViewModel(besuch) {
             var _this = this;
-            this.besuchPlan = besuchPlan;
+            this.besuch = besuch;
             this.currentDate = new Date();
             this.dataSourceGeschaeftspartnerForSearch = null;
-            this.detailBesuchPlanDataSource = null;
+            this.detailBesuchDataSource = null;
             this.gpId = null;
             this.startDate = null;
             this.endDate = null;
@@ -43,17 +43,17 @@ var TIP;
                 type: "danger",
                 text: "Löschen",
                 onClick: function () {
-                    _this.besuchPlan.deleteBesuchPlanAppointment(_this.detailBesuchPlanDataSource.ClientId);
-                    window.location.href = "/besuchPlan";
+                    _this.besuch.deleteBesuchAppointment(_this.detailBesuchDataSource.ClientId);
+                    window.location.href = "/Besuch";
                 }
             };
             this.update = {
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuchPlan.updateBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchPlanDataSource.ClientId)
+                    _this.besuch.updateBesuchAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId)
                         .success(function (data) {
-                        window.location.href = "/besuchPlan";
+                        window.location.href = "/Besuch";
                     });
                 }
             };
@@ -61,9 +61,9 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuchPlan.saveBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate)
+                    _this.besuch.saveBesuchAppointment(_this.gpId, _this.startDate, _this.endDate)
                         .success(function (data) {
-                        window.location.href = "/besuchPlan";
+                        window.location.href = "/Besuch";
                     });
                 }
             };
@@ -84,10 +84,10 @@ var TIP;
                 }
                 return false;
             };
-            this.dataSourceBesuchPlan = null;
-            this.schedulerBesuchPlan = {
+            this.dataSourceBesuch = null;
+            this.schedulerBesuch = {
                 bindingOptions: {
-                    dataSource: "vm.dataSourceBesuchPlan",
+                    dataSource: "vm.dataSourceBesuch",
                     currentDate: "vm.currentDate"
                 },
                 views: ["workWeek", "day"],
@@ -99,37 +99,34 @@ var TIP;
                 onAppointmentDeleted: function (options) {
                     console.log(options.appointment);
                     var id = options.appointment.ClientId;
-                    _this.besuchPlan.deleteBesuchPlanAppointment(id);
+                    _this.besuch.deleteBesuchAppointment(id);
                 },
                 onAppointmentUpdated: function (options) {
                     var id_geschaeftspartner = options.appointment.IdGeschaeftspartner;
                     var startDate = options.appointment.startDate;
                     var endDate = options.appointment.endDate;
                     var id = options.appointment.ClientId;
-                    _this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
-                },
-                showAppointmentPopup: function (options) {
-                    window.location.href = "/detail/detailBesuchPlan?id=" + options.ClientId + "&startDate=" + options.startDate + "&endDate=" + options.endDate;
+                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, startDate, endDate, id);
                 }
             };
         }
-        BesuchPlanViewModel.prototype.initDetailBesuchPlan = function () {
+        BesuchViewModel.prototype.initDetailBesuch = function () {
             var _this = this;
             this.currentDate = new Date(this.getParameter("startDate"));
-            this.besuchPlan.getAllGeschaeftspartnerForSearch()
+            this.besuch.getAllGeschaeftspartnerForSearch()
                 .success(function (data) {
                 _this.dataSourceGeschaeftspartnerForSearch = data;
             });
             var id = this.getParameter("id");
             if (id >= 0) {
-                this.besuchPlan.getDetailBesuchPlan(id)
+                this.besuch.getDetailBesuch(id)
                     .success(function (data) {
-                    _this.besuchPlan.parse(data[0]);
-                    _this.detailBesuchPlanDataSource = data[0];
+                    _this.besuch.parse(data[0]);
+                    _this.detailBesuchDataSource = data[0];
                     _this.startDate = new Date(data[0].startDate);
                     _this.endDate = new Date(data[0].endDate);
                     _this.gpId = data[0].IdGeschaeftspartner;
-                    console.log(_this.detailBesuchPlanDataSource);
+                    console.log(_this.detailBesuchDataSource);
                 });
             }
             else {
@@ -137,30 +134,30 @@ var TIP;
                 this.endDate = new Date(this.getParameter("endDate"));
             }
         };
-        BesuchPlanViewModel.prototype.initBesuchPlan = function () {
+        BesuchViewModel.prototype.initBesuch = function () {
             var _this = this;
-            this.besuchPlan.getBesuchPlan()
+            this.besuch.getBesuch()
                 .success(function (data) {
-                _this.besuchPlan.parse(data);
-                _this.dataSourceBesuchPlan = data;
+                _this.besuch.parse(data);
+                _this.dataSourceBesuch = data;
             })
                 .error(function (data) {
-                console.log("Keine BesuchPlane bekommen.");
+                console.log("Keine Besuche bekommen.");
             });
         };
-        return BesuchPlanViewModel;
+        return BesuchViewModel;
     })();
-    TIP.BesuchPlanViewModel = BesuchPlanViewModel;
-    var BesuchPlanCtrl = (function () {
-        function BesuchPlanCtrl(besuchPlan, $scope) {
-            this.besuchPlan = besuchPlan;
+    TIP.BesuchViewModel = BesuchViewModel;
+    var BesuchCtrl = (function () {
+        function BesuchCtrl(besuch, $scope) {
+            this.besuch = besuch;
             this.$scope = $scope;
-            $scope.vm = new BesuchPlanViewModel(besuchPlan);
+            $scope.vm = new BesuchViewModel(besuch);
         }
-        return BesuchPlanCtrl;
+        return BesuchCtrl;
     })();
-    TIP.BesuchPlanCtrl = BesuchPlanCtrl;
+    TIP.BesuchCtrl = BesuchCtrl;
     angular
         .module("tip")
-        .controller("BesuchPlanCtrl", ["BesuchPlanService", "$scope", BesuchPlanCtrl]);
+        .controller("BesuchCtrl", ["BesuchService", "$scope", BesuchCtrl]);
 })(TIP || (TIP = {}));

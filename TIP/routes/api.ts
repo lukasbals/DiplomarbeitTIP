@@ -7,6 +7,7 @@ var TIPDataStammdatenAnrede = require("../my_modules/TIPDataStammdatenAnrede");
 var TIPDataStammdatenPersonengruppe = require("../my_modules/TIPDataStammdatenPersonengruppe");
 var TIPDataStammdatenPerson = require("../my_modules/TIPDataStammdatenPerson");
 var TIPDataVertreterBesuchPlan = require("../my_modules/TIPDataVertreterBesuchPlan");
+var TIPDataVertreterBesuch = require("../my_modules/TIPDataVertreterBesuch");
 var TIPSync = require("../my_modules/TIPSync");
 
 var router = express.Router();
@@ -71,6 +72,38 @@ router.get("/getJsonAnrede", (req, res): void => {
 //
 router.get("/getJsonPersonengruppe", (req, res): void => {
   TIPDataStammdatenPersonengruppe.getJsonPersonengruppe(res);
+});
+
+//
+// Besuch
+//
+router.get("/getJsonBesuch", (req, res): void => {
+  TIPDataVertreterBesuch.getJsonBesuch(res);
+});
+
+router.post("/deleteBesuchAppointment", function(req, res) {
+  var id: number = req.body.id;
+  TIPDataVertreterBesuch.deleteBesuchAppointment(id, res);
+});
+
+router.post("/updateBesuchAppointment", function(req, res) {
+  var id: number = req.body.id;
+  var startDate: Date = req.body.startDate;
+  var endDate: Date = req.body.endDate;
+  var id_geschaeftspartner: number = req.body.id_geschaeftspartner;
+  TIPDataVertreterBesuch.updateBesuchAppointment(id, startDate, endDate, id_geschaeftspartner, res);
+});
+
+router.post("/saveBesuchAppointment", function(req, res) {
+  var startDate: Date = req.body.startDate;
+  var endDate: Date = req.body.endDate;
+  var id_geschaeftspartner: number = req.body.id_geschaeftspartner;
+  TIPDataVertreterBesuch.saveBesuchAppointment(startDate, endDate, id_geschaeftspartner, res);
+});
+
+router.post("/getDetailBesuch", function(req, res) {
+  var id: number = req.body.id;
+  TIPDataVertreterBesuch.getDetailBesuch(id, res);
 });
 
 //

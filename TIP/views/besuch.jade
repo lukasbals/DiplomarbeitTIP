@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  div(ng-controller="BesuchCtrl")
+    div(ng-init="vm.initBesuch()").container-fluid.contentContainer
+      title Besuch
+      script(src="/javascripts/jsBesuch.js")
+      div#landscapeScheduler(dx-scheduler="vm.schedulerBesuch")

@@ -47,10 +47,10 @@ module TIP {
               TIPDatabase.getDB().get("select count(*) as result from besuche where id = ?", [val.Id], (error, row): void => {
                 if (row.result > 0) {
                   updateCount++;
-                  updateStmt.run([val.IdBesuchstyp, val.ClientIdBesuchPlan, val.IdBesuchPlan, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis, val.Id]);
+                  updateStmt.run([val.IdBesuchstyp, val.ClientIdBesuch, val.IdBesuch, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis, val.Id]);
                 } else {
                   insertCount++;
-                  insertStmt.run([val.Id, val.IdBesuchstyp, val.ClientIdBesuchPlan, val.IdBesuchPlan, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis]);
+                  insertStmt.run([val.Id, val.IdBesuchstyp, val.ClientIdBesuch, val.IdBesuch, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis]);
                 }
               });
             });
@@ -74,6 +74,107 @@ module TIP {
       return this.isActive;
     }
 
+
+    getJsonBesuch(res): void {
+      var result: TIP.ISchedulerData[] = new Array();
+      TIPDatabase.getDB().serialize((): void => {
+        TIPDatabase.getDB().each("select gp.firmenbez_1, b.von, b.bis, b.client_id, b.id_geschaeftspartner from besuche b left join geschaeftspartner_st gp on b.id_geschaeftspartner = gp.id where is_deleted = 0;", (error, row): void => {
+          result.push({
+            text: row.firmenbez_1,
+            startDate: row.von,
+            endDate: row.bis,
+            ClientId: row.client_id,
+            IdGeschaeftspartner: row.id_geschaeftspartner
+          });
+        }, (): void => {
+            //console.log(result);
+            res.json(result);
+          });
+      });
+    }
+
+    deleteBesuchAppointment(id: number, res): void {
+      TIPDatabase.getDB().run("update besuche set is_deleted = 1 where client_id = ?;", [id], (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("OK");
+        }
+      });
+
+    }
+
+    updateBesuchAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+      var x = new Date(startDate.toLocaleString());
+      var y = new Date(endDate.toLocaleString());
+      var sD = x.toISOString();
+      var eD = y.toISOString();
+      TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id], (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("OK");
+        }
+      });
+    }
+
+    saveBesuchAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, res): void {
+      var x = new Date(startDate.toLocaleString());
+      var y = new Date(endDate.toLocaleString());
+      var sD = x.toISOString();
+      var eD = y.toISOString();
+      var IsDeleted: number = 0;
+      var IsChanged: number = 1;
+      console.log(sD);
+      console.log(eD);
+      console.log(id_geschaeftspartner);
+      TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed) values (?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged], (err) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send("OK");
+        }
+      });
+
+    }
+
+    getDetailBesuch(id: number, res): void {
+      var result: TIP.IBesuchDetailModel[] = new Array();
+      console.log(id);
+      TIPDatabase.getDB().serialize((): void => {
+        //console.log("IN");
+        TIPDatabase.getDB().each("select b.client_id, b.id, b.id_besuchstyp, b.client_id_besuch_plan, b.id_besuch_plan, b.id_geschaeftspartner, b.von, b.bis, b.is_deleted, b.is_changed, gp.gp_nummer, gp.code_gpkz, gp.firmenbez_1, gp.firmenbez_2, gp.firmenbez_3, gp.strasse, gp.code_land, gp.plz, gp.ort, gp.telefon, gp.fax, gp.email, gp.homepage from besuche b left join geschaeftspartner_st gp on b.id_geschaeftspartner = gp.id where b.client_id = ?;", [id], (err, row): void => {
+          result.push({
+            ClientId: row.client_id,
+            Id: row.id,
+            IdBesuchstyp: row.id_besuchstyp,
+            ClientIdBesuchPlan: row.client_id_besuch_plan,
+            IdBesuchPlan: row.id_besuch_plan,
+            IdGeschaeftspartner: row.id_geschaeftspartner,
+            startDate: row.von,
+            endDate: row.bis,
+            IsDeleted: row.is_deleted,
+            IsChanged: row.is_changed,
+            GpNummer: row.gp_nummer,
+            CodeGpKz: row.code_gpkz,
+            Firmenbez1: row.firmenbez_1,
+            Firmenbez2: row.firmenbez_2,
+            Firmenbez3: row.firmenbez_3,
+            Strasse: row.strasse,
+            CodeLand: row.code_land,
+            Plz: row.plz,
+            Ort: row.ort,
+            Telefon: row.telefon,
+            Fax: row.fax,
+            Email: row.email,
+            Homepage: row.homepage
+          });
+        }, (): void=> {
+            console.log(result);
+            res.json(result);
+          });
+      });
+    }
   }
 }
 

@@ -115,6 +115,32 @@ module TIP {
     IsChanged: number;
   }
 
+  export interface IBesuchDetailModel {
+    ClientId: number;
+    Id: number;
+    IdBesuchstyp: number;
+    ClientIdBesuchPlan: number;
+    IdBesuchPlan: number;
+    IdGeschaeftspartner: number;
+    startDate: Date;
+    endDate: Date;
+    IsDeleted: number;
+    IsChanged: number;
+    GpNummer: number;
+    CodeGpKz: string;
+    Firmenbez1: string;
+    Firmenbez2: string;
+    Firmenbez3: string;
+    Strasse: string;
+    CodeLand: string;
+    Plz: string;
+    Ort: string;
+    Telefon: string;
+    Fax: string;
+    Email: string;
+    Homepage: string;
+  }
+
   export interface IBesuchPlanModel {
     ClientId: number;
     Id: number;
@@ -163,8 +189,8 @@ module TIP {
     ClientId: number;
     Id: number;
     TourName: string;
-    Von: Date;
-    Bis: Date;
+    startDate: Date;
+    endDate: Date;
   }
 
   export interface ISchedulerData {

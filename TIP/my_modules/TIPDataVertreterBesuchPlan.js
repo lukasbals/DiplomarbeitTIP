@@ -79,16 +79,28 @@ var TIP;
             });
         };
         TIPDataVertreterBesuchPlanClass.prototype.deleteBesuchPlanAppointment = function (id, res) {
-            TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id]);
-            res.send("OK");
+            TIPDatabase.getDB().run("update besuche_plan set is_deleted = 1 where client_id = ?;", [id], function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.send("OK");
+                }
+            });
         };
         TIPDataVertreterBesuchPlanClass.prototype.updateBesuchPlanAppointment = function (id, startDate, endDate, id_geschaeftspartner, res) {
             var x = new Date(startDate.toLocaleString());
             var y = new Date(endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
-            TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id]);
-            res.send("OK");
+            TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id], function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.send("OK");
+                }
+            });
         };
         TIPDataVertreterBesuchPlanClass.prototype.saveBesuchPlanAppointment = function (startDate, endDate, id_geschaeftspartner, res) {
             var x = new Date(startDate.toLocaleString());

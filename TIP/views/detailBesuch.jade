@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  div(ng-controller="BesuchCtrl")
+    div.container-fluid.contentContainer(ng-init=" vm.initDetailBesuch()")
+      title(ng-show="vm.detailBesuchDataSource.Firmenbez1") {{vm.detailBesuchDataSource.Firmenbez1}}
+      title(ng-hide="vm.detailBesuchDataSource.Firmenbez1") Neues Ereignis erstellen
+      div.row
+        div.col-md-6
+          h2(ng-hide="vm.detailBesuchDataSource.Firmenbez1") Neues Ereignis erstellen:
+          h2(ng-show="vm.detailBesuchDataSource.Firmenbez1") {{vm.detailBesuchDataSource.Firmenbez1}} bearbeiten
+          div(dx-lookup="vm.lookup")
+        div.col-md-6
+          div.row
+            div.col-xs-6
+              h2 Anfangszeitpunkt
+              div(dx-date-box="vm.dateboxAnfang")
+            div.col-xs-6
+              h2 Endzeitpunkt
+              div(dx-date-box="vm.dateboxEnde")
+      div.row
+        div.col-md-6
+          div(dx-button="vm.cancel").btnOptionsDetailBesuchPlan
+          div(ng-show="vm.detailBesuchDataSource.ClientId", dx-button="vm.loeschen").btnOptionsDetailBesuchPlan
+          div(ng-show="vm.detailBesuchDataSource.ClientId", dx-button="vm.update").btnOptionsDetailBesuchPlan
+          div(ng-hide="vm.detailBesuchDataSource.ClientId", dx-button="vm.save").btnOptionsDetailBesuchPlan

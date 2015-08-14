@@ -9,4 +9,7 @@ router.get("/detailPerson", function (req, res, next) {
 router.get("/detailBesuchPlan", function (req, res, next) {
     res.render("detailBesuchPlan");
 });
+router.get("/detailBesuch", function (req, res, next) {
+    res.render("detailBesuch");
+});
 module.exports = router;
