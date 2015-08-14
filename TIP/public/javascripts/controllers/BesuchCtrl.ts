@@ -41,9 +41,9 @@ module TIP {
         });
       } else {
         this.gpId = this.getParameter("IdGeschaeftspartner");
-        if(this.gpId >= 0 ){
+        if (this.gpId >= 0) {
           this.besuch.getDetailGeschaeftspartner(this.gpId)
-          .success((data): void => {
+            .success((data): void => {
             this.gpName = data[0].Firmenbez1;
           });
         }
@@ -138,6 +138,26 @@ module TIP {
       onClick: (): boolean => {
         history.go(-1);
         return true;
+      }
+    }
+
+    berichtHeadingContent = null;
+    berichtHeading = {
+      placeholder: "Titel ...",
+      value: null,
+      change: (options): void=> {
+        console.log(options);
+        //this.berichtHeadingContent = value;
+        alert("value");
+      }
+    }
+    berichtContent = {
+      placeholder: "Bericht ... ",
+      height: 100,
+      onChange: (value): void=> {
+        console.log(value);
+        //this.berichtHeadingContent = value;
+        alert("value");
       }
     }
 

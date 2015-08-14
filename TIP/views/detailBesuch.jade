@@ -29,6 +29,15 @@ block content
               h2 Endzeitpunkt
               div(dx-date-box="vm.dateboxEnde")
       div.row
+        div.col-md-12
+          h2 Neuer Bericht:
+      div.row
+        div.col-md-12
+          div(dx-text-box="vm.berichtHeading")
+      div.row
+        div.col-md-12
+          div(dx-text-area="vm.berichtContent")
+      div.row
         div.col-md-6
           div(dx-button="vm.cancel").btnOptionsDetailBesuchPlan
           div(ng-show="vm.detailBesuchDataSource.ClientId", dx-button="vm.loeschen").btnOptionsDetailBesuchPlan

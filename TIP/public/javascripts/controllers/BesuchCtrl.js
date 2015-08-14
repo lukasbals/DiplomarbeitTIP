@@ -88,6 +88,23 @@ var TIP;
                     return true;
                 }
             };
+            this.berichtHeadingContent = null;
+            this.berichtHeading = {
+                placeholder: "Titel ...",
+                value: null,
+                change: function (options) {
+                    console.log(options);
+                    alert("value");
+                }
+            };
+            this.berichtContent = {
+                placeholder: "Bericht ... ",
+                height: 100,
+                onChange: function (value) {
+                    console.log(value);
+                    alert("value");
+                }
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
