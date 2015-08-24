@@ -112,12 +112,12 @@ var TIP;
             console.log(sD);
             console.log(eD);
             console.log(id_geschaeftspartner);
-            TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function (err) {
+            TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function (err, req) {
                 if (err) {
                     res.send(err);
                 }
                 else {
-                    res.send("OK");
+                    console.log(req);
                 }
             });
         };

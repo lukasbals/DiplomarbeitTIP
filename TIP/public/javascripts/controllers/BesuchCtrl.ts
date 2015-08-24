@@ -9,8 +9,9 @@ module TIP {
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     dataSourceBesuchstypForSearch: IBesuchstypModel = null;
     detailBesuchDataSource: TIP.IBesuchDetailModel = null;
-    gpId: number = null;
-    btId: number = null;
+    besuchId: number = null;
+    geschaeftspartnerId: number = null;
+    besuchstypId: number = null;
     startDate: Date = null;
     endDate: Date = null;
     gpName: string = null;
@@ -34,15 +35,16 @@ module TIP {
           this.detailBesuchDataSource = data[0];
           this.startDate = new Date(data[0].startDate);
           this.endDate = new Date(data[0].endDate);
-          this.gpId = data[0].IdGeschaeftspartner;
-          this.btId = data[0].IdBesuchstyp;
+          this.besuchId = data[0].ClientId;
+          this.geschaeftspartnerId = data[0].IdGeschaeftspartner;
+          this.besuchstypId = data[0].IdBesuchstyp;
           this.gpName = data[0].Firmenbez1;
           console.log(this.detailBesuchDataSource);
         });
       } else {
-        this.gpId = this.getParameter("IdGeschaeftspartner");
-        if (this.gpId >= 0) {
-          this.besuch.getDetailGeschaeftspartner(this.gpId)
+        this.geschaeftspartnerId = this.getParameter("IdGeschaeftspartner");
+        if (this.geschaeftspartnerId >= 0) {
+          this.besuch.getDetailGeschaeftspartner(this.geschaeftspartnerId)
             .success((data): void => {
             this.gpName = data[0].Firmenbez1;
           });
@@ -61,7 +63,7 @@ module TIP {
       displayExpr: "Firmenbez1",
       title: "Geschäftspartner",
       onValueChanged: (options): void => {
-        this.gpId = options.itemData.Id;
+        this.geschaeftspartnerId = options.itemData.Id;
       }
     }
 
@@ -73,7 +75,7 @@ module TIP {
       displayExpr: "Bezeichnung",
       title: "Besuchstypen",
       onValueChanged: (options): void => {
-        this.btId = options.itemData.Id;
+        this.besuchstypId = options.itemData.Id;
       }
     }
 
@@ -113,7 +115,7 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.updateBesuchAppointment(this.gpId, this.btId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId)
+        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId)
           .success((data): void => {
           window.location.href = "/Besuch";
         });
@@ -125,10 +127,12 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.saveBesuchAppointment(this.gpId, this.btId, this.startDate, this.endDate)
+        this.besuch.saveBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate)
           .success((data): void => {
+            console.log(data);
+            // this.besuch.saveBerichtAppointment()
           //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
-          window.location.href = "/Besuch";
+          //window.location.href = "/Besuch";
         });
       }
     }
@@ -148,6 +152,7 @@ module TIP {
         console.log(this.berichtHeadingContent);
       }
     }
+
     berichtContentContent = null;
     berichtContent: DevExpress.ui.dxTextAreaOptions = {
       placeholder: "Bericht ... ",

@@ -101,6 +101,12 @@ router.get("/synchDB", function (req, res) {
     TIPSync.doSync();
     res.send("done.");
 });
+router.post("/saveBerichtAppointment", function (req, res) {
+    var id = req.body.id;
+    var berichtHeadingContent = req.body.berichtHeadingContent;
+    var berichtContentContent = req.body.berichtContentContent;
+    TIPDataVertreterBericht.saveBerichtAppointment(id, berichtHeadingContent, berichtContentContent, res);
+});
 router.get("/isSyncActive", function (req, res) {
     res.send(TIPSync.isSyncActive());
 });

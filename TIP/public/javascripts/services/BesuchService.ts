@@ -21,16 +21,22 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/deleteBesuchAppointment", json);
     }
 
-    updateBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date, id: number): ng.IHttpPromise<any> {
-      var string: string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
-      var json: JSON = JSON.parse(string);
-      return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", json);
+    updateBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date, besuchId: number): ng.IHttpPromise<any> {
+      var updateBesuchString: string = '{"id": "' + besuchId + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
+      var updateBesuchJson: JSON = JSON.parse(updateBesuchString);
+      return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchJson);
     }
 
     saveBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date): ng.IHttpPromise<any> {
-      var string: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
-      var json: JSON = JSON.parse(string);
-      return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", json);
+      var updateBesuchString: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
+      var updateBesuchJson: JSON = JSON.parse(updateBesuchString);
+      return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", updateBesuchJson);
+    }
+
+    saveBerichtAppointment(besuchId: number, berichtHeadingContent: string, berichtContentContent: string): ng.IHttpPromise<any> {
+      var updateBerichtString: string = '{"id": "' + besuchId + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
+      var updateBerichtJson: JSON = JSON.parse(updateBerichtString);
+      return this.$http.post("http://localhost:3000/api/updateBerichtAppointment", updateBerichtJson);
     }
 
     getDetailBesuch(id: number): ng.IHttpPromise<any> {

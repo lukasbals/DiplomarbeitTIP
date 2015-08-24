@@ -71,6 +71,16 @@ module TIP {
     isSyncActive(): boolean {
       return this.isActive;
     }
+
+    saveBerichtAppointment(id: number, berichtHeadingContent: string, berichtContentContent: string, res): void  {
+      TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text) values (?, ?, ?);", [id, berichtHeadingContent, berichtContentContent], (err) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send("OK");
+        }
+      });
+    }
   }
 }
 

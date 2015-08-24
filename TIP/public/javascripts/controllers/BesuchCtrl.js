@@ -8,8 +8,9 @@ var TIP;
             this.dataSourceGeschaeftspartnerForSearch = null;
             this.dataSourceBesuchstypForSearch = null;
             this.detailBesuchDataSource = null;
-            this.gpId = null;
-            this.btId = null;
+            this.besuchId = null;
+            this.geschaeftspartnerId = null;
+            this.besuchstypId = null;
             this.startDate = null;
             this.endDate = null;
             this.gpName = null;
@@ -21,7 +22,7 @@ var TIP;
                 displayExpr: "Firmenbez1",
                 title: "Geschäftspartner",
                 onValueChanged: function (options) {
-                    _this.gpId = options.itemData.Id;
+                    _this.geschaeftspartnerId = options.itemData.Id;
                 }
             };
             this.lookupBesuchstyp = {
@@ -32,7 +33,7 @@ var TIP;
                 displayExpr: "Bezeichnung",
                 title: "Besuchstypen",
                 onValueChanged: function (options) {
-                    _this.btId = options.itemData.Id;
+                    _this.besuchstypId = options.itemData.Id;
                 }
             };
             this.dateboxAnfang = {
@@ -65,7 +66,7 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.updateBesuchAppointment(_this.gpId, _this.btId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId)
+                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId)
                         .success(function (data) {
                         window.location.href = "/Besuch";
                     });
@@ -75,9 +76,9 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.saveBesuchAppointment(_this.gpId, _this.btId, _this.startDate, _this.endDate)
+                    _this.besuch.saveBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate)
                         .success(function (data) {
-                        window.location.href = "/Besuch";
+                        console.log(data);
                     });
                 }
             };
@@ -158,16 +159,17 @@ var TIP;
                     _this.detailBesuchDataSource = data[0];
                     _this.startDate = new Date(data[0].startDate);
                     _this.endDate = new Date(data[0].endDate);
-                    _this.gpId = data[0].IdGeschaeftspartner;
-                    _this.btId = data[0].IdBesuchstyp;
+                    _this.besuchId = data[0].ClientId;
+                    _this.geschaeftspartnerId = data[0].IdGeschaeftspartner;
+                    _this.besuchstypId = data[0].IdBesuchstyp;
                     _this.gpName = data[0].Firmenbez1;
                     console.log(_this.detailBesuchDataSource);
                 });
             }
             else {
-                this.gpId = this.getParameter("IdGeschaeftspartner");
-                if (this.gpId >= 0) {
-                    this.besuch.getDetailGeschaeftspartner(this.gpId)
+                this.geschaeftspartnerId = this.getParameter("IdGeschaeftspartner");
+                if (this.geschaeftspartnerId >= 0) {
+                    this.besuch.getDetailGeschaeftspartner(this.geschaeftspartnerId)
                         .success(function (data) {
                         _this.gpName = data[0].Firmenbez1;
                     });

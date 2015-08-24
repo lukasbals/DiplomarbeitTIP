@@ -60,6 +60,16 @@ var TIP;
         TIPDataVertreterBerichtClass.prototype.isSyncActive = function () {
             return this.isActive;
         };
+        TIPDataVertreterBerichtClass.prototype.saveBerichtAppointment = function (id, berichtHeadingContent, berichtContentContent, res) {
+            TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text) values (?, ?, ?);", [id, berichtHeadingContent, berichtContentContent], function (err) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send("OK");
+                }
+            });
+        };
         return TIPDataVertreterBerichtClass;
     })();
     TIP.TIPDataVertreterBerichtClass = TIPDataVertreterBerichtClass;
