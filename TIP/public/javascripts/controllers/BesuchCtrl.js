@@ -8,7 +8,6 @@ var TIP;
             this.dataSourceGeschaeftspartnerForSearch = null;
             this.dataSourceBesuchstypForSearch = null;
             this.detailBesuchDataSource = null;
-            this.besuchId = null;
             this.geschaeftspartnerId = null;
             this.besuchstypId = null;
             this.startDate = null;
@@ -159,11 +158,26 @@ var TIP;
                     _this.detailBesuchDataSource = data[0];
                     _this.startDate = new Date(data[0].startDate);
                     _this.endDate = new Date(data[0].endDate);
-                    _this.besuchId = data[0].ClientId;
                     _this.geschaeftspartnerId = data[0].IdGeschaeftspartner;
                     _this.besuchstypId = data[0].IdBesuchstyp;
                     _this.gpName = data[0].Firmenbez1;
                     console.log(_this.detailBesuchDataSource);
+                    var idForBericht = null;
+                    var isOnServer = null;
+                    if (_this.detailBesuchDataSource.Id != null) {
+                        idForBericht = _this.detailBesuchDataSource.Id;
+                        isOnServer = "id_besuch";
+                    }
+                    else {
+                        idForBericht = _this.detailBesuchDataSource.ClientId;
+                        isOnServer = "client_id_besuch";
+                    }
+                    _this.besuch.getBerichtById(idForBericht, isOnServer)
+                        .success(function (data) {
+                        console.log(data);
+                        _this.berichtHeadingContent = data[0].Titel;
+                        _this.berichtContentContent = data[0].Text;
+                    });
                 });
             }
             else {

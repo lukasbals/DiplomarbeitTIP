@@ -9,6 +9,12 @@ module TIP {
       return this.$http.get("http://localhost:3000/api/getJsonBesuch");
     }
 
+    getBerichtById(besuchId: number, isOnServer: string): ng.IHttpPromise<any> {
+      var string: string = '{"besuchId": "' + besuchId + '", "isOnServer": "' + isOnServer + '"}';
+      var json: JSON = JSON.parse(string);
+      return this.$http.post("http://localhost:3000/api/getBerichtById", json);
+    }
+
     getDetailGeschaeftspartner(id: number): ng.IHttpPromise<any> {
       var string: string = '{"id": "' + id + '"}';
       var json: JSON = JSON.parse(string);

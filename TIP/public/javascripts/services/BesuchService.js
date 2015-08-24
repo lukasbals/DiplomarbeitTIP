@@ -8,6 +8,11 @@ var TIP;
         BesuchService.prototype.getBesuch = function () {
             return this.$http.get("http://localhost:3000/api/getJsonBesuch");
         };
+        BesuchService.prototype.getBerichtById = function (besuchId, isOnServer) {
+            var string = '{"besuchId": "' + besuchId + '", "isOnServer": "' + isOnServer + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/getBerichtById", json);
+        };
         BesuchService.prototype.getDetailGeschaeftspartner = function (id) {
             var string = '{"id": "' + id + '"}';
             var json = JSON.parse(string);

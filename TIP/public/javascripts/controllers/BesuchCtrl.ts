@@ -9,7 +9,7 @@ module TIP {
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     dataSourceBesuchstypForSearch: IBesuchstypModel = null;
     detailBesuchDataSource: TIP.IBesuchDetailModel = null;
-    besuchId: number = null;
+    // besuchId: number = null;
     geschaeftspartnerId: number = null;
     besuchstypId: number = null;
     startDate: Date = null;
@@ -35,11 +35,26 @@ module TIP {
           this.detailBesuchDataSource = data[0];
           this.startDate = new Date(data[0].startDate);
           this.endDate = new Date(data[0].endDate);
-          this.besuchId = data[0].ClientId;
+          // this.besuchId = data[0].ClientId;
           this.geschaeftspartnerId = data[0].IdGeschaeftspartner;
           this.besuchstypId = data[0].IdBesuchstyp;
           this.gpName = data[0].Firmenbez1;
           console.log(this.detailBesuchDataSource);
+          var idForBericht: number = null;
+          var isOnServer: string = null;
+          if (this.detailBesuchDataSource.Id != null){
+            idForBericht = this.detailBesuchDataSource.Id;
+            isOnServer = "id_besuch";
+          } else {
+            idForBericht = this.detailBesuchDataSource.ClientId;
+            isOnServer = "client_id_besuch";
+          }
+          this.besuch.getBerichtById(idForBericht, isOnServer)
+            .success((data): void => {
+            console.log(data);
+            this.berichtHeadingContent = data[0].Titel;
+            this.berichtContentContent = data[0].Text;
+          });
         });
       } else {
         this.geschaeftspartnerId = this.getParameter("IdGeschaeftspartner");
