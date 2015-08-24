@@ -23,15 +23,10 @@ var TIP;
             var updateBesuchJson = JSON.parse(updateBesuchString);
             return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchJson);
         };
-        BesuchService.prototype.saveBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate) {
-            var updateBesuchString = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '"}';
+        BesuchService.prototype.saveBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, berichtHeadingContent, berichtContentContent) {
+            var updateBesuchString = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
             var updateBesuchJson = JSON.parse(updateBesuchString);
             return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", updateBesuchJson);
-        };
-        BesuchService.prototype.saveBerichtAppointment = function (besuchId, berichtHeadingContent, berichtContentContent) {
-            var updateBerichtString = '{"id": "' + besuchId + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
-            var updateBerichtJson = JSON.parse(updateBerichtString);
-            return this.$http.post("http://localhost:3000/api/updateBerichtAppointment", updateBerichtJson);
         };
         BesuchService.prototype.getDetailBesuch = function (id) {
             var string = '{"id": "' + id + '"}';

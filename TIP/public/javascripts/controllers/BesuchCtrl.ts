@@ -127,12 +127,10 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.saveBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate)
+        this.besuch.saveBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, this.berichtHeadingContent, this.berichtContentContent)
           .success((data): void => {
-            console.log(data);
-            // this.besuch.saveBerichtAppointment()
-          //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
-          //window.location.href = "/Besuch";
+          // console.log(data);
+          window.location.href = "/Besuch";
         });
       }
     }

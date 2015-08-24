@@ -101,7 +101,9 @@ router.post("/saveBesuchAppointment", function(req, res) {
   var endDate: Date = req.body.endDate;
   var id_geschaeftspartner: number = req.body.id_geschaeftspartner;
   var id_besuchstyp: number = req.body.id_besuchstyp;
-  TIPDataVertreterBesuch.saveBesuchAppointment(startDate, endDate, id_geschaeftspartner, id_besuchstyp, res);
+  var berichtHeadingContent: string = req.body.berichtHeadingContent;
+  var berichtContentContent: string = req.body.berichtContentContent;
+  TIPDataVertreterBesuch.saveBesuchAppointment(startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, res);
 });
 
 router.post("/getDetailBesuch", function(req, res) {
@@ -154,16 +156,6 @@ router.get("/getJsonBesuchstyp", (req, res): void => {
 router.get("/synchDB", (req, res): void => {
   TIPSync.doSync();
   res.send("done.");
-});
-
-//
-// Bericht
-//
-router.post("/saveBerichtAppointment", function(req, res) {
-  var id: number = req.body.id;
-  var berichtHeadingContent = req.body.berichtHeadingContent;
-  var berichtContentContent = req.body.berichtContentContent;
-  TIPDataVertreterBericht.saveBerichtAppointment(id, berichtHeadingContent, berichtContentContent res);
 });
 
 //setInterval(() => console.log(TIPSync.isSyncActive()), 1000);

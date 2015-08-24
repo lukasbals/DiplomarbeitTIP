@@ -118,24 +118,28 @@ module TIP {
       });
     }
 
-    saveBesuchAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, id_besuchstyp: number, res): void {
+    saveBesuchAppointment(startDate: Date, endDate: Date, id_geschaeftspartner: number, id_besuchstyp: number, berichtHeadingContent: string, berichtContentContent: string, res): void {
       var x = new Date(startDate.toLocaleString());
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
       var eD = y.toISOString();
       var IsDeleted: number = 0;
       var IsChanged: number = 1;
-      console.log(sD);
-      console.log(eD);
-      console.log(id_geschaeftspartner);
-      TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], (err, req) => {
-        if (err) {
-          res.send(err);
-        } else {
-            console.log(req);
-            // res.send(row.client_id);
-        }
+      TIPDatabase.getDB().serialize((): void => {
+        var stmt = TIPDatabase.getDB().prepare("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;");
+
+        stmt.run([sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], (): void => {
+          var id = stmt.lastID;
+          console.log(id);
+          TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text) values (?, ?, ?)", [id, berichtHeadingContent, berichtContentContent]);
+        });
+
+        stmt.finalize();
       });
+      // console.log(sD);
+      // console.log(eD);
+      // console.log(id_geschaeftspartner);
+
     }
 
     getDetailBesuch(id: number, res): void {

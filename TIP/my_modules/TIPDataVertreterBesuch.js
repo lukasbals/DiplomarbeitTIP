@@ -102,23 +102,21 @@ var TIP;
                 }
             });
         };
-        TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (startDate, endDate, id_geschaeftspartner, id_besuchstyp, res) {
+        TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, res) {
             var x = new Date(startDate.toLocaleString());
             var y = new Date(endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
             var IsDeleted = 0;
             var IsChanged = 1;
-            console.log(sD);
-            console.log(eD);
-            console.log(id_geschaeftspartner);
-            TIPDatabase.getDB().run("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function (err, req) {
-                if (err) {
-                    res.send(err);
-                }
-                else {
-                    console.log(req);
-                }
+            TIPDatabase.getDB().serialize(function () {
+                var stmt = TIPDatabase.getDB().prepare("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;");
+                stmt.run([sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function () {
+                    var id = stmt.lastID;
+                    console.log(id);
+                    TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text) values (?, ?, ?)", [id, berichtHeadingContent, berichtContentContent]);
+                });
+                stmt.finalize();
             });
         };
         TIPDataVertreterBesuchClass.prototype.getDetailBesuch = function (id, res) {

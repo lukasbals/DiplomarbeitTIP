@@ -76,9 +76,9 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.saveBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate)
+                    _this.besuch.saveBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, _this.berichtHeadingContent, _this.berichtContentContent)
                         .success(function (data) {
-                        console.log(data);
+                        window.location.href = "/Besuch";
                     });
                 }
             };
