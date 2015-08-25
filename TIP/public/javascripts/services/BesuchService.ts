@@ -15,6 +15,16 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/getBerichtById", json);
     }
 
+    updateBericht(dataSourceBericht): ng.IHttpPromise<any> {
+      return this.$http.post("http://localhost:3000/api/updateBericht", dataSourceBericht);
+    }
+
+    deleteBericht(ClientId): ng.IHttpPromise<any> {
+      var string: string = '{"ClientId": "' + ClientId + '"}';
+      var json: JSON = JSON.parse(string);
+      return this.$http.post("http://localhost:3000/api/deleteBericht", json);
+    }
+
     getDetailGeschaeftspartner(id: number): ng.IHttpPromise<any> {
       var string: string = '{"id": "' + id + '"}';
       var json: JSON = JSON.parse(string);

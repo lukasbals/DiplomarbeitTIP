@@ -71,6 +71,10 @@ var TIP;
                         .success(function (data) {
                         window.location.href = "/Besuch";
                     });
+                    _this.besuch.updateBericht(_this.dataSourceBericht)
+                        .success(function (data) {
+                        console.log("success");
+                    });
                 }
             };
             this.save = {
@@ -90,11 +94,21 @@ var TIP;
                     return true;
                 }
             };
+            this.deleteBericht = {
+                text: "X",
+                type: "danger",
+                width: "100%",
+                onClick: function (data) {
+                    _this.besuch.deleteBericht(data.model.bericht.ClientId)
+                        .success(function (data) {
+                        history.go(0);
+                    });
+                }
+            };
             this.berichtHeadingContent = null;
             this.berichtHeading = {
                 placeholder: "Titel ...",
                 onChange: function () {
-                    console.log(_this.berichtHeadingContent);
                 }
             };
             this.berichtContentContent = null;
@@ -102,7 +116,6 @@ var TIP;
                 placeholder: "Bericht ... ",
                 height: 100,
                 onChange: function () {
-                    console.log(_this.berichtContentContent);
                 }
             };
             this.bericht = {

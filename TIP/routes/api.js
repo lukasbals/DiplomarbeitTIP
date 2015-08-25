@@ -107,6 +107,13 @@ router.post("/getBerichtById", function (req, res) {
     var isOnServer = req.body.isOnServer;
     TIPDataVertreterBericht.getBerichtById(id, isOnServer, res);
 });
+router.post("/updateBericht", function (req, res) {
+    TIPDataVertreterBericht.updateBericht(req.body, res);
+});
+router.post("/deleteBericht", function (req, res) {
+    var ClientId = req.body.ClientId;
+    TIPDataVertreterBericht.deleteBericht(ClientId, res);
+});
 router.get("/synchDB", function (req, res) {
     TIPSync.doSync();
     res.send("done.");

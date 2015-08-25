@@ -138,6 +138,10 @@ module TIP {
           .success((data): void => {
           window.location.href = "/Besuch";
         });
+        this.besuch.updateBericht(this.dataSourceBericht)
+        .success((data): void => {
+          console.log("success");
+        });
 
       }
     }
@@ -162,11 +166,24 @@ module TIP {
       }
     }
 
+    deleteBericht: DevExpress.ui.dxButtonOptions = {
+      text: "X",
+      type: "danger",
+      width: "100%",
+      onClick: (data): void => {
+        //console.log(data.model.bericht.ClientId);
+        this.besuch.deleteBericht(data.model.bericht.ClientId)
+        .success((data):void => {
+          history.go(0);
+        });
+      }
+    }
+
     berichtHeadingContent: string = null;
     berichtHeading: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Titel ...",
       onChange: (): void=> {
-        console.log(this.berichtHeadingContent);
+        // console.log(this.berichtHeadingContent);
       }
     }
 
@@ -175,7 +192,7 @@ module TIP {
       placeholder: "Bericht ... ",
       height: 100,
       onChange: (): void=> {
-        console.log(this.berichtContentContent);
+        // console.log(this.berichtContentContent);
       }
     }
 

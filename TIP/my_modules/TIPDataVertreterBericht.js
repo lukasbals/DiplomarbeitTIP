@@ -65,7 +65,7 @@ var TIP;
             console.log(id);
             TIPDatabase.getDB().serialize(function () {
                 console.log(isOnServer);
-                TIPDatabase.getDB().each("select client_id, id, client_id_besuch, id_besuch, titel, text, is_deleted, is_changed from berichte where " + isOnServer + " = " + id + ";", function (err, row) {
+                TIPDatabase.getDB().each("select client_id, id, client_id_besuch, id_besuch, titel, text, is_deleted, is_changed from berichte where " + isOnServer + " = " + id + " and is_deleted = 0;", function (err, row) {
                     result.push({
                         ClientId: row.client_id,
                         Id: row.id,
@@ -80,6 +80,28 @@ var TIP;
                     console.log(result);
                     res.json(result);
                 });
+            });
+        };
+        TIPDataVertreterBerichtClass.prototype.updateBericht = function (dataSourceBericht, res) {
+            for (var i = 0; i < dataSourceBericht.length; i++) {
+                var obj = dataSourceBericht[i];
+                console.log(dataSourceBericht[i].Text);
+                TIPDatabase.getDB().run("update berichte set titel = ?, text = ?, is_changed = 1 where client_id = ?", [dataSourceBericht[i].Titel, dataSourceBericht[i].Text, dataSourceBericht[i].ClientId], function (err, row) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
+            res.send("OK");
+        };
+        TIPDataVertreterBerichtClass.prototype.deleteBericht = function (ClientId, res) {
+            TIPDatabase.getDB().run("update berichte set is_deleted = 1 where client_id = ?", [ClientId], function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.send("OK");
+                }
             });
         };
         return TIPDataVertreterBerichtClass;

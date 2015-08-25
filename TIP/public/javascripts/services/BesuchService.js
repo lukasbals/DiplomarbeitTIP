@@ -13,6 +13,14 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/getBerichtById", json);
         };
+        BesuchService.prototype.updateBericht = function (dataSourceBericht) {
+            return this.$http.post("http://localhost:3000/api/updateBericht", dataSourceBericht);
+        };
+        BesuchService.prototype.deleteBericht = function (ClientId) {
+            var string = '{"ClientId": "' + ClientId + '"}';
+            var json = JSON.parse(string);
+            return this.$http.post("http://localhost:3000/api/deleteBericht", json);
+        };
         BesuchService.prototype.getDetailGeschaeftspartner = function (id) {
             var string = '{"id": "' + id + '"}';
             var json = JSON.parse(string);

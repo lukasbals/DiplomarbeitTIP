@@ -77,7 +77,7 @@ module TIP {
       console.log(id);
       TIPDatabase.getDB().serialize((): void => {
         console.log(isOnServer);
-        TIPDatabase.getDB().each("select client_id, id, client_id_besuch, id_besuch, titel, text, is_deleted, is_changed from berichte where " + isOnServer + " = " + id + ";", (err, row): void => {
+        TIPDatabase.getDB().each("select client_id, id, client_id_besuch, id_besuch, titel, text, is_deleted, is_changed from berichte where " + isOnServer + " = " + id + " and is_deleted = 0;", (err, row): void => {
           result.push({
             ClientId: row.client_id,
             Id: row.id,
@@ -92,6 +92,29 @@ module TIP {
             console.log(result);
             res.json(result);
           });
+      });
+    }
+
+    updateBericht(dataSourceBericht: JSON, res): void {
+      for (var i = 0; i < dataSourceBericht.length; i++) {
+        var obj = dataSourceBericht[i];
+          console.log(dataSourceBericht[i].Text);
+          TIPDatabase.getDB().run("update berichte set titel = ?, text = ?, is_changed = 1 where client_id = ?", [dataSourceBericht[i].Titel, dataSourceBericht[i].Text, dataSourceBericht[i].ClientId], (err, row): void => {
+            if (err) {
+              console.log(err);
+            }
+          });
+      }
+      res.send("OK");
+    }
+
+    deleteBericht(ClientId: number, res): void {
+      TIPDatabase.getDB().run("update berichte set is_deleted = 1 where client_id = ?", [ClientId], (err): void => {
+        if (err){
+          console.log(err);
+        } else {
+          res.send("OK");
+        }
       });
     }
   }
