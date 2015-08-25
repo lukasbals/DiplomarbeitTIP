@@ -53,4 +53,5 @@ block content
           div(dx-button="vm.cancel").btnOptionsDetailBesuchPlan
           div(ng-show="vm.detailBesuchDataSource.ClientId", dx-button="vm.loeschen").btnOptionsDetailBesuchPlan
           div(ng-show="vm.detailBesuchDataSource.ClientId", dx-button="vm.update").btnOptionsDetailBesuchPlan
+          div(ng-show="vm.dataSourceBericht[0]", dx-button="vm.bericht").btnOptionsDetailBesuchPlan
           div(ng-hide="vm.detailBesuchDataSource.ClientId", dx-button="vm.save").btnOptionsDetailBesuchPlan

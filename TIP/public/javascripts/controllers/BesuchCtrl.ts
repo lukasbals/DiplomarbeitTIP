@@ -134,7 +134,7 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId)
+        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId, this.berichtHeadingContent, this.berichtContentContent)
           .success((data): void => {
           window.location.href = "/Besuch";
         });
@@ -162,7 +162,7 @@ module TIP {
       }
     }
 
-    berichtHeadingContent = null;
+    berichtHeadingContent: string = null;
     berichtHeading: DevExpress.ui.dxTextBoxOptions = {
       placeholder: "Titel ...",
       onChange: (): void=> {
@@ -170,7 +170,7 @@ module TIP {
       }
     }
 
-    berichtContentContent = null;
+    berichtContentContent: string = null;
     berichtContent: DevExpress.ui.dxTextAreaOptions = {
       placeholder: "Bericht ... ",
       height: 100,
@@ -179,13 +179,13 @@ module TIP {
       }
     }
 
-    // saveBericht: DevExpress.ui.dxButtonOptions = {
-    //   text: "Bericht speichern",
-    //   type: "success",
-    //   onClick: (): void => {
-    //
-    //   }
-    // }
+    bericht: DevExpress.ui.dxButtonOptions = {
+      text: "Neuen Bericht erstellen",
+      type: "default",
+      onClick: (): void =>  {
+        this.neuerBericht = true;
+      }
+    }
 
     getParameter = (theParameter): any => {
       var params = window.location.search.substr(1).split('&');
@@ -232,7 +232,7 @@ module TIP {
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
-        this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id);
+        this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id, this.berichtHeadingContent, this.berichtContentContent);
       }
     }
   }

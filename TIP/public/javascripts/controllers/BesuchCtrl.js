@@ -67,7 +67,7 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId)
+                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId, _this.berichtHeadingContent, _this.berichtContentContent)
                         .success(function (data) {
                         window.location.href = "/Besuch";
                     });
@@ -105,6 +105,13 @@ var TIP;
                     console.log(_this.berichtContentContent);
                 }
             };
+            this.bericht = {
+                text: "Neuen Bericht erstellen",
+                type: "default",
+                onClick: function () {
+                    _this.neuerBericht = true;
+                }
+            };
             this.getParameter = function (theParameter) {
                 var params = window.location.search.substr(1).split('&');
                 for (var i = 0; i < params.length; i++) {
@@ -138,7 +145,7 @@ var TIP;
                     var startDate = options.appointment.startDate;
                     var endDate = options.appointment.endDate;
                     var id = options.appointment.ClientId;
-                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id);
+                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id, _this.berichtHeadingContent, _this.berichtContentContent);
                 }
             };
         }
