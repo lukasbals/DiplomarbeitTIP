@@ -28,17 +28,26 @@ block content
             div.col-md-12
               h2 Endzeitpunkt
               div(dx-date-box="vm.dateboxEnde")
-      div.row
-        div.col-md-12
-          h2 Neuer Bericht:
-      div.row
-        div.col-md-12
-          div(dx-text-box="vm.berichtHeading", ng-model="vm.berichtHeadingContent")
-        //- div.col-md-3
-        //-   div(dx-button="vm.saveBericht")
-      div.row
-        div.col-md-12
-          div(dx-text-area="vm.berichtContent", ng-model="vm.berichtContentContent")
+      //- div.row
+      //-   div.col-md-12
+      //-     h2 Berichte:
+      div(ng-repeat="bericht in vm.dataSourceBericht")
+        div.row
+          div.col-md-12
+            div(dx-text-box="vm.berichtHeading", ng-model="bericht.Titel")
+        div.row
+          div.col-md-12
+            div(dx-text-area="vm.berichtContent", ng-model="bericht.Text")
+      div(ng-show="vm.neuerBericht")
+        div.row
+          div.col-md-12
+            h2 Neuer Bericht:
+        div.row
+          div.col-md-12
+            div(dx-text-box="vm.berichtHeading", ng-model="vm.berichtHeadingContent")
+        div.row
+          div.col-md-12
+            div(dx-text-area="vm.berichtContent", ng-model="vm.berichtContentContent")
       div.row
         div.col-md-6
           div(dx-button="vm.cancel").btnOptionsDetailBesuchPlan

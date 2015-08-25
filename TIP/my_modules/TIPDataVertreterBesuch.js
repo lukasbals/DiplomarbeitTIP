@@ -113,10 +113,16 @@ var TIP;
                 var stmt = TIPDatabase.getDB().prepare("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;");
                 stmt.run([sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function () {
                     var id = stmt.lastID;
-                    console.log(id);
-                    TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text) values (?, ?, ?)", [id, berichtHeadingContent, berichtContentContent]);
+                    console.log("HEADINGCONTENT" + berichtHeadingContent);
+                    if (berichtHeadingContent != "null") {
+                        TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
+                    }
+                    else {
+                        console.log("keinBericht");
+                    }
                 });
                 stmt.finalize();
+                res.send("OK");
             });
         };
         TIPDataVertreterBesuchClass.prototype.getDetailBesuch = function (id, res) {

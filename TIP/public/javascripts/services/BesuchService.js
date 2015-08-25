@@ -29,9 +29,9 @@ var TIP;
             return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchJson);
         };
         BesuchService.prototype.saveBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, berichtHeadingContent, berichtContentContent) {
-            var updateBesuchString = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
-            var updateBesuchJson = JSON.parse(updateBesuchString);
-            return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", updateBesuchJson);
+            var saveBesuchString = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
+            var saveBesuchJson = JSON.parse(saveBesuchString);
+            return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", saveBesuchJson);
         };
         BesuchService.prototype.getDetailBesuch = function (id) {
             var string = '{"id": "' + id + '"}';

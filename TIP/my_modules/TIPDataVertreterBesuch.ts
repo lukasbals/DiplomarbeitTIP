@@ -130,16 +130,17 @@ module TIP {
 
         stmt.run([sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], (): void => {
           var id = stmt.lastID;
-          console.log(id);
-          TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text) values (?, ?, ?)", [id, berichtHeadingContent, berichtContentContent]);
+          console.log("HEADINGCONTENT" + berichtHeadingContent);
+          if (berichtHeadingContent != "null") {
+            TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
+          } else {
+            console.log("keinBericht");
+          }
         });
 
         stmt.finalize();
+        res.send("OK");
       });
-      // console.log(sD);
-      // console.log(eD);
-      // console.log(id_geschaeftspartner);
-
     }
 
     getDetailBesuch(id: number, res): void {

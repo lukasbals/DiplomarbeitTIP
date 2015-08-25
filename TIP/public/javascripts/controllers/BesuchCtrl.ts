@@ -8,6 +8,7 @@ module TIP {
 
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     dataSourceBesuchstypForSearch: IBesuchstypModel = null;
+    dataSourceBericht: IBerichtModel = null;
     detailBesuchDataSource: TIP.IBesuchDetailModel = null;
     // besuchId: number = null;
     geschaeftspartnerId: number = null;
@@ -15,6 +16,7 @@ module TIP {
     startDate: Date = null;
     endDate: Date = null;
     gpName: string = null;
+    neuerBericht: boolean = false;
 
     initDetailBesuch() {
       this.besuch.getAllGeschaeftspartnerForSearch()
@@ -42,7 +44,7 @@ module TIP {
           console.log(this.detailBesuchDataSource);
           var idForBericht: number = null;
           var isOnServer: string = null;
-          if (this.detailBesuchDataSource.Id != null){
+          if (this.detailBesuchDataSource.Id != null) {
             idForBericht = this.detailBesuchDataSource.Id;
             isOnServer = "id_besuch";
           } else {
@@ -52,11 +54,14 @@ module TIP {
           this.besuch.getBerichtById(idForBericht, isOnServer)
             .success((data): void => {
             console.log(data);
-            this.berichtHeadingContent = data[0].Titel;
-            this.berichtContentContent = data[0].Text;
+            this.dataSourceBericht = data;
+            if (this.dataSourceBericht[0] == null) {
+              this.neuerBericht = true;
+            }
           });
         });
       } else {
+        this.neuerBericht = true;
         this.geschaeftspartnerId = this.getParameter("IdGeschaeftspartner");
         if (this.geschaeftspartnerId >= 0) {
           this.besuch.getDetailGeschaeftspartner(this.geschaeftspartnerId)
@@ -66,7 +71,6 @@ module TIP {
         }
         this.startDate = new Date(this.getParameter("startDate"));
         this.endDate = new Date(this.getParameter("endDate"));
-        //alert("Neues Ereignis");
       }
     }
 

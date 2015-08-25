@@ -34,9 +34,9 @@ module TIP {
     }
 
     saveBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date, berichtHeadingContent: string, berichtContentContent: string): ng.IHttpPromise<any> {
-      var updateBesuchString: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
-      var updateBesuchJson: JSON = JSON.parse(updateBesuchString);
-      return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", updateBesuchJson);
+      var saveBesuchString: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
+      var saveBesuchJson: JSON = JSON.parse(saveBesuchString);
+      return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", saveBesuchJson);
     }
 
     getDetailBesuch(id: number): ng.IHttpPromise<any> {
@@ -45,11 +45,11 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/getDetailBesuch", json);
     }
 
-    getAllGeschaeftspartnerForSearch():ng.IHttpPromise<any> {
+    getAllGeschaeftspartnerForSearch(): ng.IHttpPromise<any> {
       return this.$http.get("http://localhost:3000/api/getJsonGeschaeftspartner");
     }
 
-    getAllBesuchstypForSearch():ng.IHttpPromise<any> {
+    getAllBesuchstypForSearch(): ng.IHttpPromise<any> {
       return this.$http.get("http://localhost:3000/api/getJsonBesuchstyp");
     }
 

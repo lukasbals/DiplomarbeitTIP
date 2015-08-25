@@ -77,7 +77,7 @@ module TIP {
       console.log(id);
       TIPDatabase.getDB().serialize((): void => {
         console.log(isOnServer);
-        TIPDatabase.getDB().each("select client_id, id, client_id_besuch, id_besuch, titel, text, is_deleted, is_changed from berichte where ? = ?;", [isOnServer, id], (err, row): void => {
+        TIPDatabase.getDB().each("select client_id, id, client_id_besuch, id_besuch, titel, text, is_deleted, is_changed from berichte where " + isOnServer + " = " + id + ";", (err, row): void => {
           result.push({
             ClientId: row.client_id,
             Id: row.id,

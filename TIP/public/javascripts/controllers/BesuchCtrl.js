@@ -7,12 +7,14 @@ var TIP;
             this.currentDate = new Date();
             this.dataSourceGeschaeftspartnerForSearch = null;
             this.dataSourceBesuchstypForSearch = null;
+            this.dataSourceBericht = null;
             this.detailBesuchDataSource = null;
             this.geschaeftspartnerId = null;
             this.besuchstypId = null;
             this.startDate = null;
             this.endDate = null;
             this.gpName = null;
+            this.neuerBericht = false;
             this.lookupGeschaeftspartner = {
                 placeholder: "Geschäftspartner ändern...",
                 bindingOptions: {
@@ -175,12 +177,15 @@ var TIP;
                     _this.besuch.getBerichtById(idForBericht, isOnServer)
                         .success(function (data) {
                         console.log(data);
-                        _this.berichtHeadingContent = data[0].Titel;
-                        _this.berichtContentContent = data[0].Text;
+                        _this.dataSourceBericht = data;
+                        if (_this.dataSourceBericht[0] == null) {
+                            _this.neuerBericht = true;
+                        }
                     });
                 });
             }
             else {
+                this.neuerBericht = true;
                 this.geschaeftspartnerId = this.getParameter("IdGeschaeftspartner");
                 if (this.geschaeftspartnerId >= 0) {
                     this.besuch.getDetailGeschaeftspartner(this.geschaeftspartnerId)
