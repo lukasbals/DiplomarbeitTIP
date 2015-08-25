@@ -33,9 +33,9 @@ block content
       //-     h2 Berichte:
       div(ng-repeat="bericht in vm.dataSourceBericht")
         div.row.titelOptionsDetailBesuch
-          div.col-md-11
+          div.col-xs-10
             div(dx-text-box="vm.berichtHeading", ng-model="bericht.Titel")
-          div.col-md-1
+          div.col-xs-2
             div(dx-button="vm.deleteBericht", ng-model="bericht.Id")
         div.row
           div.col-md-12
