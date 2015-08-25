@@ -32,7 +32,7 @@ block content
       //-   div.col-md-12
       //-     h2 Berichte:
       div(ng-repeat="bericht in vm.dataSourceBericht")
-        div.row
+        div.row.titelOptionsDetailBesuch
           div.col-md-12
             div(dx-text-box="vm.berichtHeading", ng-model="bericht.Titel")
         div.row
