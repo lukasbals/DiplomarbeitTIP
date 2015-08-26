@@ -10,7 +10,7 @@ module TIP {
       this.loadTable();
     }
 
-    // makes anreden_st TABLE
+    // makes berichte TABLE
     initTable(): void {
       TIPDatabase.getDB().run("create table if not exists berichte (" +
         "client_id INTEGER PRIMARY KEY, " +
@@ -23,12 +23,12 @@ module TIP {
         "text TEXT)");
     }
 
-    // loads the TABLE anreden_st from the TIP Server
+    // loads the TABLE berichte from the TIP Server
     loadTable(): void {
       console.log("In TIPDataVertreterBericht -- loadVertreterBericht");
       var date = new Date();
 
-      // GET request to the TIP server -- Anrede
+      // GET request to the TIP server -- Bericht
       request.get(
         "http://10.20.50.53/tip/" + "api/DM360/Vertreter/Bericht",
         (error, response, body: string): void => {

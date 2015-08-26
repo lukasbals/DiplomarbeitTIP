@@ -31,8 +31,8 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/deleteBesuchAppointment", json);
         };
-        BesuchService.prototype.updateBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, besuchId, berichtHeadingContent, berichtContentContent) {
-            var updateBesuchString = '{"id": "' + besuchId + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
+        BesuchService.prototype.updateBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, besuchId, berichtHeadingContent, berichtContentContent, isOnServer) {
+            var updateBesuchString = '{"id": "' + besuchId + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '", "isOnServer": "' + isOnServer + '"}';
             var updateBesuchJson = JSON.parse(updateBesuchString);
             return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchJson);
         };

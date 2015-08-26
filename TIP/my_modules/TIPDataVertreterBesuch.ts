@@ -10,7 +10,7 @@ module TIP {
       this.loadTable();
     }
 
-    // makes anreden_st TABLE
+    // makes besuche TABLE
     initTable(): void {
       TIPDatabase.getDB().run("create table if not exists besuche (" +
         "client_id INTEGER PRIMARY KEY, " +
@@ -25,55 +25,83 @@ module TIP {
         "bis date)");
     }
 
-    // loads the TABLE anreden_st from the TIP Server
+    // loads the TABLE besuche from the TIP Server
     loadTable(): void {
       console.log("In TIPDataVertreterBesuch -- loadVertreterBesuch");
       var date = new Date();
 
-      // GET request to the TIP server -- Anrede
-      request.get(
-        "http://10.20.50.53/tip/" + "api/DM360/Vertreter/Besuch",
-        (error, response, body: string): void => {
-          var data: TIP.IBesuchModel[] = JSON.parse(body);
+      // GET request to the TIP server -- Besuch
+      request.get("http://10.20.50.53/tip/api/DM360/Vertreter/Besuch", (error, response, body: string): void => {
+        var data: TIP.IBesuchModel[] = JSON.parse(body);
 
-          TIPDatabase.getDB().serialize((): void => {
-            var insertStmt = TIPDatabase.getDB().prepare("insert into besuche (id, id_besuchstyp, client_id_besuch_plan, id_besuch_plan, id_geschaeftspartner, is_deleted, is_changed, von, bis) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            var updateStmt = TIPDatabase.getDB().prepare("update besuche set id_besuchstyp = ?, client_id_besuch_plan = ?, id_besuch_plan = ?, id_geschaeftspartner = ?, is_deleted = ?, is_changed = ?, von = ?, bis = ? where id = ?");
+        TIPDatabase.getDB().serialize((): void => {
+          var insertStmt = TIPDatabase.getDB().prepare("insert into besuche (id, id_besuchstyp, client_id_besuch_plan, id_besuch_plan, id_geschaeftspartner, is_deleted, is_changed, von, bis) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          var updateStmt = TIPDatabase.getDB().prepare("update besuche set id_besuchstyp = ?, client_id_besuch_plan = ?, id_besuch_plan = ?, id_geschaeftspartner = ?, is_deleted = ?, is_changed = ?, von = ?, bis = ? where id = ?");
 
-            var insertCount = 0;
-            var updateCount = 0;
+          var insertCount = 0;
+          var updateCount = 0;
 
-            data.forEach((val: any): void => {
-              TIPDatabase.getDB().get("select count(*) as result from besuche where id = ?", [val.Id], (error, row): void => {
-                if (row.result > 0) {
-                  updateCount++;
-                  updateStmt.run([val.IdBesuchstyp, val.ClientIdBesuch, val.IdBesuch, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis, val.Id]);
-                } else {
-                  insertCount++;
-                  insertStmt.run([val.Id, val.IdBesuchstyp, val.ClientIdBesuch, val.IdBesuch, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis]);
-                }
-              });
+          data.forEach((val: any): void => {
+            TIPDatabase.getDB().get("select count(*) as result from besuche where id = ?", [val.Id], (error, row): void => {
+              if (row.result > 0) {
+                updateCount++;
+                updateStmt.run([val.IdBesuchstyp, val.ClientIdBesuch, val.IdBesuch, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis, val.Id]);
+              } else {
+                insertCount++;
+                insertStmt.run([val.Id, val.IdBesuchstyp, val.ClientIdBesuch, val.IdBesuch, val.IdGeschaeftspartner, val.IsDeleted, val.IsChanged, val.Von, val.Bis]);
+              }
             });
-
-            if (insertCount > 0) {
-              insertStmt.finalize();
-            }
-            if (updateCount > 0) {
-              updateStmt.finalize();
-            }
-            this.isActive = false;
           });
+
+          if (insertCount > 0) {
+            insertStmt.finalize();
+          }
+          if (updateCount > 0) {
+            updateStmt.finalize();
+          }
+          this.isActive = false;
         });
+      });
 
       // sets CURRENT_TIMESTAMP into synch_st TABLE
       var tblName: string = "besuche";
       TIPDatabase.setSYNCH(tblName, date);
     }
 
+    synchBesuch(res) {
+      TIPDatabase.getDB().serialize((): void => {
+        TIPDatabase.getDB().each("select client_id, id, id_besuchstyp, client_id_besuch_plan, id_besuch_plan, id_geschaeftspartner, von, bis, is_deleted, is_changed from besuche where is_changed = 1 or is_deleted = 1;", (err, row): void => {
+          var json: TIP.IBesuchModel[] = new Array();
+          json.push({
+            ClientId: row.client_id,
+            Id: row.id,
+            IdBesuchstyp: row.id_besuchstyp,
+            ClientIdBesuchPlan: row.client_id_besuch_plan,
+            IdBesuchPlan: row.id_besuch_plan,
+            IdGeschaeftspartner: row.id_geschaeftspartner,
+            Von: row.von,
+            Bis: row.bis,
+            IsDeleted: row.is_deleted,
+            IsChanged: row.is_changed
+          });
+          console.log("Das ist eine ROW: --> ");
+          console.log(json[0]);
+
+          request.post("http://10.20.50.53/tip/api/DM360/Vertreter/Besuch", json[0], (err, res, req, body): void => {
+              // var data: TIP.IBesuchModel[] = JSON.parse(body);
+              console.log("Das ist ein BODY: --> ");
+              console.log(err);
+              console.log(body);
+            });
+        });
+      }, (): void => {
+          res.send("OK");
+        });
+    }
+
     isSyncActive(): boolean {
       return this.isActive;
     }
-
 
     getJsonBesuch(res): void {
       var result: TIP.ISchedulerData[] = new Array();
@@ -104,7 +132,7 @@ module TIP {
 
     }
 
-    updateBesuchAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, id_besuchstyp: number, berichtHeadingContent: string, berichtContentContent: string, res): void {
+    updateBesuchAppointment(id: number, startDate: Date, endDate: Date, id_geschaeftspartner: number, id_besuchstyp: number, berichtHeadingContent: string, berichtContentContent: string, isOnServer: string, res): void {
       var x = new Date(startDate.toLocaleString());
       var y = new Date(endDate.toLocaleString());
       var sD = x.toISOString();
@@ -113,13 +141,13 @@ module TIP {
       var IsChanged: number = 1;
       console.log(id);
       TIPDatabase.getDB().serialize((): void => {
-        var stmt = TIPDatabase.getDB().prepare("update besuche set is_changed = ?, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where client_id = ?; select last_insert_rowid() from besuche;");
-        stmt.run([IsChanged, sD, eD, id_geschaeftspartner, id_besuchstyp, id], (): void => {
+        var stmt = TIPDatabase.getDB().prepare("update besuche set is_changed = ?, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where ? = ?;");
+        stmt.run([IsChanged, sD, eD, id_geschaeftspartner, id_besuchstyp, isOnServer, id], (): void => {
           console.log("HEADINGCONTENT" + berichtHeadingContent);
           if (berichtHeadingContent != "null") {
             console.log(id);
-            TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
-          } else  {
+            TIPDatabase.getDB().run("insert into berichte (" + isOnServer + "_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
+          } else {
             console.log("keinBericht");
           }
         });
@@ -142,7 +170,7 @@ module TIP {
           //console.log("HEADINGCONTENT" + berichtHeadingContent);
           if (berichtHeadingContent != "null") {
             TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
-          } else  {
+          } else {
             console.log("keinBericht");
           }
         });

@@ -134,7 +134,16 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, this.detailBesuchDataSource.ClientId, this.berichtHeadingContent, this.berichtContentContent)
+        var idForUpdate: number;
+        var isOnServer: string;
+        if (this.detailBesuchDataSource.Id == null) {
+          idForUpdate = this.detailBesuchDataSource.ClientId;
+          isOnServer = "client_id";
+        } else {
+          idForUpdate = this.detailBesuchDataSource.Id;
+          isOnServer = "id";
+        }
+        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, idForUpdate, this.berichtHeadingContent, this.berichtContentContent, isOnServer)
           .success((data): void => {
           window.location.href = "/Besuch";
         });

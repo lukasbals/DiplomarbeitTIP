@@ -96,7 +96,8 @@ router.post("/updateBesuchAppointment", function(req, res) {
   var id_besuchstyp: number = req.body.id_besuchstyp;
   var berichtHeadingContent: string = req.body.berichtHeadingContent;
   var berichtContentContent: string = req.body.berichtContentContent;
-  TIPDataVertreterBesuch.updateBesuchAppointment(id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, res);
+  var isOnServer: string = req.body.isOnServer;
+  TIPDataVertreterBesuch.updateBesuchAppointment(id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, isOnServer, res);
 });
 
 router.post("/saveBesuchAppointment", function(req, res) {
@@ -112,6 +113,10 @@ router.post("/saveBesuchAppointment", function(req, res) {
 router.post("/getDetailBesuch", function(req, res) {
   var id: number = req.body.id;
   TIPDataVertreterBesuch.getDetailBesuch(id, res);
+});
+
+router.get("/synchBesuch", function(req, res) {
+  TIPDataVertreterBesuch.synchBesuch(res);
 });
 
 //
@@ -162,7 +167,7 @@ router.post("/getBerichtById", function(req, res) {
   TIPDataVertreterBericht.getBerichtById(id, isOnServer, res);
 });
 
-router.post("/updateBericht", function(req, res) {
+router.post("/updateBericht", function(req, res)  {
   TIPDataVertreterBericht.updateBericht(req.body, res);
 });
 

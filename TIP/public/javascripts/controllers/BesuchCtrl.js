@@ -67,7 +67,17 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, _this.detailBesuchDataSource.ClientId, _this.berichtHeadingContent, _this.berichtContentContent)
+                    var idForUpdate;
+                    var isOnServer;
+                    if (_this.detailBesuchDataSource.Id == null) {
+                        idForUpdate = _this.detailBesuchDataSource.ClientId;
+                        isOnServer = "client_id";
+                    }
+                    else {
+                        idForUpdate = _this.detailBesuchDataSource.Id;
+                        isOnServer = "id";
+                    }
+                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, idForUpdate, _this.berichtHeadingContent, _this.berichtContentContent, isOnServer)
                         .success(function (data) {
                         window.location.href = "/Besuch";
                     });
