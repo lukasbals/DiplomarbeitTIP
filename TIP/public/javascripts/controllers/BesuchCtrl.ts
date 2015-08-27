@@ -268,7 +268,7 @@ module TIP {
           idForUpdate = options.appointment.Id;
           isOnServer = "id";
         }
-        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, idForUpdate, this.berichtHeadingContent, this.berichtContentContent, isOnServer);
+        this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, idForUpdate, this.berichtHeadingContent, this.berichtContentContent, isOnServer);
       }
     }
   }

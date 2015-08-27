@@ -179,7 +179,7 @@ var TIP;
                         idForUpdate = options.appointment.Id;
                         isOnServer = "id";
                     }
-                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, idForUpdate, _this.berichtHeadingContent, _this.berichtContentContent, isOnServer);
+                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, idForUpdate, _this.berichtHeadingContent, _this.berichtContentContent, isOnServer);
                 }
             };
         }

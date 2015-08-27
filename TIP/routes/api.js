@@ -53,7 +53,6 @@ router.post("/deleteBesuchAppointment", function (req, res) {
     TIPDataVertreterBesuch.deleteBesuchAppointment(id, res);
 });
 router.post("/updateBesuchAppointment", function (req, res) {
-    console.log("IN");
     var id = req.body.id;
     var startDate = req.body.startDate;
     var endDate = req.body.endDate;

@@ -122,13 +122,13 @@ var TIP;
             });
         };
         TIPDataVertreterBesuchClass.prototype.updateBesuchAppointment = function (id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, isOnServer, res) {
-            console.log("INTIP");
+            console.log(startDate);
             var x = new Date(startDate.toLocaleString());
             var y = new Date(endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
             console.log(id);
-            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = " + startDate + ", bis = " + endDate + ", id_geschaeftspartner = " + id_geschaeftspartner + ", id_besuchstyp = " + id_besuchstyp + " where " + isOnServer + " = " + id + ";", function (err) {
+            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where " + isOnServer + " = " + id + ";", [sD, eD, id_geschaeftspartner, id_besuchstyp], function (err) {
                 console.log("HEADINGCONTENT" + berichtHeadingContent);
                 if (berichtHeadingContent != "null") {
                     console.log(id);
