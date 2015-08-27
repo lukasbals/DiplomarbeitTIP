@@ -168,7 +168,18 @@ var TIP;
                     var startDate = options.appointment.startDate;
                     var endDate = options.appointment.endDate;
                     var id = options.appointment.ClientId;
-                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id, _this.berichtHeadingContent, _this.berichtContentContent);
+                    var idForUpdate;
+                    var isOnServer;
+                    console.log(options.appointment);
+                    if (options.appointment.Id == null) {
+                        idForUpdate = options.appointment.ClientId;
+                        isOnServer = "client_id";
+                    }
+                    else {
+                        idForUpdate = options.appointment.Id;
+                        isOnServer = "id";
+                    }
+                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, idForUpdate, _this.berichtHeadingContent, _this.berichtContentContent, isOnServer);
                 }
             };
         }

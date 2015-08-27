@@ -89,6 +89,7 @@ router.post("/deleteBesuchAppointment", function(req, res) {
 });
 
 router.post("/updateBesuchAppointment", function(req, res) {
+  console.log("IN");
   var id: number = req.body.id;
   var startDate: Date = req.body.startDate;
   var endDate: Date = req.body.endDate;

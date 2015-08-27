@@ -77,9 +77,13 @@ var TIP;
                     });
                     console.log("Das ist eine ROW: --> ");
                     console.log(json[0]);
-                    request.post("http://10.20.50.53/tip/api/DM360/Vertreter/Besuch", json[0], function (err, res, req, body) {
+                    request.post({
+                        headers: { "content-type": "application/json" },
+                        url: "http://10.20.50.53/tip/api/DM360/Vertreter/Besuch",
+                        body: json[0],
+                        form: { key: 'value' }
+                    }, function (err, res, req, body) {
                         console.log("Das ist ein BODY: --> ");
-                        console.log(err);
                         console.log(body);
                     });
                 });
@@ -93,13 +97,14 @@ var TIP;
         TIPDataVertreterBesuchClass.prototype.getJsonBesuch = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
-                TIPDatabase.getDB().each("select gp.firmenbez_1, b.von, b.bis, b.client_id, b.id_geschaeftspartner from besuche b left join geschaeftspartner_st gp on b.id_geschaeftspartner = gp.id where is_deleted = 0;", function (error, row) {
+                TIPDatabase.getDB().each("select gp.firmenbez_1, b.von, b.bis, b.client_id, b.id_geschaeftspartner, b.id from besuche b left join geschaeftspartner_st gp on b.id_geschaeftspartner = gp.id where is_deleted = 0;", function (error, row) {
                     result.push({
                         text: row.firmenbez_1,
                         startDate: row.von,
                         endDate: row.bis,
                         ClientId: row.client_id,
-                        IdGeschaeftspartner: row.id_geschaeftspartner
+                        IdGeschaeftspartner: row.id_geschaeftspartner,
+                        Id: row.id
                     });
                 }, function () {
                     res.json(result);
@@ -117,28 +122,24 @@ var TIP;
             });
         };
         TIPDataVertreterBesuchClass.prototype.updateBesuchAppointment = function (id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, isOnServer, res) {
+            console.log("INTIP");
             var x = new Date(startDate.toLocaleString());
             var y = new Date(endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
-            var IsDeleted = 0;
-            var IsChanged = 1;
             console.log(id);
-            TIPDatabase.getDB().serialize(function () {
-                var stmt = TIPDatabase.getDB().prepare("update besuche set is_changed = ?, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where ? = ?;");
-                stmt.run([IsChanged, sD, eD, id_geschaeftspartner, id_besuchstyp, isOnServer, id], function () {
-                    console.log("HEADINGCONTENT" + berichtHeadingContent);
-                    if (berichtHeadingContent != "null") {
-                        console.log(id);
-                        TIPDatabase.getDB().run("insert into berichte (" + isOnServer + "_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
-                    }
-                    else {
-                        console.log("keinBericht");
-                    }
-                });
-                stmt.finalize();
-                res.send("OK");
+            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = " + startDate + ", bis = " + endDate + ", id_geschaeftspartner = " + id_geschaeftspartner + ", id_besuchstyp = " + id_besuchstyp + " where " + isOnServer + " = " + id + ";", function (err) {
+                console.log("HEADINGCONTENT" + berichtHeadingContent);
+                if (berichtHeadingContent != "null") {
+                    console.log(id);
+                    TIPDatabase.getDB().run("insert into berichte (" + isOnServer + "_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, 1, 0]);
+                }
+                else {
+                    console.log("keinBericht");
+                }
+                console.log(err);
             });
+            res.send("OK");
         };
         TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, res) {
             var x = new Date(startDate.toLocaleString());

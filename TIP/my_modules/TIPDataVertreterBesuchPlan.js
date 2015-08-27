@@ -65,13 +65,14 @@ var TIP;
         TIPDataVertreterBesuchPlanClass.prototype.getJsonBesuchPlan = function (res) {
             var result = new Array();
             TIPDatabase.getDB().serialize(function () {
-                TIPDatabase.getDB().each("select gp.firmenbez_1, bp.von, bp.bis, bp.client_id, bp.id_geschaeftspartner from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where is_deleted = 0;", function (error, row) {
+                TIPDatabase.getDB().each("select gp.firmenbez_1, bp.id, bp.von, bp.bis, bp.client_id, bp.id_geschaeftspartner from besuche_plan bp left join geschaeftspartner_st gp on bp.id_geschaeftspartner = gp.id where is_deleted = 0;", function (error, row) {
                     result.push({
                         text: row.firmenbez_1,
                         startDate: row.von,
                         endDate: row.bis,
                         ClientId: row.client_id,
-                        IdGeschaeftspartner: row.id_geschaeftspartner
+                        IdGeschaeftspartner: row.id_geschaeftspartner,
+                        Id: row.id
                     });
                 }, function () {
                     res.json(result);

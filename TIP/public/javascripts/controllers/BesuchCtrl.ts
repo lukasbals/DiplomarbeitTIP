@@ -258,7 +258,17 @@ module TIP {
         var startDate: Date = options.appointment.startDate;
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
-        this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, id, this.berichtHeadingContent, this.berichtContentContent);
+        var idForUpdate: number;
+        var isOnServer: string;
+        console.log(options.appointment)
+        if (options.appointment.Id == null) {
+          idForUpdate = options.appointment.ClientId;
+          isOnServer = "client_id";
+        } else {
+          idForUpdate = options.appointment.Id;
+          isOnServer = "id";
+        }
+        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, idForUpdate, this.berichtHeadingContent, this.berichtContentContent, isOnServer);
       }
     }
   }
