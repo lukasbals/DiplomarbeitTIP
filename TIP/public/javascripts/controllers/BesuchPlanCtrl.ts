@@ -4,7 +4,7 @@ module TIP {
 
     }
 
-    currentDate: Date = new Date();
+    currentDate: Date;
 
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     detailBesuchPlanDataSource: TIP.IBesuchPlanDetailModel = null;
@@ -78,7 +78,7 @@ module TIP {
       text: "Löschen",
       onClick: (): void => {
         this.besuchPlan.deleteBesuchPlanAppointment(this.detailBesuchPlanDataSource.ClientId);
-        window.location.href = "/besuchPlan";
+        window.location.href = "/BesuchPlan?currentDate=" + this.startDate;
       }
     }
 
@@ -88,7 +88,7 @@ module TIP {
       onClick: (): void => {
         this.besuchPlan.updateBesuchPlanAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchPlanDataSource.ClientId)
           .success((data): void => {
-          window.location.href = "/besuchPlan";
+          window.location.href = "/BesuchPlan?currentDate=" + this.startDate;
         });
 
       }
@@ -101,7 +101,7 @@ module TIP {
         this.besuchPlan.saveBesuchPlanAppointment(this.gpId, this.startDate, this.endDate)
           .success((data): void => {
           //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
-          window.location.href = "/besuchPlan";
+          window.location.href = "/BesuchPlan?currentDate=" + this.startDate;
         });
       }
     }
@@ -117,7 +117,7 @@ module TIP {
     besuch: DevExpress.ui.dxButtonOptions = {
       text: "Zu Besuche hinzufügen",
       type: "default",
-      onClick: (): void => {
+      onClick: (): void =>  {
         window.location.href = "/detail/detailBesuch?id=" + null + "&startDate=" + this.startDate + "&endDate=" + this.endDate + "&IdGeschaeftspartner=" + this.gpId;
 
       }
@@ -136,6 +136,10 @@ module TIP {
 
     dataSourceBesuchPlan: TIP.ISchedulerData = null;
     initBesuchPlan() {
+      this.currentDate = this.getParameter("currentDate");
+      if (this.currentDate == false) {
+        this.currentDate = new Date();
+      }
       this.besuchPlan.getBesuchPlan()
         .success((data): void => {
         this.besuchPlan.parse(data);
@@ -168,9 +172,6 @@ module TIP {
         var endDate: Date = options.appointment.endDate;
         var id: number = options.appointment.ClientId;
         this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
-      },
-      showAppointmentPopup: (options): void => {
-        window.location.href = "/detail/detailBesuchPlan?id=" + options.ClientId + "&startDate=" + options.startDate + "&endDate=" + options.endDate;
       }
     }
   }

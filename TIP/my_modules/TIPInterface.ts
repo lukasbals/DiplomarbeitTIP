@@ -115,6 +115,26 @@ module TIP {
     IsChanged: number;
   }
 
+  export interface IUpdateBesuchAppointmentModel {
+    IdGeschaeftspartner: number;
+    IdBesuchstyp: number;
+    startDate: Date;
+    endDate: Date;
+    idForUpdate: number;
+    berichtHeadingContent: string;
+    berichtContentContent: string;
+    isOnServer: string;
+  }
+
+  export interface ISaveBesuchAppointmentModel {
+    IdGeschaeftspartner: number;
+    IdBesuchstyp: number;
+    startDate: Date;
+    endDate: Date;
+    berichtHeadingContent: string;
+    berichtContentContent: string;
+  }
+
   export interface IBesuchDetailModel {
     ClientId: number;
     Id: number;

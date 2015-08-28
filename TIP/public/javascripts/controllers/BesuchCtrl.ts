@@ -4,13 +4,12 @@ module TIP {
 
     }
 
-    currentDate: Date = new Date();
+    currentDate: Date;
 
     dataSourceGeschaeftspartnerForSearch: IGpStammModel = null;
     dataSourceBesuchstypForSearch: IBesuchstypModel = null;
     dataSourceBericht: IBerichtModel = null;
     detailBesuchDataSource: TIP.IBesuchDetailModel = null;
-    // besuchId: number = null;
     geschaeftspartnerId: number = null;
     besuchstypId: number = null;
     startDate: Date = null;
@@ -126,7 +125,7 @@ module TIP {
       text: "Löschen",
       onClick: (): void => {
         this.besuch.deleteBesuchAppointment(this.detailBesuchDataSource.ClientId);
-        window.location.href = "/Besuch";
+        window.location.href = "/Besuch?currentDate=" + this.startDate;
       }
     }
 
@@ -136,19 +135,31 @@ module TIP {
       onClick: (): void => {
         var idForUpdate: number;
         var isOnServer: string;
-        if (this.detailBesuchDataSource.Id == null) {
+        if (this.detailBesuchDataSource.Id == null) {
           idForUpdate = this.detailBesuchDataSource.ClientId;
           isOnServer = "client_id";
         } else {
           idForUpdate = this.detailBesuchDataSource.Id;
           isOnServer = "id";
         }
-        this.besuch.updateBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, idForUpdate, this.berichtHeadingContent, this.berichtContentContent, isOnServer)
+        var updateBesuchAppointmentData: IUpdateBesuchAppointmentModel[] = new Array();
+        updateBesuchAppointmentData.push({
+          IdGeschaeftspartner: this.geschaeftspartnerId,
+          IdBesuchstyp: this.besuchstypId,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          idForUpdate: idForUpdate,
+          berichtHeadingContent: this.berichtHeadingContent,
+          berichtContentContent: this.berichtContentContent,
+          isOnServer: isOnServer
+        });
+        this.besuch.updateBesuchAppointment(updateBesuchAppointmentData)
           .success((data): void => {
-          window.location.href = "/Besuch";
+          this.currentDate = this.startDate;
+          window.location.href = "/Besuch?currentDate=" + this.startDate;
         });
         this.besuch.updateBericht(this.dataSourceBericht)
-        .success((data): void => {
+          .success((data): void => {
           console.log("success");
         });
 
@@ -159,10 +170,20 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuch.saveBesuchAppointment(this.geschaeftspartnerId, this.besuchstypId, this.startDate, this.endDate, this.berichtHeadingContent, this.berichtContentContent)
+        var saveBesuchAppointmentData: ISaveBesuchAppointmentModel[] = new Array();
+        saveBesuchAppointmentData.push({
+          IdGeschaeftspartner: this.geschaeftspartnerId,
+          IdBesuchstyp: this.besuchstypId,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          berichtHeadingContent: this.berichtHeadingContent,
+          berichtContentContent: this.berichtContentContent
+        });
+        this.besuch.saveBesuchAppointment(saveBesuchAppointmentData)
           .success((data): void => {
           // console.log(data);
-          window.location.href = "/Besuch";
+          this.currentDate = this.startDate;
+          window.location.href = "/Besuch?currentDate=" + this.startDate;
         });
       }
     }
@@ -170,7 +191,8 @@ module TIP {
     cancel: DevExpress.ui.dxButtonOptions = {
       text: "Abbrechen",
       onClick: (): boolean => {
-        history.go(-1);
+        this.currentDate = this.startDate;
+        window.location.href = "/Besuch?currentDate=" + this.startDate;
         return true;
       }
     }
@@ -179,10 +201,10 @@ module TIP {
       text: "X",
       type: "danger",
       width: "100%",
-      onClick: (data): void => {
+      onClick: (data): void => {
         //console.log(data.model.bericht.ClientId);
         this.besuch.deleteBericht(data.model.bericht.ClientId)
-        .success((data):void => {
+          .success((data): void => {
           history.go(0);
         });
       }
@@ -208,7 +230,7 @@ module TIP {
     bericht: DevExpress.ui.dxButtonOptions = {
       text: "Neuen Bericht erstellen",
       type: "default",
-      onClick: (): void =>  {
+      onClick: (): void => {
         this.neuerBericht = true;
       }
     }
@@ -226,6 +248,10 @@ module TIP {
 
     dataSourceBesuch: TIP.ISchedulerData = null;
     initBesuch() {
+      this.currentDate = this.getParameter("currentDate");
+      if (this.currentDate == false) {
+        this.currentDate = new Date();
+      }
       this.besuch.getBesuch()
         .success((data): void => {
         this.besuch.parse(data);
@@ -253,22 +279,28 @@ module TIP {
         this.besuch.deleteBesuchAppointment(id);
       },
       onAppointmentUpdated: (options): void => {
-        var id_besuchstyp: number = options.appointment.IdBesuchstyp;
-        var id_geschaeftspartner: number = options.appointment.IdGeschaeftspartner;
-        var startDate: Date = options.appointment.startDate;
-        var endDate: Date = options.appointment.endDate;
-        var id: number = options.appointment.ClientId;
         var idForUpdate: number;
         var isOnServer: string;
-        console.log(options.appointment)
-        if (options.appointment.Id == null) {
+        //console.log(options.appointment)
+        if (options.appointment.Id == null) {
           idForUpdate = options.appointment.ClientId;
           isOnServer = "client_id";
         } else {
           idForUpdate = options.appointment.Id;
           isOnServer = "id";
         }
-        this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, idForUpdate, this.berichtHeadingContent, this.berichtContentContent, isOnServer);
+        var updateBesuchAppointmentData: IUpdateBesuchAppointmentModel[] = new Array();
+        updateBesuchAppointmentData.push({
+          IdGeschaeftspartner: options.appointment.IdGeschaeftspartner,
+          IdBesuchstyp: options.appointment.IdBesuchstyp,
+          startDate: options.appointment.startDate,
+          endDate: options.appointment.endDate,
+          idForUpdate: idForUpdate,
+          berichtHeadingContent: this.berichtHeadingContent,
+          berichtContentContent: this.berichtContentContent,
+          isOnServer: isOnServer
+        });
+        this.besuch.updateBesuchAppointment(updateBesuchAppointmentData);
       }
     }
   }

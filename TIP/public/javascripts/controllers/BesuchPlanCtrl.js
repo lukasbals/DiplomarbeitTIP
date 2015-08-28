@@ -4,7 +4,6 @@ var TIP;
         function BesuchPlanViewModel(besuchPlan) {
             var _this = this;
             this.besuchPlan = besuchPlan;
-            this.currentDate = new Date();
             this.dataSourceGeschaeftspartnerForSearch = null;
             this.detailBesuchPlanDataSource = null;
             this.gpId = null;
@@ -44,7 +43,7 @@ var TIP;
                 text: "Löschen",
                 onClick: function () {
                     _this.besuchPlan.deleteBesuchPlanAppointment(_this.detailBesuchPlanDataSource.ClientId);
-                    window.location.href = "/besuchPlan";
+                    window.location.href = "/BesuchPlan?currentDate=" + _this.startDate;
                 }
             };
             this.update = {
@@ -53,7 +52,7 @@ var TIP;
                 onClick: function () {
                     _this.besuchPlan.updateBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchPlanDataSource.ClientId)
                         .success(function (data) {
-                        window.location.href = "/besuchPlan";
+                        window.location.href = "/BesuchPlan?currentDate=" + _this.startDate;
                     });
                 }
             };
@@ -63,7 +62,7 @@ var TIP;
                 onClick: function () {
                     _this.besuchPlan.saveBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate)
                         .success(function (data) {
-                        window.location.href = "/besuchPlan";
+                        window.location.href = "/BesuchPlan?currentDate=" + _this.startDate;
                     });
                 }
             };
@@ -114,9 +113,6 @@ var TIP;
                     var endDate = options.appointment.endDate;
                     var id = options.appointment.ClientId;
                     _this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
-                },
-                showAppointmentPopup: function (options) {
-                    window.location.href = "/detail/detailBesuchPlan?id=" + options.ClientId + "&startDate=" + options.startDate + "&endDate=" + options.endDate;
                 }
             };
         }
@@ -146,6 +142,10 @@ var TIP;
         };
         BesuchPlanViewModel.prototype.initBesuchPlan = function () {
             var _this = this;
+            this.currentDate = this.getParameter("currentDate");
+            if (this.currentDate == false) {
+                this.currentDate = new Date();
+            }
             this.besuchPlan.getBesuchPlan()
                 .success(function (data) {
                 _this.besuchPlan.parse(data);

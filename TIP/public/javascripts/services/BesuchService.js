@@ -31,15 +31,11 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/deleteBesuchAppointment", json);
         };
-        BesuchService.prototype.updateBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, besuchId, berichtHeadingContent, berichtContentContent, isOnServer) {
-            var updateBesuchString = '{"id": "' + besuchId + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '", "isOnServer": "' + isOnServer + '"}';
-            var updateBesuchJson = JSON.parse(updateBesuchString);
-            return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchJson);
+        BesuchService.prototype.updateBesuchAppointment = function (updateBesuchAppointmentData) {
+            return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchAppointmentData);
         };
-        BesuchService.prototype.saveBesuchAppointment = function (id_geschaeftspartner, id_besuchstyp, startDate, endDate, berichtHeadingContent, berichtContentContent) {
-            var saveBesuchString = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
-            var saveBesuchJson = JSON.parse(saveBesuchString);
-            return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", saveBesuchJson);
+        BesuchService.prototype.saveBesuchAppointment = function (saveBesuchAppointmentData) {
+            return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", saveBesuchAppointmentData);
         };
         BesuchService.prototype.getDetailBesuch = function (id) {
             var string = '{"id": "' + id + '"}';

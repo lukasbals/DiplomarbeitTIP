@@ -85,6 +85,8 @@ var TIP;
                     }, function (err, res, req, body) {
                         console.log("Das ist ein BODY: --> ");
                         console.log(body);
+                        console.log(err);
+                        console.log(req);
                     });
                 });
             }, function () {
@@ -121,42 +123,42 @@ var TIP;
                 }
             });
         };
-        TIPDataVertreterBesuchClass.prototype.updateBesuchAppointment = function (id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, isOnServer, res) {
-            console.log(startDate);
-            var x = new Date(startDate.toLocaleString());
-            var y = new Date(endDate.toLocaleString());
+        TIPDataVertreterBesuchClass.prototype.updateBesuchAppointment = function (updateBesuchAppointmentData, res) {
+            var data = updateBesuchAppointmentData;
+            var x = new Date(data.startDate.toLocaleString());
+            var y = new Date(data.endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
-            console.log(id);
-            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where " + isOnServer + " = " + id + ";", [sD, eD, id_geschaeftspartner, id_besuchstyp], function (err) {
-                console.log("HEADINGCONTENT" + berichtHeadingContent);
-                if (berichtHeadingContent != "null") {
-                    console.log(id);
-                    TIPDatabase.getDB().run("insert into berichte (" + isOnServer + "_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, 1, 0]);
+            console.log(data.idForUpdate);
+            TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where " + data.isOnServer + " = " + data.idForUpdate + ";", [sD, eD, data.IdGeschaeftspartner, data.IdBesuchstyp], function (err) {
+                console.log("HEADINGCONTENT" + data.berichtHeadingContent);
+                if (data.berichtHeadingContent != null) {
+                    console.log(data.idForUpdate);
+                    TIPDatabase.getDB().run("insert into berichte (" + data.isOnServer + "_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [data.idForUpdate, data.berichtHeadingContent, data.berichtContentContent, 1, 0]);
                 }
                 else {
-                    console.log("keinBericht");
+                    console.log("keinNeuerBericht");
                 }
-                console.log(err);
             });
             res.send("OK");
         };
-        TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, res) {
-            var x = new Date(startDate.toLocaleString());
-            var y = new Date(endDate.toLocaleString());
+        TIPDataVertreterBesuchClass.prototype.saveBesuchAppointment = function (saveBesuchAppointmentData, res) {
+            var data = saveBesuchAppointmentData;
+            var x = new Date(data.startDate.toLocaleString());
+            var y = new Date(data.endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
             var IsDeleted = 0;
             var IsChanged = 1;
             TIPDatabase.getDB().serialize(function () {
                 var stmt = TIPDatabase.getDB().prepare("insert into besuche (von, bis, id_geschaeftspartner, is_deleted, is_changed, id_besuchstyp) values (?, ?, ?, ?, ?, ?); select last_insert_rowid() from besuche;");
-                stmt.run([sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, id_besuchstyp], function () {
+                stmt.run([sD, eD, data.IdGeschaeftspartner, IsDeleted, IsChanged, data.IdBesuchstyp], function () {
                     var id = stmt.lastID;
-                    if (berichtHeadingContent != "null") {
-                        TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, berichtHeadingContent, berichtContentContent, IsChanged, IsDeleted]);
+                    if (data.berichtHeadingContent != null) {
+                        TIPDatabase.getDB().run("insert into berichte (client_id_besuch, titel, text, is_changed, is_deleted) values (?, ?, ?, ? ,?)", [id, data.berichtHeadingContent, data.berichtContentContent, IsChanged, IsDeleted]);
                     }
                     else {
-                        console.log("keinBericht");
+                        console.log("keinNeuerBericht");
                     }
                 });
                 stmt.finalize();

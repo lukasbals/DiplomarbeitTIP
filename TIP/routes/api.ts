@@ -89,25 +89,14 @@ router.post("/deleteBesuchAppointment", function(req, res) {
 });
 
 router.post("/updateBesuchAppointment", function(req, res) {
-  var id: number = req.body.id;
-  var startDate: Date = req.body.startDate;
-  var endDate: Date = req.body.endDate;
-  var id_geschaeftspartner: number = req.body.id_geschaeftspartner;
-  var id_besuchstyp: number = req.body.id_besuchstyp;
-  var berichtHeadingContent: string = req.body.berichtHeadingContent;
-  var berichtContentContent: string = req.body.berichtContentContent;
-  var isOnServer: string = req.body.isOnServer;
-  TIPDataVertreterBesuch.updateBesuchAppointment(id, startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, isOnServer, res);
+  // console.log(req.body[0].IdGeschaeftspartner);
+  var updateBesuchAppointmentData = req.body[0];
+  TIPDataVertreterBesuch.updateBesuchAppointment(updateBesuchAppointmentData, res);
 });
 
 router.post("/saveBesuchAppointment", function(req, res) {
-  var startDate: Date = req.body.startDate;
-  var endDate: Date = req.body.endDate;
-  var id_geschaeftspartner: number = req.body.id_geschaeftspartner;
-  var id_besuchstyp: number = req.body.id_besuchstyp;
-  var berichtHeadingContent: string = req.body.berichtHeadingContent;
-  var berichtContentContent: string = req.body.berichtContentContent;
-  TIPDataVertreterBesuch.saveBesuchAppointment(startDate, endDate, id_geschaeftspartner, id_besuchstyp, berichtHeadingContent, berichtContentContent, res);
+  var saveBesuchAppointmentData = req.body[0];
+  TIPDataVertreterBesuch.saveBesuchAppointment(saveBesuchAppointmentData, res);
 });
 
 router.post("/getDetailBesuch", function(req, res) {

@@ -4,7 +4,6 @@ var TIP;
         function BesuchViewModel(besuch) {
             var _this = this;
             this.besuch = besuch;
-            this.currentDate = new Date();
             this.dataSourceGeschaeftspartnerForSearch = null;
             this.dataSourceBesuchstypForSearch = null;
             this.dataSourceBericht = null;
@@ -60,7 +59,7 @@ var TIP;
                 text: "Löschen",
                 onClick: function () {
                     _this.besuch.deleteBesuchAppointment(_this.detailBesuchDataSource.ClientId);
-                    window.location.href = "/Besuch";
+                    window.location.href = "/Besuch?currentDate=" + _this.startDate;
                 }
             };
             this.update = {
@@ -77,9 +76,21 @@ var TIP;
                         idForUpdate = _this.detailBesuchDataSource.Id;
                         isOnServer = "id";
                     }
-                    _this.besuch.updateBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, idForUpdate, _this.berichtHeadingContent, _this.berichtContentContent, isOnServer)
+                    var updateBesuchAppointmentData = new Array();
+                    updateBesuchAppointmentData.push({
+                        IdGeschaeftspartner: _this.geschaeftspartnerId,
+                        IdBesuchstyp: _this.besuchstypId,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate,
+                        idForUpdate: idForUpdate,
+                        berichtHeadingContent: _this.berichtHeadingContent,
+                        berichtContentContent: _this.berichtContentContent,
+                        isOnServer: isOnServer
+                    });
+                    _this.besuch.updateBesuchAppointment(updateBesuchAppointmentData)
                         .success(function (data) {
-                        window.location.href = "/Besuch";
+                        _this.currentDate = _this.startDate;
+                        window.location.href = "/Besuch?currentDate=" + _this.startDate;
                     });
                     _this.besuch.updateBericht(_this.dataSourceBericht)
                         .success(function (data) {
@@ -91,16 +102,27 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuch.saveBesuchAppointment(_this.geschaeftspartnerId, _this.besuchstypId, _this.startDate, _this.endDate, _this.berichtHeadingContent, _this.berichtContentContent)
+                    var saveBesuchAppointmentData = new Array();
+                    saveBesuchAppointmentData.push({
+                        IdGeschaeftspartner: _this.geschaeftspartnerId,
+                        IdBesuchstyp: _this.besuchstypId,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate,
+                        berichtHeadingContent: _this.berichtHeadingContent,
+                        berichtContentContent: _this.berichtContentContent
+                    });
+                    _this.besuch.saveBesuchAppointment(saveBesuchAppointmentData)
                         .success(function (data) {
-                        window.location.href = "/Besuch";
+                        _this.currentDate = _this.startDate;
+                        window.location.href = "/Besuch?currentDate=" + _this.startDate;
                     });
                 }
             };
             this.cancel = {
                 text: "Abbrechen",
                 onClick: function () {
-                    history.go(-1);
+                    _this.currentDate = _this.startDate;
+                    window.location.href = "/Besuch?currentDate=" + _this.startDate;
                     return true;
                 }
             };
@@ -163,14 +185,8 @@ var TIP;
                     _this.besuch.deleteBesuchAppointment(id);
                 },
                 onAppointmentUpdated: function (options) {
-                    var id_besuchstyp = options.appointment.IdBesuchstyp;
-                    var id_geschaeftspartner = options.appointment.IdGeschaeftspartner;
-                    var startDate = options.appointment.startDate;
-                    var endDate = options.appointment.endDate;
-                    var id = options.appointment.ClientId;
                     var idForUpdate;
                     var isOnServer;
-                    console.log(options.appointment);
                     if (options.appointment.Id == null) {
                         idForUpdate = options.appointment.ClientId;
                         isOnServer = "client_id";
@@ -179,7 +195,18 @@ var TIP;
                         idForUpdate = options.appointment.Id;
                         isOnServer = "id";
                     }
-                    _this.besuch.updateBesuchAppointment(id_geschaeftspartner, id_besuchstyp, startDate, endDate, idForUpdate, _this.berichtHeadingContent, _this.berichtContentContent, isOnServer);
+                    var updateBesuchAppointmentData = new Array();
+                    updateBesuchAppointmentData.push({
+                        IdGeschaeftspartner: options.appointment.IdGeschaeftspartner,
+                        IdBesuchstyp: options.appointment.IdBesuchstyp,
+                        startDate: options.appointment.startDate,
+                        endDate: options.appointment.endDate,
+                        idForUpdate: idForUpdate,
+                        berichtHeadingContent: _this.berichtHeadingContent,
+                        berichtContentContent: _this.berichtContentContent,
+                        isOnServer: isOnServer
+                    });
+                    _this.besuch.updateBesuchAppointment(updateBesuchAppointmentData);
                 }
             };
         }
@@ -240,6 +267,10 @@ var TIP;
         };
         BesuchViewModel.prototype.initBesuch = function () {
             var _this = this;
+            this.currentDate = this.getParameter("currentDate");
+            if (this.currentDate == false) {
+                this.currentDate = new Date();
+            }
             this.besuch.getBesuch()
                 .success(function (data) {
                 _this.besuch.parse(data);

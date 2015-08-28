@@ -37,16 +37,12 @@ module TIP {
       return this.$http.post("http://localhost:3000/api/deleteBesuchAppointment", json);
     }
 
-    updateBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date, besuchId: number, berichtHeadingContent: string, berichtContentContent: string, isOnServer: string): ng.IHttpPromise<any> {
-      var updateBesuchString: string = '{"id": "' + besuchId + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '", "isOnServer": "' + isOnServer + '"}';
-      var updateBesuchJson: JSON = JSON.parse(updateBesuchString);
-      return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchJson);
+    updateBesuchAppointment(updateBesuchAppointmentData): ng.IHttpPromise<any> {
+      return this.$http.post("http://localhost:3000/api/updateBesuchAppointment", updateBesuchAppointmentData);
     }
 
-    saveBesuchAppointment(id_geschaeftspartner: number, id_besuchstyp: number, startDate: Date, endDate: Date, berichtHeadingContent: string, berichtContentContent: string): ng.IHttpPromise<any> {
-      var saveBesuchString: string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '", "id_besuchstyp": "' + id_besuchstyp + '", "berichtHeadingContent": "' + berichtHeadingContent + '", "berichtContentContent": "' + berichtContentContent + '"}';
-      var saveBesuchJson: JSON = JSON.parse(saveBesuchString);
-      return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", saveBesuchJson);
+    saveBesuchAppointment(saveBesuchAppointmentData): ng.IHttpPromise<any> {
+      return this.$http.post("http://localhost:3000/api/saveBesuchAppointment", saveBesuchAppointmentData);
     }
 
     getDetailBesuch(id: number): ng.IHttpPromise<any> {
