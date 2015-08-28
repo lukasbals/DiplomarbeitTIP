@@ -13,15 +13,11 @@ var TIP;
             var json = JSON.parse(string);
             return this.$http.post("http://localhost:3000/api/deleteBesuchPlanAppointment", json);
         };
-        BesuchPlanService.prototype.updateBesuchPlanAppointment = function (id_geschaeftspartner, startDate, endDate, id) {
-            var string = '{"id": "' + id + '", "startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
-            var json = JSON.parse(string);
-            return this.$http.post("http://localhost:3000/api/updateBesuchPlanAppointment", json);
+        BesuchPlanService.prototype.updateBesuchPlanAppointment = function (updateBesuchPlanAppointmentData) {
+            return this.$http.post("http://localhost:3000/api/updateBesuchPlanAppointment", updateBesuchPlanAppointmentData);
         };
-        BesuchPlanService.prototype.saveBesuchPlanAppointment = function (id_geschaeftspartner, startDate, endDate) {
-            var string = '{"startDate": "' + startDate + '", "endDate": "' + endDate + '", "id_geschaeftspartner": "' + id_geschaeftspartner + '"}';
-            var json = JSON.parse(string);
-            return this.$http.post("http://localhost:3000/api/saveBesuchPlanAppointment", json);
+        BesuchPlanService.prototype.saveBesuchPlanAppointment = function (saveBesuchPlanAppointment) {
+            return this.$http.post("http://localhost:3000/api/saveBesuchPlanAppointment", saveBesuchPlanAppointment);
         };
         BesuchPlanService.prototype.getDetailBesuchPlan = function (id) {
             var string = '{"id": "' + id + '"}';

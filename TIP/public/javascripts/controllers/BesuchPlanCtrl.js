@@ -50,7 +50,14 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuchPlan.updateBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate, _this.detailBesuchPlanDataSource.ClientId)
+                    var updateBesuchPlanAppointmentData = new Array();
+                    updateBesuchPlanAppointmentData.push({
+                        IdGeschaeftspartner: _this.gpId,
+                        ClientId: _this.detailBesuchPlanDataSource.ClientId,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate
+                    });
+                    _this.besuchPlan.updateBesuchPlanAppointment(updateBesuchPlanAppointmentData)
                         .success(function (data) {
                         window.location.href = "/BesuchPlan?currentDate=" + _this.startDate;
                     });
@@ -60,7 +67,13 @@ var TIP;
                 type: "success",
                 text: "Speichern",
                 onClick: function () {
-                    _this.besuchPlan.saveBesuchPlanAppointment(_this.gpId, _this.startDate, _this.endDate)
+                    var saveBesuchPlanAppointmentData = new Array();
+                    saveBesuchPlanAppointmentData.push({
+                        IdGeschaeftspartner: _this.gpId,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate
+                    });
+                    _this.besuchPlan.saveBesuchPlanAppointment(saveBesuchPlanAppointmentData)
                         .success(function (data) {
                         window.location.href = "/BesuchPlan?currentDate=" + _this.startDate;
                     });
@@ -108,11 +121,14 @@ var TIP;
                     _this.besuchPlan.deleteBesuchPlanAppointment(id);
                 },
                 onAppointmentUpdated: function (options) {
-                    var id_geschaeftspartner = options.appointment.IdGeschaeftspartner;
-                    var startDate = options.appointment.startDate;
-                    var endDate = options.appointment.endDate;
-                    var id = options.appointment.ClientId;
-                    _this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
+                    var updateBesuchPlanAppointmentData = new Array();
+                    updateBesuchPlanAppointmentData.push({
+                        IdGeschaeftspartner: options.appointment.IdGeschaeftspartner,
+                        ClientId: options.appointment.ClientId,
+                        startDate: options.appointment.startDate,
+                        endDate: options.appointment.endDate
+                    });
+                    _this.besuchPlan.updateBesuchPlanAppointment(updateBesuchPlanAppointmentData);
                 }
             };
         }

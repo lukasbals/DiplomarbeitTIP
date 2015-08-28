@@ -89,12 +89,13 @@ var TIP;
                 }
             });
         };
-        TIPDataVertreterBesuchPlanClass.prototype.updateBesuchPlanAppointment = function (id, startDate, endDate, id_geschaeftspartner, res) {
-            var x = new Date(startDate.toLocaleString());
-            var y = new Date(endDate.toLocaleString());
+        TIPDataVertreterBesuchPlanClass.prototype.updateBesuchPlanAppointment = function (updateBesuchPlanAppointmentData, res) {
+            var data = updateBesuchPlanAppointmentData;
+            var x = new Date(data.startDate.toLocaleString());
+            var y = new Date(data.endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
-            TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, id_geschaeftspartner, id], function (err) {
+            TIPDatabase.getDB().run("update besuche_plan set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ? where client_id = ?;", [sD, eD, data.IdGeschaeftspartner, data.ClientId], function (err) {
                 if (err) {
                     console.log(err);
                 }
@@ -103,18 +104,16 @@ var TIP;
                 }
             });
         };
-        TIPDataVertreterBesuchPlanClass.prototype.saveBesuchPlanAppointment = function (startDate, endDate, id_geschaeftspartner, res) {
-            var x = new Date(startDate.toLocaleString());
-            var y = new Date(endDate.toLocaleString());
+        TIPDataVertreterBesuchPlanClass.prototype.saveBesuchPlanAppointment = function (saveBesuchPlanAppointmentData, res) {
+            var data = saveBesuchPlanAppointmentData;
+            var x = new Date(data.startDate.toLocaleString());
+            var y = new Date(data.endDate.toLocaleString());
             var sD = x.toISOString();
             var eD = y.toISOString();
             var IsDeleted = 0;
             var IsChanged = 1;
             var Status = 1;
-            console.log(sD);
-            console.log(eD);
-            console.log(id_geschaeftspartner);
-            TIPDatabase.getDB().run("insert into besuche_plan (von, bis, id_geschaeftspartner, is_deleted, is_changed,status) values (?, ?, ?, ?, ?, ?);", [sD, eD, id_geschaeftspartner, IsDeleted, IsChanged, Status], function (err) {
+            TIPDatabase.getDB().run("insert into besuche_plan (von, bis, id_geschaeftspartner, is_deleted, is_changed,status) values (?, ?, ?, ?, ?, ?);", [sD, eD, data.IdGeschaeftspartner, IsDeleted, IsChanged, Status], function (err) {
                 if (err) {
                     res.send(err);
                 }

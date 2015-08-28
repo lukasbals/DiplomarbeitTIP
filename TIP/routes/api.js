@@ -75,17 +75,12 @@ router.post("/deleteBesuchPlanAppointment", function (req, res) {
     TIPDataVertreterBesuchPlan.deleteBesuchPlanAppointment(id, res);
 });
 router.post("/updateBesuchPlanAppointment", function (req, res) {
-    var id = req.body.id;
-    var startDate = req.body.startDate;
-    var endDate = req.body.endDate;
-    var id_geschaeftspartner = req.body.id_geschaeftspartner;
-    TIPDataVertreterBesuchPlan.updateBesuchPlanAppointment(id, startDate, endDate, id_geschaeftspartner, res);
+    var updateBesuchPlanAppointmentData = req.body[0];
+    TIPDataVertreterBesuchPlan.updateBesuchPlanAppointment(updateBesuchPlanAppointmentData, res);
 });
 router.post("/saveBesuchPlanAppointment", function (req, res) {
-    var startDate = req.body.startDate;
-    var endDate = req.body.endDate;
-    var id_geschaeftspartner = req.body.id_geschaeftspartner;
-    TIPDataVertreterBesuchPlan.saveBesuchPlanAppointment(startDate, endDate, id_geschaeftspartner, res);
+    var saveBesuchPlanAppointmentData = req.body[0];
+    TIPDataVertreterBesuchPlan.saveBesuchPlanAppointment(saveBesuchPlanAppointmentData, res);
 });
 router.post("/getDetailBesuchPlan", function (req, res) {
     var id = req.body.id;

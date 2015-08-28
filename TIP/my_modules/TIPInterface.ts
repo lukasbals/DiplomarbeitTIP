@@ -115,26 +115,6 @@ module TIP {
     IsChanged: number;
   }
 
-  export interface IUpdateBesuchAppointmentModel {
-    IdGeschaeftspartner: number;
-    IdBesuchstyp: number;
-    startDate: Date;
-    endDate: Date;
-    idForUpdate: number;
-    berichtHeadingContent: string;
-    berichtContentContent: string;
-    isOnServer: string;
-  }
-
-  export interface ISaveBesuchAppointmentModel {
-    IdGeschaeftspartner: number;
-    IdBesuchstyp: number;
-    startDate: Date;
-    endDate: Date;
-    berichtHeadingContent: string;
-    berichtContentContent: string;
-  }
-
   export interface IBesuchDetailModel {
     ClientId: number;
     Id: number;
@@ -160,6 +140,26 @@ module TIP {
     Email: string;
     Homepage: string;
     Bezeichnung: string;
+  }
+
+  export interface IUpdateBesuchAppointmentModel {
+    IdGeschaeftspartner: number;
+    IdBesuchstyp: number;
+    startDate: Date;
+    endDate: Date;
+    idForUpdate: number;
+    berichtHeadingContent: string;
+    berichtContentContent: string;
+    isOnServer: string;
+  }
+
+  export interface ISaveBesuchAppointmentModel {
+    IdGeschaeftspartner: number;
+    IdBesuchstyp: number;
+    startDate: Date;
+    endDate: Date;
+    berichtHeadingContent: string;
+    berichtContentContent: string;
   }
 
   export interface IBesuchPlanModel {
@@ -199,6 +199,19 @@ module TIP {
     Fax: string;
     Email: string;
     Homepage: string;
+  }
+
+  export interface IUpdateBesuchPlanAppointmentModel {
+    IdGeschaeftspartner: number;
+    ClientId: number;
+    startDate: Date;
+    endDate: Date;
+  }
+
+  export interface ISaveBesuchPlanAppointmentModel {
+    IdGeschaeftspartner: number;
+    startDate: Date;
+    endDate: Date;
   }
 
   export interface IBesuchstypModel {

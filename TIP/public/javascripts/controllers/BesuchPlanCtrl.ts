@@ -86,7 +86,14 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuchPlan.updateBesuchPlanAppointment(this.gpId, this.startDate, this.endDate, this.detailBesuchPlanDataSource.ClientId)
+        var updateBesuchPlanAppointmentData: IUpdateBesuchPlanAppointmentModel[] = new Array();
+        updateBesuchPlanAppointmentData.push({
+          IdGeschaeftspartner: this.gpId,
+          ClientId: this.detailBesuchPlanDataSource.ClientId,
+          startDate: this.startDate,
+          endDate: this.endDate
+        });
+        this.besuchPlan.updateBesuchPlanAppointment(updateBesuchPlanAppointmentData)
           .success((data): void => {
           window.location.href = "/BesuchPlan?currentDate=" + this.startDate;
         });
@@ -98,7 +105,13 @@ module TIP {
       type: "success",
       text: "Speichern",
       onClick: (): void => {
-        this.besuchPlan.saveBesuchPlanAppointment(this.gpId, this.startDate, this.endDate)
+        var saveBesuchPlanAppointmentData: ISaveBesuchPlanAppointmentModel[] = new Array();
+        saveBesuchPlanAppointmentData.push({
+          IdGeschaeftspartner: this.gpId,
+          startDate: this.startDate,
+          endDate: this.endDate
+        });
+        this.besuchPlan.saveBesuchPlanAppointment(saveBesuchPlanAppointmentData)
           .success((data): void => {
           //DevExpress.ui.notify("Sie haben den Termin gespeichert.", "success", 3000);
           window.location.href = "/BesuchPlan?currentDate=" + this.startDate;
@@ -167,11 +180,14 @@ module TIP {
         this.besuchPlan.deleteBesuchPlanAppointment(id);
       },
       onAppointmentUpdated: (options): void => {
-        var id_geschaeftspartner: number = options.appointment.IdGeschaeftspartner;
-        var startDate: Date = options.appointment.startDate;
-        var endDate: Date = options.appointment.endDate;
-        var id: number = options.appointment.ClientId;
-        this.besuchPlan.updateBesuchPlanAppointment(id_geschaeftspartner, startDate, endDate, id);
+        var updateBesuchPlanAppointmentData: IUpdateBesuchPlanAppointmentModel[] = new Array();
+        updateBesuchPlanAppointmentData.push({
+          IdGeschaeftspartner: options.appointment.IdGeschaeftspartner,
+          ClientId: options.appointment.ClientId,
+          startDate: options.appointment.startDate,
+          endDate: options.appointment.endDate
+        });
+        this.besuchPlan.updateBesuchPlanAppointment(updateBesuchPlanAppointmentData);
       }
     }
   }
