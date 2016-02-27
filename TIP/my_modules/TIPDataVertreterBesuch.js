@@ -203,7 +203,7 @@ var TIP;
             });
         };
         return TIPDataVertreterBesuchClass;
-    })();
+    }());
     TIP.TIPDataVertreterBesuchClass = TIPDataVertreterBesuchClass;
 })(TIP || (TIP = {}));
 module.exports = new TIP.TIPDataVertreterBesuchClass();

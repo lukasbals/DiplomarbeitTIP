@@ -164,8 +164,7 @@ router.post("/deleteBericht", function(req, res) {
 // synch data from TIP server to node database
 //
 router.get("/synchDB", (req, res): void => {
-  TIPSync.doSync();
-  res.send("done.");
+  TIPSync.doSync(res);
 });
 
 //setInterval(() => console.log(TIPSync.isSyncActive()), 1000);

@@ -26,10 +26,11 @@ module TIP {
       TIPDataVertreterTourPlan
     ];
 
-    doSync(): void {
+    doSync(res): void {
       this.tipDataArray.forEach((e): void => {
         e.doSync();
       });
+      res.render('index');
     }
 
     isSyncActive(): boolean {

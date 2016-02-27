@@ -110,6 +110,9 @@ module TIP {
       }
     }
 
+    //
+    // Persons in Detail GP
+    //
     gridPersonInGP: any = {
       //loadPanel: false,
       columns: [{

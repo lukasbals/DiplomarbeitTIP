@@ -1,3 +1,4 @@
+"use strict";
 var express = require("express");
 var TIPDataStammdatenGpKz = require("../my_modules/TIPDataStammdatenGpKz");
 var TIPDataStammdatenGeschaeftspartner = require("../my_modules/TIPDataStammdatenGeschaeftspartner");
@@ -102,8 +103,7 @@ router.post("/deleteBericht", function (req, res) {
     TIPDataVertreterBericht.deleteBericht(ClientId, res);
 });
 router.get("/synchDB", function (req, res) {
-    TIPSync.doSync();
-    res.send("done.");
+    TIPSync.doSync(res);
 });
 router.get("/isSyncActive", function (req, res) {
     res.send(TIPSync.isSyncActive());

@@ -42,9 +42,12 @@ div#statusRow.TIPRot
                   button.btn Besuch Plan
             td.navTd
               div.col-xs-2.redButtonDiv
-                a(href="/besuche")
+                a(href="/besuch")
                   button.btn Besuche
       div.col-xs-1
+        div(ng-hide="vm.isLoading").right
+          a(href="/api/synchDB")
+            img(src="/images/reload.png")#reloadIMG
         div(class="sk-cube-grid", ng-show="vm.isLoading")
           div(class="sk-cube sk-cube1")
           div(class="sk-cube sk-cube2")

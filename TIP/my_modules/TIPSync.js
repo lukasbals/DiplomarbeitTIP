@@ -27,10 +27,11 @@ var TIP;
                 TIPDataVertreterTourPlan
             ];
         }
-        TIPSync.prototype.doSync = function () {
+        TIPSync.prototype.doSync = function (res) {
             this.tipDataArray.forEach(function (e) {
                 e.doSync();
             });
+            res.render('index');
         };
         TIPSync.prototype.isSyncActive = function () {
             var count = 0;
@@ -47,7 +48,7 @@ var TIP;
             }
         };
         return TIPSync;
-    })();
+    }());
     TIP.TIPSync = TIPSync;
 })(TIP || (TIP = {}));
 module.exports = new TIP.TIPSync();

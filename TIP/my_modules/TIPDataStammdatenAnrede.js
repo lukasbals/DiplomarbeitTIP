@@ -68,7 +68,7 @@ var TIP;
             });
         };
         return TIPDataStammdatenAnredeClass;
-    })();
+    }());
     TIP.TIPDataStammdatenAnredeClass = TIPDataStammdatenAnredeClass;
 })(TIP || (TIP = {}));
 module.exports = new TIP.TIPDataStammdatenAnredeClass();

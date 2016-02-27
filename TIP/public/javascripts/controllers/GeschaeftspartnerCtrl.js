@@ -118,7 +118,7 @@ var TIP;
             });
         };
         return GeschaeftspartnerViewModel;
-    })();
+    }());
     TIP.GeschaeftspartnerViewModel = GeschaeftspartnerViewModel;
     var GeschaeftspartnerCtrl = (function () {
         function GeschaeftspartnerCtrl(geschaeftspartner, $scope) {
@@ -127,7 +127,7 @@ var TIP;
             $scope.vm = new GeschaeftspartnerViewModel(geschaeftspartner);
         }
         return GeschaeftspartnerCtrl;
-    })();
+    }());
     TIP.GeschaeftspartnerCtrl = GeschaeftspartnerCtrl;
     angular
         .module("tip")

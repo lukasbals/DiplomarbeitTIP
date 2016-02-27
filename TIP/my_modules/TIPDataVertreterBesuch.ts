@@ -130,13 +130,14 @@ module TIP {
     }
 
     deleteBesuchAppointment(id: number, res): void {
-      TIPDatabase.getDB().run("update besuche set is_deleted = 1 where client_id = ?;", [id], (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          res.send("OK");
-        }
-      });
+      TIPDatabase.getDB().run("update besuche set is_deleted = 1 where client_id = ?;",
+        [id], (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send("OK");
+          }
+        });
 
     }
 
@@ -149,7 +150,7 @@ module TIP {
       // var IsDeleted: number = 0;
       // var IsChanged: number = 1;
       console.log(data.idForUpdate);
-      TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where " + data.isOnServer + " = " + data.idForUpdate + ";", [sD, eD, data.IdGeschaeftspartner, data.IdBesuchstyp],(err): void => {
+      TIPDatabase.getDB().run("update besuche set is_changed = 1, von = ?, bis = ?, id_geschaeftspartner = ?, id_besuchstyp = ? where " + data.isOnServer + " = " + data.idForUpdate + ";", [sD, eD, data.IdGeschaeftspartner, data.IdBesuchstyp], (err): void => {
         console.log("HEADINGCONTENT" + data.berichtHeadingContent);
         if (data.berichtHeadingContent != null) {
           console.log(data.idForUpdate);

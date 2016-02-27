@@ -18,7 +18,7 @@ var TIP;
             return this.$http.post("http://localhost:3000/api/getDetailPersonForGP", json);
         };
         return GeschaeftspartnerService;
-    })();
+    }());
     TIP.GeschaeftspartnerService = GeschaeftspartnerService;
     angular
         .module("tip")

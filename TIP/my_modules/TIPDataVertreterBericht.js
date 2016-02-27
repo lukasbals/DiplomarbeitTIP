@@ -105,7 +105,7 @@ var TIP;
             });
         };
         return TIPDataVertreterBerichtClass;
-    })();
+    }());
     TIP.TIPDataVertreterBerichtClass = TIPDataVertreterBerichtClass;
 })(TIP || (TIP = {}));
 module.exports = new TIP.TIPDataVertreterBerichtClass();
